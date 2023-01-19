@@ -146,7 +146,6 @@ publishing {
     }
 }
 
-
 signing {
     useInMemoryPgpKeys(
         project.findProperty("signing.keyId")?.toString() ?: System.getenv("SIGNINGKEY"),
