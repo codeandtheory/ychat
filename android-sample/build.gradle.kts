@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.chatgpt.sdk.android"
+    namespace = "co.yml.ychatgpt.android"
     compileSdk = Config.COMPILE_SDK_VERSION
     defaultConfig {
-        applicationId = "com.chatgpt.sdk.android"
+        applicationId = "co.yml.ychatgpt.android"
         minSdk = Config.MIN_SDK_VERSION
         targetSdk = Config.TARGET_SDK_VERSION
         versionCode = 1
