@@ -1,11 +1,10 @@
 import SwiftUI
-import shared
+import chat_gpt
 
 struct ContentView: View {
-	let greet = Greeting().greet()
-
+	
 	var body: some View {
-		Text(greet)
+		Text("Hello world!")
 	}
 }
 

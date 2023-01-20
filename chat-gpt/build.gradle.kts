@@ -3,7 +3,7 @@ plugins {
     id("com.android.library")
     id("maven-publish")
     id("signing")
-    id("org.jetbrains.dokka") version "1.7.20"
+    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
 }
 
 kotlin {
