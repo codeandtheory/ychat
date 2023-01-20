@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -12,6 +14,12 @@ android {
         targetSdk = Config.TARGET_SDK_VERSION
         versionCode = 1
         versionName = "1.0"
+
+        val key = "API_KEY"
+        val apiKey = System
+            .getenv()
+            .getOrDefault(key, gradleLocalProperties(rootDir).getProperty(key))
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
 
     buildFeatures {
