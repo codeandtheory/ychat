@@ -15,7 +15,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "chat-gpt"
+            baseName = "chat-gpt-sdk"
         }
     }
 
