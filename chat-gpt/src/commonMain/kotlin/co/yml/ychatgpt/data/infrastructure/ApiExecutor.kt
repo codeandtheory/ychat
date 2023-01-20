@@ -42,7 +42,7 @@ internal class ApiExecutor(private val httpClient: HttpClient) {
     }
 
     fun addQuery(key: String, value: List<String>): ApiExecutor {
-        this.query[key] = value.joinToString()
+        this.query[key] = value.joinToString(",")
         return this
     }
 

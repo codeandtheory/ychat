@@ -10,6 +10,7 @@ internal data class ApiResult<T>(
     val exception: ChatGptException? = null,
 ) {
 
+    /** Return true if the api outcome was successful. */
     val isSuccessful: Boolean = exception == null
 
     /** Try to get [body], if it is null an [ChatGptException] will be thrown. */
@@ -19,7 +20,7 @@ internal data class ApiResult<T>(
         return body ?: throw exception
     }
 
-    /** Throw an [exception] when [isSuccessful] if false. */
+    /** Throw an [exception] when [isSuccessful] is false. */
     fun ensureSuccess() {
         if (!isSuccessful)
             throw exception ?: ChatGptException("Api request was not successful.")

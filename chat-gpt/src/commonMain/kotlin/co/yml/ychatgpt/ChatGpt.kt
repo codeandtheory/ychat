@@ -7,6 +7,9 @@ interface ChatGpt {
 
     suspend fun completion(input: String): String
 
+    /**
+     * Creates a completion for the provided [input] and [completionParams]
+     */
     suspend fun completion(
         input: String,
         completionParams: CompletionParams = CompletionParams()

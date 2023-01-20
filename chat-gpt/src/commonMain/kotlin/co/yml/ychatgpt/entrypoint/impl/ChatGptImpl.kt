@@ -33,6 +33,9 @@ internal class ChatGptImpl(apiKey: String) : ChatGpt {
         val chatLog = chatLogStorage.getChatLog(input)
         val completionDto = completionParams.toCompletionParamsDto(chatLog)
         val response = chatGptApi.completion(completionDto)
+        if (!response.isSuccessful) {
+            chatLogStorage.removeLastAppendedInput()
+        }
         return response.getBodyOrThrow()
             .choices
             .first()

@@ -4,6 +4,10 @@ ChatGPT is a large language model developed by OpenAI that is trained to generat
 
 YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms.
 
+## 🤝 Contributions
+
+Feel free to make a suggestion or if you find any error in this project, please open an issue.
+
 ## License
 
 ```

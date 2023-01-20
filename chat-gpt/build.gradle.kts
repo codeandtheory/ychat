@@ -33,6 +33,9 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Dependencies.Test.MOCKK)
+                implementation(Dependencies.Test.KTOR)
+                implementation(Dependencies.Test.KOIN)
             }
         }
         val androidMain by getting {
