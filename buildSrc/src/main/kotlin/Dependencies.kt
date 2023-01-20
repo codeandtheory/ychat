@@ -7,6 +7,7 @@ object Versions {
     const val COMPOSE_ACTIVITY = "1.6.1"
     const val KTOR = "2.2.2"
     const val KOIN = "3.2.0"
+    const val MATERIAL_DESIGN = "1.6.1"
 }
 
 object Dependencies {
@@ -25,7 +26,7 @@ object Dependencies {
     }
 
     object UI {
-        const val MATERIAL_DESIGN = "com.google.android.material:material:1.6.1"
+        const val MATERIAL_DESIGN = "com.google.android.material:${Versions.MATERIAL_DESIGN}"
         const val COMPOSE_UI = "androidx.activity:activity-compose:${Versions.COMPOSE}"
         const val COMPOSE_TOOLING = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
         const val COMPOSE_TOOLING_PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE}"
