@@ -30,7 +30,7 @@ internal class ChatGptImpl(apiKey: String) : ChatGpt {
         input: String,
         completionParams: CompletionParams
     ): String {
-        val chatLog = chatLogStorage.getChatLog(input)
+        val chatLog = chatLogStorage.buildChatInput(input)
         val completionDto = completionParams.toCompletionParamsDto(chatLog)
         val response = chatGptApi.completion(completionDto)
         if (!response.isSuccessful) {
@@ -40,6 +40,7 @@ internal class ChatGptImpl(apiKey: String) : ChatGpt {
             .choices
             .first()
             .text
+            .trim()
             .also { chatLogStorage.appendAnswer(it) }
     }
 }

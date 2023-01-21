@@ -6,8 +6,10 @@ import io.ktor.client.call.body
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.request.request
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
 import io.ktor.client.utils.EmptyContent
 import io.ktor.http.HttpMethod
+import io.ktor.http.isSuccess
 import io.ktor.util.toMap
 import kotlin.collections.set
 
@@ -53,13 +55,22 @@ internal class ApiExecutor(private val httpClient: HttpClient) {
                 method = httpMethod
                 setBody(this@ApiExecutor.body)
             }
-            val result = response.body<T>()
-            val headers = response.headers.toMap()
-            ApiResult(result, headers, response.status.value, null)
+            return response.toApiResult()
         } catch (responseException: ResponseException) {
             responseException.toApiResult()
         } catch (throwable: Throwable) {
             throwable.toApiResult()
+        }
+    }
+
+    private suspend inline fun <reified T> HttpResponse.toApiResult(): ApiResult<T> {
+        val headers = this.headers.toMap()
+        val statusCode = this.status.value
+        return if (!this.status.isSuccess()) {
+            val exception = ChatGptException(null, statusCode)
+            ApiResult(null, headers, statusCode, exception)
+        } else {
+            ApiResult(this.body<T>(), headers, statusCode, null)
         }
     }
 

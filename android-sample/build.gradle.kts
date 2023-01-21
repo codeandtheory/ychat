@@ -15,7 +15,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        val key = "API_KEY"
+        val key = "api.key"
         val apiKey = System
             .getenv()
             .getOrDefault(key, gradleLocalProperties(rootDir).getProperty(key))

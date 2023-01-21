@@ -11,9 +11,9 @@ internal class ChatLogStorage {
         return chatLog.joinToString("\n")
     }
 
-    fun getChatLog(input: String): String {
+    fun buildChatInput(input: String): String {
         chatLog.add("Human: $input")
-        return getChatLog()
+        return getChatLog() + "\n" + "AI: "
     }
 
     fun removeLastAppendedInput() {
@@ -21,6 +21,6 @@ internal class ChatLogStorage {
     }
 
     fun appendAnswer(answer: String) {
-        chatLog.add(answer.trimStart())
+        chatLog.add("AI: $answer")
     }
 }

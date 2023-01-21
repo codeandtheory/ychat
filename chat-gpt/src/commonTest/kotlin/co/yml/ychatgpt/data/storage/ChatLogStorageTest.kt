@@ -14,18 +14,19 @@ class ChatLogStorageTest {
     }
 
     @Test
-    fun `on getChatLog then should return chat log with appended input`() {
+    fun `on buildChatInput then should return chat log with appended input`() {
         // arrange
         val input = "Say this is a test"
 
         // act
-        val result = chatLogStorage.getChatLog(input)
+        val result = chatLogStorage.buildChatInput(input)
 
         // assert
         assertEquals(
             expected = "Human: Hello, how are you?" + "\n" +
                     "AI: I am doing great. How can I help you today?" + "\n" +
-                    "Human: Say this is a test",
+                    "Human: Say this is a test" + "\n" +
+                    "AI: ",
             actual = result
         )
     }
@@ -49,8 +50,8 @@ class ChatLogStorageTest {
         val input = "Say this is a test"
 
         // act
-        chatLogStorage.getChatLog(input)
-        chatLogStorage.appendAnswer(" AI: This is indeed a test")
+        chatLogStorage.buildChatInput(input)
+        chatLogStorage.appendAnswer("This is indeed a test")
         val result = chatLogStorage.getChatLog()
 
         // assert
