@@ -23,9 +23,7 @@ class ChatLogStorageTest {
 
         // assert
         assertEquals(
-            expected = "Human: Hello, how are you?" + "\n" +
-                    "AI: I am doing great. How can I help you today?" + "\n" +
-                    "Human: Say this is a test" + "\n" +
+            expected = "Human: Say this is a test" + "\n" +
                     "AI: ",
             actual = result
         )
@@ -33,13 +31,19 @@ class ChatLogStorageTest {
 
     @Test
     fun `on removeLastAppendedInput then should remove last appended input`() {
+        // arrange
+        val input = "Say this is a test"
+        val answer = "This in indeed a test!"
+
         // act
+        chatLogStorage.buildChatInput(input)
+        chatLogStorage.appendAnswer(answer)
         chatLogStorage.removeLastAppendedInput()
         val result = chatLogStorage.getChatLog()
 
         // assert
         assertEquals(
-            expected = "Human: Hello, how are you?",
+            expected = "Human: Say this is a test",
             actual = result
         )
     }
@@ -56,9 +60,7 @@ class ChatLogStorageTest {
 
         // assert
         assertEquals(
-            expected = "Human: Hello, how are you?" + "\n" +
-                    "AI: I am doing great. How can I help you today?" + "\n" +
-                    "Human: Say this is a test" + "\n" +
+            expected = "Human: Say this is a test" + "\n" +
                     "AI: This is indeed a test",
             actual = result
         )
