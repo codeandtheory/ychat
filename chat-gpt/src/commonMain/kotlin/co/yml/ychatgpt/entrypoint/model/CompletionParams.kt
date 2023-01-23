@@ -17,10 +17,14 @@ package co.yml.ychatgpt.entrypoint.model
  * considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens
  * comprising the top 10% probability mass are considered. We generally recommend altering this or
  * [temperature] but not both.
+ *
+ * [enableChatStorage] This flag enables the chat history to be stored, so that the GPT chat can
+ * get the context of previous conversations.
  */
 data class CompletionParams(
     var model: String = "text-davinci-003",
     var maxTokens: Int = 150,
     var temperature: Double = 1.0,
     var topP: Double = 1.0,
+    var enableChatStorage: Boolean = true,
 )

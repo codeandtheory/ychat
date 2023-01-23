@@ -2,10 +2,7 @@ package co.yml.ychatgpt.data.storage
 
 internal class ChatLogStorage {
 
-    private val chatLog = mutableListOf(
-        "Human: Hello, how are you?",
-        "AI: I am doing great. How can I help you today?"
-    )
+    private val chatLog: MutableList<String> = mutableListOf()
 
     fun getChatLog(): String {
         return chatLog.joinToString("\n")
