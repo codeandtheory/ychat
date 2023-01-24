@@ -22,6 +22,8 @@ interface ChatGpt {
      * prompt, and the model will generate a text completion that attempts to match whatever
      * context or pattern you gave it. For example, if you give the API the prompt, "As Descartes
      * said, I think, therefore", it will return the completion " I am" with high probability.
+     *
+     * @param input The prompt(s) to generate completions for.
      */
     @Throws(CancellationException::class, ChatGptException::class)
     suspend fun completion(input: String): String
@@ -33,6 +35,9 @@ interface ChatGpt {
      * said, I think, therefore", it will return the completion " I am" with high probability.
      *
      * You can configure the behavior of the completion editing the [completionParams].
+     *
+     * @param input The prompt(s) to generate completions for.
+     * @param completionParams Params to set the completion behaviour.
      */
     @Throws(CancellationException::class, ChatGptException::class)
     suspend fun completion(
