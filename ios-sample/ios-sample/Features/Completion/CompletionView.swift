@@ -89,7 +89,6 @@ struct CompletionView: View {
             Text(message)
                 .foregroundColor(.white)
                 .style(.body)
-                .multilineTextAlignment(.trailing)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)

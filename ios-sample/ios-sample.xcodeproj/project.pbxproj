@@ -27,6 +27,7 @@
 		48844905297CE094005B8A24 /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48844904297CE094005B8A24 /* TransitionAnimation.swift */; };
 		4884490A297CE1C5005B8A24 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48844909297CE1C5005B8A24 /* MainRouter.swift */; };
 		4884490D297CE1E6005B8A24 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4884490C297CE1E6005B8A24 /* MainView.swift */; };
+		489A546D297F93F700A6532C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A546C297F93F700A6532C /* Config.swift */; };
 		7555FF83242A565900829871 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* CompletionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,9 @@
 		48844904297CE094005B8A24 /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
 		48844909297CE1C5005B8A24 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		4884490C297CE1E6005B8A24 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		489A546A297F916C00A6532C /* EnvConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvConfig.xcconfig; sourceTree = "<group>"; };
+		489A546C297F93F700A6532C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		489A5471297F99FC00A6532C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* ios-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 		48844900297CE062005B8A24 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				489A546B297F93EF00A6532C /* Env */,
 				48844901297CE06E005B8A24 /* Navigation */,
 			);
 			path = Core;
@@ -247,12 +252,22 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		489A546B297F93EF00A6532C /* Env */ = {
+			isa = PBXGroup;
+			children = (
+				489A546C297F93F700A6532C /* Config.swift */,
+			);
+			path = Env;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* ios-sample */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
+				489A546A297F916C00A6532C /* EnvConfig.xcconfig */,
+				489A5471297F99FC00A6532C /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -394,6 +409,7 @@
 				488448E8297B9198005B8A24 /* ViewModifer.swift in Sources */,
 				7555FF83242A565900829871 /* CompletionView.swift in Sources */,
 				488448E6297B9116005B8A24 /* RoundedCorner.swift in Sources */,
+				489A546D297F93F700A6532C /* Config.swift in Sources */,
 				488448FC297CE004005B8A24 /* SplashView.swift in Sources */,
 				4884490A297CE1C5005B8A24 /* MainRouter.swift in Sources */,
 			);
@@ -404,6 +420,7 @@
 /* Begin XCBuildConfiguration section */
 		7555FFA3242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 489A546A297F916C00A6532C /* EnvConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -465,6 +482,7 @@
 		};
 		7555FFA4242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 489A546A297F916C00A6532C /* EnvConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -520,6 +538,7 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 489A546A297F916C00A6532C /* EnvConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -541,6 +560,7 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 489A546A297F916C00A6532C /* EnvConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

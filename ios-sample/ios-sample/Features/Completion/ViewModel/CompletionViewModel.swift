@@ -12,7 +12,7 @@ import chat_gpt_sdk
 internal final class CompletionViewModel: ObservableObject {
     
     private var chatGpt: ChatGpt {
-        ChatGptCompanion.shared.create(apiKey: "sk-frZlADpHeI2eXpyWjX7VT3BlbkFJ0xwn3C5DBN7kmFM5nBUh2")
+        ChatGptCompanion.shared.create(apiKey: Config.apiKey)
     }
     
     @Published
