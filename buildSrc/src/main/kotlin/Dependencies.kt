@@ -37,7 +37,8 @@ object Dependencies {
     }
 
     object Test {
-        const val MOCKK = "io.mockk:mockk-common:${Versions.MOCKK}"
+        const val MOCKK_COMMON = "io.mockk:mockk-common:${Versions.MOCKK}"
+        const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
         const val KTOR = "io.ktor:ktor-client-mock:${Versions.KTOR}"
         const val KOIN = "io.insert-koin:koin-test:${Versions.KOIN}"
     }

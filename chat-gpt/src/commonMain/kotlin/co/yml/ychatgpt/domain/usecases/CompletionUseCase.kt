@@ -28,8 +28,10 @@ internal class CompletionUseCase(
         return response.getBodyOrThrow()
             .toCompletionModel()
             .also {
-                val answer = it.choices.first().text.trim()
-                chatLogStorage.appendAnswer(answer)
+                if (completionParams.enableChatStorage) {
+                    val answer = it.choices.first().text.trim()
+                    chatLogStorage.appendAnswer(answer)
+                }
             }
     }
 }
