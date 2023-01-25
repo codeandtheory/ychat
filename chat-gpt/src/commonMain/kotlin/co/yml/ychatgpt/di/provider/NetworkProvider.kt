@@ -5,7 +5,9 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.header
+import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
+import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -19,6 +21,7 @@ internal object NetworkProvider {
                 url {
                     host = BASE_URL
                     url { protocol = URLProtocol.HTTPS }
+                    contentType(ContentType.Application.Json)
                 }
                 header("Authorization", "Bearer $apiKey")
             }

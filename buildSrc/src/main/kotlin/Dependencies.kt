@@ -8,6 +8,7 @@ object Versions {
     const val KTOR = "2.2.2"
     const val KOIN = "3.2.0"
     const val MATERIAL_DESIGN = "1.6.1"
+    const val MOCKK = "1.12.3"
 }
 
 object Dependencies {
@@ -33,5 +34,12 @@ object Dependencies {
         const val COMPOSE_FOUNDATION = "androidx.compose.foundation:foundation:${Versions.COMPOSE_FOUNDATION}"
         const val COMPOSE_MATERIAL = "androidx.compose.material:material:${Versions.COMPOSE_FOUNDATION}"
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:${Versions.COMPOSE_ACTIVITY}"
+    }
+
+    object Test {
+        const val MOCKK_COMMON = "io.mockk:mockk-common:${Versions.MOCKK}"
+        const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
+        const val KTOR = "io.ktor:ktor-client-mock:${Versions.KTOR}"
+        const val KOIN = "io.insert-koin:koin-test:${Versions.KOIN}"
     }
 }

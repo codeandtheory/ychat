@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization") version Versions.KOTLIN
     id("com.android.library")
     id("maven-publish")
     id("signing")
@@ -32,6 +33,9 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Dependencies.Test.MOCKK_COMMON)
+                implementation(Dependencies.Test.KTOR)
+                implementation(Dependencies.Test.KOIN)
             }
         }
         val androidMain by getting {
@@ -39,7 +43,11 @@ kotlin {
                 implementation(Dependencies.Network.KTOR_ANDROID)
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(Dependencies.Test.MOCKK)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

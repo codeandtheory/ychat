@@ -10,8 +10,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import co.yml.ychatgpt.ChatGpt
 
 class MainActivity : ComponentActivity() {
+
+    private val chatGpt by lazy { ChatGpt.create(BuildConfig.API_KEY) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
