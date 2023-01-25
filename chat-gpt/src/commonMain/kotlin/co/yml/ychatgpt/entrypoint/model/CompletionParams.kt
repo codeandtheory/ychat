@@ -26,5 +26,5 @@ data class CompletionParams(
     var maxTokens: Int = 150,
     var temperature: Double = 1.0,
     var topP: Double = 1.0,
-    var enableChatStorage: Boolean = true,
+    var enableChatStorage: Boolean = false,
 )

@@ -38,13 +38,14 @@ class CompletionUseCaseTest {
         // arrange
         val input = "Say this is a test."
         val apiResult = ApiResult<CompletionDto>(exception = ChatGptException())
+        val completionParams = CompletionParams(enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.removeLastAppendedInput() } just runs
         coEvery { chatGptApiMock.completion(any()) } returns apiResult
 
         // act
         val result =
-            runCatching { runBlocking { completionUseCase.completion(input, CompletionParams()) } }
+            runCatching { runBlocking { completionUseCase.completion(input, completionParams) } }
 
         // assert
         verify(exactly = 1) { chatLogStorageMock.removeLastAppendedInput() }
@@ -57,12 +58,13 @@ class CompletionUseCaseTest {
         val input = "Say this is a test."
         val completionDto = buildCompletionDto("This indeed a test")
         val apiResult = ApiResult(body = completionDto)
+        val completionParams = CompletionParams(enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.appendAnswer("This indeed a test") } just runs
         coEvery { chatGptApiMock.completion(any()) } returns apiResult
 
         // act
-        val result = runBlocking { completionUseCase.completion(input, CompletionParams()) }
+        val result = runBlocking { completionUseCase.completion(input, completionParams) }
 
         // assert
         verify(exactly = 1) { chatLogStorageMock.appendAnswer("This indeed a test") }

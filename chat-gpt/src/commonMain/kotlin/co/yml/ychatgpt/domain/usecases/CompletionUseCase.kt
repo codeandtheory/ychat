@@ -1,6 +1,8 @@
 package co.yml.ychatgpt.domain.usecases
 
 import co.yml.ychatgpt.data.api.ChatGptApi
+import co.yml.ychatgpt.data.dto.CompletionDto
+import co.yml.ychatgpt.data.infrastructure.ApiResult
 import co.yml.ychatgpt.data.storage.ChatLogStorage
 import co.yml.ychatgpt.domain.mapper.toCompletionModel
 import co.yml.ychatgpt.domain.model.CompletionModel
@@ -16,22 +18,32 @@ internal class CompletionUseCase(
         input: String,
         completionParams: CompletionParams
     ): CompletionModel {
-        val inputRequest =
-            if (completionParams.enableChatStorage) chatLogStorage.buildChatInput(input)
-            else input
-        val chatLog = chatLogStorage.buildChatInput(inputRequest)
-        val completionDto = completionParams.toCompletionParamsDto(chatLog)
-        val response = chatGptApi.completion(completionDto)
+        val response =
+            if (completionParams.enableChatStorage) chatLogCompletion(input, completionParams)
+            else requestCompletion(input, completionParams)
+        return response.getBodyOrThrow().toCompletionModel()
+    }
+
+    private suspend fun requestCompletion(
+        input: String,
+        completionParams: CompletionParams
+    ): ApiResult<CompletionDto> {
+        val completionDto = completionParams.toCompletionParamsDto(input)
+        return chatGptApi.completion(completionDto)
+    }
+
+    private suspend fun chatLogCompletion(
+        input: String,
+        completionParams: CompletionParams
+    ): ApiResult<CompletionDto> {
+        val inputChatLog = chatLogStorage.buildChatInput(input)
+        val response = requestCompletion(inputChatLog, completionParams)
         if (!response.isSuccessful) {
             chatLogStorage.removeLastAppendedInput()
+        } else {
+            val answer = response.body?.choices?.first()?.text.orEmpty()
+            chatLogStorage.appendAnswer(answer)
         }
-        return response.getBodyOrThrow()
-            .toCompletionModel()
-            .also {
-                if (completionParams.enableChatStorage) {
-                    val answer = it.choices.first().text.trim()
-                    chatLogStorage.appendAnswer(answer)
-                }
-            }
+        return response
     }
 }
