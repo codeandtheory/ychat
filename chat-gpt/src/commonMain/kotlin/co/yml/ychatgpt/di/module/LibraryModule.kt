@@ -14,7 +14,6 @@ internal class LibraryModule(private val apiKey: String) {
     fun modules(): List<Module> =
         domainModule + dataModule + platformModule()
 
-
     private val domainModule = module {
         factory { CompletionUseCase(get(), get()) }
     }

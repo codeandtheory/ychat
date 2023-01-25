@@ -3,6 +3,7 @@ plugins {
     id("com.android.application").version(Versions.GRADLE_PLUGIN).apply(false)
     id("com.android.library").version(Versions.GRADLE_PLUGIN).apply(false)
     id("io.gitlab.arturbosch.detekt").version(Versions.DETEKT_PLUGIN).apply(false)
+    id("org.jlleitschuh.gradle.ktlint").version(Versions.KTLINT_PLUGIN).apply(false)
     kotlin("android").version(Versions.KOTLIN).apply(false)
     kotlin("multiplatform").version(Versions.KOTLIN).apply(false)
 }

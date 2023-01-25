@@ -24,7 +24,7 @@ class ChatLogStorageTest {
         // assert
         assertEquals(
             expected = "Human: Say this is a test" + "\n" +
-                    "AI: ",
+                "AI: ",
             actual = result
         )
     }
@@ -61,7 +61,7 @@ class ChatLogStorageTest {
         // assert
         assertEquals(
             expected = "Human: Say this is a test" + "\n" +
-                    "AI: This is indeed a test",
+                "AI: This is indeed a test",
             actual = result
         )
     }

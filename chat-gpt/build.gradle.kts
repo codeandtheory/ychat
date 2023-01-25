@@ -1,11 +1,12 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.KOTLIN
+    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
     id("com.android.library")
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt")
-    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 kotlin {
@@ -159,7 +160,7 @@ signing {
     useInMemoryPgpKeys(
         project.findProperty("signing.keyId")?.toString() ?: System.getenv("SIGNINGKEY"),
         project.findProperty("signing.InMemoryKey")?.toString() ?: System.getenv("MEMORY_KEY"),
-        project.findProperty("signing.password")?.toString()?:System.getenv("SIGNINGPASSWORD")
+        project.findProperty("signing.password")?.toString() ?: System.getenv("SIGNINGPASSWORD")
     )
     sign(publishing.publications)
 }
