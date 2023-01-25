@@ -1,0 +1,13 @@
+//
+//  EnvConfig.xcconfig
+//  ios-sample
+//
+//  Created by Koji Osugi on 24/01/23.
+//  Copyright © 2023 orgName. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+API_KEY = // YOUR API KEY
