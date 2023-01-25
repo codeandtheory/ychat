@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("maven-publish")
     id("signing")
+    id("io.gitlab.arturbosch.detekt")
     id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
 }
 

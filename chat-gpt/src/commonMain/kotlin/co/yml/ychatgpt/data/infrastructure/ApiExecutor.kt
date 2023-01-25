@@ -11,6 +11,7 @@ import io.ktor.client.utils.EmptyContent
 import io.ktor.http.HttpMethod
 import io.ktor.http.isSuccess
 import io.ktor.util.toMap
+import io.ktor.utils.io.errors.IOException
 import kotlin.collections.set
 
 internal class ApiExecutor(private val httpClient: HttpClient) {
@@ -58,8 +59,8 @@ internal class ApiExecutor(private val httpClient: HttpClient) {
             return response.toApiResult()
         } catch (responseException: ResponseException) {
             responseException.toApiResult()
-        } catch (throwable: Throwable) {
-            throwable.toApiResult()
+        } catch (iOException: IOException) {
+            iOException.toApiResult()
         }
     }
 
