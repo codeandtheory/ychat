@@ -1,5 +1,6 @@
 package co.yml.ychatgpt.android.ui
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,12 +32,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import co.yml.ychatgpt.android.R
+import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraLarge
+import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
+import co.yml.ychatgpt.android.ui.Dimensions.spaceSmall
 import kotlinx.coroutines.launch
 
 @Composable
@@ -53,7 +57,7 @@ fun SendMessageLayout(
         modifier = Modifier
             .background(color = MaterialTheme.colors.background)
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(spaceMedium),
         verticalAlignment = Alignment.CenterVertically
     ) {
         OutlinedTextField(
@@ -61,9 +65,9 @@ fun SendMessageLayout(
                 .fillMaxWidth()
                 .weight(8f),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                backgroundColor = Color(0xFFE0E0E0),
-                focusedBorderColor = Color(0xFFE0E0E0),
-                unfocusedBorderColor = Color(0xFFE0E0E0)
+                backgroundColor = colorResource(id = R.color.opaqueWhite),
+                focusedBorderColor = colorResource(id = R.color.opaqueWhite),
+                unfocusedBorderColor = colorResource(id = R.color.opaqueWhite)
             ),
             value = textFieldState,
             label = { Text(text = stringResource(R.string.message)) },
@@ -76,15 +80,15 @@ fun SendMessageLayout(
         )
         Column(
             modifier = Modifier
-                .padding(top = 8.dp, start = 8.dp)
-                .size(56.dp),
+                .padding(top = spaceSmall, start = spaceSmall)
+                .size(spaceExtraLarge),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             IconButton(
                 modifier = Modifier
                     .clip(shape = CircleShape)
-                    .background(Color(0xFF448AFF)),
+                    .background(colorResource(id = R.color.softBlue)),
                 onClick = {
                     scope.launch {
                         onSendMessage(textFieldState)
@@ -100,7 +104,7 @@ fun SendMessageLayout(
     }
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun Preview() {
     SendMessageLayout(onSendMessage = {})

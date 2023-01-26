@@ -33,7 +33,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
@@ -43,6 +42,8 @@ import androidx.navigation.compose.rememberNavController
 import co.yml.ychatgpt.ChatGpt
 import co.yml.ychatgpt.android.ui.AppBar
 import co.yml.ychatgpt.android.ui.ChatLayout
+import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
+import co.yml.ychatgpt.android.ui.Dimensions.splashIconSize
 import co.yml.ychatgpt.android.ui.DrawerBody
 import co.yml.ychatgpt.android.ui.DrawerHeader
 import co.yml.ychatgpt.android.ui.SendMessageLayout
@@ -176,11 +177,15 @@ fun SplashScreen(navController: NavHostController) {
                     painterResource(R.drawable.ic_chat),
                     contentDescription = stringResource(R.string.logo),
                     modifier = Modifier
-                        .width(60.dp)
-                        .height(60.dp)
+                        .width(splashIconSize)
+                        .height(splashIconSize)
                 )
-                Spacer(modifier = Modifier.width(20.dp))
-                Text(text = stringResource(R.string.ychat_gpt), fontSize = 26.sp, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.width(spaceMedium))
+                Text(
+                    text = stringResource(R.string.ychat_gpt),
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }

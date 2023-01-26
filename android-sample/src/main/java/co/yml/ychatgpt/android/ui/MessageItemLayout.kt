@@ -1,6 +1,7 @@
 package co.yml.ychatgpt.android.ui
 
-import android.widget.Space
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,10 +20,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import co.yml.ychatgpt.android.R
+import co.yml.ychatgpt.android.ui.Dimensions.default
+import co.yml.ychatgpt.android.ui.Dimensions.robotMessageIconSize
+import co.yml.ychatgpt.android.ui.Dimensions.robotMessagePaddingSize
+import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraLarge
+import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraSmall
+import co.yml.ychatgpt.android.ui.Dimensions.spaceLarge
+import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
+import co.yml.ychatgpt.android.ui.Dimensions.spaceSmall
 
 @Composable
 fun MessageItemLayout(
@@ -34,7 +43,7 @@ fun MessageItemLayout(
         horizontalAlignment = if (isOut) Alignment.End else Alignment.Start
     ) {
         Row(
-            modifier = Modifier.padding(top = 16.dp),
+            modifier = Modifier.padding(top = spaceMedium),
             verticalAlignment = Alignment.Bottom
         ) {
             if (isOut.not()) {
@@ -42,35 +51,35 @@ fun MessageItemLayout(
                     painterResource(R.drawable.ic_robot),
                     contentDescription = "",
                     modifier = Modifier
-                        .width(50.dp)
-                        .height(50.dp)
+                        .width(robotMessageIconSize)
+                        .height(robotMessageIconSize)
                         .clip(shape = CircleShape)
-                        .background(Color(0xFF19C37D))
-                        .padding(8.dp),
+                        .background(colorResource(id = R.color.softGreen))
+                        .padding(robotMessagePaddingSize),
                 )
-                Spacer(modifier = Modifier.padding(4.dp), )
+                Spacer(modifier = Modifier.padding(spaceExtraSmall))
             }
             Box(
                 modifier = Modifier
                     .clip(
                         shape = RoundedCornerShape(
-                            topStart = 16.dp,
-                            topEnd = 16.dp,
-                            bottomEnd = if (isOut) 0.dp else 16.dp,
-                            bottomStart = if (isOut) 16.dp else 0.dp
+                            topStart = spaceMedium,
+                            topEnd = spaceMedium,
+                            bottomEnd = if (isOut) default else spaceMedium,
+                            bottomStart = if (isOut) spaceMedium else default
                         )
                     )
-                    .background(if (isOut) Color(0xFF448AFF) else Color(0xFFE0E0E0))
-                    .padding(top = 8.dp, bottom = 8.dp, start = 16.dp, end = 16.dp)
+                    .background(if (isOut) colorResource(id = R.color.softBlue) else colorResource(id = R.color.opaqueWhite))
+                    .padding(top = spaceSmall, bottom = spaceSmall, start = spaceMedium, end = spaceMedium)
             ) {
-                Text(text = messageText, color = if (isOut) Color.White else Color(0xFF212121))
+                Text(text = messageText, color = if (isOut) colorResource(id = R.color.white) else colorResource(id = R.color.softBlack))
             }
         }
     }
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewMessageItemLayout() {
-    MessageItemLayout(messageText = "Test", isOut = false)
+    MessageItemLayout(messageText = "Message", isOut = false)
 }
