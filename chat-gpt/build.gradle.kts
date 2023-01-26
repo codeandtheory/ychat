@@ -7,6 +7,18 @@ plugins {
     id("signing")
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
+    id("org.jetbrains.kotlinx.kover")
+}
+
+kover {
+    verify {
+        rule {
+            name = "Minimal line coverage rate in percents"
+            bound {
+                minValue = 80
+            }
+        }
+    }
 }
 
 kotlin {
