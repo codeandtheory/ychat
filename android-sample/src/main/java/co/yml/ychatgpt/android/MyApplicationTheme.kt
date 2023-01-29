@@ -9,11 +9,13 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import co.yml.ychatgpt.android.ui.Dimensions.default
+import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraSmall
 
 @Composable
 fun MyApplicationTheme(
@@ -22,15 +24,17 @@ fun MyApplicationTheme(
 ) {
     val colors = if (darkTheme) {
         darkColors(
-            primary = Color(0xFFBB86FC),
-            primaryVariant = Color(0xFF3700B3),
-            secondary = Color(0xFF03DAC5)
+            primary = colorResource(id = R.color.softPurple),
+            primaryVariant = colorResource(id = R.color.deepBlue),
+            secondary = colorResource(id = R.color.softGreen),
+            background = colorResource(id = R.color.darkGrey),
         )
     } else {
         lightColors(
-            primary = Color(0xFF6200EE),
-            primaryVariant = Color(0xFF3700B3),
-            secondary = Color(0xFF03DAC5)
+            primary = colorResource(id = R.color.softBlue),
+            primaryVariant = colorResource(id = R.color.deepBlue),
+            secondary = colorResource(id = R.color.softGreen),
+            background = colorResource(id = R.color.white),
         )
     }
     val typography = Typography(
@@ -41,9 +45,9 @@ fun MyApplicationTheme(
         )
     )
     val shapes = Shapes(
-        small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(4.dp),
-        large = RoundedCornerShape(0.dp)
+        small = RoundedCornerShape(spaceExtraSmall),
+        medium = RoundedCornerShape(spaceExtraSmall),
+        large = RoundedCornerShape(default)
     )
 
     MaterialTheme(

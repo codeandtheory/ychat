@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="completion">Completion</string>
+    <string name="edits">Edits</string>
+    <string name="logo">Logo</string>
+    <string name="ychat_gpt">YChat GPT</string>
+    <string name="completition">Completion</string>
+    <string name="toggle">Toggle</string>
+    <string name="ychat_gp2">YChat GPT</string>
+</resources>
