@@ -140,10 +140,14 @@ fun MainScreen(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
             }
         },
         bottomBar = {
+            val typing = MessageItem(message = stringResource(R.string.typing), isOut = false)
             SendMessageLayout(onSendMessage = {
                 scope.launch {
                     items.add(MessageItem(message = it, isOut = true))
+                    delay(300)
+                    items.add(typing)
                     chatGptAnswer = chatGpt.completion(it)
+                    items.remove(typing)
                     items.add(MessageItem(message = chatGptAnswer, isOut = false))
                 }
             })

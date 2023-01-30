@@ -9,4 +9,6 @@
     <string name="completition">Completion</string>
     <string name="toggle">Toggle</string>
     <string name="ychat_gp2">YChat GPT</string>
+    <string name="typing">Typing...</string>
+    <string name="enter_any_message_and_chat_gpt_will_answer_it">Enter any message and chat GPT will answer it</string>
 </resources>
