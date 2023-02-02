@@ -22,9 +22,44 @@ enum Icon: String, CaseIterable {
     case warningOutline = "ic_warning_outline"
     case logo = "ic_logo"
     case logoBig = "ic_logo_big"
+    case fitSplash = "bg_fit_splash"
+    case person = "ic_person"
+    case fitHome = "bg_fit_home"
+    case moreHorizontal = "ic_more_horizontal"
+    case addCircle = "ic_add_circle"
+    case home = "ic_home"
+    case close = "ic_close"
 }
 
 extension UIImage {
+    
+    public class var close: UIImage {
+        UIImage(named: Icon.close.rawValue)!
+    }
+    
+    public class var home: UIImage {
+        UIImage(named: Icon.home.rawValue)!
+    }
+    
+    public class var addCircle: UIImage {
+        UIImage(named: Icon.addCircle.rawValue)!
+    }
+    
+    public class var moreHorizontal: UIImage {
+        UIImage(named: Icon.moreHorizontal.rawValue)!
+    }
+    
+    public class var fitHome: UIImage {
+        UIImage(named: Icon.fitHome.rawValue)!
+    }
+    
+    public class var person: UIImage {
+        UIImage(named: Icon.person.rawValue)!
+    }
+    
+    public class var fitSplash: UIImage {
+        UIImage(named: Icon.fitSplash.rawValue)!
+    }
     
     public class var logoBig: UIImage {
         UIImage(named: Icon.logoBig.rawValue)!

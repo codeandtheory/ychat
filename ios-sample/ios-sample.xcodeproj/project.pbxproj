@@ -28,6 +28,14 @@
 		4884490A297CE1C5005B8A24 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48844909297CE1C5005B8A24 /* MainRouter.swift */; };
 		4884490D297CE1E6005B8A24 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4884490C297CE1E6005B8A24 /* MainView.swift */; };
 		489A546D297F93F700A6532C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A546C297F93F700A6532C /* Config.swift */; };
+		489A54742989A20900A6532C /* FitSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54732989A20900A6532C /* FitSplashView.swift */; };
+		489A54792989A76500A6532C /* FitLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54782989A76500A6532C /* FitLogo.swift */; };
+		489A547C2989AA4800A6532C /* FitHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A547B2989AA4800A6532C /* FitHomeView.swift */; };
+		489A547F2989B7B900A6532C /* FitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A547E2989B7B900A6532C /* FitMainView.swift */; };
+		489A54822989D4B300A6532C /* FitChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54812989D4B300A6532C /* FitChatView.swift */; };
+		489A54842989D4BD00A6532C /* FitChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54832989D4BD00A6532C /* FitChatViewModel.swift */; };
+		489A54872989D58400A6532C /* TypingLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54862989D58400A6532C /* TypingLoading.swift */; };
+		489A54892989DAAC00A6532C /* FitToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54882989DAAC00A6532C /* FitToolbar.swift */; };
 		7555FF83242A565900829871 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* CompletionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +76,14 @@
 		489A546A297F916C00A6532C /* EnvConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvConfig.xcconfig; sourceTree = "<group>"; };
 		489A546C297F93F700A6532C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		489A5471297F99FC00A6532C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		489A54732989A20900A6532C /* FitSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitSplashView.swift; sourceTree = "<group>"; };
+		489A54782989A76500A6532C /* FitLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitLogo.swift; sourceTree = "<group>"; };
+		489A547B2989AA4800A6532C /* FitHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitHomeView.swift; sourceTree = "<group>"; };
+		489A547E2989B7B900A6532C /* FitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitMainView.swift; sourceTree = "<group>"; };
+		489A54812989D4B300A6532C /* FitChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitChatView.swift; sourceTree = "<group>"; };
+		489A54832989D4BD00A6532C /* FitChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitChatViewModel.swift; sourceTree = "<group>"; };
+		489A54862989D58400A6532C /* TypingLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingLoading.swift; sourceTree = "<group>"; };
+		489A54882989DAAC00A6532C /* FitToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitToolbar.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* ios-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +141,7 @@
 		488448E1297B8EF9005B8A24 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				489A54852989D57700A6532C /* Loading */,
 				488448F4297CDF54005B8A24 /* Bar */,
 				488448F3297CDF4B005B8A24 /* TextField */,
 				488448F2297CDF3F005B8A24 /* Button */,
@@ -179,6 +196,7 @@
 		488448F7297CDFB1005B8A24 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				489A54722989A1EB00A6532C /* Fit */,
 				488448EB297CAC28005B8A24 /* Completion */,
 			);
 			path = Features;
@@ -258,6 +276,76 @@
 				489A546C297F93F700A6532C /* Config.swift */,
 			);
 			path = Env;
+			sourceTree = "<group>";
+		};
+		489A54722989A1EB00A6532C /* Fit */ = {
+			isa = PBXGroup;
+			children = (
+				489A54762989A74B00A6532C /* Components */,
+				489A54752989A74100A6532C /* Presentation */,
+			);
+			path = Fit;
+			sourceTree = "<group>";
+		};
+		489A54752989A74100A6532C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				489A54802989D49600A6532C /* Chat */,
+				489A547D2989B6CD00A6532C /* Main */,
+				489A547A2989AA3D00A6532C /* Home */,
+				489A54772989A75500A6532C /* Splash */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		489A54762989A74B00A6532C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				489A54782989A76500A6532C /* FitLogo.swift */,
+				489A54882989DAAC00A6532C /* FitToolbar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		489A54772989A75500A6532C /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				489A54732989A20900A6532C /* FitSplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		489A547A2989AA3D00A6532C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				489A547B2989AA4800A6532C /* FitHomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		489A547D2989B6CD00A6532C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				489A547E2989B7B900A6532C /* FitMainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		489A54802989D49600A6532C /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				489A54812989D4B300A6532C /* FitChatView.swift */,
+				489A54832989D4BD00A6532C /* FitChatViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		489A54852989D57700A6532C /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				489A54862989D58400A6532C /* TypingLoading.swift */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -393,25 +481,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				48844903297CE07C005B8A24 /* NavGraph.swift in Sources */,
+				489A54872989D58400A6532C /* TypingLoading.swift in Sources */,
 				488448DF297B8DF6005B8A24 /* Typography.swift in Sources */,
 				488448E3297B8F1B005B8A24 /* DefaultTextFieldStyle.swift in Sources */,
 				488448D9297B8419005B8A24 /* CompletionViewModel.swift in Sources */,
 				48844905297CE094005B8A24 /* TransitionAnimation.swift in Sources */,
+				489A54822989D4B300A6532C /* FitChatView.swift in Sources */,
 				4884490D297CE1E6005B8A24 /* MainView.swift in Sources */,
 				488448ED297CAC4F005B8A24 /* ChatMessage.swift in Sources */,
 				488448EA297B9843005B8A24 /* Icon.swift in Sources */,
 				488448DD297B8DD2005B8A24 /* Color.swift in Sources */,
+				489A54842989D4BD00A6532C /* FitChatViewModel.swift in Sources */,
 				488448EF297CD1E8005B8A24 /* ToolbarModifer.swift in Sources */,
+				489A547C2989AA4800A6532C /* FitHomeView.swift in Sources */,
 				488448F1297CD209005B8A24 /* ImageButton.swift in Sources */,
 				488448FF297CE035005B8A24 /* AppRouter.swift in Sources */,
+				489A54742989A20900A6532C /* FitSplashView.swift in Sources */,
 				488448F6297CDF67005B8A24 /* SideMenu.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				488448E8297B9198005B8A24 /* ViewModifer.swift in Sources */,
 				7555FF83242A565900829871 /* CompletionView.swift in Sources */,
 				488448E6297B9116005B8A24 /* RoundedCorner.swift in Sources */,
+				489A54792989A76500A6532C /* FitLogo.swift in Sources */,
 				489A546D297F93F700A6532C /* Config.swift in Sources */,
 				488448FC297CE004005B8A24 /* SplashView.swift in Sources */,
+				489A54892989DAAC00A6532C /* FitToolbar.swift in Sources */,
 				4884490A297CE1C5005B8A24 /* MainRouter.swift in Sources */,
+				489A547F2989B7B900A6532C /* FitMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-sample/Preview Content\"";
+				DEVELOPMENT_TEAM = SYJ7DHUDC6;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../chat-gpt/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "ios-sample/Info.plist";
@@ -565,6 +662,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-sample/Preview Content\"";
+				DEVELOPMENT_TEAM = SYJ7DHUDC6;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../chat-gpt/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "ios-sample/Info.plist";

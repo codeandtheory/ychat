@@ -15,11 +15,13 @@ internal final class AppRouter: ObservableObject {
     private init() {}
     
     enum Destination: Equatable {
+        case fitSplash
+        case fitMain
         case splash
         case main
     }
     
-    @Published var navGraph: NavGraph<Destination> = .init(destination: .splash)
+    @Published var navGraph: NavGraph<Destination> = .init(destination: .fitSplash)
     
     func push(_ destination: Destination) {
         navGraph.push(destination: destination)

@@ -9,12 +9,16 @@
 import SwiftUI
 
 struct DefaultTextFieldStyle: TextFieldStyle {
+    
+    var background: Color = .grayExtraLight
+    var foregroundColor: Color = .grayDark
+    
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .padding(.vertical)
             .padding(.horizontal, 24)
-            .background(Color.grayExtraLight)
-            .foregroundColor(.grayDark)
+            .background(background)
+            .foregroundColor(foregroundColor)
             .cornerRadius(8)
     }
 }

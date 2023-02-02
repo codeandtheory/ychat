@@ -12,6 +12,8 @@ struct iOSApp: App {
                 switch appRouter.navGraph.destination {
                 case .splash: SplashView()
                 case .main: MainView()
+                case .fitSplash: FitSplashView()
+                case .fitMain: FitMainView()
                 }
             }
             .transition(appRouter.navGraph.animation)

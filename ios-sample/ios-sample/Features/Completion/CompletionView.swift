@@ -151,39 +151,6 @@ struct CompletionView: View {
     }
 }
 
-private struct TypingLoading: View {
-    
-    @State
-    private var typingState = "Typing."
-    
-    @State
-    private var timer: Timer?
-
-    var body: some View {
-        ZStack() {
-            Text(typingState)
-                .foregroundColor(.grayMedium)
-                .style(.body)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
-        .background(Color.grayLight)
-        .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
-        .onAppear {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { _ in
-                switch typingState {
-                case "Typing...": typingState = "Typing."
-                case "Typing.": typingState = "Typing.."
-                default: typingState = "Typing..."
-                }
-            }
-        }
-        .onDisappear {
-            timer?.invalidate()
-        }
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
