@@ -8,20 +8,24 @@ import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import co.yml.ychatgpt.android.ui.Dimensions.default
-import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraSmall
+import co.yml.ychatgpt.android.common.Dimensions.default
+import co.yml.ychatgpt.android.common.Dimensions.spaceExtraSmall
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun MyApplicationTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = colorResource(id = R.color.darkGreen),
+    )
     val colors = if (darkTheme) {
         darkColors(
             primary = colorResource(id = R.color.softPurple),

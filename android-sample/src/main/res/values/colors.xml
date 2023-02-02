@@ -5,7 +5,10 @@
     <color name="softBlack">#212121</color>
     <color name="softBlue">#448AFF</color>
     <color name="deepBlue">#3700B3</color>
-    <color name="softGreen">#03DAC5</color>
+    <color name="opaqueBlue">#03DAC5</color>
     <color name="darkGrey">#666666</color>
     <color name="softPurple">#BB86FC</color>
+    <color name="softGreen">#7CD992</color>
+    <color name="darkGreen">#3E6D49</color>
+    <color name="lightBlue">#E3F2FD</color>
 </resources>

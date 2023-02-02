@@ -6,6 +6,7 @@ object Versions {
     const val COMPOSE_FOUNDATION = "1.3.1"
     const val COMPOSE_ACTIVITY = "1.6.1"
     const val COMPOSE_NAVIGATION = "2.5.3"
+    const val ACCOMPANISH = "0.27.0"
     const val KTOR = "2.2.2"
     const val KOIN = "3.2.0"
     const val MATERIAL_DESIGN = "1.6.1"
@@ -36,6 +37,7 @@ object Dependencies {
         const val COMPOSE_MATERIAL = "androidx.compose.material:material:${Versions.COMPOSE_FOUNDATION}"
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:${Versions.COMPOSE_ACTIVITY}"
         const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:${Versions.COMPOSE_NAVIGATION}"
+        const val ACCOMPANISH = "com.google.accompanist:accompanist-systemuicontroller:${Versions.ACCOMPANISH}"
     }
 
     object Test {

@@ -7,8 +7,17 @@
     <string name="logo">Logo</string>
     <string name="ychat_gpt">YChat GPT</string>
     <string name="completition">Completion</string>
+    <string name="health_chat">Health Chat</string>
     <string name="toggle">Toggle</string>
     <string name="ychat_gp2">YChat GPT</string>
     <string name="typing">Typing...</string>
     <string name="enter_any_message_and_chat_gpt_will_answer_it">Enter any message and chat GPT will answer it</string>
+    <string name="back">back</string>
+    <string name="need_guidance">Need some\nnutrition\nguidance?</string>
+    <string name="get_meal_plans">Get meal plans, ask about ingredients,\nand anything else you need advice on.\nJust ask our AI nutritionist!</string>
+    <string name="ask_a_question">Ask a question</string>
+    <string name="health">health</string>
+    <string name="chatgpt">chatgpt</string>
+
+
 </resources>

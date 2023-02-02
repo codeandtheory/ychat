@@ -1,6 +1,5 @@
-package co.yml.ychatgpt.android.ui
+package co.yml.ychatgpt.android.ui.main
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,19 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import co.yml.ychatgpt.android.R
-import co.yml.ychatgpt.android.ui.Dimensions.default
-import co.yml.ychatgpt.android.ui.Dimensions.robotMessageIconSize
-import co.yml.ychatgpt.android.ui.Dimensions.robotMessagePaddingSize
-import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraLarge
-import co.yml.ychatgpt.android.ui.Dimensions.spaceExtraSmall
-import co.yml.ychatgpt.android.ui.Dimensions.spaceLarge
-import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
-import co.yml.ychatgpt.android.ui.Dimensions.spaceSmall
+import co.yml.ychatgpt.android.common.Dimensions.default
+import co.yml.ychatgpt.android.common.Dimensions.robotMessageIconSize
+import co.yml.ychatgpt.android.common.Dimensions.robotMessagePaddingSize
+import co.yml.ychatgpt.android.common.Dimensions.spaceExtraSmall
+import co.yml.ychatgpt.android.common.Dimensions.spaceMedium
+import co.yml.ychatgpt.android.common.Dimensions.spaceSmall
 
 @Composable
 fun MessageItemLayout(
@@ -69,7 +65,7 @@ fun MessageItemLayout(
                             bottomStart = if (isOut) spaceMedium else default
                         )
                     )
-                    .background(if (isOut) colorResource(id = R.color.softBlue) else colorResource(id = R.color.opaqueWhite))
+                    .background(if (isOut) colorResource(id = R.color.darkGreen) else colorResource(id = R.color.opaqueWhite))
                     .padding(top = spaceSmall, bottom = spaceSmall, start = spaceMedium, end = spaceMedium)
             ) {
                 Text(text = messageText, color = if (isOut) colorResource(id = R.color.white) else colorResource(id = R.color.softBlack))

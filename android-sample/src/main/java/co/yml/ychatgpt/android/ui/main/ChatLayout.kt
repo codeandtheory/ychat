@@ -1,4 +1,4 @@
-package co.yml.ychatgpt.android.ui
+package co.yml.ychatgpt.android.ui.main
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -23,11 +23,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import co.yml.ychatgpt.android.MessageItem
 import co.yml.ychatgpt.android.R
-import co.yml.ychatgpt.android.ui.Dimensions.spaceLarge
-import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
-import co.yml.ychatgpt.android.ui.Dimensions.spaceSmall
+import co.yml.ychatgpt.android.common.Dimensions
+import co.yml.ychatgpt.android.common.Dimensions.spaceLarge
+import co.yml.ychatgpt.android.common.Dimensions.spaceMedium
+import co.yml.ychatgpt.android.common.Dimensions.spaceSmall
 import kotlinx.coroutines.launch
 
 @Composable

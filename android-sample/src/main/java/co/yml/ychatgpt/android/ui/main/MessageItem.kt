@@ -1,4 +1,4 @@
-package co.yml.ychatgpt.android
+package co.yml.ychatgpt.android.ui.main
 
 data class MessageItem(
     val message: String,
