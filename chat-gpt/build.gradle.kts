@@ -1,10 +1,24 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.KOTLIN
+    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
     id("com.android.library")
     id("maven-publish")
     id("signing")
-    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
+    id("io.gitlab.arturbosch.detekt")
+    id("org.jlleitschuh.gradle.ktlint")
+    id("org.jetbrains.kotlinx.kover")
+}
+
+kover {
+    verify {
+        rule {
+            name = "Minimal line coverage rate in percents"
+            bound {
+                minValue = 80
+            }
+        }
+    }
 }
 
 kotlin {
@@ -158,7 +172,7 @@ signing {
     useInMemoryPgpKeys(
         project.findProperty("signing.keyId")?.toString() ?: System.getenv("SIGNINGKEY"),
         project.findProperty("signing.InMemoryKey")?.toString() ?: System.getenv("MEMORY_KEY"),
-        project.findProperty("signing.password")?.toString()?:System.getenv("SIGNINGPASSWORD")
+        project.findProperty("signing.password")?.toString() ?: System.getenv("SIGNINGPASSWORD")
     )
     sign(publishing.publications)
 }
