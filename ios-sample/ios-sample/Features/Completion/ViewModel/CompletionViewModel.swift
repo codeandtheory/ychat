@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import chat_gpt_sdk
+import YChatGPT
 
 internal final class CompletionViewModel: ObservableObject {
     
