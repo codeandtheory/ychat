@@ -30,7 +30,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "chat-gpt-sdk"
+            baseName = "YChatGPT"
         }
     }
 
