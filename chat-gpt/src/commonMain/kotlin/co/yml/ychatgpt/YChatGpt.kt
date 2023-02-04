@@ -26,7 +26,7 @@ interface YChatGpt {
      * val result = YChatGpt.create(apiKey).completion()
      *      .setInput("As Descartes said, I think, therefore")
      *      .setMaxTokens(1024)
-     *      .set...Meu
+     *      .set...
      *      .execute()
      * ```
      */
