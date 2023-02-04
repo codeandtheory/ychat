@@ -8,7 +8,7 @@ import co.yml.ychatgpt.data.exception.ChatGptException
 import co.yml.ychatgpt.data.infrastructure.ApiResult
 import co.yml.ychatgpt.data.storage.ChatLogStorage
 import co.yml.ychatgpt.domain.usecases.CompletionUseCase
-import co.yml.ychatgpt.entrypoint.model.CompletionParams
+import co.yml.ychatgpt.domain.model.CompletionParams
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.just
@@ -38,14 +38,14 @@ class CompletionUseCaseTest {
         // arrange
         val input = "Say this is a test."
         val apiResult = ApiResult<CompletionDto>(exception = ChatGptException())
-        val completionParams = CompletionParams(enableChatStorage = true)
+        val completionParams = CompletionParams(prompt = input, enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.removeLastAppendedInput() } just runs
         coEvery { chatGptApiMock.completion(any()) } returns apiResult
 
         // act
         val result =
-            runCatching { runBlocking { completionUseCase.completion(input, completionParams) } }
+            runCatching { runBlocking { completionUseCase.completion(completionParams) } }
 
         // assert
         verify(exactly = 1) { chatLogStorageMock.removeLastAppendedInput() }
@@ -58,13 +58,13 @@ class CompletionUseCaseTest {
         val input = "Say this is a test."
         val completionDto = buildCompletionDto("This indeed a test")
         val apiResult = ApiResult(body = completionDto)
-        val completionParams = CompletionParams(enableChatStorage = true)
+        val completionParams = CompletionParams(prompt = input, enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.appendAnswer("This indeed a test") } just runs
         coEvery { chatGptApiMock.completion(any()) } returns apiResult
 
         // act
-        val result = runBlocking { completionUseCase.completion(input, completionParams) }
+        val result = runBlocking { completionUseCase.completion(completionParams) }
 
         // assert
         verify(exactly = 1) { chatLogStorageMock.appendAnswer("This indeed a test") }

@@ -1,7 +1,9 @@
-package co.yml.ychatgpt.entrypoint.model
+package co.yml.ychatgpt.domain.model
 
 /**
  * Parameters to configure the chat GPT completion API.
+ *
+ * [prompt] The prompt(s) to generate completions for.
  *
  * [model]: ID of the model to use.
  *
@@ -21,9 +23,10 @@ package co.yml.ychatgpt.entrypoint.model
  * [enableChatStorage] This flag enables the chat history to be stored, so that the GPT chat can
  * get the context of previous conversations.
  */
-data class CompletionParams(
+internal data class CompletionParams(
+    var prompt: String = "",
     var model: String = "text-davinci-003",
-    var maxTokens: Int = 150,
+    var maxTokens: Int = 1024,
     var temperature: Double = 1.0,
     var topP: Double = 1.0,
     var enableChatStorage: Boolean = false,

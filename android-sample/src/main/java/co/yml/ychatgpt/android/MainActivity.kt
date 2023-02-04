@@ -39,7 +39,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import co.yml.ychatgpt.ChatGpt
+import co.yml.ychatgpt.YChatGpt
 import co.yml.ychatgpt.android.ui.AppBar
 import co.yml.ychatgpt.android.ui.ChatLayout
 import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
@@ -53,7 +53,7 @@ import kotlin.coroutines.CoroutineContext
 
 class MainActivity : ComponentActivity() {
 
-    private val chatGpt by lazy { ChatGpt.create(BuildConfig.API_KEY) }
+    private val chatGpt by lazy { YChatGpt.create(BuildConfig.API_KEY) }
 
     private val myCoroutineContext by lazy { lifecycleScope.coroutineContext }
 
@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Navigation(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
+fun Navigation(chatGpt: YChatGpt, myCoroutineContext: CoroutineContext) {
     val navController = rememberNavController()
 
     NavHost(
@@ -88,7 +88,7 @@ fun Navigation(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
 }
 
 @Composable
-fun MainScreen(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
+fun MainScreen(chatGpt: YChatGpt, myCoroutineContext: CoroutineContext) {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     var chatGptAnswer by remember {
@@ -143,7 +143,10 @@ fun MainScreen(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
             SendMessageLayout(onSendMessage = {
                 scope.launch {
                     items.add(MessageItem(message = it, isOut = true))
-                    chatGptAnswer = chatGpt.completion(it)
+                    chatGptAnswer = chatGpt.completion()
+                        .setInput(it)
+                        .setMaxTokens(1024)
+                        .execute()
                     items.add(MessageItem(message = chatGptAnswer, isOut = false))
                 }
             })
