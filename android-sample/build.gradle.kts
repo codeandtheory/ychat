@@ -52,4 +52,6 @@ dependencies {
     implementation(Dependencies.UI.COMPOSE_MATERIAL)
     implementation(Dependencies.UI.COMPOSE_ACTIVITY)
     implementation(Dependencies.UI.COMPOSE_NAVIGATION)
+    implementation(Dependencies.DI.KOIN_CORE)
+    implementation(Dependencies.DI.KOIN_ANDROID)
 }

@@ -28,6 +28,7 @@ object Dependencies {
 
     object DI {
         const val KOIN_CORE = "io.insert-koin:koin-core:${Versions.KOIN}"
+        const val KOIN_ANDROID = "io.insert-koin:koin-android:${Versions.KOIN}"
     }
 
     object UI {

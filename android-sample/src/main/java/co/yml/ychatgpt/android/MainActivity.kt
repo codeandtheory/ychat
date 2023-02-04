@@ -50,8 +50,11 @@ import co.yml.ychatgpt.android.ui.SendMessageLayout
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: MainViewModel by viewModel()
 
     private val chatGpt by lazy { ChatGpt.create(BuildConfig.API_KEY) }
 
