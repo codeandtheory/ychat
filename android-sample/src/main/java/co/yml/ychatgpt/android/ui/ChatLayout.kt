@@ -19,21 +19,25 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import co.yml.ychatgpt.android.MainViewModel
 import co.yml.ychatgpt.android.MessageItem
 import co.yml.ychatgpt.android.R
 import co.yml.ychatgpt.android.ui.Dimensions.spaceLarge
 import co.yml.ychatgpt.android.ui.Dimensions.spaceMedium
 import co.yml.ychatgpt.android.ui.Dimensions.spaceSmall
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ChatLayout(
     messages: List<MessageItem>
 ) {
+    val viewModel = koinViewModel<MainViewModel>()
     if (messages.isEmpty()) {
         Column(
             modifier = Modifier
@@ -56,7 +60,7 @@ fun ChatLayout(
                     modifier = Modifier.padding(start = spaceMedium, end = spaceMedium, top = spaceSmall, bottom = spaceSmall),
                     text = stringResource(R.string.enter_any_message_and_chat_gpt_will_answer_it),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp
+                    fontSize = dimensionResource(id = R.dimen.font14).value.sp
                 )
             }
         }
