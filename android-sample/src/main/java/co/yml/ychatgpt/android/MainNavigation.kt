@@ -10,7 +10,7 @@ import co.yml.ychatgpt.android.ui.SplashScreen
 import kotlin.coroutines.CoroutineContext
 
 @Composable
-fun Navigation(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
+fun Navigation() {
     val navController = rememberNavController()
 
     NavHost(
@@ -23,7 +23,7 @@ fun Navigation(chatGpt: ChatGpt, myCoroutineContext: CoroutineContext) {
         }
 
         composable("main_screen") {
-            MainScreen(chatGpt)
+            MainScreen()
         }
     }
 }

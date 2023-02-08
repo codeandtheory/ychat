@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -20,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import co.yml.ychatgpt.ChatGpt
 import co.yml.ychatgpt.android.MainViewModel
 import co.yml.ychatgpt.android.MenuItem
 import co.yml.ychatgpt.android.MessageItem
@@ -30,16 +28,11 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MainScreen(chatGpt: ChatGpt) {
+fun MainScreen() {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val viewModel = koinViewModel<MainViewModel>()
-    var chatGptAnswer by remember {
-        mutableStateOf("")
-    }
-    val items = remember {
-        mutableStateListOf<MessageItem>()
-    }
+
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
@@ -79,13 +72,11 @@ fun MainScreen(chatGpt: ChatGpt) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ChatLayout(items)
+                ChatLayout(viewModel.items)
             }
         },
         bottomBar = {
-            val typingStr = stringResource(id = R.string.typing)
-            var typingTxt by remember { mutableStateOf(typingStr) }
-            val typingItem by remember { mutableStateOf(MessageItem(message = typingTxt, isOut = false)) }
+            val typingString = stringResource(id = R.string.typing)
             val isLoading: Boolean by viewModel.isLoading.observeAsState(initial = false)
             var counter by remember { mutableStateOf(0) }
 
@@ -94,23 +85,11 @@ fun MainScreen(chatGpt: ChatGpt) {
                 if (isLoading) {
                     delay(300)
                     counter += 1
-                    typingTxt = if (typingTxt.endsWith("...")) typingStr else "$typingTxt."
-                    items[items.lastIndex] = items.last().copy(message = typingTxt)
+                    viewModel.updateTyping(typingString)
                 }
             }
 
-            SendMessageLayout(onSendMessage = {
-                scope.launch {
-                    items.add(MessageItem(message = it, isOut = true))
-                    delay((1000..2000).random().toLong())
-                    viewModel.setLoading(true)
-                    items.add(typingItem)
-                    chatGptAnswer = chatGpt.completion(it)
-                    items.remove(items[items.lastIndex])
-                    items.add(MessageItem(message = chatGptAnswer, isOut = false))
-                    viewModel.setLoading(false)
-                }
-            })
+            SendMessageLayout()
         },
     )
 }

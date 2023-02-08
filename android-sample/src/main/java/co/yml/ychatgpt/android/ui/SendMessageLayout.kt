@@ -44,9 +44,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SendMessageLayout(
-    onSendMessage: (String) -> Unit
-) {
+fun SendMessageLayout() {
     var textFieldState by remember {
         mutableStateOf("")
     }
@@ -86,13 +84,14 @@ fun SendMessageLayout(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            val typingString = stringResource(id = R.string.typing)
             IconButton(
                 modifier = Modifier
                     .clip(shape = CircleShape)
                     .background(if (textFieldState.isNotEmpty() && isLoading.not()) colorResource(id = R.color.softBlue) else colorResource(id = R.color.opaqueWhite)),
                 onClick = {
                     scope.launch {
-                        onSendMessage(textFieldState)
+                        viewModel.onSendMessage(textFieldState, typingString)
                         textFieldState = ""
                     }
                 },
@@ -109,5 +108,5 @@ fun SendMessageLayout(
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun Preview() {
-    SendMessageLayout(onSendMessage = {})
+    SendMessageLayout()
 }
