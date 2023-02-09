@@ -3,7 +3,7 @@ package co.yml.ychatgpt.android.ui
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-object Dimensions{
+object Dimensions {
     val default: Dp = 0.dp
     val spaceXXSmall: Dp = 2.dp
     val spaceExtraSmall: Dp = 4.dp
