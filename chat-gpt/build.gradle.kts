@@ -16,7 +16,7 @@ kover {
         rule {
             name = "Minimal line coverage rate in percents"
             bound {
-                minValue = 80
+                minValue = 90
             }
         }
     }
