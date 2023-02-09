@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import co.yml.ychatgpt.android.MainViewModel
 import co.yml.ychatgpt.android.MenuItem
-import co.yml.ychatgpt.android.MessageItem
 import co.yml.ychatgpt.android.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

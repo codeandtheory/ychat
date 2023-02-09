@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.ychatgpt.ChatGpt
+import co.yml.ychatgpt.YChatGpt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val chatGpt: ChatGpt) : ViewModel() {
+class MainViewModel(private val chatGpt: YChatGpt) : ViewModel() {
 
     private val _items = mutableStateListOf<MessageItem>()
     val items = _items
@@ -47,7 +47,11 @@ class MainViewModel(private val chatGpt: ChatGpt) : ViewModel() {
 
     private suspend fun requestCompletion(message: String): String {
         return try {
-            chatGpt.completion(message)
+            chatGpt.completion()
+                .setInput(message)
+                .saveHistory(false)
+                .setMaxTokens(MAX_TOKENS)
+                .execute()
         } catch (e: Exception) {
             e.message ?: ERROR
         }
@@ -65,5 +69,6 @@ class MainViewModel(private val chatGpt: ChatGpt) : ViewModel() {
 
     companion object {
         private const val ERROR = "Error"
+        private const val MAX_TOKENS = 1024
     }
 }

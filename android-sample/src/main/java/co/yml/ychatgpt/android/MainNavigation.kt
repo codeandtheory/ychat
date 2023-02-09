@@ -4,10 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import co.yml.ychatgpt.ChatGpt
 import co.yml.ychatgpt.android.ui.MainScreen
 import co.yml.ychatgpt.android.ui.SplashScreen
-import kotlin.coroutines.CoroutineContext
 
 @Composable
 fun Navigation() {
