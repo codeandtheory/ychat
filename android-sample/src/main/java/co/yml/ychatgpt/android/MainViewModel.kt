@@ -50,7 +50,7 @@ class MainViewModel(private val chatGpt: YChatGpt) : ViewModel() {
             chatGpt.completion()
                 .setInput(message)
                 .saveHistory(false)
-                .setMaxTokens(1024)
+                .setMaxTokens(MAX_TOKENS)
                 .execute()
         } catch (e: Exception) {
             e.message ?: ERROR
@@ -69,5 +69,6 @@ class MainViewModel(private val chatGpt: YChatGpt) : ViewModel() {
 
     companion object {
         private const val ERROR = "Error"
+        private const val MAX_TOKENS = 1024
     }
 }
