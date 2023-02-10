@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class YCGPTCompletionParams, YCGPTChatGptCompanion, YCGPTKotlinThrowable, YCGPTKotlinArray<T>, YCGPTKotlinException, YCGPTKotlinRuntimeException, YCGPTKotlinIllegalStateException;
+@class YCGPTKotlinThrowable, YCGPTYChatGptCompanion, YCGPTKotlinArray<T>, YCGPTKotlinException, YCGPTKotlinRuntimeException, YCGPTKotlinIllegalStateException;
 
-@protocol YCGPTChatGpt, YCGPTKotlinIterator;
+@protocol YCGPTCompletion, YCGPTYChatGpt, YCGPTYChatGptCallback, YCGPTKotlinIterator;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -144,56 +144,50 @@ __attribute__((swift_name("KotlinBoolean")))
 + (instancetype)numberWithBool:(BOOL)value;
 @end
 
-__attribute__((swift_name("ChatGpt")))
-@protocol YCGPTChatGpt
+__attribute__((swift_name("YChatGpt")))
+@protocol YCGPTYChatGpt
+@required
+- (id<YCGPTCompletion>)completion __attribute__((swift_name("completion()")));
+@end
+
+__attribute__((swift_name("YChatGptCallback")))
+@protocol YCGPTYChatGptCallback
+@required
+- (void)onErrorThrowable:(YCGPTKotlinThrowable *)throwable __attribute__((swift_name("onError(throwable:)")));
+- (void)onSuccessResult:(id _Nullable)result __attribute__((swift_name("onSuccess(result:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("YChatGptCompanion")))
+@interface YCGPTYChatGptCompanion : YCGPTBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@property (class, readonly, getter=shared) YCGPTYChatGptCompanion *shared __attribute__((swift_name("shared")));
+
+/**
+ * @note annotations
+ *   kotlin.jvm.JvmStatic
+*/
+- (id<YCGPTYChatGpt>)createApiKey:(NSString *)apiKey __attribute__((swift_name("create(apiKey:)")));
+@end
+
+__attribute__((swift_name("Completion")))
+@protocol YCGPTCompletion
 @required
 
 /**
  * @note This method converts instances of CancellationException, ChatGptException to errors.
  * Other uncaught Kotlin exceptions are fatal.
 */
-- (void)completionInput:(NSString *)input completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("completion(input:completionHandler:)")));
-
-/**
- * @note This method converts instances of CancellationException, ChatGptException to errors.
- * Other uncaught Kotlin exceptions are fatal.
-*/
-- (void)completionInput:(NSString *)input completionParams:(YCGPTCompletionParams *)completionParams completionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("completion(input:completionParams:completionHandler:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChatGptCompanion")))
-@interface YCGPTChatGptCompanion : YCGPTBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
-@property (class, readonly, getter=shared) YCGPTChatGptCompanion *shared __attribute__((swift_name("shared")));
-
-/**
- * @note annotations
- *   kotlin.jvm.Synchronized
-*/
-- (id<YCGPTChatGpt>)createApiKey:(NSString *)apiKey __attribute__((swift_name("create(apiKey:)")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("CompletionParams")))
-@interface YCGPTCompletionParams : YCGPTBase
-- (instancetype)initWithModel:(NSString *)model maxTokens:(int32_t)maxTokens temperature:(double)temperature topP:(double)topP enableChatStorage:(BOOL)enableChatStorage __attribute__((swift_name("init(model:maxTokens:temperature:topP:enableChatStorage:)"))) __attribute__((objc_designated_initializer));
-- (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
-- (int32_t)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
-- (double)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
-- (double)component4 __attribute__((swift_name("component4()"))) __attribute__((deprecated("use corresponding property instead")));
-- (BOOL)component5 __attribute__((swift_name("component5()"))) __attribute__((deprecated("use corresponding property instead")));
-- (YCGPTCompletionParams *)doCopyModel:(NSString *)model maxTokens:(int32_t)maxTokens temperature:(double)temperature topP:(double)topP enableChatStorage:(BOOL)enableChatStorage __attribute__((swift_name("doCopy(model:maxTokens:temperature:topP:enableChatStorage:)")));
-- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
-- (NSUInteger)hash __attribute__((swift_name("hash()")));
-- (NSString *)description __attribute__((swift_name("description()")));
-@property BOOL enableChatStorage __attribute__((swift_name("enableChatStorage")));
-@property int32_t maxTokens __attribute__((swift_name("maxTokens")));
-@property NSString *model __attribute__((swift_name("model")));
-@property double temperature __attribute__((swift_name("temperature")));
-@property double topP __attribute__((swift_name("topP")));
+- (void)executeWithCompletionHandler:(void (^)(NSString * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(completionHandler:)")));
+- (void)executeCallback:(id<YCGPTYChatGptCallback>)callback __attribute__((swift_name("execute(callback:)")));
+- (id<YCGPTCompletion>)saveHistoryIsSaveHistory:(BOOL)isSaveHistory __attribute__((swift_name("saveHistory(isSaveHistory:)")));
+- (id<YCGPTCompletion>)setInputInput:(NSString *)input __attribute__((swift_name("setInput(input:)")));
+- (id<YCGPTCompletion>)setMaxTokensTokens:(int32_t)tokens __attribute__((swift_name("setMaxTokens(tokens:)")));
+- (id<YCGPTCompletion>)setModelModel:(NSString *)model __attribute__((swift_name("setModel(model:)")));
+- (id<YCGPTCompletion>)setTemperatureTemperature:(double)temperature __attribute__((swift_name("setTemperature(temperature:)")));
+- (id<YCGPTCompletion>)setTopPTopP:(double)topP __attribute__((swift_name("setTopP(topP:)")));
 @end
 
 __attribute__((swift_name("KotlinThrowable")))
