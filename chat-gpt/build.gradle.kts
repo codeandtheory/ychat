@@ -125,7 +125,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "co.yml"
             artifactId = "ychatgpt"
-            version = "0.0.1"
+            version = "1.0.0"
             afterEvaluate {
                 from(components["release"])
             }
