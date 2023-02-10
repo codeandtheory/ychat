@@ -9,6 +9,8 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jetbrains.kotlinx.kover")
+    id("githook-install")
+    id("spm-tasks")
 }
 
 kover {
@@ -22,10 +24,11 @@ kover {
     }
 }
 
+val iosLibraryName = properties["library.ios.name"].toString()
 version = properties["library.version"].toString()
 
 multiplatformSwiftPackage {
-    packageName("YChatGPT")
+    packageName(iosLibraryName)
     swiftToolsVersion("5.3")
     outputDirectory(File(rootDir, "/"))
     targetPlatforms {
@@ -42,7 +45,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "YChatGPT"
+            baseName = iosLibraryName
         }
     }
 
