@@ -22,8 +22,8 @@ jobs:
         run: ./gradlew :chat-gpt:clean publishReleasePublicationToYChatGPTRepository
 
         env:
-          MAVEN_USERNAME: ${{ secrets.MAVENCENTRALUSERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVENCENTRALPASSWORD}}
-          MEMORY_KEY: ${{ secrets.SIGNINGINMEMORYKEY}}
-          SIGNINGKEY: ${{ secrets.SIGNINGKEYID}}
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD}}
+          MEMORY_KEY: ${{ secrets.MEMORY_KEY}}
+          SIGNINGKEY: ${{ secrets.SIGNINGKEY}}
           SIGNINGPASSWORD: ${{ secrets.SIGNINGPASSWORD}}
