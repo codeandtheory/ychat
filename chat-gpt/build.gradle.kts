@@ -2,12 +2,15 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.KOTLIN
     id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
+    id("com.chromaticnoise.multiplatform-swiftpackage") version Versions.SPM_PLUGIN
     id("com.android.library")
     id("maven-publish")
     id("signing")
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jetbrains.kotlinx.kover")
+    id("githook-install")
+    id("spm-tasks")
 }
 
 kover {
@@ -21,6 +24,18 @@ kover {
     }
 }
 
+val iosLibraryName = properties["library.ios.name"].toString()
+version = properties["library.version"].toString()
+
+multiplatformSwiftPackage {
+    packageName(iosLibraryName)
+    swiftToolsVersion("5.3")
+    outputDirectory(File(rootDir, "/"))
+    targetPlatforms {
+        iOS { v("13") }
+    }
+}
+
 kotlin {
     android()
 
@@ -30,7 +45,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "YChatGPT"
+            baseName = iosLibraryName
         }
     }
 
@@ -125,7 +140,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "co.yml"
             artifactId = "ychatgpt"
-            version = "1.0.0"
+            version = properties["library.version"].toString()
             afterEvaluate {
                 from(components["release"])
             }

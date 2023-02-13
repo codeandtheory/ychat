@@ -1,0 +1,8 @@
+framework module YChatGPT {
+    umbrella header "YChatGPT.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}

@@ -18,9 +18,12 @@ jobs:
       - name: Run Clean
         run: ./gradlew clean
       ## Step 3
+      - name: Check Swift Package Version
+        run: ./gradlew checkSwiftPackageVersion
+      ## Step 4
       - name: Run Detekt
         run: ./gradlew :chat-gpt:detektMetadataMain
-      ## Step 4
+      ## Step 5
       - name: Run Ktlint
         run: ./gradlew :chat-gpt:ktlintCheck
 

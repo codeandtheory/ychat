@@ -1,6 +1,7 @@
 object Versions {
     const val GRADLE_PLUGIN = "7.3.0"
     const val DOKKA_PLUGIN = "1.7.20"
+    const val SPM_PLUGIN = "2.0.3"
     const val DETEKT_PLUGIN = "1.22.0"
     const val KTLINT_PLUGIN = "11.0.0"
     const val KOVER_PLUGIN = "0.6.1"
