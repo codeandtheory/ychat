@@ -46,7 +46,7 @@ jobs:
       ## Step 4
       - name: Upload Test Report
         if: failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Test Report
           path: "**/build/reports/tests/testDebugUnitTest"
