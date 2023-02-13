@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version Versions.KOTLIN
+    kotlin("plugin.serialization") version 1.8.10
     id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
     id("com.chromaticnoise.multiplatform-swiftpackage") version Versions.SPM_PLUGIN
     id("com.android.library")
