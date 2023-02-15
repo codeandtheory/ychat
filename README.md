@@ -1,12 +1,16 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/)
+![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
+
 # YChatGPT (Working in Progress 🚧)
 
 ChatGPT is a large language model developed by OpenAI that is trained to generate human-like text based on a given prompt or context.
 
 YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms.
 
+
 ## 🤝 Contributions
 
-Feel free to make a suggestion or if you find any error in this project, please open an issue.
+Feel free to make a suggestion or if you find any error in this project, please open an issue. Make sure to read our [contribution guidelines](https://github.com/yml-org/chatgpt-sdk/blob/main/CONTRIBUTING.md) before.
 
 ## License
 
