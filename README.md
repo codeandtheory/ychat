@@ -1,6 +1,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
-![Build Status](https://github.com/yml-org/ychatgpt/actions/workflows/test.yml/badge.svg?branch=main)
+![Build Status](https://github.com/yml-org/chatgpt-sdk/actions/workflows/test.yml/badge.svg?branch=main)
 
 # YChatGPT (Working in Progress 🚧)
 
