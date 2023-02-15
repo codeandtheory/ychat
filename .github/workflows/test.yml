@@ -43,4 +43,4 @@ jobs:
         distribution: 'temurin'
 
     - name: Build modules
-      run: ./gradlew build jacocoTestReport --stacktrace
+      run: ./gradlew koverReport --stacktrace
