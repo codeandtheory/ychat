@@ -29,8 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can 
-access it
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout Repo
       uses: actions/checkout@v3
 
