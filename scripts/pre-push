@@ -1,0 +1,13 @@
+#!/bin/bash
+echo Running pre-push hook
+echo Verify Swift Package Version
+# Verify if swift package is updated.
+./gradlew checkSwiftPackageVersion
+
+# If the packaged is outdated, generate an updated one and push it.
+if [ $? -ne 0 ]; then
+ echo Update KMM Swift Package.
+ # Task to generate an updated swift package.
+ ./gradlew updateSwiftPackage
+ exit 1
+fi

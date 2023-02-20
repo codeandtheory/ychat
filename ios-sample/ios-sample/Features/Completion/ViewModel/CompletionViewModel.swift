@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import chat_gpt_sdk
+import YChatGPT
 
 internal final class CompletionViewModel: ObservableObject {
     
-    private var chatGpt: ChatGpt {
-        ChatGptCompanion.shared.create(apiKey: Config.apiKey)
+    private var chatGpt: YChatGpt {
+        YChatGptCompanion.shared.create(apiKey: Config.apiKey)
     }
     
     @Published
@@ -33,7 +33,11 @@ internal final class CompletionViewModel: ObservableObject {
             cleanLastMessage()
             addLoading()
             do {
-                let result = try await chatGpt.completion(input: input)
+                let result = try await chatGpt.completion()
+                    .setInput(input: input)
+                    .setMaxTokens(tokens: 1024)
+                    .saveHistory(isSaveHistory: false)
+                    .execute()
                 removeLoading()
                 addAIMessage(message: result)
             } catch {

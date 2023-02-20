@@ -1,10 +1,39 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version Versions.KOTLIN
+    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
+    id("com.chromaticnoise.multiplatform-swiftpackage") version Versions.SPM_PLUGIN
     id("com.android.library")
     id("maven-publish")
     id("signing")
-    id("org.jetbrains.dokka") version Versions.DOKKA_PLUGIN
+    id("io.gitlab.arturbosch.detekt")
+    id("org.jlleitschuh.gradle.ktlint")
+    id("org.jetbrains.kotlinx.kover")
+    id("githook-install")
+    id("spm-tasks")
+}
+
+kover {
+    verify {
+        rule {
+            name = "Minimal line coverage rate in percents"
+            bound {
+                minValue = 90
+            }
+        }
+    }
+}
+
+val iosLibraryName = properties["library.ios.name"].toString()
+version = properties["library.version"].toString()
+
+multiplatformSwiftPackage {
+    packageName(iosLibraryName)
+    swiftToolsVersion("5.3")
+    outputDirectory(File(rootDir, "/"))
+    targetPlatforms {
+        iOS { v("13") }
+    }
 }
 
 kotlin {
@@ -16,7 +45,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "chat-gpt-sdk"
+            baseName = iosLibraryName
         }
     }
 
@@ -111,7 +140,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "co.yml"
             artifactId = "ychatgpt"
-            version = "0.0.1"
+            version = properties["library.version"].toString()
             afterEvaluate {
                 from(components["release"])
             }
@@ -158,7 +187,7 @@ signing {
     useInMemoryPgpKeys(
         project.findProperty("signing.keyId")?.toString() ?: System.getenv("SIGNINGKEY"),
         project.findProperty("signing.InMemoryKey")?.toString() ?: System.getenv("MEMORY_KEY"),
-        project.findProperty("signing.password")?.toString()?:System.getenv("SIGNINGPASSWORD")
+        project.findProperty("signing.password")?.toString() ?: System.getenv("SIGNINGPASSWORD")
     )
     sign(publishing.publications)
 }

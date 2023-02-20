@@ -1,0 +1,29 @@
+name: Publish
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  publish-maven:
+    name: Publish to Maven
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Java for publishing to Maven Central Repository
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Publish to Repository
+        run: ./gradlew :chat-gpt:clean publishReleasePublicationToYChatGPTRepository
+
+        env:
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD}}
+          MEMORY_KEY: ${{ secrets.MEMORY_KEY}}
+          SIGNINGKEY: ${{ secrets.SIGNINGKEY}}
+          SIGNINGPASSWORD: ${{ secrets.SIGNINGPASSWORD}}

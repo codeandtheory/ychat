@@ -8,6 +8,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.decodeURLPart
 import io.ktor.http.headersOf
+import io.ktor.utils.io.errors.IOException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -72,7 +73,7 @@ class ApiExecutorTest {
     fun `on execute when request failed then should return error as expected`() = runBlocking {
         // arrange
         val mockEngine = MockEngine {
-            throw Exception()
+            throw IOException("Error")
         }
         val httpClient = HttpClient(mockEngine)
         val apiExecutor = ApiExecutor(httpClient)
