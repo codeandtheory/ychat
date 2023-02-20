@@ -14,11 +14,11 @@ YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms
 
 - Go to your project’s file settings and click "Add Package":
 
-![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/chatgpt-sdk/raw/blob/art/ios-1.png)
+![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/chatgpt-sdk/raw/main/art/ios-1.png)
 
 - To add a new package, search for https://github.com/yml-org/chatgpt-sdk.git in the top right corner:
 
-![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/chatgpt-sdk/raw/blob/art/ios-2.png)
+![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/chatgpt-sdk/raw/main/art/ios-2.png)
 
 Once you have found the package click the "Add Package" button to add it to your project. Now you can start using the SDK in your iOS project!
 
