@@ -3,12 +3,43 @@
 ![Build Status](https://github.com/yml-org/chatgpt-sdk/actions/workflows/test.yml/badge.svg?branch=main)
 ![Y-ChatGPT SDK](https://github.com/yml-org/chatgpt-sdk/raw/main/art/logo.png)
 
-# YChatGPT (Working in Progress 🚧)
+# YChatGPT
 
 ChatGPT is a large language model developed by OpenAI that is trained to generate human-like text based on a given prompt or context.
 
 YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms. YChatGPT is a Kotlin Multiplatform (KMP) project, that generates artifacts for both iOS and Android.
 
+
+## iOS setup
+
+- Go to your project’s file settings and click "Add Package":
+
+![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/chatgpt-sdk/raw/blob/art/ios-1.png)
+
+- To add a new package, search for https://github.com/yml-org/chatgpt-sdk.git in the top right corner:
+
+![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/chatgpt-sdk/raw/blob/art/ios-2.png)
+
+Once you have found the package click the "Add Package" button to add it to your project. Now you can start using the SDK in your iOS project!
+
+See the code snippet below on how to initialize and use it:
+
+```swift
+var yChatGpt: YChatGpt {
+    YChatGptCompanion.shared.create(apiKey: "your-api-key") 
+}
+
+do {
+  let result = try await chatGpt.completion()
+                    .setInput(input: "Say this is a test.")
+                    .setMaxTokens(tokens: 1024)
+                    .saveHistory(isSaveHistory: false)
+                    .set... // you can set more parameters
+                    .execute()
+} catch {
+  // catch any error that may occurs on api call.  
+}
+```
 
 ## Android setup
 
