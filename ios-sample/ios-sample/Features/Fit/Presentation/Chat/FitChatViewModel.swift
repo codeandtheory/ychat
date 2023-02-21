@@ -7,13 +7,16 @@
 //
 
 import Foundation
-import chat_gpt_sdk
+import YChatGPT
 
 internal final class FitChatViewModel: ObservableObject {
     
-    private var chatGpt: ChatGpt {
-        ChatGptCompanion.shared.create(apiKey: Config.apiKey)
+    private var chatGpt: YChatGpt {
+        YChatGptCompanion.shared.create(apiKey: Config.apiKey)
     }
+    
+    @Published
+    var state: State = .loading
     
     @Published
     var message: String = ""
@@ -26,6 +29,22 @@ internal final class FitChatViewModel: ObservableObject {
     }
     
     @MainActor
+    func initChat() {
+        Task.init {
+            state = .loading
+            do {
+                try await chatGpt.completion()
+                    .setInput(input: "write your best answer if the question is related to fitness. If the question is not related to fitness write “I cant answer”")
+                    .saveHistory(isSaveHistory: true)
+                    .execute()
+                state = .success
+            } catch {
+                state = .error
+            }
+        }
+    }
+    
+    @MainActor
     func sendMessage() {
         Task.init {
             let input = message
@@ -33,7 +52,10 @@ internal final class FitChatViewModel: ObservableObject {
             cleanLastMessage()
             addLoading()
             do {
-                let result = try await chatGpt.completion(input: input)
+                let result = try await chatGpt.completion()
+                    .setInput(input: input)
+                    .saveHistory(isSaveHistory: true)
+                    .execute()
                 removeLoading()
                 addAIMessage(message: result)
             } catch {
@@ -82,5 +104,9 @@ internal final class FitChatViewModel: ObservableObject {
         if let row = self.chatMessageList.lastIndex(where: { $0.type == .human(error: false) }) {
             chatMessageList[row].type = .human(error: true)
         }
+    }
+    
+    enum State {
+        case loading, error, success
     }
 }

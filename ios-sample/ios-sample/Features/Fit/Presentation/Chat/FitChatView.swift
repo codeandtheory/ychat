@@ -22,11 +22,34 @@ internal struct FitChatView: View {
     
     init(viewModel: FitChatViewModel = .init()) {
         self.viewModel = viewModel
+        viewModel.initChat()
     }
     
     var body: some View {
         VStack {
             FitToolbar("Fitness coach", onAction: { dismiss() })
+            switch viewModel.state {
+            case .loading:
+                Spacer()
+                ProgressView().tint(.white)
+                Spacer()
+            case .error:
+                Spacer()
+                FeedbackView.buildErrorState(
+                    textColor: .white,
+                    onButtonTap: { viewModel.initChat() }
+                )
+                EmptyView()
+                Spacer()
+            case .success:
+                SuccessState()
+            }
+        }.fullScreen(background: .grayDark)
+    }
+    
+    @ViewBuilder
+    private func SuccessState() -> some View {
+        VStack {
             if (viewModel.chatMessageList.isEmpty) {
                 EmptyMessage()
                     .padding(.top, 16)
@@ -49,7 +72,7 @@ internal struct FitChatView: View {
             SendMessageSection()
                 .padding(.horizontal, 12)
                 .padding(.vertical, 12)
-        }.fullScreen(background: .grayDark)
+        }
     }
     
     @ViewBuilder
