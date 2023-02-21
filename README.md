@@ -1,7 +1,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
-![Build Status](https://github.com/yml-org/chatgpt-sdk/actions/workflows/test.yml/badge.svg?branch=main)
-![Y-ChatGPT SDK](https://github.com/yml-org/chatgpt-sdk/raw/main/art/logo.png)
+![Build Status](https://github.com/yml-org/ychatgpt-sdk/actions/workflows/test.yml/badge.svg?branch=main)
+![Y-ChatGPT SDK](https://github.com/yml-org/ychatgpt-sdk/raw/main/art/logo.png)
 
 # YChatGPT
 
@@ -14,11 +14,11 @@ YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms
 
 - Go to your project’s file settings and click "Add Package":
 
-![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/chatgpt-sdk/raw/main/art/ios-1.png)
+![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/ychatgpt-sdk/raw/main/art/ios-1.png)
 
-- To add a new package, search for https://github.com/yml-org/chatgpt-sdk.git in the top right corner:
+- To add a new package, search for https://github.com/yml-org/ychatgpt-sdk.git in the top right corner:
 
-![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/chatgpt-sdk/raw/main/art/ios-2.png)
+![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/ychatgpt-sdk/raw/main/art/ios-2.png)
 
 Once you have found the package click the "Add Package" button to add it to your project. Now you can start using the SDK in your iOS project!
 
@@ -82,7 +82,7 @@ try {
 
 ## 🤝 Contributions
 
-Feel free to make a suggestion or if you find any error in this project, please open an issue. Make sure to read our [contribution guidelines](https://github.com/yml-org/chatgpt-sdk/blob/main/CONTRIBUTING.md) before.
+Feel free to make a suggestion or if you find any error in this project, please open an issue. Make sure to read our [contribution guidelines](https://github.com/yml-org/ychatgpt-sdk/blob/main/CONTRIBUTING.md) before.
 
 ## License
 
