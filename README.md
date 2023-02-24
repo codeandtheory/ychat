@@ -1,4 +1,4 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/co.yml/ychat/badge.svg)](https://maven-badges.herokuapp.com/maven-central/co.yml/ychat/)
+![Maven Central](https://img.shields.io/maven-central/v/co.yml/ychat)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 ![Build Status](https://github.com/yml-org/ychat/actions/workflows/test.yml/badge.svg?branch=main)
 ![Y-Chat](https://github.com/yml-org/ychat/raw/main/art/logo.png)
