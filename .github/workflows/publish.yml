@@ -19,7 +19,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Publish to Repository
-        run: ./gradlew :chat-gpt:clean publishReleasePublicationToYChatGPTRepository
+        run: ./gradlew :ychat:clean publishReleasePublicationToYChatRepository
 
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}

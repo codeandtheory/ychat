@@ -1,0 +1,8 @@
+framework module YChat {
+    umbrella header "YChat.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}

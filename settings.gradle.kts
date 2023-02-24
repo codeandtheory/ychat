@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "chatgpt-sdk"
+rootProject.name = "ychat-sdk"
 include(":android-sample")
-include(":chat-gpt")
+include(":ychat")
