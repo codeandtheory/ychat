@@ -5,9 +5,11 @@
 
 # YChatGPT
 
-ChatGPT is a large language model developed by OpenAI that is trained to generate human-like text based on a given prompt or context.
+YChatGPT is a Kotlin Multiplatform (KMP) project that provides a simple API for integrating the powerful ChatGPT language model developed by OpenAI into mobile applications running on both iOS and Android. The goal of this project is to abstract all the API call logic from ChatGPT, allowing developers to easily leverage the capabilities of the language model in their mobile applications.
 
-YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms. YChatGPT is a Kotlin Multiplatform (KMP) project, that generates artifacts for both iOS and Android.
+The repository contains the source code for the YChatGPT library, along with examples and documentation for getting started with the library. The YChatGPT library provides a consistent interface for interacting with ChatGPT, regardless of the platform, and makes it easy to generate human-like text based on a given prompt or context.
+
+The library uses Kotlin Multiplatform to generate artifacts for both iOS and Android, allowing developers to write code once and use it on both platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, YChatGPT provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
 
 
 ## iOS setup
