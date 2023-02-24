@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "YChatGPT",
+    name: "YChat",
     platforms: [
         .iOS(.v13)
     ],
     products: [
         .library(
-            name: "YChatGPT",
-            targets: ["YChatGPT"]
+            name: "YChat",
+            targets: ["YChat"]
         ),
     ],
     targets: [
         .binaryTarget(
-            name: "YChatGPT",
-            path: "./YChatGPT.xcframework"
+            name: "YChat",
+            path: "./YChat.xcframework"
         ),
     ]
 )

@@ -6,13 +6,13 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
+import YChat
 import Foundation
-import YChatGPT
 
 internal final class CompletionViewModel: ObservableObject {
     
-    private var chatGpt: YChatGpt {
-        YChatGptCompanion.shared.create(apiKey: Config.apiKey)
+    private var chatGpt: YChat {
+        YChatCompanion.shared.create(apiKey: Config.apiKey)
     }
     
     @Published
