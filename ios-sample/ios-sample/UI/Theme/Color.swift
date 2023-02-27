@@ -9,55 +9,53 @@
 import SwiftUI
 
 extension Color {
-    
     static var background: Color {
         Color.white
     }
-    
+
     static var accentMain: Color {
         Color("AccentMain")
     }
-    
-    static var primaryDark: Color{
+
+    static var primaryDark: Color {
         Color("PrimaryDark")
     }
-    
+
     static var primaryMain: Color {
         Color("PrimaryMain")
     }
-    
-    static var primaryMedium: Color{
+
+    static var primaryMedium: Color {
         Color("PrimaryMedium")
     }
-    
-    static var primaryLight: Color{
+
+    static var primaryLight: Color {
         Color("PrimaryLight")
     }
-    
+
     static var primaryExtraLight: Color {
         Color("PrimaryExtraLight")
     }
-    
-    static var grayDark: Color{
+
+    static var grayDark: Color {
         Color("GrayDark")
     }
-    
+
     static var grayMain: Color {
         Color("GrayMain")
     }
-    
-    static var grayMedium: Color{
+
+    static var grayMedium: Color {
         Color("GrayMedium")
     }
-    
-    static var grayLight: Color{
+
+    static var grayLight: Color {
         Color("GrayLight")
     }
-    
+
     static var grayExtraLight: Color {
         Color("GrayExtraLight")
     }
-
 }
 
 private struct ColorSample: View {
@@ -69,7 +67,7 @@ private struct ColorSample: View {
             }
         }
     }
-    
+
     private func primaryColors() -> some View {
         Group {
             Text("accentMain")
@@ -86,7 +84,7 @@ private struct ColorSample: View {
                 .applyStyle(Color.primaryExtraLight)
         }
     }
-    
+
     private func grayColors() -> some View {
         Group {
             Text("grayDark")
@@ -104,7 +102,6 @@ private struct ColorSample: View {
 }
 
 private extension Text {
-    
     func applyStyle(_ color: Color) -> some View {
         self.frame(maxWidth: .infinity)
         .padding()

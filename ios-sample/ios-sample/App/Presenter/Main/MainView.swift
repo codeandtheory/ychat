@@ -9,23 +9,22 @@
 import SwiftUI
 
 internal struct MainView: View {
-    
     @ObservedObject
     private var mainRouter: MainRouter = MainRouter.shared
-    
+
     @State private var showSidebar: Bool = false
-    
+
     private var topBarTitle: String {
         switch mainRouter.navGraph.destination {
         case .completion: return "Completion"
         }
     }
-    
+
     var body: some View {
         NavigationStack {
-            ZStack() {
+            ZStack {
                 VStack(alignment: .leading) {
-                    TopBar()
+                    topBar()
                     Group {
                         switch mainRouter.navGraph.destination {
                         case .completion: CompletionView()
@@ -36,17 +35,17 @@ internal struct MainView: View {
                 }
                 .fullScreen()
                 SideMenu(isVisible: $showSidebar) {
-                    SideMenuContent()
+                    sideMenuContent()
                 }
             }
         }
     }
-    
+
     @ViewBuilder
-    private func TopBar() -> some View {
+    private func topBar() -> some View {
         HStack(spacing: 0) {
             ImageButton(
-                .menu,
+                Icon.menu.uiImage,
                 color: .accentColor,
                 action: { showSidebar.toggle() }
             )
@@ -59,12 +58,12 @@ internal struct MainView: View {
         .frame(maxWidth: .infinity)
         .compositingGroup()
     }
-    
+
     @ViewBuilder
-    private func SideMenuContent() -> some View {
+    private func sideMenuContent() -> some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 8) {
-                Image(uiImage: .logo)
+                Image(uiImage: Icon.logo.uiImage)
                 Text("YChat GPT")
                     .style(.bodyBold)
             }
@@ -72,8 +71,8 @@ internal struct MainView: View {
             .padding(.vertical, 16)
             Divider()
                 .padding(.bottom, 16)
-            MenuItem(
-                icon: .chat,
+            menuItem(
+                icon: Icon.chat.uiImage,
                 text: "Completion",
                 destination: .completion
             )
@@ -84,9 +83,9 @@ internal struct MainView: View {
             alignment: .topLeading
         )
     }
-    
+
     @ViewBuilder
-    private func MenuItem(
+    private func menuItem(
         icon: UIImage,
         text: String,
         destination: MainRouter.Destination
@@ -94,12 +93,10 @@ internal struct MainView: View {
         let isSelected: Bool = mainRouter.navGraph.destination == destination
         let bgColor = isSelected ? Color.primaryExtraLight : .background
         let foregroundColor = isSelected ? Color.accentColor : .grayDark
-        Button(
-            action: {
-                mainRouter.replace(destination)
-                showSidebar.toggle()
-            }
-        ) {
+        Button {
+            mainRouter.replace(destination)
+            showSidebar.toggle()
+        } label: {
             HStack(spacing: 8) {
                 Image(uiImage: icon)
                     .renderingMode(.template)

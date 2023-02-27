@@ -9,12 +9,11 @@
 import SwiftUI
 
 struct SideMenu<SidebarContent: View>: View {
-    
     @Binding private var isVisible: Bool
     private let width: CGFloat
     private let bgColor: Color
     private let content: SidebarContent
-    
+
     init(
         isVisible: Binding<Bool>,
         width: CGFloat = UIScreen.main.bounds.size.width * 0.7,
@@ -26,7 +25,7 @@ struct SideMenu<SidebarContent: View>: View {
         self.bgColor = bgColor
         self.content = content()
     }
-    
+
     var body: some View {
         ZStack {
             GeometryReader { _ in
@@ -38,13 +37,13 @@ struct SideMenu<SidebarContent: View>: View {
             .onTapGesture {
                 isVisible.toggle()
             }
-            SideMenuStructure()
+            sideMenuStructure()
         }
         .edgesIgnoringSafeArea(.all)
     }
-    
+
     @ViewBuilder
-    private func SideMenuStructure() -> some View {
+    private func sideMenuStructure() -> some View {
         HStack(alignment: .top) {
             ZStack(alignment: .top) {
                 bgColor

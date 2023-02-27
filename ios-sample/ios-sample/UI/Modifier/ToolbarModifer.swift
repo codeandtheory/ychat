@@ -9,7 +9,6 @@
 import SwiftUI
 
 extension View {
-    
     func applyToolbar(_ title: String, onButtonAction: @escaping () -> Void = {}) -> some View {
         self
             .navigationBarBackButtonHidden(true)
@@ -17,7 +16,7 @@ extension View {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     HStack {
                         ImageButton(
-                            .arrowLeft,
+                            Icon.arrowLeft.uiImage,
                             color: .accentColor,
                             action: onButtonAction
                         )

@@ -9,12 +9,14 @@
 import Foundation
 
 enum Config {
-    
     static var apiKey: String {
         string(for: "API_KEY")
     }
-    
+
     private static func string(for key: String) -> String {
-        Bundle.main.infoDictionary?[key] as! String
+        guard let value = ((Bundle.main.infoDictionary?[key] as? String)) else {
+            fatalError("Value not found for the given key: " + key)
+        }
+        return value
     }
 }

@@ -9,17 +9,16 @@
 import SwiftUI
 
 internal struct SplashView: View {
-    
     private let appRouter: AppRouter
-    
+
     init(appRouter: AppRouter = AppRouter.shared) {
         self.appRouter = appRouter
     }
-    
+
     var body: some View {
         VStack {
             HStack(spacing: 8) {
-                Image(uiImage: .logoBig)
+                Image(uiImage: Icon.logoBig.uiImage)
                 Text("YChat GPT")
                     .font(.system(size: 24))
                     .foregroundColor(.grayDark)
@@ -40,4 +39,3 @@ internal struct SplashView_Previews: PreviewProvider {
         SplashView()
     }
 }
-

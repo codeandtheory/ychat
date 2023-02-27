@@ -9,7 +9,6 @@
 import SwiftUI
 
 extension View {
-    
     func fullScreen(alignment: Alignment = .top) -> some View {
         self.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
             .background(Color.background)
