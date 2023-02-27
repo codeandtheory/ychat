@@ -22,10 +22,10 @@ jobs:
         run: ./gradlew checkSwiftPackageVersion
       ## Step 4
       - name: Run Detekt
-        run: ./gradlew :chat-gpt:detektMetadataMain
+        run: ./gradlew :ychat:detektMetadataMain
       ## Step 5
       - name: Run Ktlint
-        run: ./gradlew :chat-gpt:ktlintCheck
+        run: ./gradlew :ychat:ktlintCheck
 
   code-coverage:
     name: Code Coverage
@@ -52,7 +52,7 @@ jobs:
           path: "**/build/reports/tests/testDebugUnitTest"
       ## Step 5
       - name: Run Kover Report
-        run: ./gradlew :chat-gpt:koverXmlReport
+        run: ./gradlew :ychat:koverXmlReport
       ## Step 6
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3

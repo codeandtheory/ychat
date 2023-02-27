@@ -6,10 +6,10 @@ plugins {
 }
 
 android {
-    namespace = "co.yml.ychatgpt.android"
+    namespace = "co.yml.ychat.android"
     compileSdk = Config.COMPILE_SDK_VERSION
     defaultConfig {
-        applicationId = "co.yml.ychatgpt.android"
+        applicationId = "co.yml.ychat.android"
         minSdk = Config.MIN_SDK_VERSION
         targetSdk = Config.TARGET_SDK_VERSION
         versionCode = 1
@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":chat-gpt"))
+    implementation(project(":ychat"))
     implementation(Dependencies.UI.COMPOSE_UI)
     implementation(Dependencies.UI.COMPOSE_TOOLING)
     implementation(Dependencies.UI.COMPOSE_TOOLING_PREVIEW)

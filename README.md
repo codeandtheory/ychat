@@ -1,32 +1,34 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/co.yml/ychatgpt/)
+![Maven Central](https://img.shields.io/maven-central/v/co.yml/ychat)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
-![Build Status](https://github.com/yml-org/chatgpt-sdk/actions/workflows/test.yml/badge.svg?branch=main)
-![Y-ChatGPT SDK](https://github.com/yml-org/chatgpt-sdk/raw/main/art/logo.png)
+![Build Status](https://github.com/yml-org/ychat/actions/workflows/test.yml/badge.svg?branch=main)
+![Y-Chat](https://github.com/yml-org/ychat/raw/main/art/logo.png)
 
-# YChatGPT
+# YChat
 
-ChatGPT is a large language model developed by OpenAI that is trained to generate human-like text based on a given prompt or context.
+YChat is a Kotlin Multiplatform (KMP) project that provides a simple API for integrating the powerful ChatGPT language model developed by OpenAI into mobile applications running on both iOS and Android. The goal of this project is to abstract all the API call logic from ChatGPT, allowing developers to easily leverage the capabilities of the language model in their mobile applications.
 
-YChatGPT aims to abstract all API call logic from ChatGPT for multiple platforms. YChatGPT is a Kotlin Multiplatform (KMP) project, that generates artifacts for both iOS and Android.
+The repository contains the source code for the YChat library, along with examples and documentation for getting started with the library. The YChat library provides a consistent interface for interacting with ChatGPT, regardless of the platform, and makes it easy to generate human-like text based on a given prompt or context.
+
+The library uses Kotlin Multiplatform to generate artifacts for both iOS and Android, allowing developers to write code once and use it on both platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, YChat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
 
 
 ## iOS setup
 
 - Go to your project’s file settings and click "Add Package":
 
-![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/chatgpt-sdk/raw/main/art/ios-1.png)
+![Y-ChatGPT iOS first screenshot](https://github.com/yml-org/ychat/raw/main/art/ios-1.png)
 
-- To add a new package, search for https://github.com/yml-org/chatgpt-sdk.git in the top right corner:
+- To add a new package, search for https://github.com/yml-org/ychat.git in the top right corner:
 
-![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/chatgpt-sdk/raw/main/art/ios-2.png)
+![Y-ChatGPT iOS second screenshot](https://github.com/yml-org/ychat/raw/main/art/ios-2.png)
 
 Once you have found the package click the "Add Package" button to add it to your project. Now you can start using the SDK in your iOS project!
 
 See the code snippet below on how to initialize and use it:
 
 ```swift
-var yChatGpt: YChatGpt {
-    YChatGptCompanion.shared.create(apiKey: "your-api-key") 
+var yChat: YChat {
+    YChatCompanion.shared.create(apiKey: "your-api-key") 
 }
 
 do {
@@ -56,19 +58,19 @@ repositories {
 Then, simply import the dependency to your common source-set dependencies:
 
 ```kotlin
-implementation("co.yml:ychatgpt:1.0.0")
+implementation("co.yml:ychat:1.0.0")
 ```
 
 In the snippet below, you can see how to initialize the object and perform a first search:
 
 
 ```kotlin
-val yChatGpt by lazy {
-  YChatGpt.create("your-api-key")
+val yChat by lazy {
+  YChat.create("your-api-key")
 }
 
 try {
-  val result = yChatGpt.completion()
+  val result = yChat.completion()
      .setInput("Say this is a test.")
      .saveHistory(false)
      .setMaxTokens(1024)
@@ -82,7 +84,7 @@ try {
 
 ## 🤝 Contributions
 
-Feel free to make a suggestion or if you find any error in this project, please open an issue. Make sure to read our [contribution guidelines](https://github.com/yml-org/chatgpt-sdk/blob/main/CONTRIBUTING.md) before.
+Feel free to make a suggestion or if you find any error in this project, please open an issue. Make sure to read our [contribution guidelines](https://github.com/yml-org/ychat/blob/main/CONTRIBUTING.md) before.
 
 ## License
 
