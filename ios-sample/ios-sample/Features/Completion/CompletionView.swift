@@ -38,7 +38,9 @@ struct CompletionView: View {
                 .padding(.vertical, 12)
         }.fullScreen()
     }
+}
 
+private extension CompletionView {
     @ViewBuilder
     private func emptyMessage() -> some View {
         ZStack {
