@@ -1,11 +1,10 @@
 import SwiftUI
 
 @main
-struct iOSApp: App {
-    
+struct SampleApp: App {
     @ObservedObject
     private var appRouter: AppRouter = AppRouter.shared
-    
+
 	var body: some Scene {
         WindowGroup {
             Group {

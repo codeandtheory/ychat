@@ -20,7 +20,6 @@ enum Typography {
 }
 
 extension Text {
-    
     func style(_ typography: Typography) -> Text {
         switch typography {
         case .title: return title()
@@ -33,42 +32,42 @@ extension Text {
         case .caption: return caption()
         }
     }
-    
+
     private func title() -> Text {
         self.font(.system(size: 18))
             .foregroundColor(.grayDark)
     }
-    
+
     private func titleBold() -> Text {
         self.title()
             .bold()
     }
-    
+
     private func subtitle() -> Text {
         self.font(.system(size: 16))
             .foregroundColor(.grayDark)
     }
-    
+
     private func subtitleBold() -> Text {
         self.subtitle()
             .bold()
     }
-    
+
     private func body() -> Text {
         self.font(.system(size: 14))
             .foregroundColor(.grayDark)
     }
-    
+
     private func bodyBold() -> Text {
         self.body()
             .bold()
     }
-    
+
     private func button() -> Text {
         self.font(.system(size: 14))
             .foregroundColor(.grayDark)
     }
-    
+
     private func caption() -> Text {
         self.font(.system(size: 12))
             .foregroundColor(.grayDark)

@@ -9,18 +9,17 @@
 import Foundation
 
 internal final class AppRouter: ObservableObject {
-    
     static var shared = AppRouter()
-    
+
     private init() {}
-    
+
     enum Destination: Equatable {
         case splash
         case main
     }
-    
+
     @Published var navGraph: NavGraph<Destination> = .init(destination: .splash)
-    
+
     func push(_ destination: Destination) {
         navGraph.push(destination: destination)
     }

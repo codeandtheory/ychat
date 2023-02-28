@@ -1,4 +1,4 @@
-#  YChat GPT iOS Sample
+#  YChat iOS Sample
 
 ## Setup
 

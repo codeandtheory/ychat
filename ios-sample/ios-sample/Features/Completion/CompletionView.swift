@@ -1,28 +1,27 @@
 import SwiftUI
 
 struct CompletionView: View {
-    
     @ObservedObject
     private var viewModel: CompletionViewModel
-    
+
     private var enableButton: Bool {
         !viewModel.isLoading && !viewModel.message.isEmpty
     }
-    
+
     init(viewModel: CompletionViewModel = .init()) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         VStack {
-            if (viewModel.chatMessageList.isEmpty) {
-                EmptyMessage()
+            if viewModel.chatMessageList.isEmpty {
+                emptyMessage()
                     .padding(.top, 16)
             } else {
                 ScrollViewReader { value in
                     ScrollView {
                         ForEach(viewModel.chatMessageList) {
-                            ChatBubble(chatMessage: $0)
+                            chatBubble(chatMessage: $0)
                                 .padding(.top, 16)
                                 .id($0.id)
                         }
@@ -34,14 +33,16 @@ struct CompletionView: View {
                 }
             }
             Spacer()
-            SendMessageSection()
+            sendMessageSection()
                 .padding(.horizontal, 12)
                 .padding(.vertical, 12)
         }.fullScreen()
     }
-    
+}
+
+private extension CompletionView {
     @ViewBuilder
-    private func EmptyMessage() -> some View {
+    private func emptyMessage() -> some View {
         ZStack {
             Text("Enter any message and chat GPT will answer it.")
                 .foregroundColor(.grayMain)
@@ -54,24 +55,24 @@ struct CompletionView: View {
         .cornerRadius(16)
         .padding(.horizontal, 32)
     }
-    
+
     @ViewBuilder
-    private func ChatBubble(chatMessage: ChatMessage) -> some View {
+    private func chatBubble(chatMessage: ChatMessage) -> some View {
         switch chatMessage.type {
         case .human(let error):
             HStack(spacing: 4) {
                 Spacer()
                 Spacer().frame(width: 60)
-                HumanChatBubble(message: chatMessage.message)
+                humanChatBubble(message: chatMessage.message)
                 if error {
-                    Image(uiImage: .warningOutline)
+                    Image(uiImage: Icon.warningOutline.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.red)
                 }
             }
-        case .ai:
+        case .bot:
             HStack {
-                AIChatBubble(message: chatMessage.message)
+                botChatBubble(message: chatMessage.message)
                 Spacer().frame(width: 60)
                 Spacer()
             }
@@ -82,10 +83,10 @@ struct CompletionView: View {
             }
         }
     }
-    
+
     @ViewBuilder
-    private func HumanChatBubble(message: String) -> some View {
-        ZStack() {
+    private func humanChatBubble(message: String) -> some View {
+        ZStack {
             Text(message)
                 .foregroundColor(.white)
                 .style(.body)
@@ -95,19 +96,19 @@ struct CompletionView: View {
         .background(Color.accentMain)
         .cornerRadius(16, corners: [.bottomLeft, .topLeft, .topRight])
     }
-    
+
     @ViewBuilder
-    private func AIChatBubble(message: String) -> some View {
+    private func botChatBubble(message: String) -> some View {
         HStack(alignment: .top, spacing: 4) {
             Circle()
                 .fill(.green)
                 .frame(width: 40, height: 40)
                 .overlay {
-                    Image(uiImage: .bot)
+                    Image(uiImage: Icon.bot.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }
-            ZStack() {
+            ZStack {
                 Text(message)
                     .foregroundColor(.grayDark)
                     .style(.body)
@@ -119,9 +120,9 @@ struct CompletionView: View {
             .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
         }
     }
-    
+
     @ViewBuilder
-    private func SendMessageSection() -> some View {
+    private func sendMessageSection() -> some View {
         HStack(spacing: 8) {
             TextField(text: $viewModel.message) {
                 Text("Message")
@@ -131,18 +132,18 @@ struct CompletionView: View {
             .textFieldStyle(DefaultTextFieldStyle())
             .disabled(viewModel.isLoading)
             .opacity(viewModel.isLoading ? 0.4 : 1)
-            SendButton()
+            sendButton()
         }
     }
-    
+
     @ViewBuilder
-    private func SendButton() -> some View {
-        Button(action: { viewModel.sendMessage() }) {
+    private func sendButton() -> some View {
+        Button { viewModel.sendMessage() } label: {
             Circle()
                 .fill(enableButton ? Color.accentMain : .grayLight)
                 .frame(width: 40, height: 40)
                 .overlay {
-                    Image(uiImage: .send)
+                    Image(uiImage: Icon.send.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }
@@ -152,15 +153,14 @@ struct CompletionView: View {
 }
 
 private struct TypingLoading: View {
-    
     @State
     private var typingState = "Typing."
-    
+
     @State
     private var timer: Timer?
 
     var body: some View {
-        ZStack() {
+        ZStack {
             Text(typingState)
                 .foregroundColor(.grayMedium)
                 .style(.body)

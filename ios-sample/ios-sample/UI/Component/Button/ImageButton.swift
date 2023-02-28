@@ -9,11 +9,10 @@
 import SwiftUI
 
 struct ImageButton: View {
-    
     private let icon: UIImage
     private var color: Color?
     private let action: () -> Void
-    
+
     init(
         _ icon: UIImage,
         color: Color? = nil,
@@ -23,7 +22,7 @@ struct ImageButton: View {
         self.color = color
         self.action = action
     }
-    
+
     var body: some View {
         Button(action: action) {
             if let color = color {
@@ -39,6 +38,6 @@ struct ImageButton: View {
 
 struct ImageButton_Previews: PreviewProvider {
     static var previews: some View {
-        ImageButton(.menu)
+        ImageButton(Icon.menu.uiImage)
     }
 }
