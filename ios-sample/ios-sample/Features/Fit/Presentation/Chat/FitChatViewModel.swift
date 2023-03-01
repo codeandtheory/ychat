@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import YChatGPT
+import YChat
 
 internal final class FitChatViewModel: ObservableObject {
     
-    private var chatGpt: YChatGpt {
-        YChatGptCompanion.shared.create(apiKey: Config.apiKey)
+    private var chatGpt: YChat {
+        YChatCompanion.shared.create(apiKey: Config.apiKey)
     }
     
     @Published
