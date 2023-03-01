@@ -4,10 +4,17 @@ import co.yml.ychat.YChat
 import co.yml.ychat.domain.model.CompletionParams
 import co.yml.ychat.domain.usecases.CompletionUseCase
 import co.yml.ychat.entrypoint.features.Completion
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-internal class CompletionImpl(private val completionUseCase: CompletionUseCase) : Completion {
+internal class CompletionImpl(
+    private val dispatcher: CoroutineDispatcher,
+    private val completionUseCase: CompletionUseCase
+) : Completion {
+
+    private val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher) }
 
     private var params: CompletionParams = CompletionParams()
 
@@ -50,7 +57,7 @@ internal class CompletionImpl(private val completionUseCase: CompletionUseCase) 
     }
 
     override fun execute(callback: YChat.Callback<String>) {
-        MainScope().launch {
+        scope.launch {
             runCatching { execute() }
                 .onSuccess { callback.onSuccess(it) }
                 .onFailure { callback.onError(it) }
