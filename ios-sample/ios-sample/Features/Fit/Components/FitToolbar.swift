@@ -9,7 +9,6 @@
 import SwiftUI
 
 internal struct FitToolbar: View {
-    
     var text: String
     var onAction: () -> Void
     
@@ -19,27 +18,27 @@ internal struct FitToolbar: View {
     }
     
     var body: some View {
-        Toolbar()
+        toolbar()
     }
     
     @ViewBuilder
-    private func Toolbar() -> some View {
+    private func toolbar() -> some View {
         ZStack {
             HStack(spacing: 0) {
                 Spacer()
                 Button(action: { onAction() }) {
-                    Image(uiImage: .close)
+                    Image(uiImage: Icon.close.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }
                 .padding(.horizontal, 24)
             }
-            Title()
+            title()
         }
     }
     
     @ViewBuilder
-    private func Title() -> some View {
+    private func title() -> some View {
         Text(text)
             .font(.system(size: 16))
             .tracking(2.56)

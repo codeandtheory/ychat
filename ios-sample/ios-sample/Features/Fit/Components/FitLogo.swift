@@ -9,7 +9,6 @@
 import SwiftUI
 
 internal struct FitLogo: View {
-    
     var size: CGFloat = 24
     var color = Color.primaryExtraLight
     

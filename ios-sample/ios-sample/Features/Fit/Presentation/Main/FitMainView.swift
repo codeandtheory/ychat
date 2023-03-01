@@ -9,7 +9,6 @@
 import SwiftUI
 
 internal struct FitMainView: View {
-    
     enum Tab {
         case home, log, more
     }
@@ -34,7 +33,7 @@ internal struct FitMainView: View {
         TabView(selection: $selectedTab) {
             FitHomeView()
                 .tabItem {
-                    Image(uiImage: .home)
+                    Image(uiImage: Icon.home.uiImage)
                     Text("Home")
                 }
                 .toolbar(controller.hideTabView ? .hidden : .visible, for: .tabBar)
@@ -42,7 +41,7 @@ internal struct FitMainView: View {
                 .tag(Tab.home)
             Text("Log Screen")
                 .tabItem {
-                    Image(uiImage: .addCircle)
+                    Image(uiImage: Icon.addCircle.uiImage)
                     Text("Log")
                 }
                 .toolbar(controller.hideTabView ? .hidden : .visible, for: .tabBar)
@@ -50,7 +49,7 @@ internal struct FitMainView: View {
                 .tag(Tab.log)
             Text("More Screen")
                 .tabItem {
-                    Image(uiImage: .moreHorizontal)
+                    Image(uiImage: Icon.moreHorizontal.uiImage)
                     Text("More")
                 }
                 .toolbar(controller.hideTabView ? .hidden : .visible, for: .tabBar)
@@ -62,7 +61,6 @@ internal struct FitMainView: View {
 }
 
 extension FitMainView {
-    
     class Controller: ObservableObject {
         private init() {}
         

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ButtonOutlined: View {
-    
     private var text: String
     private var onTap: () -> Void
     

@@ -9,7 +9,6 @@
 import SwiftUI
 
 internal struct FitChatView: View {
-    
     @ObservedObject
     private var viewModel: FitChatViewModel
     
@@ -42,22 +41,22 @@ internal struct FitChatView: View {
                 EmptyView()
                 Spacer()
             case .success:
-                SuccessState()
+                successState()
             }
         }.fullScreen(background: .grayDark)
     }
     
     @ViewBuilder
-    private func SuccessState() -> some View {
+    private func successState() -> some View {
         VStack {
-            if (viewModel.chatMessageList.isEmpty) {
-                EmptyMessage()
+            if viewModel.chatMessageList.isEmpty {
+                emptyMessage()
                     .padding(.top, 16)
             } else {
                 ScrollViewReader { value in
                     ScrollView {
                         ForEach(viewModel.chatMessageList) {
-                            ChatBubble(chatMessage: $0)
+                            chatBubble(chatMessage: $0)
                                 .padding(.top, 16)
                                 .id($0.id)
                         }
@@ -69,14 +68,14 @@ internal struct FitChatView: View {
                 }
             }
             Spacer()
-            SendMessageSection()
+            sendMessageSection()
                 .padding(.horizontal, 12)
                 .padding(.vertical, 12)
         }
     }
     
     @ViewBuilder
-    private func EmptyMessage() -> some View {
+    private func emptyMessage() -> some View {
         ZStack {
             Text("Workout routines, diet plans, fitness advice - you ask it, fitchat GPT will answer it.")
                 .foregroundColor(.grayMedium)
@@ -92,20 +91,20 @@ internal struct FitChatView: View {
     }
     
     @ViewBuilder
-    private func ChatBubble(chatMessage: ChatMessage) -> some View {
+    private func chatBubble(chatMessage: ChatMessage) -> some View {
         switch chatMessage.type {
         case .human(let error):
             HStack(spacing: 4) {
                 Spacer()
                 Spacer().frame(width: 60)
-                HumanChatBubble(message: chatMessage.message)
+                humanChatBubble(message: chatMessage.message)
                 if error {
-                    Image(uiImage: .warningOutline)
+                    Image(uiImage: Icon.warningOutline.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.red)
                 }
             }
-        case .ai:
+        case .bot:
             HStack {
                 AIChatBubble(message: chatMessage.message)
                 Spacer().frame(width: 60)
@@ -123,8 +122,8 @@ internal struct FitChatView: View {
     }
     
     @ViewBuilder
-    private func HumanChatBubble(message: String) -> some View {
-        ZStack() {
+    private func humanChatBubble(message: String) -> some View {
+        ZStack {
             Text(message)
                 .foregroundColor(.white)
                 .style(.body)
@@ -142,11 +141,11 @@ internal struct FitChatView: View {
                 .fill(.green)
                 .frame(width: 40, height: 40)
                 .overlay {
-                    Image(uiImage: .bot)
+                    Image(uiImage: Icon.bot.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }
-            ZStack() {
+            ZStack {
                 Text(message)
                     .foregroundColor(.white)
                     .style(.body)
@@ -160,7 +159,7 @@ internal struct FitChatView: View {
     }
     
     @ViewBuilder
-    private func SendMessageSection() -> some View {
+    private func sendMessageSection() -> some View {
         HStack(spacing: 8) {
             TextField(text: $viewModel.message, axis: .vertical) {
                 Text("Message")
@@ -174,18 +173,18 @@ internal struct FitChatView: View {
             .lineLimit(5)
             .disabled(viewModel.isLoading)
             .opacity(viewModel.isLoading ? 0.4 : 1)
-            SendButton()
+            sendButton()
         }
     }
     
     @ViewBuilder
-    private func SendButton() -> some View {
+    private func sendButton() -> some View {
         Button(action: { viewModel.sendMessage() }) {
             Circle()
                 .fill(enableButton ? Color.accentMain : .grayMain)
                 .frame(width: 40, height: 40)
                 .overlay {
-                    Image(uiImage: .send)
+                    Image(uiImage: Icon.send.uiImage)
                         .renderingMode(.template)
                         .foregroundColor(.white)
                 }

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TypingLoading: View {
-    
     var background = Color.grayLight
     
     var foreground = Color.grayMedium
@@ -21,7 +20,7 @@ struct TypingLoading: View {
     private var timer: Timer?
     
     var body: some View {
-        ZStack() {
+        ZStack {
             Text(typingState)
                 .foregroundColor(foreground)
                 .style(.body)

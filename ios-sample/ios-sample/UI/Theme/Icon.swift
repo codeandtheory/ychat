@@ -29,97 +29,20 @@ enum Icon: String, CaseIterable {
     case addCircle = "ic_add_circle"
     case home = "ic_home"
     case close = "ic_close"
-}
-
-extension UIImage {
     
-    public class var close: UIImage {
-        UIImage(named: Icon.close.rawValue)!
-    }
-    
-    public class var home: UIImage {
-        UIImage(named: Icon.home.rawValue)!
-    }
-    
-    public class var addCircle: UIImage {
-        UIImage(named: Icon.addCircle.rawValue)!
-    }
-    
-    public class var moreHorizontal: UIImage {
-        UIImage(named: Icon.moreHorizontal.rawValue)!
-    }
-    
-    public class var fitHome: UIImage {
-        UIImage(named: Icon.fitHome.rawValue)!
-    }
-    
-    public class var person: UIImage {
-        UIImage(named: Icon.person.rawValue)!
-    }
-    
-    public class var fitSplash: UIImage {
-        UIImage(named: Icon.fitSplash.rawValue)!
-    }
-    
-    public class var logoBig: UIImage {
-        UIImage(named: Icon.logoBig.rawValue)!
-    }
-    
-    public class var logo: UIImage {
-        UIImage(named: Icon.logo.rawValue)!
-    }
-    
-    public class var warningOutline: UIImage {
-        UIImage(named: Icon.warningOutline.rawValue)!
-    }
-    
-    public class var edit: UIImage {
-        UIImage(named: Icon.edit.rawValue)!
-    }
-    
-    public class var chat: UIImage {
-        UIImage(named: Icon.chat.rawValue)!
-    }
-    
-    public class var send: UIImage {
-        UIImage(named: Icon.send.rawValue)!
-    }
-    
-    public class var bot: UIImage {
-        UIImage(named: Icon.bot.rawValue)!
-    }
-    
-    public class var settings: UIImage {
-        UIImage(named: Icon.settings.rawValue)!
-    }
-    
-    public class var swap: UIImage {
-        UIImage(named: Icon.swap.rawValue)!
-    }
-    
-    public class var menu: UIImage {
-        UIImage(named: Icon.menu.rawValue)!
-    }
-    
-    public class var refresh: UIImage {
-        UIImage(named: Icon.refresh.rawValue)!
-    }
-    
-    public class var arrowDown: UIImage {
-        UIImage(named: Icon.arrowDown.rawValue)!
-    }
-    
-    public class var arrowLeft: UIImage {
-        UIImage(named: Icon.arrowLeft.rawValue)!
+    var uiImage: UIImage {
+        guard let image = UIImage(named: self.rawValue) else {
+            fatalError("Image not found for the given value: " + self.rawValue)
+        }
+        return image
     }
 }
 
 private struct IconSample: View {
-    
     private let columns = [
         GridItem(.adaptive(minimum: 80))
     ]
-    
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 8) {
@@ -138,4 +61,3 @@ internal struct IconSample_Previews: PreviewProvider {
         IconSample()
     }
 }
-

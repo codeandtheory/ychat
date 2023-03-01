@@ -10,7 +10,6 @@ import Foundation
 import YChat
 
 internal final class FitChatViewModel: ObservableObject {
-    
     private var chatGpt: YChat {
         YChatCompanion.shared.create(apiKey: Config.apiKey)
     }
@@ -34,6 +33,7 @@ internal final class FitChatViewModel: ObservableObject {
             state = .loading
             do {
                 try await chatGpt.completion()
+                    // swiftlint:disable:next line_length
                     .setInput(input: "write your best answer if the question is related to fitness. If the question is not related to fitness write “I cant answer”")
                     .saveHistory(isSaveHistory: true)
                     .execute()
@@ -78,7 +78,7 @@ internal final class FitChatViewModel: ObservableObject {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
             message: message,
-            type: .ai
+            type: .bot
         )
         chatMessageList.append(chatMessage)
     }

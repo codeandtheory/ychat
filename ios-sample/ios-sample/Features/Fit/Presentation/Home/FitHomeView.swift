@@ -9,7 +9,6 @@
 import SwiftUI
 
 internal struct FitHomeView: View {
-    
     @State
     private var moveToFitChatView = false
     
@@ -18,12 +17,12 @@ internal struct FitHomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                TopContent()
+                topContent()
                 Spacer()
-                BottomContent()
+                bottomContent()
                     .padding(.bottom, 24)
             }
-            .background { Image(uiImage: .fitHome) }
+            .background { Image(uiImage: Icon.fitHome.uiImage) }
             .navigationDestination(isPresented: $moveToFitChatView) {
                 FitChatView()
                     .navigationBarBackButtonHidden(true)
@@ -35,7 +34,7 @@ internal struct FitHomeView: View {
     }
     
     @ViewBuilder
-    private func TopContent() -> some View {
+    private func topContent() -> some View {
         ZStack {
             HStack(spacing: 0) {
                 Spacer()
@@ -43,7 +42,7 @@ internal struct FitHomeView: View {
                     .stroke(Color.white)
                     .frame(width: 40, height: 40)
                     .overlay {
-                        Image(uiImage: .person)
+                        Image(uiImage: Icon.person.uiImage)
                             .renderingMode(.template)
                             .foregroundColor(.white)
                     }
@@ -54,9 +53,9 @@ internal struct FitHomeView: View {
     }
     
     @ViewBuilder
-    private func BottomContent() -> some View {
+    private func bottomContent() -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Image(uiImage: .chat)
+            Image(uiImage: Icon.chat.uiImage)
                 .resizable()
                 .renderingMode(.template)
                 .foregroundColor(.white)
@@ -65,6 +64,7 @@ internal struct FitHomeView: View {
                 .font(.system(size: 48))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
+            // swiftlint:disable:next line_length
             Text("Get workout routines, meal plans, and anything else you need advice on. Just ask the chat GPT fitness coach!")
                 .font(.system(size: 16))
                 .foregroundColor(.white)
@@ -72,7 +72,7 @@ internal struct FitHomeView: View {
             Button(action: { moveToFitChatView.toggle() }) {
                 Spacer()
                 HStack(spacing: 14) {
-                    Image(uiImage: .chat)
+                    Image(uiImage: Icon.chat.uiImage)
                     Text("Ask your AI coach")
                         .foregroundColor(.grayDark)
                         .style(.button)

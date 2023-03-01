@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct FitSplashView: View {
-    
     private let appRouter: AppRouter
     
     init(appRouter: AppRouter = AppRouter.shared) {
@@ -21,7 +20,7 @@ struct FitSplashView: View {
             FitLogo()
         }
         .background {
-            Image(uiImage: .fitSplash)
+            Image(uiImage: Icon.fitSplash.uiImage)
                 .edgesIgnoringSafeArea(.all)
                 .statusBarHidden(true)
         }

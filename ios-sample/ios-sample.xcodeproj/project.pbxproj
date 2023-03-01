@@ -3,19 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		2152FB042600AC8F00CF470E /* SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* SampleApp.swift */; };
 		488448D9297B8419005B8A24 /* CompletionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448D8297B8419005B8A24 /* CompletionViewModel.swift */; };
 		488448DD297B8DD2005B8A24 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448DC297B8DD2005B8A24 /* Color.swift */; };
 		488448DF297B8DF6005B8A24 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448DE297B8DF6005B8A24 /* Typography.swift */; };
 		488448E3297B8F1B005B8A24 /* DefaultTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448E2297B8F1B005B8A24 /* DefaultTextFieldStyle.swift */; };
 		488448E6297B9116005B8A24 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448E5297B9116005B8A24 /* RoundedCorner.swift */; };
-		488448E8297B9198005B8A24 /* ViewModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448E7297B9198005B8A24 /* ViewModifer.swift */; };
+		488448E8297B9198005B8A24 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448E7297B9198005B8A24 /* ViewModifier.swift */; };
 		488448EA297B9843005B8A24 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448E9297B9843005B8A24 /* Icon.swift */; };
 		488448ED297CAC4F005B8A24 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448EC297CAC4F005B8A24 /* ChatMessage.swift */; };
 		488448EF297CD1E8005B8A24 /* ToolbarModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448EE297CD1E8005B8A24 /* ToolbarModifer.swift */; };
@@ -57,13 +57,13 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		2152FB032600AC8F00CF470E /* SampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleApp.swift; sourceTree = "<group>"; };
 		488448D8297B8419005B8A24 /* CompletionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionViewModel.swift; sourceTree = "<group>"; };
 		488448DC297B8DD2005B8A24 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		488448DE297B8DF6005B8A24 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		488448E2297B8F1B005B8A24 /* DefaultTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextFieldStyle.swift; sourceTree = "<group>"; };
 		488448E5297B9116005B8A24 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
-		488448E7297B9198005B8A24 /* ViewModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifer.swift; sourceTree = "<group>"; };
+		488448E7297B9198005B8A24 /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		488448E9297B9843005B8A24 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		488448EC297CAC4F005B8A24 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		488448EE297CD1E8005B8A24 /* ToolbarModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarModifer.swift; sourceTree = "<group>"; };
@@ -88,6 +88,7 @@
 		489A54882989DAAC00A6532C /* FitToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitToolbar.swift; sourceTree = "<group>"; };
 		489E976529A5049100C61A80 /* ButtonOutlined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOutlined.swift; sourceTree = "<group>"; };
 		489E976829A5053400C61A80 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		48D4A78629ACF39F00968B0B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* ios-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +118,7 @@
 			children = (
 				488448FA297CDFF2005B8A24 /* Presenter */,
 				488448FD297CE019005B8A24 /* Router */,
-				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				2152FB032600AC8F00CF470E /* SampleApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -158,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				488448E5297B9116005B8A24 /* RoundedCorner.swift */,
-				488448E7297B9198005B8A24 /* ViewModifer.swift */,
+				488448E7297B9198005B8A24 /* ViewModifier.swift */,
 				488448EE297CD1E8005B8A24 /* ToolbarModifer.swift */,
 			);
 			path = Modifier;
@@ -370,6 +371,7 @@
 				7555FFB0242A642200829871 /* Frameworks */,
 				489A546A297F916C00A6532C /* EnvConfig.xcconfig */,
 				489A5471297F99FC00A6532C /* README.md */,
+				48D4A78629ACF39F00968B0B /* .swiftlint.yml */,
 			);
 			sourceTree = "<group>";
 		};
@@ -414,6 +416,7 @@
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
 				7555FFB4242A642300829871 /* Embed Frameworks */,
+				48D4A78029A9835700968B0B /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -470,6 +473,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		48D4A78029A9835700968B0B /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint lint --strict\nelse\n  echo \"warning: SwiftLint not installed run `brew install swiftlint`\"\nfi\n";
+		};
 		7555FFB5242A651A00829871 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,8 +536,8 @@
 				489E976629A5049100C61A80 /* ButtonOutlined.swift in Sources */,
 				489A54742989A20900A6532C /* FitSplashView.swift in Sources */,
 				488448F6297CDF67005B8A24 /* SideMenu.swift in Sources */,
-				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				488448E8297B9198005B8A24 /* ViewModifer.swift in Sources */,
+				2152FB042600AC8F00CF470E /* SampleApp.swift in Sources */,
+				488448E8297B9198005B8A24 /* ViewModifier.swift in Sources */,
 				7555FF83242A565900829871 /* CompletionView.swift in Sources */,
 				488448E6297B9116005B8A24 /* RoundedCorner.swift in Sources */,
 				489A54792989A76500A6532C /* FitLogo.swift in Sources */,

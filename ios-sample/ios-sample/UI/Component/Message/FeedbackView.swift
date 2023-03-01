@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct FeedbackView: View {
-    
     var icon: UIImage
     var title: String
     var message: String
@@ -41,13 +40,12 @@ struct FeedbackView: View {
 }
 
 extension FeedbackView {
-    
     static func buildErrorState(
         textColor: Color = .black,
         onButtonTap: @escaping () -> Void = {}
     ) -> some View {
         FeedbackView(
-            icon: .warningOutline,
+            icon: Icon.warningOutline.uiImage,
             title: "Something went wrong",
             message: "There was a problem with the request. Please try again in a few moments.",
             buttonText: "Try again",

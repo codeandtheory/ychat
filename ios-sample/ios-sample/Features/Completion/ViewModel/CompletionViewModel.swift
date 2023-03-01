@@ -10,21 +10,20 @@ import YChat
 import Foundation
 
 internal final class CompletionViewModel: ObservableObject {
-    
     private var chatGpt: YChat {
         YChatCompanion.shared.create(apiKey: Config.apiKey)
     }
-    
+
     @Published
     var message: String = ""
-    
+
     @Published
     var chatMessageList: [ChatMessage] = []
-    
+
     var isLoading: Bool {
         chatMessageList.contains { $0.type == .loading }
     }
-    
+
     @MainActor
     func sendMessage() {
         Task.init {
@@ -46,7 +45,7 @@ internal final class CompletionViewModel: ObservableObject {
             }
         }
     }
-    
+
     private func addHumanMessage(message: String) {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
@@ -55,16 +54,16 @@ internal final class CompletionViewModel: ObservableObject {
         )
         chatMessageList.append(chatMessage)
     }
-    
+
     private func addAIMessage(message: String) {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
             message: message,
-            type: .ai
+            type: .bot
         )
         chatMessageList.append(chatMessage)
     }
-    
+
     private func addLoading() {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
@@ -72,16 +71,16 @@ internal final class CompletionViewModel: ObservableObject {
         )
         chatMessageList.append(chatMessage)
     }
-    
+
     private func removeLoading() {
         chatMessageList.removeAll { $0.type == .loading }
     }
-    
+
     private func cleanLastMessage() {
         message = ""
         chatMessageList.removeAll(where: { $0.type == .human(error: true) })
     }
-    
+
     private func setError() {
         if let row = self.chatMessageList.lastIndex(where: { $0.type == .human(error: false) }) {
             chatMessageList[row].type = .human(error: true)
