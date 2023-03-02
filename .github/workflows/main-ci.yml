@@ -13,48 +13,58 @@ env:
 jobs:
   code-check:
     name: Code Check
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     steps:
-      ## Step 1
       - name: Checkout
         uses: actions/checkout@v3
-      ## Step 2
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Configure JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+
       - name: Check Swift Package Version
         run: ./gradlew checkSwiftPackageVersion
-      ## Step 3
+
       - name: Run Detekt
-        run: ./gradlew :ychat:detektMetadataMain
-      ## Step 4
+        run: ./gradlew detektMetadataMain
+
       - name: Run Ktlint
-        run: ./gradlew :ychat:ktlintCheck
+        run: ./gradlew ktlintCheck
 
   code-coverage:
     name: Code Coverage
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     steps:
-      ## Step 1
       - name: Checkout
         uses: actions/checkout@v3
-      ## Step 2
-      - name: Set up Java 11
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Configure JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
-          java-version: '11'
-      ## Step 3
+          distribution: temurin
+          java-version: 11
+
       - name: Run Kover Verify
         run: ./gradlew koverVerify
-      ## Step 4
+
       - name: Upload Test Report
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: Test Report
           path: "**/build/reports/tests/testDebugUnitTest"
-      ## Step 5
+
       - name: Run Kover Report
         run: ./gradlew :ychat:koverXmlReport
-      ## Step 6
+
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3
         with:
