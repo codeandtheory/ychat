@@ -43,7 +43,7 @@ jobs:
 
   code-coverage:
     name: Code Coverage
-    runs-on: macos-11
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
