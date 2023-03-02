@@ -13,7 +13,7 @@ env:
 jobs:
   code-check:
     name: Code Check
-    runs-on: macos-11
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -26,6 +26,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
 
       - name: Check Swift Package Version
         run: ./gradlew checkSwiftPackageVersion
@@ -51,6 +56,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
 
       - name: Run Kover Verify
         run: ./gradlew koverVerify
