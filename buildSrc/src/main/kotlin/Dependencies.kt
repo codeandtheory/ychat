@@ -14,7 +14,8 @@ object Versions {
     const val KTOR = "2.2.2"
     const val KOIN = "3.2.0"
     const val MATERIAL_DESIGN = "1.6.1"
-    const val MOCKK = "1.12.3"
+    const val MOCKK = "1.13.4"
+    const val MOCKK_COMMON = "1.12.5"
 }
 
 object Dependencies {
@@ -48,8 +49,9 @@ object Dependencies {
     }
 
     object Test {
-        const val MOCKK_COMMON = "io.mockk:mockk-common:${Versions.MOCKK}"
+        const val MOCKK_COMMON = "io.mockk:mockk-common:${Versions.MOCKK_COMMON}"
         const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
+        const val MOCKK_JVM = "io.mockk:mockk-jvm:${Versions.MOCKK}"
         const val KTOR = "io.ktor:ktor-client-mock:${Versions.KTOR}"
         const val KOIN = "io.insert-koin:koin-test:${Versions.KOIN}"
     }

@@ -101,6 +101,11 @@ kotlin {
                 implementation(Dependencies.Network.KTOR_JAVA)
             }
         }
+        val jvmTest by getting {
+            dependencies {
+                implementation(Dependencies.Test.MOCKK_JVM)
+            }
+        }
     }
 }
 
