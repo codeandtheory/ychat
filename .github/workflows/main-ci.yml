@@ -13,21 +13,18 @@ env:
 jobs:
   code-check:
     name: Code Check
-    runs-on: macos-11
+    runs-on: ubuntu-latest
     steps:
       ## Step 1
       - name: Checkout
         uses: actions/checkout@v3
       ## Step 2
-      - name: Run Clean
-        run: ./gradlew clean
-      ## Step 3
       - name: Check Swift Package Version
         run: ./gradlew checkSwiftPackageVersion
-      ## Step 4
+      ## Step 3
       - name: Run Detekt
         run: ./gradlew :ychat:detektMetadataMain
-      ## Step 5
+      ## Step 4
       - name: Run Ktlint
         run: ./gradlew :ychat:ktlintCheck
 
