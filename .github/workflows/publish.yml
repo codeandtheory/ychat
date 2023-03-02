@@ -19,7 +19,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Publish to Repository
-        run: ./gradlew clean publish --no-parallel --stacktrace
+        run: ./gradlew :ychat:clean publish
 
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_USERNAME }}
