@@ -8,6 +8,7 @@ import co.yml.ychat.di.provider.NetworkProvider
 import co.yml.ychat.domain.usecases.CompletionUseCase
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.impl.CompletionImpl
+import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -17,7 +18,7 @@ internal class LibraryModule(private val apiKey: String) {
         entrypointModule + domainModule + dataModule + platformModule()
 
     private val entrypointModule = module {
-        factory<Completion> { CompletionImpl(get()) }
+        factory<Completion> { CompletionImpl(Dispatchers.Default, get()) }
     }
 
     private val domainModule = module {

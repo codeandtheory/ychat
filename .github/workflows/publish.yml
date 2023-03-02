@@ -31,11 +31,11 @@ jobs:
         run: chmod +x gradlew
 
       - name: Publish to Repository
-        run: ./gradlew :ychat:clean publishReleasePublicationToYChatRepository
+        run: ./gradlew :ychat:clean publish
 
         env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD}}
-          MEMORY_KEY: ${{ secrets.MEMORY_KEY}}
-          SIGNINGKEY: ${{ secrets.SIGNINGKEY}}
-          SIGNINGPASSWORD: ${{ secrets.SIGNINGPASSWORD}}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_PASSWORD}}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.MEMORY_KEY}}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNINGKEY}}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNINGPASSWORD}}

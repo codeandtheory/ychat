@@ -1,10 +1,10 @@
 object Versions {
     const val GRADLE_PLUGIN = "7.3.0"
-    const val DOKKA_PLUGIN = "1.7.20"
     const val SPM_PLUGIN = "2.0.3"
     const val DETEKT_PLUGIN = "1.22.0"
     const val KTLINT_PLUGIN = "11.0.0"
     const val KOVER_PLUGIN = "0.6.1"
+    const val PUBLISH_PLUGIN = "0.24.0"
     const val KOTLIN = "1.7.20"
     const val COMPOSE = "1.3.3"
     const val COMPOSE_FOUNDATION = "1.3.1"
@@ -14,7 +14,8 @@ object Versions {
     const val KTOR = "2.2.2"
     const val KOIN = "3.2.0"
     const val MATERIAL_DESIGN = "1.6.1"
-    const val MOCKK = "1.12.3"
+    const val MOCKK = "1.13.4"
+    const val MOCKK_COMMON = "1.12.5"
 }
 
 object Dependencies {
@@ -26,6 +27,7 @@ object Dependencies {
         const val KTOR_LOGGING = "io.ktor:ktor-client-logging:${Versions.KTOR}"
         const val KTOR_ANDROID = "io.ktor:ktor-client-android:${Versions.KTOR}"
         const val KTOR_IOS = "io.ktor:ktor-client-ios:${Versions.KTOR}"
+        const val KTOR_JAVA = "io.ktor:ktor-client-java:${Versions.KTOR}"
     }
 
     object DI {
@@ -47,8 +49,9 @@ object Dependencies {
     }
 
     object Test {
-        const val MOCKK_COMMON = "io.mockk:mockk-common:${Versions.MOCKK}"
+        const val MOCKK_COMMON = "io.mockk:mockk-common:${Versions.MOCKK_COMMON}"
         const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
+        const val MOCKK_JVM = "io.mockk:mockk-jvm:${Versions.MOCKK}"
         const val KTOR = "io.ktor:ktor-client-mock:${Versions.KTOR}"
         const val KOIN = "io.insert-koin:koin-test:${Versions.KOIN}"
     }
