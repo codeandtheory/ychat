@@ -4,12 +4,16 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: '*'
+  workflow_dispatch:
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
 
 jobs:
   code-check:
     name: Code Check
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     steps:
       ## Step 1
       - name: Checkout
