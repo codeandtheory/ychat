@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ychat-sdk"
-include(":sample:android")
 include(":ychat")
+include(":sample:android")
+include(":sample:jvm")
