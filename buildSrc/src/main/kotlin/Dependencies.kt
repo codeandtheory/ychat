@@ -16,9 +16,15 @@ object Versions {
     const val MATERIAL_DESIGN = "1.6.1"
     const val MOCKK = "1.13.4"
     const val MOCKK_COMMON = "1.12.5"
+    const val SPRING = "2.4.5"
 }
 
 object Dependencies {
+
+    object Spring {
+        const val SPRING_DEP = "org.springframework.boot:spring-boot-dependencies:${Versions.SPRING}"
+        const val SPRING_WEB = "org.springframework.boot:spring-boot-starter-web"
+    }
 
     object Network {
         const val KTOR_NEGOTIATION = "io.ktor:ktor-client-content-negotiation:${Versions.KTOR}"
