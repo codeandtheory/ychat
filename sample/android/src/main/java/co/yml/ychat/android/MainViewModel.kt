@@ -58,8 +58,10 @@ class MainViewModel(private val chatGpt: YChat) : ViewModel() {
     }
 
     fun updateTyping(string: String) {
-        typingTxt.value = if (typingTxt.value.endsWith("...")) string else "${typingTxt.value}."
-        items[items.lastIndex] = items.last().copy(message = typingTxt.value)
+        if (_isLoading.value == true) {
+            typingTxt.value = if (typingTxt.value.endsWith("...")) string else "${typingTxt.value}."
+            items[items.lastIndex] = items.last().copy(message = typingTxt.value)
+        }
     }
 
     private fun updateTypingMessage(typingStr: String) {
