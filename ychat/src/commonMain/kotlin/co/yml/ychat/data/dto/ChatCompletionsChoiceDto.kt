@@ -10,5 +10,5 @@ internal data class ChatCompletionsChoiceDto(
     @SerialName("message")
     val message: ChatMessageDto,
     @SerialName("finish_reason")
-    val finishReason: String,
+    val finishReason: String?,
 )

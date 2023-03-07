@@ -11,6 +11,15 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val chatGpt: YChat) : ViewModel() {
 
+    private val chatCompletions by lazy {
+        chatGpt.chatCompletions()
+            .setMaxTokens(MAX_TOKENS)
+            .addMessage(
+                role = "assistant",
+                content = "You are a helpful assistant."
+            )
+    }
+
     private val _items = mutableStateListOf<MessageItem>()
     val items = _items
 
@@ -47,11 +56,7 @@ class MainViewModel(private val chatGpt: YChat) : ViewModel() {
 
     private suspend fun requestCompletion(message: String): String {
         return try {
-            chatGpt.completion()
-                .setInput(message)
-                .saveHistory(false)
-                .setMaxTokens(MAX_TOKENS)
-                .execute()
+            chatCompletions.execute(message).last().content
         } catch (e: Exception) {
             e.message ?: ERROR
         }

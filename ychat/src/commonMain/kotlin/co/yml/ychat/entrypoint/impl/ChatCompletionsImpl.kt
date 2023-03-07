@@ -50,7 +50,7 @@ internal class ChatCompletionsImpl(
     }
 
     override suspend fun execute(content: String): List<ChatMessage> {
-        params.messages.add(ChatMessage("user", content))
+        addMessage("user", content)
         return chatCompletionsUseCase.requestChatCompletions(params)
             .also { params.messages.addAll(it) }
     }
