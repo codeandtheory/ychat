@@ -23,8 +23,23 @@ This endpoint generates text based on the provided prompt.
 
 ##### Parameters:
 
-- input: The prompt for generating text.
+- `input`: The prompt for generating text.
 
 ##### Example:
 
 `GET http://localhost:8080/api/ychat/completion?input="What is 1 + 1?"`
+
+### Chat Completions Endpoint
+
+This endpoint generates text based on the provided prompt and a specified topic. The generated text will be related to the topic provided.
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/chat-completions
+
+##### Parameters:
+
+- `input`: The prompt for generating text.
+- `topic`: The topic to limit the response to.
+
+##### Example:
+
+`GET http://localhost:8080/api/ychat/chat-completions?input="Tell me an exercise plan"&topic=fitness`
