@@ -1,4 +1,4 @@
-package co.yml.ychat.domain
+package co.yml.ychat.domain.usecases
 
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.ChoiceDto
@@ -7,7 +7,6 @@ import co.yml.ychat.data.dto.UsageDto
 import co.yml.ychat.data.exception.ChatGptException
 import co.yml.ychat.data.infrastructure.ApiResult
 import co.yml.ychat.data.storage.ChatLogStorage
-import co.yml.ychat.domain.usecases.CompletionUseCase
 import co.yml.ychat.domain.model.CompletionParams
 import io.mockk.coEvery
 import io.mockk.every

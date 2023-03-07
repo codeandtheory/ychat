@@ -1,6 +1,5 @@
-package co.yml.ychat.domain
+package co.yml.ychat.domain.model
 
-import co.yml.ychat.domain.model.CompletionParams
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

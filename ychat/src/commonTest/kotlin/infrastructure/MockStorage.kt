@@ -7,4 +7,10 @@ object MockStorage {
         "\"choices\":[{\"text\":\"\n\n$text\",\"index\":0,\"logprobs\":null," +
         "\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":8,\"completion_tokens\":9," +
         "\"total_tokens\":17}}"
+
+    fun chatCompletionsSuccessResult(text: String) = "{\"id\":\"1\",\"object\":\"chat.completion\"," +
+        "\"created\":1678144798,\"model\":\"gpt-3.5-turbo-0301\"," +
+        "\"usage\":{\"prompt_tokens\":13,\"completion_tokens\":12,\"total_tokens\":25}," +
+        "\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":\"$text\"}," +
+        "\"finish_reason\":\"stop\",\"index\":0}]}"
 }

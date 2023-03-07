@@ -4,7 +4,9 @@ import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.infrastructure.ApiExecutor
 import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.module.LibraryModule
+import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
+import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import io.ktor.client.HttpClient
 import kotlin.test.AfterTest
@@ -35,5 +37,7 @@ class LibraryModuleTest : KoinTest {
         get<ApiExecutor>()
         get<ChatGptApi>()
         get<CompletionUseCase>()
+        get<ChatCompletionsUseCase>()
+        get<ChatCompletions>()
     }
 }
