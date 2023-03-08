@@ -1,11 +1,13 @@
 package co.yml.ychat.android
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.yml.ychat.YChat
+import co.yml.ychat.YChat.Callback
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -18,6 +20,11 @@ class MainViewModel(private val chatGpt: YChat) : ViewModel() {
                 role = "assistant",
                 content = "You are a helpful assistant."
             )
+    }
+
+    private val imageGenerations by lazy {
+        chatGpt.imageGenerations()
+            .setResults(2)
     }
 
     private val _items = mutableStateListOf<MessageItem>()
@@ -38,6 +45,20 @@ class MainViewModel(private val chatGpt: YChat) : ViewModel() {
         viewModelScope.launch {
             showTypingAnimation(message)
             writeResponse(requestCompletion(message))
+        }
+    }
+
+    fun onImageRequest(prompt: String) {
+        viewModelScope.launch {
+            imageGenerations.execute(prompt, object: Callback<List<String>> {
+                override fun onSuccess(result: List<String>) {
+                    Log.d("callback", "onSuccess: $result")
+                }
+
+                override fun onError(throwable: Throwable) {
+                    Log.d("callback", "onError: $throwable")
+                }
+            })
         }
     }
 

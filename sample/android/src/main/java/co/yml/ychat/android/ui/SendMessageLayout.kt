@@ -91,7 +91,8 @@ fun SendMessageLayout() {
                     .background(if (textFieldState.isNotEmpty() && isLoading.not()) colorResource(id = R.color.softBlue) else colorResource(id = R.color.opaqueWhite)),
                 onClick = {
                     scope.launch {
-                        viewModel.onSendMessage(textFieldState, typingString)
+                        //viewModel.onSendMessage(textFieldState, typingString)
+                        viewModel.onImageRequest(textFieldState)
                         textFieldState = ""
                     }
                 },
