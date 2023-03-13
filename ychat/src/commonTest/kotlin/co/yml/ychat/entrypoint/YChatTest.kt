@@ -15,19 +15,29 @@ import kotlin.test.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 
-class CompletionIntegrationTest {
+class YChatTest {
 
     private lateinit var yChat: YChatImpl
 
     @BeforeTest
     fun setup() {
-        yChat = YChat.create("api.key") as YChatImpl
+        yChat = YChatImpl("api.key")
+    }
+
+    @Test
+    fun `on create method should return singleton instance`() {
+        // arrange
+        val yChatOne = YChat.create("api.key")
+        val yChatTwo = YChat.create("api.key")
+
+        // assert
+        assertEquals(yChatOne, yChatTwo)
     }
 
     @Test
     fun `on completion execute method should return result successfully`() {
         // arrange
-        val textResult = "This in indeed a text"
+        val textResult = "This in indeed a test"
         val completionSuccessResult = MockStorage.completionSuccessResult(textResult)
         mockHttpEngine(completionSuccessResult)
 
@@ -39,7 +49,28 @@ class CompletionIntegrationTest {
         }
 
         // assert
-        assertEquals("This in indeed a text", result)
+        assertEquals("This in indeed a test", result)
+    }
+
+    @Test
+    fun `on chatCompletions execute method should return result successfully`() {
+        // arrange
+        val textResult = "This in indeed a test"
+        val chatCompletionSuccessResult = MockStorage.chatCompletionsSuccessResult(textResult)
+        mockHttpEngine(chatCompletionSuccessResult)
+
+        // act
+        val result = runBlocking {
+            yChat.chatCompletions()
+                .setMaxResults(1)
+                .setTemperature(1.0)
+                .setTopP(1.0)
+                .execute("Say this is a test")
+                .first().content
+        }
+
+        // assert
+        assertEquals("This in indeed a test", result)
     }
 
     private fun mockHttpEngine(result: String) {

@@ -2,6 +2,7 @@ package co.yml.ychat.entrypoint.impl
 
 import co.yml.ychat.YChat
 import co.yml.ychat.di.module.LibraryModule
+import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import org.koin.core.KoinApplication
 
@@ -15,6 +16,10 @@ internal class YChatImpl(apiKey: String) : YChat {
     }
 
     override fun completion(): Completion {
+        return koinApp.koin.get()
+    }
+
+    override fun chatCompletions(): ChatCompletions {
         return koinApp.koin.get()
     }
 }

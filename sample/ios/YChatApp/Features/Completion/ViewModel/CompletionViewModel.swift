@@ -10,9 +10,14 @@ import YChat
 import Foundation
 
 internal final class CompletionViewModel: ObservableObject {
-    private var chatGpt: YChat {
+    private var chatCompletions: ChatCompletions =
         YChatCompanion.shared.create(apiKey: Config.apiKey)
-    }
+            .chatCompletions()
+            .setMaxTokens(tokens: 1024)
+            .addMessage(
+                role: "assistant",
+                content: "You are a helpful assistant."
+            )
 
     @Published
     var message: String = ""
@@ -32,11 +37,7 @@ internal final class CompletionViewModel: ObservableObject {
             cleanLastMessage()
             addLoading()
             do {
-                let result = try await chatGpt.completion()
-                    .setInput(input: input)
-                    .setMaxTokens(tokens: 1024)
-                    .saveHistory(isSaveHistory: false)
-                    .execute()
+                let result = try await chatCompletions.execute(content: input)[0].content
                 removeLoading()
                 addAIMessage(message: result)
             } catch {

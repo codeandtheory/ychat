@@ -1,5 +1,6 @@
 package co.yml.ychat
 
+import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.impl.YChatImpl
 import kotlin.jvm.JvmStatic
@@ -31,6 +32,50 @@ interface YChat {
      * ```
      */
     fun completion(): Completion
+
+    /**
+     * The chatCompletions api generates a list of chat completions for the given input message.
+     * It uses machine learning algorithms to generate responses that match the context or pattern
+     * provided in the input message.
+     *
+     * You can configure various parameters to customize the chat completions, such as the model to use,
+     * the number of results to generate, and the maximum number of tokens allowed for the generated answer.
+     *
+     * Example usage:
+     * ```
+     * val result = YChat.create(apiKey).chatCompletions()
+     *      .setModel("gpt-3.5-turbo")
+     *      .setResults(3)
+     *      .setMaxTokens(1024)
+     *      .execute("Hello, how are you?")
+     * ```
+     * This would generate three chat completion strings based on the input message "Hello, how are you?"
+     * using the "gpt-3.5-turbo" model, with a maximum of 1024 tokens allowed for each generated answer.
+     *
+     * You can also use the `addMessage` method to provide additional context or information to the API,
+     * which can be used to restrict the generated responses to a certain topic or context.
+     *
+     * Example usage:
+     * ```
+     * val result = YChat.create(apiKey).chatCompletions()
+     *      .setModel("gpt-3.5-turbo")
+     *      .setResults(3)
+     *      .setMaxTokens(1024)
+     *      .addMessage(
+     *          role = "assistant",
+     *          content = "You are a helpful assistant that only answers questions related to fitness"
+     *      )
+     *      .execute("What is the best exercise for building muscle?")
+     * ```
+     * This would generate three chat completion strings based on the input message "What is the
+     * best exercise for building muscle?", using the "gpt-3.5-turbo" model, with a maximum of 1024
+     * tokens allowed for each generated answer. The `addMessage` method is used to provide context
+     * to the API, restricting the generated responses to questions related to fitness, since the
+     * assistant is set to only answer questions related to that topic.
+     *
+     * @return A new instance of the `ChatCompletions` class.
+     */
+    fun chatCompletions(): ChatCompletions
 
     /**
      * Callback is an interface used for handling the results of an operation.
