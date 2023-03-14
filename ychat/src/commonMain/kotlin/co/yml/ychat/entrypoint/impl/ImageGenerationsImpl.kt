@@ -41,7 +41,7 @@ internal class ImageGenerationsImpl(
 
     override fun execute(prompt: String, callback: YChat.Callback<List<String>>) {
         scope.launch {
-            kotlin.runCatching { execute(prompt) }
+            runCatching { execute(prompt) }
                 .onSuccess { callback.onSuccess(it) }
                 .onFailure { callback.onError(it) }
         }
