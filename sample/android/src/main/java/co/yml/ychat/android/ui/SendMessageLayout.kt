@@ -53,7 +53,6 @@ fun SendMessageLayout() {
     val viewModel = koinViewModel<MainViewModel>()
     val isLoading: Boolean by viewModel.isLoading.observeAsState(initial = false)
 
-
     Row(
         modifier = Modifier
             .background(color = MaterialTheme.colors.background)

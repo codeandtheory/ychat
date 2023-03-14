@@ -11,7 +11,6 @@ internal fun ImageGenerationsDto.toImageGenerated(): List<ImageGenerated> {
     }
 }
 
-
 internal fun ImageGenerationsParams.toImageGenerationsParamsDto(): ImageGenerationsParamsDto {
     return ImageGenerationsParamsDto(
         prompt = this.prompt,
