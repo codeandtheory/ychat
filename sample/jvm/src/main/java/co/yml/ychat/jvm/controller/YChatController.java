@@ -34,7 +34,7 @@ public class YChatController {
 
     @GetMapping("generations")
     public ResponseEntity<String> imageGenerations(
-            @RequestParam(value = "prompt", defaultValue = Defaults.CHAT_COMPLETION_INPUT) String input
+            @RequestParam(value = "prompt", defaultValue = Defaults.IMAGE_GENERATION_TOPIC) String input
     ) throws Exception {
         String result = YChatService.getImageGenerationsAnswer(input);
         return ResponseEntity.ok(result);
@@ -44,5 +44,6 @@ public class YChatController {
         static final String COMPLETION_INPUT = "Say this is a test.";
         static final String CHAT_COMPLETION_INPUT = "Tell me one strength exercise";
         static final String CHAT_COMPLETION_TOPIC = "fitness";
+        static final String IMAGE_GENERATION_TOPIC = "ocean";
     }
 }
