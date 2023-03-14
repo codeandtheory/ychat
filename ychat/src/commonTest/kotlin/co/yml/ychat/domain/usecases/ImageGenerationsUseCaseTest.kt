@@ -4,7 +4,7 @@ import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.exception.ChatGptException
 import co.yml.ychat.data.infrastructure.ApiResult
-import co.yml.ychat.domain.model.ImageGenerated
+import co.yml.ychat.domain.model.ImageGeneratedDto
 import co.yml.ychat.domain.model.ImageGenerationsParams
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -59,7 +59,7 @@ class ImageGenerationsUseCaseTest {
     private fun buildImageGenerationsDto(url: String): ImageGenerationsDto {
         return ImageGenerationsDto(
             created = 12345,
-            data = listOf(ImageGenerated(url))
+            data = listOf(ImageGeneratedDto(url))
         )
     }
 }

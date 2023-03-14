@@ -2,7 +2,6 @@ package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
 import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.domain.model.ImageGenerated
 import kotlin.coroutines.cancellation.CancellationException
 
 interface ImageGenerations {

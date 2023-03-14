@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.concurrent.CompletableFuture;
 import co.yml.ychat.YChat;
-import co.yml.ychat.domain.model.ImageGenerated;
 
 @Service
 public class YChatService {

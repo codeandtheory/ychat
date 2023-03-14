@@ -2,7 +2,6 @@ package co.yml.ychat.domain.mapper
 
 import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.dto.ImageGenerationsParamsDto
-import co.yml.ychat.domain.model.ImageGenerated
 import co.yml.ychat.domain.model.ImageGenerationsParams
 
 internal fun ImageGenerationsDto.toImageGenerated(): List<String> {
