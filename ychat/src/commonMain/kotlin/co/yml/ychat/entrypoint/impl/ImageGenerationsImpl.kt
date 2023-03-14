@@ -34,7 +34,7 @@ internal class ImageGenerationsImpl(
         return this
     }
 
-    override suspend fun execute(prompt: String): List<ImageGenerated> {
+    override suspend fun execute(prompt: String): List<String> {
         params.prompt = prompt
         return imageGenerationsUseCase.requestImageGenerations(params)
     }
@@ -42,7 +42,7 @@ internal class ImageGenerationsImpl(
     override fun execute(prompt: String, callback: YChat.Callback<List<String>>) {
         scope.launch {
             kotlin.runCatching { execute(prompt) }
-                .onSuccess { callback.onSuccess(it.map { it.url }) }
+                .onSuccess { callback.onSuccess(it) }
                 .onFailure { callback.onError(it) }
         }
     }

@@ -14,7 +14,7 @@ interface ImageGenerations {
     fun setResponseFormat(responseFormat: String): ImageGenerations
 
     @Throws(CancellationException::class, ChatGptException::class)
-    suspend fun execute(prompt: String): List<ImageGenerated>
+    suspend fun execute(prompt: String): List<String>
 
     fun execute(prompt: String, callback: YChat.Callback<List<String>>)
 }
