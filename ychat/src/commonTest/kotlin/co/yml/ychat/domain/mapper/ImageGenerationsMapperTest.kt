@@ -15,7 +15,7 @@ class ImageGenerationsMapperTest {
             created = 12345,
             data = listOfImageGeneratedDto
         )
-        assertEquals(listOfImageGeneratedDto, imageGenerationsDto.toImageGenerated())
+        assertEquals(listOfImageGeneratedDto.map { it.url }, imageGenerationsDto.toImageGenerated())
     }
 
     @Test

@@ -37,7 +37,7 @@ class ImageGenerationsUseCaseTest {
         val result = runBlocking { imageGenerationsUseCase.requestImageGenerations(params) }
 
         // assert
-        assertEquals("https://image-generated.test", result.last().url)
+        assertEquals("https://image-generated.test", result.last())
     }
 
     @Test
