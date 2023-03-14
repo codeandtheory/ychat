@@ -78,6 +78,19 @@ interface YChat {
      */
     fun chatCompletions(): ChatCompletions
 
+    /**
+     * The image generations api is used to generate images based on a prompt. You input some text as a
+     * prompt, and the model will generate one or more images.
+     *
+     * You can configure the parameters of the completion before executing it. Example:
+     * ```
+     * val result = YChat.create(apiKey).imageGenerations()
+     *      .setResults(2)
+     *      .setSize(1024x1024)
+     *      .set...
+     *      .execute("/image ocean")
+     * ```
+     */
     fun imageGenerations(): ImageGenerations
 
     /**
