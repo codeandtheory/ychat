@@ -13,4 +13,7 @@ object MockStorage {
         "\"usage\":{\"prompt_tokens\":13,\"completion_tokens\":12,\"total_tokens\":25}," +
         "\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":\"$text\"}," +
         "\"finish_reason\":\"stop\",\"index\":0}]}"
+
+    fun imageGenerationsSuccessResult(text: String) =
+        "{\"created\":1678805561,\"data\":[{\"url\":\"$text\"}]}"
 }

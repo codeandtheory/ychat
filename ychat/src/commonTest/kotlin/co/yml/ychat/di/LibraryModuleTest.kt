@@ -6,8 +6,10 @@ import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.module.LibraryModule
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
+import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
+import co.yml.ychat.entrypoint.features.ImageGenerations
 import io.ktor.client.HttpClient
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -39,5 +41,7 @@ class LibraryModuleTest : KoinTest {
         get<CompletionUseCase>()
         get<ChatCompletionsUseCase>()
         get<ChatCompletions>()
+        get<ImageGenerationsUseCase>()
+        get<ImageGenerations>()
     }
 }

@@ -35,6 +35,13 @@ public class YChatService {
         return future.get().get(0).getContent();
     }
 
+    public String getImageGenerationsAnswer(String prompt) throws Exception {
+        final CompletableFuture<List<String>> future = new CompletableFuture<>();
+        ychat.imageGenerations()
+                .execute(prompt, new CompletionCallbackResult<>(future));
+        return future.get().get(0);
+    }
+
     private static class CompletionCallbackResult<T> implements YChat.Callback<T> {
 
         private final CompletableFuture<T> future;

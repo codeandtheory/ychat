@@ -73,6 +73,26 @@ class YChatTest {
         assertEquals("This in indeed a test", result)
     }
 
+    @Test
+    fun `on imageGenerations execute method should return result successfully`() {
+        // arrange
+        val imageUrl = "https://testlink.com/image-test.jpg"
+        val imageGenerationsSuccessResult = MockStorage.imageGenerationsSuccessResult(imageUrl)
+        mockHttpEngine(imageGenerationsSuccessResult)
+
+        // act
+        val result = runBlocking {
+            yChat.imageGenerations()
+                .setResults(1)
+                .setSize("256x256")
+                .setResponseFormat("url")
+                .execute("/image ocean")
+        }
+
+        // assert
+        assertEquals("https://testlink.com/image-test.jpg", result.first())
+    }
+
     private fun mockHttpEngine(result: String) {
         val httpEngine = MockEngine {
             respond(

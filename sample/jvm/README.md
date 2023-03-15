@@ -43,3 +43,17 @@ This endpoint generates text based on the provided prompt and a specified topic.
 ##### Example:
 
 `GET http://localhost:8080/api/ychat/chat-completions?input="Tell me an exercise plan"&topic=fitness`
+
+### Image Generations Endpoint
+
+This endpoint generates images based on the provided prompt.
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/generations
+
+##### Parameters:
+
+- `prompt`: The prompt for generating images.
+
+##### Example:
+
+`GET http://localhost:8080/api/ychat/generations?prompt="ocean"
