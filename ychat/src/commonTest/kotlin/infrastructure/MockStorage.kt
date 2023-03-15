@@ -14,5 +14,6 @@ object MockStorage {
         "\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":\"$text\"}," +
         "\"finish_reason\":\"stop\",\"index\":0}]}"
 
-    fun imageGenerationsSuccessResult(text: String) = "{\"created\":1678805561,\"data\":[{\"url\":\"https://testlink.com/image-test.jps\"}]}"
+    fun imageGenerationsSuccessResult(text: String) =
+        "{\"created\":1678805561,\"data\":[{\"url\":\"$text\"}]}"
 }
