@@ -9,6 +9,7 @@ import co.yml.ychat.domain.usecases.CompletionUseCase
 import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
+import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import io.ktor.client.HttpClient
 import kotlin.test.AfterTest
@@ -43,5 +44,6 @@ class LibraryModuleTest : KoinTest {
         get<ChatCompletions>()
         get<ImageGenerationsUseCase>()
         get<ImageGenerations>()
+        get<Edits>()
     }
 }

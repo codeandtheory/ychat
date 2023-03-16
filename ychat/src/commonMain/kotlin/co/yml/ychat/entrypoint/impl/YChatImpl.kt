@@ -4,6 +4,7 @@ import co.yml.ychat.YChat
 import co.yml.ychat.di.module.LibraryModule
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
+import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import org.koin.core.KoinApplication
 
@@ -25,6 +26,10 @@ internal class YChatImpl(apiKey: String) : YChat {
     }
 
     override fun imageGenerations(): ImageGenerations {
+        return koinApp.koin.get()
+    }
+
+    override fun edits(): Edits {
         return koinApp.koin.get()
     }
 }

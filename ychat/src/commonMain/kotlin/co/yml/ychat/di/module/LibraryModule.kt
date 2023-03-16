@@ -7,12 +7,15 @@ import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.provider.NetworkProvider
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
+import co.yml.ychat.domain.usecases.EditsUseCase
 import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
+import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.impl.ChatCompletionsImpl
 import co.yml.ychat.entrypoint.impl.CompletionImpl
+import co.yml.ychat.entrypoint.impl.EditsImpl
 import co.yml.ychat.entrypoint.impl.ImageGenerationsImpl
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
@@ -27,12 +30,14 @@ internal class LibraryModule(private val apiKey: String) {
         factory<Completion> { CompletionImpl(Dispatchers.Default, get()) }
         factory<ChatCompletions> { ChatCompletionsImpl(Dispatchers.Default, get()) }
         factory<ImageGenerations> { ImageGenerationsImpl(Dispatchers.Default, get()) }
+        factory<Edits> { EditsImpl(Dispatchers.Default, get()) }
     }
 
     private val domainModule = module {
         factory { CompletionUseCase(get(), get()) }
         factory { ChatCompletionsUseCase(get()) }
         factory { ImageGenerationsUseCase(get()) }
+        factory { EditsUseCase(get()) }
     }
 
     private val dataModule = module {
