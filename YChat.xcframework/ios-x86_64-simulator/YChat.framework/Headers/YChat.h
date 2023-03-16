@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class YChatKotlinThrowable, YChatYChatCompanion, YChatKotlinArray<T>, YChatKotlinException, YChatKotlinRuntimeException, YChatKotlinIllegalStateException;
+@class YChatKotlinThrowable, YChatYChatCompanion, YChatChatMessage, YChatKotlinArray<T>, YChatKotlinException, YChatKotlinRuntimeException, YChatKotlinIllegalStateException;
 
-@protocol YChatCompletion, YChatYChat, YChatYChatCallback, YChatKotlinIterator;
+@protocol YChatChatCompletions, YChatCompletion, YChatImageGenerations, YChatYChat, YChatYChatCallback, YChatKotlinIterator;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -147,7 +147,9 @@ __attribute__((swift_name("KotlinBoolean")))
 __attribute__((swift_name("YChat")))
 @protocol YChatYChat
 @required
+- (id<YChatChatCompletions>)chatCompletions __attribute__((swift_name("chatCompletions()")));
 - (id<YChatCompletion>)completion __attribute__((swift_name("completion()")));
+- (id<YChatImageGenerations>)imageGenerations __attribute__((swift_name("imageGenerations()")));
 @end
 
 __attribute__((swift_name("YChatCallback")))
@@ -170,6 +172,20 @@ __attribute__((swift_name("YChatCompanion")))
  *   kotlin.jvm.JvmStatic
 */
 - (id<YChatYChat>)createApiKey:(NSString *)apiKey __attribute__((swift_name("create(apiKey:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ChatMessage")))
+@interface YChatChatMessage : YChatBase
+- (instancetype)initWithRole:(NSString *)role content:(NSString *)content __attribute__((swift_name("init(role:content:)"))) __attribute__((objc_designated_initializer));
+- (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
+- (NSString *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
+- (YChatChatMessage *)doCopyRole:(NSString *)role content:(NSString *)content __attribute__((swift_name("doCopy(role:content:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *content __attribute__((swift_name("content")));
+@property (readonly) NSString *role __attribute__((swift_name("role")));
 @end
 
 __attribute__((swift_name("KotlinThrowable")))
@@ -209,6 +225,24 @@ __attribute__((swift_name("ChatGptException")))
 @property YChatInt * _Nullable statusCode __attribute__((swift_name("statusCode")));
 @end
 
+__attribute__((swift_name("ChatCompletions")))
+@protocol YChatChatCompletions
+@required
+- (id<YChatChatCompletions>)addMessageRole:(NSString *)role content:(NSString *)content __attribute__((swift_name("addMessage(role:content:)")));
+
+/**
+ * @note This method converts instances of CancellationException, ChatGptException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)executeContent:(NSString *)content completionHandler:(void (^)(NSArray<YChatChatMessage *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(content:completionHandler:)")));
+- (void)executeContent:(NSString *)content callback:(id<YChatYChatCallback>)callback __attribute__((swift_name("execute(content:callback:)")));
+- (id<YChatChatCompletions>)setMaxResultsResults:(int32_t)results __attribute__((swift_name("setMaxResults(results:)")));
+- (id<YChatChatCompletions>)setMaxTokensTokens:(int32_t)tokens __attribute__((swift_name("setMaxTokens(tokens:)")));
+- (id<YChatChatCompletions>)setModelModel:(NSString *)model __attribute__((swift_name("setModel(model:)")));
+- (id<YChatChatCompletions>)setTemperatureTemperature:(double)temperature __attribute__((swift_name("setTemperature(temperature:)")));
+- (id<YChatChatCompletions>)setTopPTopP:(double)topP __attribute__((swift_name("setTopP(topP:)")));
+@end
+
 __attribute__((swift_name("Completion")))
 @protocol YChatCompletion
 @required
@@ -225,6 +259,21 @@ __attribute__((swift_name("Completion")))
 - (id<YChatCompletion>)setModelModel:(NSString *)model __attribute__((swift_name("setModel(model:)")));
 - (id<YChatCompletion>)setTemperatureTemperature:(double)temperature __attribute__((swift_name("setTemperature(temperature:)")));
 - (id<YChatCompletion>)setTopPTopP:(double)topP __attribute__((swift_name("setTopP(topP:)")));
+@end
+
+__attribute__((swift_name("ImageGenerations")))
+@protocol YChatImageGenerations
+@required
+
+/**
+ * @note This method converts instances of CancellationException, ChatGptException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)executePrompt:(NSString *)prompt completionHandler:(void (^)(NSArray<NSString *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(prompt:completionHandler:)")));
+- (void)executePrompt:(NSString *)prompt callback:(id<YChatYChatCallback>)callback __attribute__((swift_name("execute(prompt:callback:)")));
+- (id<YChatImageGenerations>)setResponseFormatResponseFormat:(NSString *)responseFormat __attribute__((swift_name("setResponseFormat(responseFormat:)")));
+- (id<YChatImageGenerations>)setResultsResults:(int32_t)results __attribute__((swift_name("setResults(results:)")));
+- (id<YChatImageGenerations>)setSizeSize:(NSString *)size __attribute__((swift_name("setSize(size:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
