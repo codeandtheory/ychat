@@ -57,3 +57,18 @@ This endpoint generates images based on the provided prompt.
 ##### Example:
 
 `GET http://localhost:8080/api/ychat/generations?prompt="ocean"
+
+### Edits Endpoint
+
+This endpoint edits the prompt based on the provided instruction.
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/edits
+
+##### Parameters:
+
+- `input`: The input text to use as a starting point for the edit.
+- `instruction`: The instruction that tells the model how to edit the prompt.
+
+##### Example:
+
+`GET http://localhost:8080/api/ychat/edits?input=What day of the wek is it?&instruction=Fix the spelling mistakes

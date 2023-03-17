@@ -42,6 +42,14 @@ public class YChatService {
         return future.get().get(0);
     }
 
+    public String getEditsAnswer(String input, String instruction) throws Exception {
+        final CompletableFuture<List<String>> future = new CompletableFuture<>();
+        ychat.edits()
+                .setInput(input)
+                .execute(instruction, new CompletionCallbackResult<>(future));
+        return future.get().get(0);
+    }
+
     private static class CompletionCallbackResult<T> implements YChat.Callback<T> {
 
         private final CompletableFuture<T> future;

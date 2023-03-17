@@ -18,6 +18,6 @@ object MockStorage {
         "{\"created\":1678805561,\"data\":[{\"url\":\"$text\"}]}"
 
     fun editsSuccessResult(text: String) = "{\"object\":\"edit\",\"created\":1679072839," +
-            "\"choices\":[{\"text\":\"$text\",\"index\":0}]," +
-            "\"usage\":{\"prompt_tokens\":25,\"completion_tokens\":28,\"total_tokens\":53}}"
+        "\"choices\":[{\"text\":\"$text\",\"index\":0}]," +
+        "\"usage\":{\"prompt_tokens\":25,\"completion_tokens\":28,\"total_tokens\":53}}"
 }
