@@ -39,7 +39,7 @@ try {
         .setInput("Say this is a test.")
         .setMaxTokens(1024)
         .set... // you can set more parameters
-    .execute()
+        .execute()
 
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -86,7 +86,7 @@ try {
             content = "You are a helpful assistant that only answers questions related to fitness"
         )
         .set... // you can set more parameters
-    .execute("What is the best exercise for building muscle?")
+        .execute("What is the best exercise for building muscle?")
 
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -127,7 +127,7 @@ try {
         .setResults(2)
         .setSize("1024x1024")
         .set... // you can set more parameters
-    .execute("ocean")
+        .execute("ocean")
 
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -168,7 +168,7 @@ try {
         .setInput("What day of the wek is it?")
         .setResults(1)
         .set... // you can set more parameters
-    .execute("Fix the spelling mistakes")
+        .execute("Fix the spelling mistakes")
 
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
