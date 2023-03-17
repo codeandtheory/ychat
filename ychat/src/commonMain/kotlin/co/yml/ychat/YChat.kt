@@ -87,9 +87,9 @@ interface YChat {
      * ```
      * val result = YChat.create(apiKey).imageGenerations()
      *      .setResults(2)
-     *      .setSize(1024x1024)
+     *      .setSize("1024x1024")
      *      .set...
-     *      .execute("/image ocean")
+     *      .execute("ocean")
      * ```
      */
     fun imageGenerations(): ImageGenerations
