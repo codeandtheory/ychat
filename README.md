@@ -59,7 +59,7 @@ repositories {
 Then, simply import the dependency to your `build.gradle` dependencies:
 
 ```kotlin
-implementation("co.yml:ychat:1.0.0")
+implementation("co.yml:ychat:1.1.0")
 ```
 
 Take a look at the Kotlin code snippet below for an example of how to initialize and use one of the supported features:
