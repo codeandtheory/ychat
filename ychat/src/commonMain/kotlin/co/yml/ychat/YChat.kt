@@ -102,9 +102,9 @@ interface YChat {
      * ```
      * val result = YChat.create(apiKey).edits()
      *      .setInput("As Descartes said, I think, therefore")
-     *      .setInstruction("Fix spelling mistakes")
+     *      .setResults(1)
      *      .set...
-     *      .execute()
+     *      .execute("Fix spelling mistakes")
      * ```
      */
     fun edits(): Edits

@@ -1,6 +1,5 @@
 package co.yml.ychat.data.dto
 
-import co.yml.ychat.domain.model.ImageGeneratedDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

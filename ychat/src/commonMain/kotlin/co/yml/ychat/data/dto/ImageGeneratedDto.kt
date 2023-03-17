@@ -1,4 +1,4 @@
-package co.yml.ychat.domain.model
+package co.yml.ychat.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -4,7 +4,7 @@ import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.exception.ChatGptException
 import co.yml.ychat.data.infrastructure.ApiResult
-import co.yml.ychat.domain.model.ImageGeneratedDto
+import co.yml.ychat.data.dto.ImageGeneratedDto
 import co.yml.ychat.domain.model.ImageGenerationsParams
 import io.mockk.coEvery
 import io.mockk.mockk

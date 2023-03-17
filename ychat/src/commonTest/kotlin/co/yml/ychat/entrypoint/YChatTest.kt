@@ -93,6 +93,28 @@ class YChatTest {
         assertEquals("https://testlink.com/image-test.jpg", result.first())
     }
 
+    @Test
+    fun `on edits execute method should return result successfully`() {
+        // arrange
+        val expectedResult = "What day of the week is it?"
+        val imageGenerationsSuccessResult = MockStorage.editsSuccessResult(expectedResult)
+        mockHttpEngine(imageGenerationsSuccessResult)
+
+        // act
+        val result = runBlocking {
+            yChat.edits()
+                .setResults(1)
+                .setTemperature(1.0)
+                .setModel("model-1")
+                .setTopP(1.0)
+                .setInput("What day of the wek is it?")
+                .execute("Fix the spelling mistakes")
+        }
+
+        // assert
+        assertEquals(expectedResult, result.first())
+    }
+
     private fun mockHttpEngine(result: String) {
         val httpEngine = MockEngine {
             respond(
