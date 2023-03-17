@@ -2,6 +2,7 @@ package co.yml.ychat
 
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
+import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.impl.YChatImpl
 import kotlin.jvm.JvmStatic
@@ -86,12 +87,27 @@ interface YChat {
      * ```
      * val result = YChat.create(apiKey).imageGenerations()
      *      .setResults(2)
-     *      .setSize(1024x1024)
+     *      .setSize("1024x1024")
      *      .set...
-     *      .execute("/image ocean")
+     *      .execute("ocean")
      * ```
      */
     fun imageGenerations(): ImageGenerations
+
+    /**
+     * The edits api is used to edit prompts and re-generate. Given a prompt and an instruction,
+     * the model will return an edited version of the prompt.
+     *
+     * You can configure the parameters of the edits before executing it. Example:
+     * ```
+     * val result = YChat.create(apiKey).edits()
+     *      .setInput("As Descartes said, I think, therefore")
+     *      .setResults(1)
+     *      .set...
+     *      .execute("Fix spelling mistakes")
+     * ```
+     */
+    fun edits(): Edits
 
     /**
      * Callback is an interface used for handling the results of an operation.

@@ -5,14 +5,15 @@
 
 # YChat
 
-YChat is a Kotlin Multiplatform (KMP) project that provides a simple API for integrating the powerful ChatGPT language model developed by OpenAI into mobile applications running on both iOS and Android. The goal of this project is to abstract all the API call logic from ChatGPT, allowing developers to easily leverage the capabilities of the language model in their mobile applications.
+YChat is a Kotlin Multiplatform (KMP) project that provides a simple API for integrating the powerful ChatGPT language model developed by OpenAI into mobile applications running on multi platforms. The goal of this project is to abstract all the API call logic from ChatGPT, allowing developers to easily leverage the capabilities of the language model in their mobile applications.
 
 The repository contains the source code for the YChat library, along with examples and documentation for getting started with the library. The YChat library provides a consistent interface for interacting with ChatGPT, regardless of the platform, and makes it easy to generate human-like text based on a given prompt or context.
 
-The library uses Kotlin Multiplatform to generate artifacts for both iOS and Android, allowing developers to write code once and use it on both platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, YChat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
+The library uses Kotlin Multiplatform to generate artifacts for both iOS, Android and JVM, allowing developers to write code once and use it on multiple platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, YChat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
 
+## ⚡️ Getting Started
 
-## iOS setup
+### iOS setup
 
 - Go to your project’s file settings and click "Add Package":
 
@@ -24,7 +25,7 @@ The library uses Kotlin Multiplatform to generate artifacts for both iOS and And
 
 Once you have found the package click the "Add Package" button to add it to your project. Now you can start using the SDK in your iOS project!
 
-See the code snippet below on how to initialize and use it:
+See the code snippet below on how to initialize and use it one of the supported feature:
 
 ```swift
 var yChat: YChat {
@@ -43,7 +44,7 @@ do {
 }
 ```
 
-## Android setup
+### Android/JVM setup
 
 Add the following line to import the library via Gradle. First, make sure Maven Central has been added:
 
@@ -55,13 +56,13 @@ repositories {
 }
 ```
 
-Then, simply import the dependency to your common source-set dependencies:
+Then, simply import the dependency to your `build.gradle` dependencies:
 
 ```kotlin
-implementation("co.yml:ychat:1.0.0")
+implementation("co.yml:ychat:1.1.0")
 ```
 
-In the snippet below, you can see how to initialize the object and perform a first search:
+Take a look at the Kotlin code snippet below for an example of how to initialize and use one of the supported features:
 
 
 ```kotlin
@@ -82,11 +83,28 @@ try {
 }
 ```
 
+### Features
+
+- [Completions](guides/Features.md#completion)
+- [ChatCompletions](guides/Features.md#chatcompletions)
+- [ImageGenerations](guides/Features.md#imagegenerations)
+- [Edits](guides/Features.md#edits)
+
+## ℹ️ Sample apps
+
+Take a look at our sample apps to learn how to use the SDK on different platforms:
+
+[Android Sample](https://github.com/yml-org/ychat/tree/main/sample/android)
+<br />
+[iOS Sample](https://github.com/yml-org/ychat/tree/main/sample/ios)
+<br />
+[JVM Sample](https://github.com/yml-org/ychat/tree/main/sample/jvm)
+
 ## 🤝 Contributions
 
 Feel free to make a suggestion or if you find any error in this project, please open an issue. Make sure to read our [contribution guidelines](https://github.com/yml-org/ychat/blob/main/CONTRIBUTING.md) before.
 
-## License
+## 📄 License
 
 ```
     Copyright 2023 YML

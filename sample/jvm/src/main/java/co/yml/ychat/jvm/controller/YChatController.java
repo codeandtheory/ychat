@@ -40,6 +40,15 @@ public class YChatController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("edits")
+    public ResponseEntity<String> edits(
+            @RequestParam(value = "input") String input,
+            @RequestParam(value = "instruction") String instruction
+    ) throws Exception {
+        String result = YChatService.getEditsAnswer(input, instruction);
+        return ResponseEntity.ok(result);
+    }
+
     private static class Defaults {
         static final String COMPLETION_INPUT = "Say this is a test.";
         static final String CHAT_COMPLETION_INPUT = "Tell me one strength exercise";

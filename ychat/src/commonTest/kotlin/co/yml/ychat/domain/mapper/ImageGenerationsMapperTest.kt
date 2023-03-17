@@ -1,7 +1,7 @@
 package co.yml.ychat.domain.mapper
 
 import co.yml.ychat.data.dto.ImageGenerationsDto
-import co.yml.ychat.domain.model.ImageGeneratedDto
+import co.yml.ychat.data.dto.ImageGeneratedDto
 import co.yml.ychat.domain.model.ImageGenerationsParams
 import kotlin.test.Test
 import kotlin.test.assertEquals

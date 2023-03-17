@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 class ImageGenerationsParamsTest {
 
     @Test
-    fun `on ChatCompletionsParams verify default values`() {
+    fun `on ImageGenerationsParams verify default values`() {
         // arrange
         val params = ImageGenerationsParams()
 
