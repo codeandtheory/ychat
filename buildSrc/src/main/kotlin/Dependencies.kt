@@ -11,6 +11,7 @@ object Versions {
     const val COMPOSE_ACTIVITY = "1.6.1"
     const val COMPOSE_NAVIGATION = "2.5.3"
     const val COMPOSE_LIVEDATA = "1.3.3"
+    const val COMPOSE_RUNTIME = "1.3.3"
     const val COIL = "2.2.2"
     const val KTOR = "2.2.2"
     const val KOIN = "3.2.0"
@@ -53,6 +54,7 @@ object Dependencies {
         const val COMPOSE_ACTIVITY = "androidx.activity:activity-compose:${Versions.COMPOSE_ACTIVITY}"
         const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:${Versions.COMPOSE_NAVIGATION}"
         const val COMPOSE_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Versions.COMPOSE_LIVEDATA}"
+        const val COMPOSE_RUNTIME = "androidx.compose.runtime:runtime:${Versions.COMPOSE_RUNTIME}"
         const val COIL = "io.coil-kt:coil-compose:${Versions.COIL}"
     }
 
