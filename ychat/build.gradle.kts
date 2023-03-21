@@ -67,7 +67,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(Dependencies.Network.KTOR_ANDROID)
+                implementation(Dependencies.Network.KTOR_OKHTTP)
             }
         }
         val androidTest by getting {
@@ -98,7 +98,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation(Dependencies.Network.KTOR_JAVA)
+                implementation(Dependencies.Network.KTOR_OKHTTP)
             }
         }
         val jvmTest by getting {
