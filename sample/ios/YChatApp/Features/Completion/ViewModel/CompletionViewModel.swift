@@ -42,7 +42,7 @@ internal final class CompletionViewModel: ObservableObject {
             addLoading()
             do {
                 if input.contains("/image ") {
-                    let result = try await imageGenerations.execute(prompt: input)[0].url
+                    let result = try await imageGenerations.execute(prompt: input)[0]
                     removeLoading()
                     addAIImage(url: result)
                 } else {

@@ -21,7 +21,7 @@ tasks.register<Delete>("updateSwiftPackage") {
     description = "Updates the Swift package by removing outdated files and running the `createSwiftPackage` task."
     doFirst {
         rootDir.listFiles { file ->
-            val iosLibraryName = properties["library.ios.name"]
+            val iosLibraryName = properties["IOS_NAME"]
             val fileName = file.name
             if (fileName.startsWith("$iosLibraryName-") && fileName.endsWith(".zip")) {
                 delete(file)
