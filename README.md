@@ -3,13 +3,13 @@
 ![Build Status](https://github.com/yml-org/ychat/actions/workflows/test.yml/badge.svg?branch=main)
 ![Y-Chat](https://github.com/yml-org/ychat/raw/main/art/logo.png)
 
-# YChat
+# Y—Chat
 
-YChat is a Kotlin Multiplatform (KMP) project that provides a simple API for integrating the powerful ChatGPT language model developed by OpenAI into mobile applications running on multi platforms. The goal of this project is to abstract all the API call logic from ChatGPT, allowing developers to easily leverage the capabilities of the language model in their mobile applications.
+Y—Chat is a Kotlin Multiplatform (KMP) project that provides a simple API for integrating the powerful ChatGPT language model developed by OpenAI into mobile applications running on multi platforms. The goal of this project is to abstract all the API call logic from ChatGPT, allowing developers to easily leverage the capabilities of the language model in their mobile applications.
 
-The repository contains the source code for the YChat library, along with examples and documentation for getting started with the library. The YChat library provides a consistent interface for interacting with ChatGPT, regardless of the platform, and makes it easy to generate human-like text based on a given prompt or context.
+The repository contains the source code for the Y—Chat library, along with examples and documentation for getting started with the library. The Y—Chat library provides a consistent interface for interacting with ChatGPT, regardless of the platform, and makes it easy to generate human-like text based on a given prompt or context.
 
-The library uses Kotlin Multiplatform to generate artifacts for both iOS, Android and JVM, allowing developers to write code once and use it on multiple platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, YChat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
+The library uses Kotlin Multiplatform to generate artifacts for both iOS, Android and JVM, allowing developers to write code once and use it on multiple platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, Y—Chat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
 
 ## ⚡️ Getting Started
 
