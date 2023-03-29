@@ -2,6 +2,7 @@ package co.yml.ychat.android.ui.components.textfield
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -62,6 +63,7 @@ private fun StandardTextFieldPreview() {
         Column(
             Modifier
                 .background(YChatTheme.colors.background)
+                .fillMaxWidth()
                 .padding(Dimens.MD)
         ) {
             StandardTextField(value = "", hint = "Preview")

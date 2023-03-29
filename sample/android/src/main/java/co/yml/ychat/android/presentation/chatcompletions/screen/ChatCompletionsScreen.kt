@@ -99,6 +99,7 @@ private fun SendMessageSection(viewModel: ChatCompletionsViewModel) {
     ) {
         StandardTextField(
             viewModel.message.value,
+            modifier = Modifier.weight(1F),
             hint = stringResource(id = R.string.chat_completions_hint),
             enabled = viewModel.onEnableTextField.value,
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
@@ -116,7 +117,6 @@ private fun SendButton(viewModel: ChatCompletionsViewModel) {
     Icons.Send.IconButton(
         onClick = { viewModel.sendMessage() },
         modifier = Modifier
-            .padding(Dimens.XS)
             .clip(CircleShape)
             .background(background),
         tint = YChatTheme.colors.onAccent,
