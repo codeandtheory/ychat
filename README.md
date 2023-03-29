@@ -85,6 +85,7 @@ try {
 
 ### Features
 
+- [ListModels](guides/Features.md#listmodels)
 - [Completions](guides/Features.md#completion)
 - [ChatCompletions](guides/Features.md#chatcompletions)
 - [ImageGenerations](guides/Features.md#imagegenerations)

@@ -1,9 +1,43 @@
 # Features
 
+- [ListModels](#listModels)
 - [Completion](#completion)
 - [ChatCompletions](#chatcompletions)
 - [ImageGenerations](#imagegenerations)
 - [Edits](#edits)
+
+## ListModels
+
+The listModels api lists the currently available models, and provides basic information about each one such as the owner and availability.
+
+### Swift
+
+```swift
+var yChat: YChat {
+    YChatCompanion.shared.create(apiKey: "your-api-key") 
+}
+
+do {
+  let result = try await yChat.listModels().execute()
+} catch {
+  // catch any error that may occurs on api call.  
+}
+```
+
+### Kotlin
+
+```kotlin
+val yChat by lazy {
+    YChat.create("your-api-key")
+}
+
+try {
+    val result = yChat.listModels().execute()
+
+} catch (e: exception) {
+    // catch any error that may occurs on api call.  
+}
+```
 
 ## Completion
 

@@ -6,11 +6,14 @@ import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.module.LibraryModule
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
+import co.yml.ychat.domain.usecases.EditsUseCase
 import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
+import co.yml.ychat.domain.usecases.ListModelsUseCase
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
+import co.yml.ychat.entrypoint.features.ListModels
 import io.ktor.client.HttpClient
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -33,17 +36,28 @@ class LibraryModuleTest : KoinTest {
     }
 
     @Test
-    fun `should inject all modules without throwing exception`() {
+    fun `should inject all entrypoint modules without throwing exception`() {
         get<Completion>()
+        get<ChatCompletions>()
+        get<ImageGenerations>()
+        get<Edits>()
+        get<ListModels>()
+    }
+
+    @Test
+    fun `should inject all domain modules without throwing exception`() {
+        get<ListModelsUseCase>()
+        get<CompletionUseCase>()
+        get<ChatCompletionsUseCase>()
+        get<ImageGenerationsUseCase>()
+        get<EditsUseCase>()
+    }
+
+    @Test
+    fun `should inject all data modules without throwing exception`() {
         get<HttpClient>()
         get<ChatLogStorage>()
         get<ApiExecutor>()
         get<ChatGptApi>()
-        get<CompletionUseCase>()
-        get<ChatCompletionsUseCase>()
-        get<ChatCompletions>()
-        get<ImageGenerationsUseCase>()
-        get<ImageGenerations>()
-        get<Edits>()
     }
 }

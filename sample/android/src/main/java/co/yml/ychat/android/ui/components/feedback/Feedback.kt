@@ -24,9 +24,11 @@ private const val ICON_SIZE = 128
 @Composable
 fun Feedback(
     feedbackState: FeedbackState,
+    modifier: Modifier = Modifier,
     onButtonClick: (() -> Unit)? = null,
 ) {
     Feedback(
+        modifier = modifier,
         icons = feedbackState.icon,
         title = stringResource(id = feedbackState.title),
         message = stringResource(id = feedbackState.message),
@@ -37,6 +39,7 @@ fun Feedback(
 
 @Composable
 fun Feedback(
+    modifier: Modifier,
     icons: Icons,
     title: String,
     message: String,
@@ -45,7 +48,7 @@ fun Feedback(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(horizontal = Dimens.XXXL)
+        modifier = modifier.padding(horizontal = Dimens.XXXL)
     ) {
         icons.Icon(
             modifier = Modifier

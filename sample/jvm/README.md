@@ -56,7 +56,7 @@ This endpoint generates images based on the provided prompt.
 
 ##### Example:
 
-`GET http://localhost:8080/api/ychat/generations?prompt="ocean"
+`GET http://localhost:8080/api/ychat/generations?prompt="ocean"`
 
 ### Edits Endpoint
 
@@ -71,4 +71,14 @@ This endpoint edits the prompt based on the provided instruction.
 
 ##### Example:
 
-`GET http://localhost:8080/api/ychat/edits?input=What day of the wek is it?&instruction=Fix the spelling mistakes
+`GET http://localhost:8080/api/ychat/edits?input=What day of the wek is it?&instruction=Fix the spelling mistakes`
+
+### List Models Endpoint
+
+This endpoint retrieve a list of currently available artificial intelligence models.
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/models
+
+##### Example:
+
+`GET http://localhost:8080/api/ychat/models`

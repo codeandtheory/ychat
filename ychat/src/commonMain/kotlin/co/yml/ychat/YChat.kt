@@ -4,6 +4,7 @@ import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
+import co.yml.ychat.entrypoint.features.ListModels
 import co.yml.ychat.entrypoint.impl.YChatImpl
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.Volatile
@@ -17,6 +18,19 @@ import kotlin.native.concurrent.ThreadLocal
  * to get the api key.
  */
 interface YChat {
+
+    /**
+     * The listModels api lists the currently available models, and provides basic information
+     * about each one such as the owner and availability.
+     *
+     * Example usage:
+     * ```
+     * val result = YChat.create(apiKey)
+     *      .listModels()
+     *      .execute()
+     * ```
+     */
+    fun listModels(): ListModels
 
     /**
      * The completions api can be used for a wide variety of tasks. You input some text as a
