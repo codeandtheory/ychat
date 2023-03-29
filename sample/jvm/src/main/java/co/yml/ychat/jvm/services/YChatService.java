@@ -1,5 +1,6 @@
 package co.yml.ychat.jvm.services;
 
+import co.yml.ychat.domain.model.AIModel;
 import co.yml.ychat.domain.model.ChatMessage;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +49,13 @@ public class YChatService {
                 .setInput(input)
                 .execute(instruction, new CompletionCallbackResult<>(future));
         return future.get().get(0);
+    }
+
+    public List<AIModel> getModels() throws Exception {
+        final CompletableFuture<List<AIModel>> future = new CompletableFuture<>();
+        ychat.listModels()
+                .execute(new CompletionCallbackResult<>(future));
+        return future.get();
     }
 
     private static class CompletionCallbackResult<T> implements YChat.Callback<T> {

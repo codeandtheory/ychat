@@ -1,12 +1,14 @@
 package co.yml.ychat.jvm.controller;
 
+import co.yml.ychat.domain.model.AIModel;
+import co.yml.ychat.jvm.services.YChatService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import co.yml.ychat.jvm.services.YChatService;
 
 @RestController
 @RequestMapping("api/ychat")
@@ -46,6 +48,12 @@ public class YChatController {
             @RequestParam(value = "instruction") String instruction
     ) throws Exception {
         String result = YChatService.getEditsAnswer(input, instruction);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("models")
+    public ResponseEntity<List<AIModel>> models() throws Exception {
+        List<AIModel> result = YChatService.getModels();
         return ResponseEntity.ok(result);
     }
 
