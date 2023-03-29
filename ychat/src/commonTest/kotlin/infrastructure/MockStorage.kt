@@ -20,4 +20,13 @@ object MockStorage {
     fun editsSuccessResult(text: String) = "{\"object\":\"edit\",\"created\":1679072839," +
         "\"choices\":[{\"text\":\"$text\",\"index\":0}]," +
         "\"usage\":{\"prompt_tokens\":25,\"completion_tokens\":28,\"total_tokens\":53}}"
+
+    fun listModelsSuccessResult(id: String) =
+        "{\"object\":\"list\",\"data\":[{\"id\":\"$id\",\"object\":\"model\"," +
+            "\"created\":1649358449,\"owned_by\":\"openai\",\"permission\":" +
+            "[{\"id\":\"modelperm-49FUp5v084tBB49tC4z8LPH5\",\"object\":\"model_permission\"," +
+            "\"created\":1669085501,\"allow_create_engine\":false,\"allow_sampling\":true," +
+            "\"allow_logprobs\":true,\"allow_search_indices\":false,\"allow_view\":true," +
+            "\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking" +
+            "\":false}],\"root\":\"$id\",\"parent\":null}]}"
 }
