@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="message">Message</string>
-    <string name="send">Send</string>
-    <string name="completion">Completion</string>
-    <string name="edits">Edits</string>
-    <string name="logo">Logo</string>
-    <string name="ychat_gpt">YChat GPT</string>
-    <string name="completition">Completion</string>
-    <string name="toggle">Toggle</string>
-    <string name="ychat_gp2">YChat GPT</string>
-    <string name="typing">Typing</string>
-    <string name="enter_any_message_and_chat_gpt_will_answer_it">Enter any message and chat GPT will answer it</string>
+    <string name="app_name">Y-Chat</string>
+
+    <!-- ChatCompletionsScreen -->
+    <string name="chat_completions_empty_message">Enter any message and Y-Chat will answer it</string>
+    <string name="chat_completions_hint">Message</string>
+
+    <!-- HomeScreen -->
+    <string name="home_models_title">Models</string>
+    <string name="home_completions_title">Completions</string>
+    <string name="home_chat_completions_title">ChatCompletions</string>
+    <string name="home_chat_edits_title">Edits</string>
+    <string name="home_chat_images_title">Images</string>
+    <string name="home_chat_audio_title">Audio</string>
+    <string name="home_chat_settings_title">Settings</string>
+
+    <!-- FeedbackState.ERROR -->
+    <string name="feedback_state_error_title">Something went wrong</string>
+    <string name="feedback_state_error_message">There was a problem with the request. Please try again in a few moments.</string>
+    <string name="feedback_state_error_action">Try again</string>
+
+    <!-- FeedbackState.CONSTRUCTION -->
+    <string name="feedback_state_construction_title">Under construction</string>
+    <string name="feedback_state_construction_message">We are working on it, and this feature will be available soon.</string>
+
+    <!-- TypingTextLoading -->
+    <string name="typing_loading_one">Typing.</string>
+    <string name="typing_loading_two">Typing..</string>
+    <string name="typing_loading_three">Typing…</string>
 </resources>
