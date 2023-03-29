@@ -8,6 +8,7 @@ import co.yml.ychat.data.dto.EditsDto
 import co.yml.ychat.data.dto.EditsParamsDto
 import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.dto.ImageGenerationsParamsDto
+import co.yml.ychat.data.dto.ModelListDto
 import co.yml.ychat.data.infrastructure.ApiResult
 
 internal interface ChatGptApi {
@@ -19,4 +20,6 @@ internal interface ChatGptApi {
     suspend fun imageGenerations(paramsDto: ImageGenerationsParamsDto): ApiResult<ImageGenerationsDto>
 
     suspend fun edits(paramsDto: EditsParamsDto): ApiResult<EditsDto>
+
+    suspend fun models(): ApiResult<ModelListDto>
 }

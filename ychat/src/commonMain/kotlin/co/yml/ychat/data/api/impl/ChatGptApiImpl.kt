@@ -9,6 +9,7 @@ import co.yml.ychat.data.dto.EditsDto
 import co.yml.ychat.data.dto.EditsParamsDto
 import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.dto.ImageGenerationsParamsDto
+import co.yml.ychat.data.dto.ModelListDto
 import co.yml.ychat.data.infrastructure.ApiExecutor
 import co.yml.ychat.data.infrastructure.ApiResult
 import io.ktor.http.HttpMethod
@@ -44,6 +45,13 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
             .setEndpoint("v1/edits")
             .setHttpMethod(HttpMethod.Post)
             .setBody(paramsDto)
+            .execute()
+    }
+
+    override suspend fun models(): ApiResult<ModelListDto> {
+        return apiExecutor
+            .setEndpoint("v1/models")
+            .setHttpMethod(HttpMethod.Get)
             .execute()
     }
 }

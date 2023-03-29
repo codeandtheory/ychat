@@ -6,6 +6,7 @@ import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
+import co.yml.ychat.entrypoint.features.ListModels
 import org.koin.core.KoinApplication
 
 internal class YChatImpl(apiKey: String) : YChat {
@@ -15,6 +16,10 @@ internal class YChatImpl(apiKey: String) : YChat {
     init {
         val modules = LibraryModule(apiKey).modules()
         koinApp.modules(modules)
+    }
+
+    override fun listModels(): ListModels {
+        return koinApp.koin.get()
     }
 
     override fun completion(): Completion {
