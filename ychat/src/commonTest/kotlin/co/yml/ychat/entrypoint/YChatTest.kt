@@ -129,6 +129,20 @@ class YChatTest {
         assertEquals(expectedResult, result.first().id)
     }
 
+    @Test
+    fun `on retrieveModel execute method should return result successfully`() {
+        // arrange
+        val expectedResult = "model1"
+        val modelSuccessResult = MockStorage.modelSuccessResult(expectedResult)
+        mockHttpEngine(modelSuccessResult)
+
+        // act
+        val result = runBlocking { yChat.retrieveModel().execute(expectedResult) }
+
+        // assert
+        assertEquals(expectedResult, result.id)
+    }
+
     private fun mockHttpEngine(result: String) {
         val httpEngine = MockEngine {
             respond(
