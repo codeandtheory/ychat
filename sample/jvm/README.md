@@ -82,3 +82,13 @@ This endpoint retrieve a list of currently available artificial intelligence mod
 ##### Example:
 
 `GET http://localhost:8080/api/ychat/models`
+
+### Model Endpoint
+
+This endpoint retrieve the artificial intelligence model based on the given ID.
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/models/{modelID}
+
+##### Example:
+
+`GET http://localhost:8080/api/ychat/models/babbage`
