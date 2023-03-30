@@ -5,6 +5,7 @@ import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
+import co.yml.ychat.entrypoint.features.RetrieveModel
 import co.yml.ychat.entrypoint.impl.YChatImpl
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.Volatile
@@ -31,6 +32,19 @@ interface YChat {
      * ```
      */
     fun listModels(): ListModels
+
+    /**
+     * The retrieveModel api retrieve the currently model based on the given id, and provides basic
+     * information about it such as the owner and availability.
+     *
+     * Example usage:
+     * ```
+     * val result = YChat.create(apiKey)
+     *      .retrieveModel()
+     *      .execute("gpt-3")
+     * ```
+     */
+    fun retrieveModel(): RetrieveModel
 
     /**
      * The completions api can be used for a wide variety of tasks. You input some text as a
