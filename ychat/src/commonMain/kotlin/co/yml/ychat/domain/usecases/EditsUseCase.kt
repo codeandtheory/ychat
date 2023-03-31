@@ -5,7 +5,7 @@ import co.yml.ychat.domain.mapper.toEditsModel
 import co.yml.ychat.domain.mapper.toEditsParamsDto
 import co.yml.ychat.domain.model.EditsParams
 
-internal data class EditsUseCase(private val chatGptApi: ChatGptApi) {
+internal class EditsUseCase(private val chatGptApi: ChatGptApi) {
 
     suspend fun requestEdits(params: EditsParams): List<String> {
         val requestDto = params.toEditsParamsDto()

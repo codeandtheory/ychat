@@ -1,13 +1,13 @@
 package co.yml.ychat.jvm.services;
 
+import co.yml.ychat.YChat;
 import co.yml.ychat.domain.model.AIModel;
 import co.yml.ychat.domain.model.ChatMessage;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.concurrent.CompletableFuture;
-import co.yml.ychat.YChat;
 
 @Service
 public class YChatService {
@@ -55,6 +55,13 @@ public class YChatService {
         final CompletableFuture<List<AIModel>> future = new CompletableFuture<>();
         ychat.listModels()
                 .execute(new CompletionCallbackResult<>(future));
+        return future.get();
+    }
+
+    public AIModel getModel(String id) throws Exception {
+        final CompletableFuture<AIModel> future = new CompletableFuture<>();
+        ychat.retrieveModel()
+                .execute(id, new CompletionCallbackResult<>(future));
         return future.get();
     }
 

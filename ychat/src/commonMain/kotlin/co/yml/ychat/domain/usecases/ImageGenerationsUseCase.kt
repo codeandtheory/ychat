@@ -5,7 +5,7 @@ import co.yml.ychat.domain.mapper.toImageGenerated
 import co.yml.ychat.domain.mapper.toImageGenerationsParamsDto
 import co.yml.ychat.domain.model.ImageGenerationsParams
 
-internal data class ImageGenerationsUseCase(private val chatGptApi: ChatGptApi) {
+internal class ImageGenerationsUseCase(private val chatGptApi: ChatGptApi) {
 
     suspend fun requestImageGenerations(params: ImageGenerationsParams): List<String> {
         val requestDto = params.toImageGenerationsParamsDto()

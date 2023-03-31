@@ -6,7 +6,7 @@ import co.yml.ychat.domain.mapper.toChatMessages
 import co.yml.ychat.domain.model.ChatCompletionsParams
 import co.yml.ychat.domain.model.ChatMessage
 
-internal data class ChatCompletionsUseCase(private val chatGptApi: ChatGptApi) {
+internal class ChatCompletionsUseCase(private val chatGptApi: ChatGptApi) {
 
     suspend fun requestChatCompletions(params: ChatCompletionsParams): List<ChatMessage> {
         val requestDto = params.toChatCompletionParamsDto()

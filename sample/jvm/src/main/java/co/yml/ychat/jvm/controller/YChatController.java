@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,12 @@ public class YChatController {
     @GetMapping("models")
     public ResponseEntity<List<AIModel>> models() throws Exception {
         List<AIModel> result = YChatService.getModels();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("models/{id}")
+    public ResponseEntity<AIModel> model(@PathVariable String id) throws Exception {
+        AIModel result = YChatService.getModel(id);
         return ResponseEntity.ok(result);
     }
 

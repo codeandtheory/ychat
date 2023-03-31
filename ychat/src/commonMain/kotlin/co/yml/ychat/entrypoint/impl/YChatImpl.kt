@@ -7,6 +7,7 @@ import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
+import co.yml.ychat.entrypoint.features.RetrieveModel
 import org.koin.core.KoinApplication
 
 internal class YChatImpl(apiKey: String) : YChat {
@@ -19,6 +20,10 @@ internal class YChatImpl(apiKey: String) : YChat {
     }
 
     override fun listModels(): ListModels {
+        return koinApp.koin.get()
+    }
+
+    override fun retrieveModel(): RetrieveModel {
         return koinApp.koin.get()
     }
 
