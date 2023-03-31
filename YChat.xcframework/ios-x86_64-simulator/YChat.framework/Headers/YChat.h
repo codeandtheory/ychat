@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class YChatKotlinThrowable, YChatYChatCompanion, YChatChatMessage, YChatKotlinArray<T>, YChatKotlinException, YChatKotlinRuntimeException, YChatKotlinIllegalStateException;
+@class YChatKotlinThrowable, YChatYChatCompanion, YChatAIModelPermission, YChatAIModel, YChatChatMessage, YChatKotlinArray<T>, YChatKotlinException, YChatKotlinRuntimeException, YChatKotlinIllegalStateException;
 
-@protocol YChatChatCompletions, YChatCompletion, YChatEdits, YChatImageGenerations, YChatYChat, YChatYChatCallback, YChatKotlinIterator;
+@protocol YChatChatCompletions, YChatCompletion, YChatEdits, YChatImageGenerations, YChatListModels, YChatRetrieveModel, YChatYChat, YChatYChatCallback, YChatKotlinIterator;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -151,6 +151,8 @@ __attribute__((swift_name("YChat")))
 - (id<YChatCompletion>)completion __attribute__((swift_name("completion()")));
 - (id<YChatEdits>)edits __attribute__((swift_name("edits()")));
 - (id<YChatImageGenerations>)imageGenerations __attribute__((swift_name("imageGenerations()")));
+- (id<YChatListModels>)listModels __attribute__((swift_name("listModels()")));
+- (id<YChatRetrieveModel>)retrieveModel __attribute__((swift_name("retrieveModel()")));
 @end
 
 __attribute__((swift_name("YChatCallback")))
@@ -173,6 +175,50 @@ __attribute__((swift_name("YChatCompanion")))
  *   kotlin.jvm.JvmStatic
 */
 - (id<YChatYChat>)createApiKey:(NSString *)apiKey __attribute__((swift_name("create(apiKey:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AIModel")))
+@interface YChatAIModel : YChatBase
+- (instancetype)initWithId:(NSString *)id ownedBy:(NSString *)ownedBy permission:(NSArray<YChatAIModelPermission *> *)permission __attribute__((swift_name("init(id:ownedBy:permission:)"))) __attribute__((objc_designated_initializer));
+- (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
+- (NSString *)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
+- (NSArray<YChatAIModelPermission *> *)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
+- (YChatAIModel *)doCopyId:(NSString *)id ownedBy:(NSString *)ownedBy permission:(NSArray<YChatAIModelPermission *> *)permission __attribute__((swift_name("doCopy(id:ownedBy:permission:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) NSString *ownedBy __attribute__((swift_name("ownedBy")));
+@property (readonly) NSArray<YChatAIModelPermission *> *permission __attribute__((swift_name("permission")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AIModelPermission")))
+@interface YChatAIModelPermission : YChatBase
+- (instancetype)initWithId:(NSString *)id allowCreateEngine:(BOOL)allowCreateEngine allowSampling:(BOOL)allowSampling allowLogProbs:(BOOL)allowLogProbs allowSearchIndices:(BOOL)allowSearchIndices allowView:(BOOL)allowView allowFineTuning:(BOOL)allowFineTuning organization:(NSString *)organization isBlocking:(BOOL)isBlocking __attribute__((swift_name("init(id:allowCreateEngine:allowSampling:allowLogProbs:allowSearchIndices:allowView:allowFineTuning:organization:isBlocking:)"))) __attribute__((objc_designated_initializer));
+- (NSString *)component1 __attribute__((swift_name("component1()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component2 __attribute__((swift_name("component2()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component3 __attribute__((swift_name("component3()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component4 __attribute__((swift_name("component4()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component5 __attribute__((swift_name("component5()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component6 __attribute__((swift_name("component6()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component7 __attribute__((swift_name("component7()"))) __attribute__((deprecated("use corresponding property instead")));
+- (NSString *)component8 __attribute__((swift_name("component8()"))) __attribute__((deprecated("use corresponding property instead")));
+- (BOOL)component9 __attribute__((swift_name("component9()"))) __attribute__((deprecated("use corresponding property instead")));
+- (YChatAIModelPermission *)doCopyId:(NSString *)id allowCreateEngine:(BOOL)allowCreateEngine allowSampling:(BOOL)allowSampling allowLogProbs:(BOOL)allowLogProbs allowSearchIndices:(BOOL)allowSearchIndices allowView:(BOOL)allowView allowFineTuning:(BOOL)allowFineTuning organization:(NSString *)organization isBlocking:(BOOL)isBlocking __attribute__((swift_name("doCopy(id:allowCreateEngine:allowSampling:allowLogProbs:allowSearchIndices:allowView:allowFineTuning:organization:isBlocking:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) BOOL allowCreateEngine __attribute__((swift_name("allowCreateEngine")));
+@property (readonly) BOOL allowFineTuning __attribute__((swift_name("allowFineTuning")));
+@property (readonly) BOOL allowLogProbs __attribute__((swift_name("allowLogProbs")));
+@property (readonly) BOOL allowSampling __attribute__((swift_name("allowSampling")));
+@property (readonly) BOOL allowSearchIndices __attribute__((swift_name("allowSearchIndices")));
+@property (readonly) BOOL allowView __attribute__((swift_name("allowView")));
+@property (readonly) NSString *id __attribute__((swift_name("id")));
+@property (readonly) BOOL isBlocking __attribute__((swift_name("isBlocking")));
+@property (readonly) NSString *organization __attribute__((swift_name("organization")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -292,6 +338,30 @@ __attribute__((swift_name("ImageGenerations")))
 - (id<YChatImageGenerations>)setResponseFormatResponseFormat:(NSString *)responseFormat __attribute__((swift_name("setResponseFormat(responseFormat:)")));
 - (id<YChatImageGenerations>)setResultsResults:(int32_t)results __attribute__((swift_name("setResults(results:)")));
 - (id<YChatImageGenerations>)setSizeSize:(NSString *)size __attribute__((swift_name("setSize(size:)")));
+@end
+
+__attribute__((swift_name("ListModels")))
+@protocol YChatListModels
+@required
+
+/**
+ * @note This method converts instances of CancellationException, ChatGptException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)executeWithCompletionHandler:(void (^)(NSArray<YChatAIModel *> * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(completionHandler:)")));
+- (void)executeCallback_:(id<YChatYChatCallback>)callback __attribute__((swift_name("execute(callback_:)")));
+@end
+
+__attribute__((swift_name("RetrieveModel")))
+@protocol YChatRetrieveModel
+@required
+
+/**
+ * @note This method converts instances of CancellationException, ChatGptException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)executeId:(NSString *)id completionHandler:(void (^)(YChatAIModel * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("execute(id:completionHandler:)")));
+- (void)executeId:(NSString *)id callback:(id<YChatYChatCallback>)callback __attribute__((swift_name("execute(id:callback:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
