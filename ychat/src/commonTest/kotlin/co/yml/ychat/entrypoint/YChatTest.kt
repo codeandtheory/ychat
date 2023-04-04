@@ -159,6 +159,7 @@ class YChatTest {
                 .setTemperature(0.0)
                 .setModel("model-1")
                 .setPrompt("Test")
+                .setResponseFormat("json")
                 .execute("file.mp4", audioFile)
         }
 

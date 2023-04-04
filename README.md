@@ -91,6 +91,7 @@ try {
 - [ChatCompletions](guides/Features.md#chatcompletions)
 - [ImageGenerations](guides/Features.md#imagegenerations)
 - [Edits](guides/Features.md#edits)
+- [AudioTranscriptions](guides/Features.md#audioTranscriptions)
 
 ## ℹ️ Sample apps
 

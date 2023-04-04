@@ -6,6 +6,7 @@
 - [ChatCompletions](#chatcompletions)
 - [ImageGenerations](#imagegenerations)
 - [Edits](#edits)
+- [AudioTranscriptions](#audioTranscriptions)
 
 ## ListModels
 
@@ -88,7 +89,7 @@ do {
   let result = try await yChat.completion()
                     .setInput(input: "Say this is a test.")
                     .setMaxTokens(tokens: 1024)
-                    .set... // you can set more parameters
+                    .set // you can set more parameters
                     .execute()
 } catch {
   // catch any error that may occurs on api call.  
@@ -106,7 +107,7 @@ try {
     val result = yChat.completion()
         .setInput("Say this is a test.")
         .setMaxTokens(1024)
-        .set... // you can set more parameters
+        .set // you can set more parameters
         .execute()
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -131,7 +132,7 @@ do {
                         role: "assistant",
                         content: "You are a helpful assistant that only answers questions related to fitness"
                     )
-                    .set... // you can set more parameters
+                    .set // you can set more parameters
                     .execute(content: "What is the best exercise for building muscle?")
 } catch {
   // catch any error that may occurs on api call.  
@@ -152,7 +153,7 @@ try {
             role = "assistant",
             content = "You are a helpful assistant that only answers questions related to fitness"
         )
-        .set... // you can set more parameters
+        .set // you can set more parameters
         .execute("What is the best exercise for building muscle?")
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -174,7 +175,7 @@ do {
   let result = try await yChat.imageGenerations()
                     .setResults(results: 2)
                     .setSize(size: "1024x1024")
-                    .set... // you can set more parameters
+                    .set // you can set more parameters
                     .execute(prompt: "ocean")
 } catch {
   // catch any error that may occurs on api call.  
@@ -192,7 +193,7 @@ try {
     val result = yChat.imageGenerations()
         .setResults(2)
         .setSize("1024x1024")
-        .set... // you can set more parameters
+        .set // you can set more parameters
         .execute("ocean")
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -214,7 +215,7 @@ do {
   let result = try await yChat.edits()
                     .setInput(input: "What day of the wek is it?")
                     .setResults(result: 1)
-                    .set... // you can set more parameters
+                    .set // you can set more parameters
                     .execute(instruction: "Fix the spelling mistakes")
 } catch {
   // catch any error that may occurs on api call.  
@@ -232,8 +233,58 @@ try {
     val result = yChat.edits()
         .setInput("What day of the wek is it?")
         .setResults(1)
-        .set... // you can set more parameters
+        .set // you can set more parameters
         .execute("Fix the spelling mistakes")
+} catch (e: exception) {
+    // catch any error that may occurs on api call.  
+}
+```
+
+## AudioTranscriptions
+
+The audioTranscriptions api is used to transcribes audio into the input language.
+
+### Swift
+
+```swift
+var yChat: YChat {
+    YChatCompanion.shared.create(apiKey: "your-api-key") 
+}
+
+guard let audioFileUrl = Bundle.main.url(forResource: "audio", withExtension: "m4a") else {
+    print("Unable to find the audio file.")
+    return
+}
+
+let audioData = try! Data(contentsOf: audioFileUrl)
+
+do {
+  let result = try await yChat.audioTranscriptions()
+                    .setTemperature(temperature: 0.4)
+                    .setResponseFormat(format: "json")
+                    .set // you can set more parameters
+                    .execute(filename: "audio.m4a", audioFile: audioData)
+} catch {
+  // catch any error that may occurs on api call.  
+}
+```
+
+### Kotlin
+
+```kotlin
+val yChat by lazy {
+    YChat.create("your-api-key")
+}
+
+val inputStream = application.resources.openRawResource(R.raw.audio)
+val byteArray = inputStream.readBytes()
+
+try {
+    val result = yChat.audioTranscriptions()
+        .setTemperature(0.4)
+        .setResponseFormat("json")
+        .set // you can set more parameters
+        .execute("audio.m4a", byteArray)
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
 }

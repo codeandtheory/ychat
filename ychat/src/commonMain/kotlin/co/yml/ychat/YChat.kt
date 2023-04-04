@@ -138,6 +138,18 @@ interface YChat {
      */
     fun edits(): Edits
 
+    /**
+     * The audioTranscriptions api is used to transcribes audio into the input language.
+     *
+     * You can configure the parameters of the edits before executing it. Example:
+     * ```
+     * val result = YChat.create(apiKey).audioTranscriptions()
+     *      .setTemperature(0.4)
+     *      .setResponseFormat("json")
+     *      .set...
+     *      .execute("file.mp4", byteArrayFile)
+     * ```
+     */
     fun audioTranscriptions(): AudioTranscriptions
 
     /**
