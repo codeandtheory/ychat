@@ -92,6 +92,7 @@ try {
 - [ImageGenerations](guides/Features.md#imagegenerations)
 - [Edits](guides/Features.md#edits)
 - [AudioTranscriptions](guides/Features.md#audioTranscriptions)
+- [AudioTranslations](guides/Features.md#audioTranslations)
 
 ## ℹ️ Sample apps
 
