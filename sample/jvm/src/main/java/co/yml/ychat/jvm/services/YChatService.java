@@ -69,7 +69,8 @@ public class YChatService {
 
     public String getAudioTranscription(MultipartFile multipartFile) throws Exception {
         final CompletableFuture<String> future = new CompletableFuture<>();
-        String filename = Optional.ofNullable(multipartFile.getOriginalFilename()).orElse("");
+        String filename = Optional.ofNullable(multipartFile.getOriginalFilename())
+                .orElseThrow(() -> new IllegalStateException("Filename not found"));
         byte[] bytes = multipartFile.getBytes();
         ychat.audioTranscriptions().execute(filename, bytes, new CompletionCallbackResult<>(future));
         return future.get();

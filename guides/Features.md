@@ -87,9 +87,12 @@ var yChat: YChat {
 
 do {
   let result = try await yChat.completion()
+                    .setModel(input: "text-davinci-003")
                     .setInput(input: "Say this is a test.")
                     .setMaxTokens(tokens: 1024)
-                    .set // you can set more parameters
+                    .setTemperature(temperature: 1.0)
+                    .setTopP(topP: 1.0)
+                    .saveHistory(isSaveHistory: false)
                     .execute()
 } catch {
   // catch any error that may occurs on api call.  
@@ -105,9 +108,12 @@ val yChat by lazy {
 
 try {
     val result = yChat.completion()
+        .setModel("text-davinci-003")
         .setInput("Say this is a test.")
         .setMaxTokens(1024)
-        .set // you can set more parameters
+        .setTemperature(1.0)
+        .setTopP(1.0)
+        .saveHistory(false)
         .execute()
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -127,12 +133,15 @@ var yChat: YChat {
 
 do {
   let result = try await yChat.chatCompletions()
+                    .setModel(model: "gpt-3.5-turbo")
                     .setMaxTokens(tokens: 1024)
+                    .setMaxResults(results: 1)
+                    .setTemperature(temperature: 1.0)
+                    .setTopP(topP: 1.0)
                     .addMessage(
                         role: "assistant",
                         content: "You are a helpful assistant that only answers questions related to fitness"
                     )
-                    .set // you can set more parameters
                     .execute(content: "What is the best exercise for building muscle?")
 } catch {
   // catch any error that may occurs on api call.  
@@ -148,12 +157,15 @@ val yChat by lazy {
 
 try {
     val result = yChat.chatCompletions()
+        .setModel("gpt-3.5-turbo")
         .setMaxTokens(1024)
+        .setMaxResults(1)
+        .setTemperature(1.0)
+        .setTopP(1.0)
         .addMessage(
             role = "assistant",
             content = "You are a helpful assistant that only answers questions related to fitness"
         )
-        .set // you can set more parameters
         .execute("What is the best exercise for building muscle?")
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -173,9 +185,9 @@ var yChat: YChat {
 
 do {
   let result = try await yChat.imageGenerations()
-                    .setResults(results: 2)
+                    .setResults(results: 1)
                     .setSize(size: "1024x1024")
-                    .set // you can set more parameters
+                    .setResponseFormat(responseFormat: "url")
                     .execute(prompt: "ocean")
 } catch {
   // catch any error that may occurs on api call.  
@@ -191,9 +203,9 @@ val yChat by lazy {
 
 try {
     val result = yChat.imageGenerations()
-        .setResults(2)
+        .setResults(1)
         .setSize("1024x1024")
-        .set // you can set more parameters
+        .setResponseFormat("url")
         .execute("ocean")
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -215,7 +227,9 @@ do {
   let result = try await yChat.edits()
                     .setInput(input: "What day of the wek is it?")
                     .setResults(result: 1)
-                    .set // you can set more parameters
+                    .setModel(model: "text-davinci-edit-001")
+                    .setTemperature(temperature: 1.0)
+                    .setTopP(topP: 1.0)
                     .execute(instruction: "Fix the spelling mistakes")
 } catch {
   // catch any error that may occurs on api call.  
@@ -233,7 +247,9 @@ try {
     val result = yChat.edits()
         .setInput("What day of the wek is it?")
         .setResults(1)
-        .set // you can set more parameters
+        .setModel("text-davinci-edit-001")
+        .setTemperature(1.0)
+        .setTopP(1.0)
         .execute("Fix the spelling mistakes")
 } catch (e: exception) {
     // catch any error that may occurs on api call.  
@@ -260,9 +276,11 @@ let audioData = try! Data(contentsOf: audioFileUrl)
 
 do {
   let result = try await yChat.audioTranscriptions()
-                    .setTemperature(temperature: 0.4)
+                    .setModel(model: "whisper-1")
+                    .setPrompt(prompt: "")
                     .setResponseFormat(format: "json")
-                    .set // you can set more parameters
+                    .setTemperature(temperature: 0.4)
+                    .setLanguage(language: "en")
                     .execute(filename: "audio.m4a", audioFile: audioData)
 } catch {
   // catch any error that may occurs on api call.  
@@ -281,9 +299,11 @@ val byteArray = inputStream.readBytes()
 
 try {
     val result = yChat.audioTranscriptions()
-        .setTemperature(0.4)
+        .setModel("whisper-1")
+        .setPrompt("")
         .setResponseFormat("json")
-        .set // you can set more parameters
+        .setTemperature(0.4)
+        .setLanguage("en")
         .execute("audio.m4a", byteArray)
 } catch (e: exception) {
     // catch any error that may occurs on api call.  

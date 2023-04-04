@@ -22,7 +22,7 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
 
     override suspend fun completion(paramsDto: CompletionParamsDto): ApiResult<CompletionDto> {
         return apiExecutor
-            .setEndpoint("v1/completions")
+            .setEndpoint("$VERSION/completions")
             .setHttpMethod(HttpMethod.Post)
             .setBody(paramsDto)
             .execute()
@@ -30,7 +30,7 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
 
     override suspend fun chatCompletions(paramsDto: ChatCompletionParamsDto): ApiResult<ChatCompletionsDto> {
         return apiExecutor
-            .setEndpoint("v1/chat/completions")
+            .setEndpoint("$VERSION/chat/completions")
             .setHttpMethod(HttpMethod.Post)
             .setBody(paramsDto)
             .execute()
@@ -38,7 +38,7 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
 
     override suspend fun imageGenerations(paramsDto: ImageGenerationsParamsDto): ApiResult<ImageGenerationsDto> {
         return apiExecutor
-            .setEndpoint("v1/images/generations")
+            .setEndpoint("$VERSION/images/generations")
             .setHttpMethod(HttpMethod.Post)
             .setBody(paramsDto)
             .execute()
@@ -46,7 +46,7 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
 
     override suspend fun edits(paramsDto: EditsParamsDto): ApiResult<EditsDto> {
         return apiExecutor
-            .setEndpoint("v1/edits")
+            .setEndpoint("$VERSION/edits")
             .setHttpMethod(HttpMethod.Post)
             .setBody(paramsDto)
             .execute()
@@ -54,14 +54,14 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
 
     override suspend fun models(): ApiResult<ModelListDto> {
         return apiExecutor
-            .setEndpoint("v1/models")
+            .setEndpoint("$VERSION/models")
             .setHttpMethod(HttpMethod.Get)
             .execute()
     }
 
     override suspend fun model(id: String): ApiResult<ModelDto> {
         return apiExecutor
-            .setEndpoint("v1/models/$id")
+            .setEndpoint("$VERSION/models/$id")
             .setHttpMethod(HttpMethod.Get)
             .execute()
     }
@@ -69,10 +69,14 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
     override suspend fun audioTranscriptions(audioParamsDto: AudioParamsDto): ApiResult<AudioResultDto> {
         val byteArray = audioParamsDto.byteArray.toByteArray()
         val apiBuilder = apiExecutor
-            .setEndpoint("v1/audio/transcriptions")
+            .setEndpoint("$VERSION/audio/transcriptions")
             .setHttpMethod(HttpMethod.Post)
             .addFormPart("file", audioParamsDto.filename, byteArray)
         audioParamsDto.getMap().forEach { apiBuilder.addFormPart(it.key, it.value) }
         return apiBuilder.execute()
+    }
+
+    companion object {
+        private const val VERSION = "v1"
     }
 }
