@@ -1,6 +1,7 @@
 package co.yml.ychat
 
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
+import co.yml.ychat.entrypoint.features.AudioTranslations
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
@@ -151,6 +152,20 @@ interface YChat {
      * ```
      */
     fun audioTranscriptions(): AudioTranscriptions
+
+    /**
+     * The audioTranscriptions api is used to translates audio into English.
+     *
+     * You can configure the parameters before executing it. Example:
+     * ```
+     * val result = YChat.create(apiKey).audioTranslations()
+     *      .setTemperature(0.0)
+     *      .setResponseFormat("json")
+     *      .set...
+     *      .execute("file.mp4", byteArrayFile)
+     * ```
+     */
+    fun audioTranslations(): AudioTranslations
 
     /**
      * Callback is an interface used for handling the results of an operation.

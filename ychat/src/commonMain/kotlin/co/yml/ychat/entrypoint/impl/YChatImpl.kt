@@ -3,6 +3,7 @@ package co.yml.ychat.entrypoint.impl
 import co.yml.ychat.YChat
 import co.yml.ychat.di.module.LibraryModule
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
+import co.yml.ychat.entrypoint.features.AudioTranslations
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
@@ -45,6 +46,10 @@ internal class YChatImpl(apiKey: String) : YChat {
     }
 
     override fun audioTranscriptions(): AudioTranscriptions {
+        return koinApp.koin.get()
+    }
+
+    override fun audioTranslations(): AudioTranslations {
         return koinApp.koin.get()
     }
 }
