@@ -112,7 +112,7 @@ interface YChat {
      * The image generations api is used to generate images based on a prompt. You input some text as a
      * prompt, and the model will generate one or more images.
      *
-     * You can configure the parameters of the completion before executing it. Example:
+     * You can configure the parameters before executing it. Example:
      * ```
      * val result = YChat.create(apiKey).imageGenerations()
      *      .setResults(2)
@@ -141,7 +141,7 @@ interface YChat {
     /**
      * The audioTranscriptions api is used to transcribes audio into the input language.
      *
-     * You can configure the parameters of the edits before executing it. Example:
+     * You can configure the parameters before executing it. Example:
      * ```
      * val result = YChat.create(apiKey).audioTranscriptions()
      *      .setTemperature(0.4)
