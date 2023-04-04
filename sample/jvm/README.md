@@ -92,3 +92,18 @@ This endpoint retrieve the artificial intelligence model based on the given ID.
 ##### Example:
 
 `GET http://localhost:8080/api/ychat/models/babbage`
+
+### Audio Transcriptions Endpoint
+
+This endpoint transcribes audio into the input language.
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/audio/transcriptions
+
+##### Example:
+
+```
+curl -X POST \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@/path/to/audio/file" \
+  "http://localhost:8080/api/ychat/audio/transcriptions"
+```

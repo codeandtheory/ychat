@@ -135,4 +135,10 @@ object MockStorage {
         "parent": null
     }
     """
+
+    fun audioTranscriptionsSuccessResult(text: String) = """
+    {
+        "text": "$text"
+    }
+    """
 }

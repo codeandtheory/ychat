@@ -1,5 +1,7 @@
 package co.yml.ychat.data.api
 
+import co.yml.ychat.data.dto.AudioParamsDto
+import co.yml.ychat.data.dto.AudioResultDto
 import co.yml.ychat.data.dto.ChatCompletionParamsDto
 import co.yml.ychat.data.dto.ChatCompletionsDto
 import co.yml.ychat.data.dto.CompletionDto
@@ -25,4 +27,6 @@ internal interface ChatGptApi {
     suspend fun models(): ApiResult<ModelListDto>
 
     suspend fun model(id: String): ApiResult<ModelDto>
+
+    suspend fun audioTranscriptions(audioParamsDto: AudioParamsDto): ApiResult<AudioResultDto>
 }

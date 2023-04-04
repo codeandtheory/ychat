@@ -1,16 +1,18 @@
 package co.yml.ychat.data.infrastructure
 
-import co.yml.ychat.data.exception.ChatGptException
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.plugins.ResponseException
+import io.ktor.client.request.forms.FormPart
+import io.ktor.client.request.forms.formData
+import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.request
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.utils.EmptyContent
+import io.ktor.http.ContentType
+import io.ktor.http.Headers
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
-import io.ktor.http.isSuccess
-import io.ktor.util.toMap
 import io.ktor.utils.io.errors.IOException
 import kotlin.collections.set
 
@@ -23,6 +25,8 @@ internal class ApiExecutor(private val httpClient: HttpClient) {
     private var body: Any = EmptyContent
 
     private var query: HashMap<String, String> = HashMap()
+
+    private val formParts = mutableListOf<FormPart<*>>()
 
     fun setEndpoint(endpoint: String): ApiExecutor {
         this.endpoint = endpoint
@@ -49,13 +53,23 @@ internal class ApiExecutor(private val httpClient: HttpClient) {
         return this
     }
 
+    fun <T : Any> addFormPart(key: String, value: T): ApiExecutor {
+        formParts += FormPart(key, value)
+        return this
+    }
+
+    fun addFormPart(key: String, fileName: String, value: ByteArray): ApiExecutor {
+        val headers = Headers.build {
+            append(HttpHeaders.ContentType, ContentType.Application.OctetStream.contentType)
+            append(HttpHeaders.ContentDisposition, "filename=$fileName")
+        }
+        formParts += FormPart(key, value, headers = headers)
+        return this
+    }
+
     suspend inline fun <reified T> execute(): ApiResult<T> {
         return try {
-            val response = httpClient.request(endpoint) {
-                url { query.forEach { parameters.append(it.key, it.value) } }
-                method = httpMethod
-                setBody(this@ApiExecutor.body)
-            }
+            val response = if (formParts.isEmpty()) executeRequest() else executeRequestAsForm()
             return response.toApiResult()
         } catch (responseException: ResponseException) {
             responseException.toApiResult()
@@ -64,28 +78,18 @@ internal class ApiExecutor(private val httpClient: HttpClient) {
         }
     }
 
-    private suspend inline fun <reified T> HttpResponse.toApiResult(): ApiResult<T> {
-        val headers = this.headers.toMap()
-        val statusCode = this.status.value
-        return if (!this.status.isSuccess()) {
-            val exception = ChatGptException(null, statusCode)
-            ApiResult(null, headers, statusCode, exception)
-        } else {
-            ApiResult(this.body<T>(), headers, statusCode, null)
+    private suspend fun executeRequest(): HttpResponse {
+        return httpClient.request(endpoint) {
+            url { query.forEach { parameters.append(it.key, it.value) } }
+            method = httpMethod
+            setBody(this@ApiExecutor.body)
         }
     }
 
-    private fun <T> ResponseException.toApiResult(): ApiResult<T> {
-        return ApiResult(
-            statusCode = this.response.status.value,
-            exception = ChatGptException(this.cause, this.response.status.value)
-        )
-    }
-
-    private fun <T> Throwable.toApiResult(): ApiResult<T> {
-        return ApiResult(
-            statusCode = null,
-            exception = ChatGptException(this.cause)
+    private suspend fun executeRequestAsForm(): HttpResponse {
+        return httpClient.submitFormWithBinaryData(
+            url = endpoint,
+            formData = formData { formParts.forEach { append(it) } }
         )
     }
 }

@@ -1,6 +1,7 @@
 package co.yml.ychat.entrypoint
 
 import co.yml.ychat.YChat
+import co.yml.ychat.domain.model.FileBytes
 import co.yml.ychat.entrypoint.impl.YChatImpl
 import infrastructure.MockStorage
 import io.ktor.client.engine.HttpClientEngine
@@ -141,6 +142,29 @@ class YChatTest {
 
         // assert
         assertEquals(expectedResult, result.id)
+    }
+
+    @Test
+    fun `on audioTranscriptions execute method should return result successfully`() {
+        // arrange
+        val expectedResult = "This is a test."
+        val imageGenerationsSuccessResult =
+            MockStorage.audioTranscriptionsSuccessResult(expectedResult)
+        val audioFile = ByteArray(1024) as FileBytes
+        mockHttpEngine(imageGenerationsSuccessResult)
+
+        // act
+        val result = runBlocking {
+            yChat.audioTranscriptions()
+                .setTemperature(0.0)
+                .setModel("model-1")
+                .setPrompt("Test")
+                .setResponseFormat("json")
+                .execute("file.mp4", audioFile)
+        }
+
+        // assert
+        assertEquals(expectedResult, result)
     }
 
     private fun mockHttpEngine(result: String) {
