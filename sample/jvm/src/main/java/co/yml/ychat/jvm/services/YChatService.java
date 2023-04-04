@@ -4,10 +4,12 @@ import co.yml.ychat.YChat;
 import co.yml.ychat.domain.model.AIModel;
 import co.yml.ychat.domain.model.ChatMessage;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class YChatService {
@@ -62,6 +64,14 @@ public class YChatService {
         final CompletableFuture<AIModel> future = new CompletableFuture<>();
         ychat.retrieveModel()
                 .execute(id, new CompletionCallbackResult<>(future));
+        return future.get();
+    }
+
+    public String getAudioTranscription(MultipartFile multipartFile) throws Exception {
+        final CompletableFuture<String> future = new CompletableFuture<>();
+        String filename = Optional.ofNullable(multipartFile.getOriginalFilename()).orElse("");
+        byte[] bytes = multipartFile.getBytes();
+        ychat.audioTranscriptions().execute(filename, bytes, new CompletionCallbackResult<>(future));
         return future.get();
     }
 

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("api/ychat")
@@ -61,6 +63,14 @@ public class YChatController {
     @GetMapping("models/{id}")
     public ResponseEntity<AIModel> model(@PathVariable String id) throws Exception {
         AIModel result = YChatService.getModel(id);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("audio/transcriptions")
+    public ResponseEntity<String> audioTranscriptions(
+            @RequestParam("file") MultipartFile multipartFile
+    ) throws Exception {
+        String result = YChatService.getAudioTranscription(multipartFile);
         return ResponseEntity.ok(result);
     }
 
