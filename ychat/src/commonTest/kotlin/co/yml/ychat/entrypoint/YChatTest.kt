@@ -149,13 +149,37 @@ class YChatTest {
         // arrange
         val expectedResult = "This is a test."
         val imageGenerationsSuccessResult =
-            MockStorage.audioTranscriptionsSuccessResult(expectedResult)
+            MockStorage.audioSuccessResult(expectedResult)
         val audioFile = ByteArray(1024) as FileBytes
         mockHttpEngine(imageGenerationsSuccessResult)
 
         // act
         val result = runBlocking {
             yChat.audioTranscriptions()
+                .setTemperature(0.0)
+                .setModel("model-1")
+                .setPrompt("Test")
+                .setResponseFormat("json")
+                .setLanguage("en")
+                .execute("file.mp4", audioFile)
+        }
+
+        // assert
+        assertEquals(expectedResult, result)
+    }
+
+    @Test
+    fun `on audioTranslations execute method should return result successfully`() {
+        // arrange
+        val expectedResult = "This is a test."
+        val imageGenerationsSuccessResult =
+            MockStorage.audioSuccessResult(expectedResult)
+        val audioFile = ByteArray(1024) as FileBytes
+        mockHttpEngine(imageGenerationsSuccessResult)
+
+        // act
+        val result = runBlocking {
+            yChat.audioTranslations()
                 .setTemperature(0.0)
                 .setModel("model-1")
                 .setPrompt("Test")

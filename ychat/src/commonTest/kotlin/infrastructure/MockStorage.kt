@@ -136,7 +136,7 @@ object MockStorage {
     }
     """
 
-    fun audioTranscriptionsSuccessResult(text: String) = """
+    fun audioSuccessResult(text: String) = """
     {
         "text": "$text"
     }
