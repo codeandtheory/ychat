@@ -4,11 +4,13 @@ import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.infrastructure.ApiExecutor
 import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.module.LibraryModule
+import co.yml.ychat.domain.usecases.AudioUseCase
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
 import co.yml.ychat.domain.usecases.EditsUseCase
 import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.domain.usecases.ListModelsUseCase
+import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
@@ -42,6 +44,7 @@ class LibraryModuleTest : KoinTest {
         get<ImageGenerations>()
         get<Edits>()
         get<ListModels>()
+        get<AudioTranscriptions>()
     }
 
     @Test
@@ -51,6 +54,7 @@ class LibraryModuleTest : KoinTest {
         get<ChatCompletionsUseCase>()
         get<ImageGenerationsUseCase>()
         get<EditsUseCase>()
+        get<AudioUseCase>()
     }
 
     @Test
