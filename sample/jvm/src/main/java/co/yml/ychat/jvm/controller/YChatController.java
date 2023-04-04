@@ -74,6 +74,14 @@ public class YChatController {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping("audio/translations")
+    public ResponseEntity<String> audioTranslations(
+            @RequestParam("file") MultipartFile multipartFile
+    ) throws Exception {
+        String result = YChatService.getAudioTranscription(multipartFile);
+        return ResponseEntity.ok(result);
+    }
+
     private static class Defaults {
         static final String COMPLETION_INPUT = "Say this is a test.";
         static final String CHAT_COMPLETION_INPUT = "Tell me one strength exercise";

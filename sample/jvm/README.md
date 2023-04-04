@@ -107,3 +107,18 @@ curl -X POST \
   -F "file=@/path/to/audio/file" \
   "http://localhost:8080/api/ychat/audio/transcriptions"
 ```
+
+### Audio Translations Endpoint
+
+This endpoint translates audio into English
+
+##### Endpoint: http://localhost:[port_number]/api/ychat/audio/translations
+
+##### Example:
+
+```
+curl -X POST \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@/path/to/audio/file" \
+  "http://localhost:8080/api/ychat/audio/translations"
+```
