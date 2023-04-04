@@ -5,18 +5,21 @@ import co.yml.ychat.data.api.impl.ChatGptApiImpl
 import co.yml.ychat.data.infrastructure.ApiExecutor
 import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.provider.NetworkProvider
+import co.yml.ychat.domain.usecases.AudioUseCase
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
 import co.yml.ychat.domain.usecases.EditsUseCase
 import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.domain.usecases.ListModelsUseCase
 import co.yml.ychat.domain.usecases.RetrieveModelUseCase
+import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
 import co.yml.ychat.entrypoint.features.RetrieveModel
+import co.yml.ychat.entrypoint.impl.AudioTranscriptionsImpl
 import co.yml.ychat.entrypoint.impl.ChatCompletionsImpl
 import co.yml.ychat.entrypoint.impl.CompletionImpl
 import co.yml.ychat.entrypoint.impl.EditsImpl
@@ -39,6 +42,7 @@ internal class LibraryModule(private val apiKey: String) {
         factory<ChatCompletions> { ChatCompletionsImpl(Dispatchers.Default, get()) }
         factory<ImageGenerations> { ImageGenerationsImpl(Dispatchers.Default, get()) }
         factory<Edits> { EditsImpl(Dispatchers.Default, get()) }
+        factory<AudioTranscriptions> { AudioTranscriptionsImpl(Dispatchers.Default, get()) }
     }
 
     private val domainModule = module {
@@ -48,6 +52,7 @@ internal class LibraryModule(private val apiKey: String) {
         factory { ChatCompletionsUseCase(get()) }
         factory { ImageGenerationsUseCase(get()) }
         factory { EditsUseCase(get()) }
+        factory { AudioUseCase(get()) }
     }
 
     private val dataModule = module {

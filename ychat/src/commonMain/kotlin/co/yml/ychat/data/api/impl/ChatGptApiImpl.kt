@@ -1,6 +1,8 @@
 package co.yml.ychat.data.api.impl
 
 import co.yml.ychat.data.api.ChatGptApi
+import co.yml.ychat.data.dto.AudioParamsDto
+import co.yml.ychat.data.dto.AudioResultDto
 import co.yml.ychat.data.dto.ChatCompletionParamsDto
 import co.yml.ychat.data.dto.ChatCompletionsDto
 import co.yml.ychat.data.dto.CompletionDto
@@ -13,6 +15,7 @@ import co.yml.ychat.data.dto.ModelDto
 import co.yml.ychat.data.dto.ModelListDto
 import co.yml.ychat.data.infrastructure.ApiExecutor
 import co.yml.ychat.data.infrastructure.ApiResult
+import co.yml.ychat.domain.model.toByteArray
 import io.ktor.http.HttpMethod
 
 internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi {
@@ -61,5 +64,15 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
             .setEndpoint("v1/models/$id")
             .setHttpMethod(HttpMethod.Get)
             .execute()
+    }
+
+    override suspend fun audioTranscriptions(audioParamsDto: AudioParamsDto): ApiResult<AudioResultDto> {
+        val byteArray = audioParamsDto.byteArray.toByteArray()
+        val apiBuilder = apiExecutor
+            .setEndpoint("v1/audio/transcriptions")
+            .setHttpMethod(HttpMethod.Post)
+            .addFormPart("file", audioParamsDto.filename, byteArray)
+        audioParamsDto.getMap().forEach { apiBuilder.addFormPart(it.key, it.value) }
+        return apiBuilder.execute()
     }
 }

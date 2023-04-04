@@ -1,5 +1,6 @@
 package co.yml.ychat
 
+import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.ChatCompletions
 import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
@@ -136,6 +137,8 @@ interface YChat {
      * ```
      */
     fun edits(): Edits
+
+    fun audioTranscriptions(): AudioTranscriptions
 
     /**
      * Callback is an interface used for handling the results of an operation.
