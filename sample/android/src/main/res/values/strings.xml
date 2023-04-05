@@ -15,6 +15,10 @@
     <string name="home_chat_audio_title">Audio</string>
     <string name="home_chat_settings_title">Settings</string>
 
+    <!-- CompletionsScreen -->
+    <string name="completions_hint">Write a tagline for an ice cream shop.</string>
+    <string name="completions_action">Submit</string>
+
     <!-- FeedbackState.ERROR -->
     <string name="feedback_state_error_title">Something went wrong</string>
     <string name="feedback_state_error_message">There was a problem with the request. Please try again in a few moments.</string>
@@ -28,4 +32,7 @@
     <string name="typing_loading_one">Typing.</string>
     <string name="typing_loading_two">Typing..</string>
     <string name="typing_loading_three">Typing…</string>
+
+    <!-- OutputBox -->
+    <string name="output_box_error_message">Something went wrong. Try again.</string>
 </resources>
