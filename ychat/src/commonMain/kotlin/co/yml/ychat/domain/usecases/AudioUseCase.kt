@@ -16,4 +16,14 @@ internal class AudioUseCase(private val chatGptApi: ChatGptApi) {
         val response = chatGptApi.audioTranscriptions(requestDto)
         return response.getBodyOrThrow().text
     }
+
+    suspend fun requestAudioTranslations(
+        filename: String,
+        audioFile: FileBytes,
+        params: AudioParams
+    ): String {
+        val requestDto = params.toAudioParamsDto(filename, audioFile)
+        val response = chatGptApi.audioTranslations(requestDto)
+        return response.getBodyOrThrow().text
+    }
 }

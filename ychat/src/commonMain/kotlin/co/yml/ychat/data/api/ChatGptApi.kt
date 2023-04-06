@@ -29,4 +29,6 @@ internal interface ChatGptApi {
     suspend fun model(id: String): ApiResult<ModelDto>
 
     suspend fun audioTranscriptions(audioParamsDto: AudioParamsDto): ApiResult<AudioResultDto>
+
+    suspend fun audioTranslations(audioParamsDto: AudioParamsDto): ApiResult<AudioResultDto>
 }

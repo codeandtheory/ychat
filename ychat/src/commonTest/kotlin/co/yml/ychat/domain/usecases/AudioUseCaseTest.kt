@@ -58,4 +58,39 @@ class AudioUseCaseTest {
         // assert
         assertEquals(true, result.exceptionOrNull() is ChatGptException)
     }
+
+    @Test
+    fun `on requestAudioTranslations when request succeed then should return formatted result`() {
+        // arrange
+        val fileName = "audio-test.m4a"
+        val audioFile = ByteArray(1024) as FileBytes
+        val audioParams = AudioParams()
+        val audioResultDto = AudioResultDto("this is a test.")
+        val apiResult = ApiResult(body = audioResultDto)
+        coEvery { chatGptApiMock.audioTranslations(any()) } returns apiResult
+
+        // act
+        val result = runBlocking { useCase.requestAudioTranslations(fileName, audioFile, audioParams) }
+
+        // assert
+        assertEquals("this is a test.", result)
+    }
+
+    @Test
+    fun `on requestAudioTranslations when not request succeed then should throw an exception`() {
+        // arrange
+        val fileName = "audio-test.m4a"
+        val audioFile = ByteArray(1024) as FileBytes
+        val audioParams = AudioParams()
+        val apiResult = ApiResult<AudioResultDto>(exception = ChatGptException())
+        coEvery { chatGptApiMock.audioTranslations(any()) } returns apiResult
+
+        // act
+        val result = runCatching {
+            runBlocking { useCase.requestAudioTranslations(fileName, audioFile, audioParams) }
+        }
+
+        // assert
+        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+    }
 }

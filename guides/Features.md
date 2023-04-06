@@ -7,6 +7,7 @@
 - [ImageGenerations](#imagegenerations)
 - [Edits](#edits)
 - [AudioTranscriptions](#audioTranscriptions)
+- [AudioTranslations](#audioTranslations)
 
 ## ListModels
 
@@ -304,6 +305,58 @@ try {
         .setResponseFormat("json")
         .setTemperature(0.4)
         .setLanguage("en")
+        .execute("audio.m4a", byteArray)
+} catch (e: exception) {
+    // catch any error that may occurs on api call.  
+}
+```
+
+## AudioTranslations
+
+The audioTranscriptions api is used to translates audio into English.
+
+### Swift
+
+```swift
+var yChat: YChat {
+    YChatCompanion.shared.create(apiKey: "your-api-key") 
+}
+
+guard let audioFileUrl = Bundle.main.url(forResource: "audio", withExtension: "m4a") else {
+    print("Unable to find the audio file.")
+    return
+}
+
+let audioData = try! Data(contentsOf: audioFileUrl)
+
+do {
+  let result = try await yChat.audioTranslations()
+                    .setModel(model: "whisper-1")
+                    .setPrompt(prompt: "")
+                    .setResponseFormat(format: "json")
+                    .setTemperature(temperature: 0.4)
+                    .execute(filename: "audio.m4a", audioFile: audioData)
+} catch {
+  // catch any error that may occurs on api call.  
+}
+```
+
+### Kotlin
+
+```kotlin
+val yChat by lazy {
+    YChat.create("your-api-key")
+}
+
+val inputStream = application.resources.openRawResource(R.raw.audio)
+val byteArray = inputStream.readBytes()
+
+try {
+    val result = yChat.audioTranslations()
+        .setModel("whisper-1")
+        .setPrompt("")
+        .setResponseFormat("json")
+        .setTemperature(0.4)
         .execute("audio.m4a", byteArray)
 } catch (e: exception) {
     // catch any error that may occurs on api call.  

@@ -76,6 +76,16 @@ internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi
         return apiBuilder.execute()
     }
 
+    override suspend fun audioTranslations(audioParamsDto: AudioParamsDto): ApiResult<AudioResultDto> {
+        val byteArray = audioParamsDto.byteArray.toByteArray()
+        val apiBuilder = apiExecutor
+            .setEndpoint("$VERSION/audio/translations")
+            .setHttpMethod(HttpMethod.Post)
+            .addFormPart("file", audioParamsDto.filename, byteArray)
+        audioParamsDto.getMap().forEach { apiBuilder.addFormPart(it.key, it.value) }
+        return apiBuilder.execute()
+    }
+
     companion object {
         private const val VERSION = "v1"
     }
