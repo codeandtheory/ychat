@@ -19,6 +19,13 @@
     <string name="completions_hint">Write a tagline for an ice cream shop.</string>
     <string name="completions_action">Submit</string>
 
+    <!-- EditsScreen -->
+    <string name="edits_input_title">Input</string>
+    <string name="edits_instruction_title">Instruction</string>
+    <string name="edits_input_hint">We is going to the market.</string>
+    <string name="edits_instruction_hint">Fix the grammar.</string>
+    <string name="edits_action">Submit</string>
+
     <!-- FeedbackState.ERROR -->
     <string name="feedback_state_error_title">Something went wrong</string>
     <string name="feedback_state_error_message">There was a problem with the request. Please try again in a few moments.</string>
