@@ -3,6 +3,7 @@ package co.yml.ychat.android.di
 import co.yml.ychat.YChat
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.presentation.chatcompletions.viewmodel.ChatCompletionsViewModel
+import co.yml.ychat.android.presentation.completions.CompletionsViewModel
 import co.yml.ychat.android.presentation.home.viewmodel.HomeViewModel
 import co.yml.ychat.android.presentation.models.viewmodel.ModelsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -13,4 +14,5 @@ val appModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::ChatCompletionsViewModel)
     viewModelOf(::ModelsViewModel)
+    viewModelOf(::CompletionsViewModel)
 }
