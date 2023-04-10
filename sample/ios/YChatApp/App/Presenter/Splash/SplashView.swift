@@ -16,16 +16,7 @@ internal struct SplashView: View {
     }
 
     var body: some View {
-        VStack {
-            HStack(spacing: 8) {
-                Image(uiImage: Icon.logoBig.uiImage)
-                Text("YChat GPT")
-                    .font(.system(size: 24))
-                    .foregroundColor(.grayDark)
-                    .bold()
-            }
-        }
-        .fullScreen(alignment: .center)
+        LogoSplash().fullScreen(alignment: .center)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 appRouter.push(.main)
@@ -34,8 +25,15 @@ internal struct SplashView: View {
     }
 }
 
-internal struct SplashView_Previews: PreviewProvider {
+internal struct SplashViewLight_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
+    }
+}
+
+internal struct SplashViewDark_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashView()
+            .preferredColorScheme(.dark)
     }
 }

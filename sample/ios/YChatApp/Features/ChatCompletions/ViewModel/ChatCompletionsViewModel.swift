@@ -9,7 +9,7 @@
 import YChat
 import Foundation
 
-internal final class CompletionViewModel: ObservableObject {
+internal final class ChatCompletionsViewModel: ObservableObject {
     private var chatCompletions: ChatCompletions =
         YChatCompanion.shared.create(apiKey: Config.apiKey)
             .chatCompletions()
@@ -18,10 +18,6 @@ internal final class CompletionViewModel: ObservableObject {
                 role: "assistant",
                 content: "You are a helpful assistant."
             )
-
-    private var imageGenerations: ImageGenerations =
-        YChatCompanion.shared.create(apiKey: Config.apiKey)
-        .imageGenerations()
     
     @Published
     var message: String = ""
@@ -41,15 +37,9 @@ internal final class CompletionViewModel: ObservableObject {
             cleanLastMessage()
             addLoading()
             do {
-                if input.contains("/image ") {
-                    let result = try await imageGenerations.execute(prompt: input)[0]
-                    removeLoading()
-                    addAIImage(url: result)
-                } else {
-                    let result = try await chatCompletions.execute(content: input)[0].content
-                    removeLoading()
-                    addAIMessage(message: result)
-                }
+                let result = try await chatCompletions.execute(content: input)[0].content
+                removeLoading()
+                addAIMessage(message: result)
             } catch {
                 removeLoading()
                 setError()
@@ -71,15 +61,6 @@ internal final class CompletionViewModel: ObservableObject {
             id: UUID().uuidString,
             message: message,
             type: .bot
-        )
-        chatMessageList.append(chatMessage)
-    }
-    
-    private func addAIImage(url: String) {
-        let chatMessage = ChatMessage(
-            id: UUID().uuidString,
-            type: .bot,
-            url: url
         )
         chatMessageList.append(chatMessage)
     }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SampleApp: App {
+struct YChatApp: App {
     @ObservedObject
     private var appRouter: AppRouter = AppRouter.shared
 
@@ -10,7 +10,7 @@ struct SampleApp: App {
             Group {
                 switch appRouter.navGraph.destination {
                 case .splash: SplashView()
-                case .main: MainView()
+                case .main: HomeView()
                 }
             }
             .transition(appRouter.navGraph.animation)
