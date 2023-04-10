@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "ic_refresh.svg",
+      "filename" : "ic_audio.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }
