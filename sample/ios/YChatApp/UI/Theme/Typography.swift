@@ -9,68 +9,92 @@
 import SwiftUI
 
 enum Typography {
-    case title
-    case titleBold
-    case subtitle
-    case subtitleBold
-    case body
-    case bodyBold
-    case button
-    case caption
+    case displayTitle
+    case displayBody
+    case largeTitle
+    case largeBody
+    case mediumTitle
+    case mediumBody
+    case smallTitle
+    case smallBody
+    case extraSmallTitle
+    case extraSmallBody
 }
 
 extension Text {
     func style(_ typography: Typography) -> Text {
         switch typography {
-        case .title: return title()
-        case .titleBold: return titleBold()
-        case .subtitle: return subtitle()
-        case .subtitleBold: return subtitleBold()
-        case .body: return body()
-        case .bodyBold: return bodyBold()
-        case .button: return button()
-        case .caption: return caption()
+        case .displayTitle: return displayTitle()
+        case .displayBody: return displayBody()
+        case .largeTitle: return largeTitle()
+        case .largeBody: return largeBody()
+        case .mediumTitle: return mediumTitle()
+        case .mediumBody: return mediumBody()
+        case .smallTitle: return smallTitle()
+        case .smallBody: return smallBody()
+        case .extraSmallTitle: return extraSmallTitle()
+        case .extraSmallBody: return extraSmallBody()
         }
     }
 
-    private func title() -> Text {
-        self.font(.system(size: 18))
-            .foregroundColor(.grayDark)
+    private func displayTitle() -> Text {
+        self.font(.system(size: 19))
+            .foregroundColor(.text1)
+            .fontWeight(.medium)
     }
 
-    private func titleBold() -> Text {
-        self.title()
-            .bold()
+    private func displayBody() -> Text {
+        self.font(.system(size: 19))
+            .foregroundColor(.text1)
+            .fontWeight(.light)
     }
 
-    private func subtitle() -> Text {
-        self.font(.system(size: 16))
-            .foregroundColor(.grayDark)
+    private func largeTitle() -> Text {
+        self.font(.system(size: 17))
+            .foregroundColor(.text1)
+            .fontWeight(.medium)
     }
 
-    private func subtitleBold() -> Text {
-        self.subtitle()
-            .bold()
+    private func largeBody() -> Text {
+        self.font(.system(size: 17))
+            .foregroundColor(.text1)
+            .fontWeight(.light)
     }
 
-    private func body() -> Text {
+    private func mediumTitle() -> Text {
+        self.font(.system(size: 15))
+            .foregroundColor(.text1)
+            .fontWeight(.bold)
+    }
+
+    private func mediumBody() -> Text {
         self.font(.system(size: 14))
-            .foregroundColor(.grayDark)
+            .foregroundColor(.text1)
+            .fontWeight(.regular)
     }
 
-    private func bodyBold() -> Text {
-        self.body()
-            .bold()
+    private func smallTitle() -> Text {
+        self.font(.system(size: 13))
+            .foregroundColor(.text1)
+            .fontWeight(.bold)
     }
 
-    private func button() -> Text {
-        self.font(.system(size: 14))
-            .foregroundColor(.grayDark)
+    private func smallBody() -> Text {
+        self.font(.system(size: 13))
+            .foregroundColor(.text1)
+            .fontWeight(.regular)
+    }
+    
+    private func extraSmallTitle() -> Text {
+        self.font(.system(size: 11))
+            .foregroundColor(.text1)
+            .fontWeight(.bold)
     }
 
-    private func caption() -> Text {
-        self.font(.system(size: 12))
-            .foregroundColor(.grayDark)
+    private func extraSmallBody() -> Text {
+        self.font(.system(size: 11))
+            .foregroundColor(.text1)
+            .fontWeight(.regular)
     }
 }
 
@@ -84,22 +108,26 @@ internal struct Tipography_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
             VStack(spacing: 16) {
-                Text("title")
-                    .style(.title)
-                Text("titleBold")
-                    .style(.titleBold)
-                Text("subtitle")
-                    .style(.subtitle)
-                Text("subtitleBold")
-                    .style(.subtitleBold)
-                Text("body")
-                    .style(.body)
-                Text("bodyBold")
-                    .style(.bodyBold)
-                Text("button")
-                    .style(.button)
-                Text("caption")
-                    .style(.caption)
+                Text("displayTitle")
+                    .style(.displayTitle)
+                Text("displayBody")
+                    .style(.displayBody)
+                Text("largeTitle")
+                    .style(.largeTitle)
+                Text("largeBody")
+                    .style(.largeBody)
+                Text("mediumTitle")
+                    .style(.mediumTitle)
+                Text("mediumBody")
+                    .style(.mediumBody)
+                Text("smallTitle")
+                    .style(.smallTitle)
+                Text("smallBody")
+                    .style(.smallBody)
+                Text("extraSmallTitle")
+                    .style(.extraSmallTitle)
+                Text("extraSmallBody")
+                    .style(.extraSmallBody)
             }
         }
     }
