@@ -14,8 +14,8 @@ struct DefaultTextFieldStyle: TextFieldStyle {
         configuration
             .padding(.vertical)
             .padding(.horizontal, 24)
-            .background(Color.grayExtraLight)
-            .foregroundColor(.grayDark)
+            .background(Color.primary5)
+            .foregroundColor(.text1)
             .cornerRadius(8)
     }
 }
@@ -24,9 +24,10 @@ struct DefaultTextFieldStyle_Previews: PreviewProvider {
     static var previews: some View {
         TextField(text: .constant("")) {
             Text("Search")
-                .foregroundColor(.grayMedium)
-                .style(.subtitle)
+                .foregroundColor(.text3)
+                .style(.largeTitle)
         }
+        .padding(.horizontal, 16)
         .textContentType(.countryName)
         .textFieldStyle(DefaultTextFieldStyle())
     }

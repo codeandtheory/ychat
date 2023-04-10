@@ -13,7 +13,7 @@ struct SideMenu<SidebarContent: View>: View {
     private let width: CGFloat
     private let bgColor: Color
     private let content: SidebarContent
-
+    
     init(
         isVisible: Binding<Bool>,
         width: CGFloat = UIScreen.main.bounds.size.width * 0.7,
@@ -25,7 +25,7 @@ struct SideMenu<SidebarContent: View>: View {
         self.bgColor = bgColor
         self.content = content()
     }
-
+    
     var body: some View {
         ZStack {
             GeometryReader { _ in
@@ -34,25 +34,28 @@ struct SideMenu<SidebarContent: View>: View {
             .background(.black.opacity(0.6))
             .opacity(isVisible ? 1 : 0)
             .animation(.easeInOut.delay(0.2), value: isVisible)
-            .onTapGesture {
-                isVisible.toggle()
-            }
+            .onTapGesture { isVisible.toggle() }
             sideMenuStructure()
         }
-        .edgesIgnoringSafeArea(.all)
     }
-
+    
     @ViewBuilder
     private func sideMenuStructure() -> some View {
-        HStack(alignment: .top) {
-            ZStack(alignment: .top) {
-                bgColor
-                content
+        GeometryReader { proxy in
+            HStack(alignment: .top) {
+                ZStack(alignment: .top) {
+                    bgColor
+                    VStack {
+                        Spacer().frame(height: 1)
+                        content.padding(.top, proxy.safeAreaInsets.top)
+                    }
+                }
+                .frame(width: width)
+                .offset(x: isVisible ? 0 : -width)
+                .animation(.default, value: isVisible)
+                Spacer()
             }
-            .frame(width: width)
-            .offset(x: isVisible ? 0 : -width)
-            .animation(.default, value: isVisible)
-            Spacer()
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }
