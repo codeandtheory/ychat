@@ -20,6 +20,7 @@ internal struct HomeView: View {
             NavigationStack {
                 Group {
                     switch selectedMenu {
+                    case .models: ModelsView()
                     case .chatCompletions: ChatCompletionsView()
                     default: Feedback(state: .construction)
                     }
