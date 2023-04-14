@@ -9,6 +9,14 @@
 import SwiftUI
 
 extension Color {
+    static var green1: Color {
+        Color("Green1")
+    }
+    
+    static var green2: Color {
+        Color("Green2")
+    }
+    
     static var text1: Color {
         Color("Text1")
     }
