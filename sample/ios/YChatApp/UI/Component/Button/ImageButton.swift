@@ -9,35 +9,24 @@
 import SwiftUI
 
 struct ImageButton: View {
-    private let icon: UIImage
-    private var color: Color?
+    private let icon: Icon
     private let action: () -> Void
 
     init(
-        _ icon: UIImage,
-        color: Color? = nil,
+        _ icon: Icon,
         action: @escaping () -> Void = {}
     ) {
         self.icon = icon
-        self.color = color
         self.action = action
     }
 
     var body: some View {
-        Button(action: action) {
-            if let color = color {
-                Image(uiImage: icon)
-                    .renderingMode(.template)
-                    .foregroundColor(color)
-            } else {
-                Image(uiImage: icon)
-            }
-        }
+        Button(action: action) { icon.image() }
     }
 }
 
 struct ImageButton_Previews: PreviewProvider {
     static var previews: some View {
-        ImageButton(Icon.menu.uiImage)
+        ImageButton(Icon.menu)
     }
 }

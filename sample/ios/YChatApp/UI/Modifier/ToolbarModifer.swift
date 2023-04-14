@@ -9,18 +9,18 @@
 import SwiftUI
 
 extension View {
-    func applyToolbar(_ title: String, onButtonAction: @escaping () -> Void = {}) -> some View {
+    func applyToolbar(
+        _ title: String,
+        startIcon: Icon,
+        onButtonAction: @escaping () -> Void = {}
+    ) -> some View {
         self
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     HStack {
-                        ImageButton(
-                            Icon.arrowLeft.uiImage,
-                            color: .accentColor,
-                            action: onButtonAction
-                        )
-                        Text(title).style(.title)
+                        ImageButton(startIcon, action: onButtonAction)
+                        Text(title).style(.displayTitle)
                     }
                 }
             }
