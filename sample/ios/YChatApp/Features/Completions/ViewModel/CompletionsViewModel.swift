@@ -24,19 +24,30 @@ internal class CompletionsViewModel: ObservableObject {
     }
     
     @MainActor
-    func fetchListModels() {
+    func requestCompletions() {
         let completions = yChat.completion()
             .setInput(input: input)
         outputBoxStates = []
         outputBoxStates.append(OutputState.text(text: input))
+        setLoading(isLoading: true)
         Task.init {
-            
             do {
                 let result = try await completions.execute()
-                
+                setLoading(isLoading: false)
+                outputBoxStates.append(OutputState.text(text: result, isMarked: true))
             } catch {
-                
+                setLoading(isLoading: false)
+                outputBoxStates.append(OutputState.error)
             }
+        }
+    }
+    
+    private func setLoading(isLoading: Bool) {
+        self.isLoading = isLoading
+        if isLoading {
+            outputBoxStates.append(OutputState.loading)
+        } else {
+            outputBoxStates.removeAll { $0 == .loading }
         }
     }
 }

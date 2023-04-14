@@ -28,11 +28,12 @@ struct CompletionsView: View {
             .opacity(viewModel.isLoading ? 0.4 : 1)
             ButtonContained(
                 "Submit",
-                isEnabled: !viewModel.input.isEmpty
+                isEnabled: !viewModel.input.isEmpty && !viewModel.isLoading,
+                onAction: { viewModel.requestCompletions() }
             )
             .padding(.top, 16)
             .padding(.bottom, 24)
-            OutputBox(states: [])
+            OutputBox(states: viewModel.outputBoxStates)
         }
         .padding(16)
         .fullScreen()

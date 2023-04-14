@@ -39,6 +39,7 @@ struct ButtonContained: View {
         }
         .background(backgroundColor)
         .cornerRadius(8)
+        .disabled(!isEnabled)
     }
 }
 

@@ -21,6 +21,7 @@ internal struct HomeView: View {
                 Group {
                     switch selectedMenu {
                     case .models: ModelsView()
+                    case .completions: CompletionsView()
                     case .chatCompletions: ChatCompletionsView()
                     default: Feedback(state: .construction)
                     }
