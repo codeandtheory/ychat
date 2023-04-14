@@ -26,6 +26,11 @@
     <string name="edits_instruction_hint">Fix the grammar.</string>
     <string name="edits_action">Submit</string>
 
+    <!-- ImagesScreen -->
+    <string name="images_input_title">Input the text description of the desired image</string>
+    <string name="images_input_hint">A cute baby sea otter</string>
+    <string name="images_action">Submit</string>
+
     <!-- FeedbackState.ERROR -->
     <string name="feedback_state_error_title">Something went wrong</string>
     <string name="feedback_state_error_message">There was a problem with the request. Please try again in a few moments.</string>
