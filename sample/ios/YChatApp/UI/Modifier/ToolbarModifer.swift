@@ -25,4 +25,25 @@ extension View {
                 }
             }
     }
+    
+    func applyToyotaToolbar() -> some View {
+        self
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Image("logo_toyota_label")
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack(spacing: 16) {
+                        Text("AI Concierge")
+                            .font(.system(size: 16))
+                            .foregroundColor(.text1)
+                            .fontWeight(.regular)
+                        Image("ic_bottom_arrow")
+                    }
+                }
+            }
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(Color.white, for: .navigationBar)
+    }
 }

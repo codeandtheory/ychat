@@ -33,12 +33,14 @@ struct ButtonContained: View {
         Button(action: { onAction() }) {
             Text(text.capitalized)
                 .foregroundColor(foregroundColor)
-                .style(.smallTitle)
+                .font(.system(size: 16))
+                .foregroundColor(.text1)
+                .fontWeight(.semibold)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
         }
         .background(backgroundColor)
-        .cornerRadius(8)
+        .cornerRadius(28)
         .disabled(!isEnabled)
     }
 }

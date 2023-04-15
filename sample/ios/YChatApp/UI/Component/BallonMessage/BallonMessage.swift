@@ -23,7 +23,7 @@ struct BallonSenderMessage: View {
             Spacer()
             Spacer().frame(width: 60)
             HStack(spacing: 8) {
-                Text(text)
+                Text(.init(text))
                     .foregroundColor(.onAccent)
                     .style(.mediumBody)
                 if isError {
@@ -32,7 +32,14 @@ struct BallonSenderMessage: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
-            .background(Color.accent)
+            .background {
+                LinearGradient(
+                    gradient:
+                        Gradient(colors: [Color(hex: 0x676767), Color(hex: 0x313131)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            }
             .cornerRadius(16, corners: [.bottomLeft, .topLeft, .topRight])
         }
     }
@@ -48,19 +55,24 @@ struct BallonBotMessage: View {
     var body: some View {
         HStack {
             HStack(alignment: .top, spacing: 4) {
-                Circle()
-                    .fill(.green)
-                    .frame(width: 40, height: 40)
-                    .overlay { Icon.bot.image(.white) }
+                Image("logo_toyota")
+                    .cornerRadius(32)
                 ZStack {
-                    Text(text)
+                    Text(.init(text))
                         .foregroundColor(.text1)
                         .style(.mediumBody)
                         .multilineTextAlignment(.leading)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(Color.text4)
+                .background {
+                    LinearGradient(
+                        gradient:
+                            Gradient(colors: [Color(hex: 0xE7E7E7), Color(hex: 0xDCDCDC)]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                }
                 .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
             }
             Spacer().frame(width: 60)
@@ -77,7 +89,14 @@ struct BallonTyping: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
-            .background(Color.text4)
+            .background {
+                LinearGradient(
+                    gradient:
+                        Gradient(colors: [Color(hex: 0xE7E7E7), Color(hex: 0xDCDCDC)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            }
             .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
             Spacer()
         }
@@ -87,7 +106,7 @@ struct BallonTyping: View {
 internal struct BallonMessage_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BallonSenderMessage("Say this is a test")
+            BallonSenderMessage("Hello")
             BallonSenderMessage("Say this is a test", isError: true)
             BallonBotMessage("This is indeed a test.")
             BallonTyping()
