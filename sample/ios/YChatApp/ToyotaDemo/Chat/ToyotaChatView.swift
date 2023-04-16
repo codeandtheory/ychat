@@ -12,6 +12,12 @@ struct ToyotaChatView: View {
     @ObservedObject
     private var viewModel: ToyotaChatViewModel
     
+    @State
+    private var link: Link?
+    
+    @State
+    private var textFieldHeight: CGFloat = 0.0
+    
     init(viewModel: ToyotaChatViewModel = .init()) {
         self.viewModel = viewModel
     }
@@ -24,6 +30,8 @@ struct ToyotaChatView: View {
         .background(Color(hex: 0xF8F8F8))
         .fullScreen()
         .edgesIgnoringSafeArea(.bottom)
+        .fullScreenCover(item: $link) { SafariView(url: $0.url) }
+        .environment(\.openURL, OpenURLAction(handler: handleURL))
     }
     
     @ViewBuilder
@@ -35,6 +43,7 @@ struct ToyotaChatView: View {
                         .padding(.top, 16)
                         .id($0.id)
                 }
+                .animation(Animation.easeIn, value: viewModel.chatMessageList)
                 .padding(.horizontal, 24)
             }
             .background(Color(hex: 0xF8F8F8))
@@ -49,10 +58,15 @@ struct ToyotaChatView: View {
         switch messageType.type {
         case .botMessage(let text):
             BallonBotMessage(text)
-        case .senderMessage(let text):
-            BallonSenderMessage(text, isError: false)
+        case .senderMessage(let text, let hasError):
+            BallonSenderMessage(text, isError: hasError)
         case .typing:
             BallonTyping()
+        case .buyingLeasing:
+            BuyingLeasingCard()
+                .padding(.horizontal, 32)
+        case .qrCode:
+            BallonQrCode()
         }
     }
     
@@ -61,19 +75,24 @@ struct ToyotaChatView: View {
         ZStack {
             Color.white
                 .cornerRadius(24, corners: [.topLeft, .topRight])
-                .shadow(radius: 8)
-            HStack(spacing: 8) {
-                TextField(text: $viewModel.message) {}
-                    .disabled(viewModel.isLoading)
-                    .opacity(viewModel.isLoading ? 0.4 : 1)
-                sendButton()
+                .shadow(radius: 1)
+            GeometryReader { proxy in
+                HStack(spacing: 8) {
+                    TextField(text: $viewModel.message, axis: .vertical) {}
+                        .disabled(viewModel.isLoading)
+                        .opacity(viewModel.isLoading ? 0.4 : 1)
+                        .lineLimit(5)
+                    sendButton()
+                }
+                .padding(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color(hex: 0xB7B7B7), lineWidth: 1)
+                )
+                .padding(.horizontal, 16)
+                .onChange(of: proxy.size.height) { self.textFieldHeight = $0 }
             }
-            .padding(8)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color(hex: 0xB7B7B7), lineWidth: 1)
-            )
-            .padding(.horizontal, 16)
+            .padding(.top, 8)
             .padding(.bottom, 32)
         }
         .frame(maxHeight: 124)
@@ -86,9 +105,14 @@ struct ToyotaChatView: View {
                 .fill(viewModel.enableButton ? Color.accent : Color(hex: 0xEBEBEB))
                 .frame(width: 44, height: 44)
                 .cornerRadius(8)
-                .overlay { Icon.send.image(.onAccent) }
+                .overlay { Image("ic_arrow_up") }
         }
         .disabled(viewModel.message.isEmpty)
+    }
+    
+    private func handleURL(_ url: URL) -> OpenURLAction.Result {
+        self.link = Link(url: url)
+        return .handled
     }
 }
 

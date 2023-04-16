@@ -28,6 +28,12 @@
 		486C6FA129E9F23F006E427E /* ToyotaChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FA029E9F23F006E427E /* ToyotaChatView.swift */; };
 		486C6FA329EA03F2006E427E /* ToyotaChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FA229EA03F2006E427E /* ToyotaChatViewModel.swift */; };
 		486C6FA829EA4B14006E427E /* BuyingLeasingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FA729EA4B14006E427E /* BuyingLeasingCard.swift */; };
+		486C6FAA29EB3F31006E427E /* toyota_chatbot_memory.json in Resources */ = {isa = PBXBuildFile; fileRef = 486C6FA929EB3F31006E427E /* toyota_chatbot_memory.json */; };
+		486C6FAD29EB3F74006E427E /* ToyotaChatBotUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FAC29EB3F74006E427E /* ToyotaChatBotUseCase.swift */; };
+		486C6FB229EB441E006E427E /* ToyotaChatProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FB129EB441E006E427E /* ToyotaChatProvider.swift */; };
+		486C6FB429EB4458006E427E /* ChatBotContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FB329EB4458006E427E /* ChatBotContext.swift */; };
+		486C6FB729EB4F3D006E427E /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FB629EB4F3D006E427E /* Link.swift */; };
+		486C6FB929EB4FC1006E427E /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6FB829EB4FC1006E427E /* SafariView.swift */; };
 		488448D9297B8419005B8A24 /* ChatCompletionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448D8297B8419005B8A24 /* ChatCompletionsViewModel.swift */; };
 		488448DD297B8DD2005B8A24 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448DC297B8DD2005B8A24 /* Color.swift */; };
 		488448DF297B8DF6005B8A24 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488448DE297B8DF6005B8A24 /* Typography.swift */; };
@@ -83,6 +89,12 @@
 		486C6FA029E9F23F006E427E /* ToyotaChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyotaChatView.swift; sourceTree = "<group>"; };
 		486C6FA229EA03F2006E427E /* ToyotaChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyotaChatViewModel.swift; sourceTree = "<group>"; };
 		486C6FA729EA4B14006E427E /* BuyingLeasingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyingLeasingCard.swift; sourceTree = "<group>"; };
+		486C6FA929EB3F31006E427E /* toyota_chatbot_memory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = toyota_chatbot_memory.json; sourceTree = "<group>"; };
+		486C6FAC29EB3F74006E427E /* ToyotaChatBotUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyotaChatBotUseCase.swift; sourceTree = "<group>"; };
+		486C6FB129EB441E006E427E /* ToyotaChatProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyotaChatProvider.swift; sourceTree = "<group>"; };
+		486C6FB329EB4458006E427E /* ChatBotContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotContext.swift; sourceTree = "<group>"; };
+		486C6FB629EB4F3D006E427E /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		486C6FB829EB4FC1006E427E /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		488448D8297B8419005B8A24 /* ChatCompletionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletionsViewModel.swift; sourceTree = "<group>"; };
 		488448DC297B8DD2005B8A24 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		488448DE297B8DF6005B8A24 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
@@ -213,6 +225,9 @@
 		486C6F9B29E9E830006E427E /* ToyotaDemo */ = {
 			isa = PBXGroup;
 			children = (
+				486C6FB529EB4F33006E427E /* Core */,
+				486C6FB029EB4412006E427E /* Provider */,
+				486C6FAE29EB4047006E427E /* Resources */,
 				486C6F9D29E9E890006E427E /* Chat */,
 				486C6F9C29E9E883006E427E /* Main */,
 			);
@@ -230,6 +245,7 @@
 		486C6F9D29E9E890006E427E /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				486C6FAB29EB3F5B006E427E /* Domain */,
 				486C6FA429EA4AE5006E427E /* Components */,
 				486C6FA529EA4AF3006E427E /* ViewModel */,
 				486C6FA029E9F23F006E427E /* ToyotaChatView.swift */,
@@ -251,6 +267,40 @@
 				486C6FA229EA03F2006E427E /* ToyotaChatViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		486C6FAB29EB3F5B006E427E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				486C6FAC29EB3F74006E427E /* ToyotaChatBotUseCase.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		486C6FAE29EB4047006E427E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				486C6FA929EB3F31006E427E /* toyota_chatbot_memory.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		486C6FB029EB4412006E427E /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				486C6FB129EB441E006E427E /* ToyotaChatProvider.swift */,
+				486C6FB329EB4458006E427E /* ChatBotContext.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		486C6FB529EB4F33006E427E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				486C6FB629EB4F3D006E427E /* Link.swift */,
+				486C6FB829EB4FC1006E427E /* SafariView.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		488448DA297B8D19005B8A24 /* App */ = {
@@ -535,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
+				486C6FAA29EB3F31006E427E /* toyota_chatbot_memory.json in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486C6FB729EB4F3D006E427E /* Link.swift in Sources */,
 				48844903297CE07C005B8A24 /* NavGraph.swift in Sources */,
 				486C6F8029E08D46006E427E /* TypingLoading.swift in Sources */,
 				488448DF297B8DF6005B8A24 /* Typography.swift in Sources */,
@@ -610,6 +662,7 @@
 				488448FF297CE035005B8A24 /* AppRouter.swift in Sources */,
 				488448F6297CDF67005B8A24 /* SideMenu.swift in Sources */,
 				2152FB042600AC8F00CF470E /* YChatApp.swift in Sources */,
+				486C6FB229EB441E006E427E /* ToyotaChatProvider.swift in Sources */,
 				486C6F9429E61D4E006E427E /* OutputBox.swift in Sources */,
 				486C6F9729E6544E006E427E /* CompletionsView.swift in Sources */,
 				488448E8297B9198005B8A24 /* ViewModifer.swift in Sources */,
@@ -617,11 +670,14 @@
 				7555FF83242A565900829871 /* ChatCompletionsView.swift in Sources */,
 				488448E6297B9116005B8A24 /* RoundedCorner.swift in Sources */,
 				486C6F9F29E9E8E1006E427E /* ToyotaMainView.swift in Sources */,
+				486C6FB929EB4FC1006E427E /* SafariView.swift in Sources */,
+				486C6FB429EB4458006E427E /* ChatBotContext.swift in Sources */,
 				489A546D297F93F700A6532C /* Config.swift in Sources */,
 				486C6FA329EA03F2006E427E /* ToyotaChatViewModel.swift in Sources */,
 				486C6F7D29E088EA006E427E /* ButtonContained.swift in Sources */,
 				486C6F8D29E61520006E427E /* ModelsView.swift in Sources */,
 				488448FC297CE004005B8A24 /* SplashView.swift in Sources */,
+				486C6FAD29EB3F74006E427E /* ToyotaChatBotUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

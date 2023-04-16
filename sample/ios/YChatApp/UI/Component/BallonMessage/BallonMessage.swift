@@ -81,6 +81,32 @@ struct BallonBotMessage: View {
     }
 }
 
+struct BallonQrCode: View {
+    var body: some View {
+        HStack {
+            HStack(alignment: .top, spacing: 4) {
+                Image("logo_toyota")
+                    .cornerRadius(32)
+                ZStack {
+                    Image("fake_qr_code")
+                }
+                .padding(16)
+                .background {
+                    LinearGradient(
+                        gradient:
+                            Gradient(colors: [Color(hex: 0xE7E7E7), Color(hex: 0xDCDCDC)]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                }
+                .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
+            }
+            Spacer().frame(width: 60)
+            Spacer()
+        }
+    }
+}
+
 struct BallonTyping: View {
     var body: some View {
         HStack {
@@ -110,6 +136,7 @@ internal struct BallonMessage_Previews: PreviewProvider {
             BallonSenderMessage("Say this is a test", isError: true)
             BallonBotMessage("This is indeed a test.")
             BallonTyping()
+            BallonQrCode()
         }
     }
 }
