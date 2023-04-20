@@ -8,25 +8,12 @@
 
 import Foundation
 
-struct Message: Identifiable, Equatable {
-    let id: String = UUID().uuidString
-    var type: MessageType
-    
-    enum MessageType: Equatable {
-        case botMessage(text: String)
-        case senderMessage(text: String, hasError: Bool = false)
-        case typing
-        case buyingLeasing
-        case qrCode
-    }
-}
-
 internal final class ToyotaChatViewModel: ObservableObject {
     @Published
     var message: String = ""
     
     @Published
-    var chatMessageList: [Message] = []
+    var chatMessageList: [MessageState] = []
     
     var isLoading: Bool {
         chatMessageList.contains { $0.type == .typing }
@@ -53,7 +40,7 @@ internal final class ToyotaChatViewModel: ObservableObject {
             do {
                 let result = try await toyotaChatBotUseCase.sendMessage(message: input)
                 setLoading(isLoading: false)
-                result.forEach { chatMessageList.append($0) }
+                chatMessageList.append(MessageState(type: .botMessage(text: result)))
             } catch {
                 setLoading(isLoading: false)
                 setError()
@@ -62,7 +49,7 @@ internal final class ToyotaChatViewModel: ObservableObject {
     }
     
     private func addSenderMessage(message: String) {
-        let message = Message(type: .senderMessage(text: message))
+        let message = MessageState(type: .senderMessage(text: message))
         chatMessageList.append(message)
     }
     
@@ -71,13 +58,13 @@ internal final class ToyotaChatViewModel: ObservableObject {
     }
     
     private func addLoading() {
-        let message = Message(type: .typing)
+        let message = MessageState(type: .typing)
         chatMessageList.append(message)
     }
     
     private func setLoading(isLoading: Bool) {
         if isLoading {
-            let message = Message(type: .typing)
+            let message = MessageState(type: .typing)
             chatMessageList.append(message)
         } else {
             chatMessageList.removeAll { $0.type == .typing }
@@ -88,7 +75,7 @@ internal final class ToyotaChatViewModel: ObservableObject {
         let lastRemoved = chatMessageList.removeLast()
         switch lastRemoved.type {
         case .senderMessage(let text, _):
-            chatMessageList.append(Message(type: .senderMessage(text: text, hasError: true)))
+            chatMessageList.append(MessageState(type: .senderMessage(text: text, hasError: true)))
         default: return
         }
     }

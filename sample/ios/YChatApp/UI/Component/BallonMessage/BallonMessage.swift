@@ -47,9 +47,15 @@ struct BallonSenderMessage: View {
 
 struct BallonBotMessage: View {
     private var text: String
+    @Binding
+    private var hasFinished: Bool
     
-    init(_ text: String) {
+    init(
+        _ text: String,
+        hasFinished: Binding<Bool> = .constant(false)
+    ) {
         self.text = text
+        self._hasFinished = hasFinished
     }
     
     var body: some View {
@@ -58,10 +64,11 @@ struct BallonBotMessage: View {
                 Image("logo_toyota")
                     .cornerRadius(32)
                 ZStack {
-                    Text(.init(text))
-                        .foregroundColor(.text1)
-                        .style(.mediumBody)
-                        .multilineTextAlignment(.leading)
+                    TypeWriterText(text, hasFinished: $hasFinished)
+//                    Text(.init(text))
+//                        .foregroundColor(.text1)
+//                        .style(.mediumBody)
+//                        .multilineTextAlignment(.leading)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
@@ -73,7 +80,7 @@ struct BallonBotMessage: View {
                         endPoint: .bottom
                     )
                 }
-                .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
+                .cornerRadius(16, corners: [.bottomLeft, .bottomRight, .topRight])
             }
             Spacer().frame(width: 60)
             Spacer()
@@ -87,22 +94,39 @@ struct BallonQrCode: View {
             HStack(alignment: .top, spacing: 4) {
                 Image("logo_toyota")
                     .cornerRadius(32)
-                ZStack {
-                    Image("fake_qr_code")
+                VStack {
+                    ZStack {
+                        Image("fake_qr_code")
+                    }
+                    .padding(16)
+                    .background {
+                        LinearGradient(
+                            gradient:
+                                Gradient(colors: [Color(hex: 0xE7E7E7), Color(hex: 0xDCDCDC)]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    }
+                    .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
+                    downloadQRCodeButton()
                 }
-                .padding(16)
-                .background {
-                    LinearGradient(
-                        gradient:
-                            Gradient(colors: [Color(hex: 0xE7E7E7), Color(hex: 0xDCDCDC)]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                }
-                .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
             }
             Spacer().frame(width: 60)
             Spacer()
+        }
+    }
+    
+    @ViewBuilder
+    private func downloadQRCodeButton() -> some View {
+        Button(action: {
+            guard let inputImage = UIImage(named: "fake_qr_code") else { return }
+            let imageSaver = ImageSaver()
+            imageSaver.writeToPhotoAlbum(image: inputImage)
+        }) {
+            Text("Save QR Code")
+                .foregroundColor(Color(hex: 0x5EAEFF))
+                .font(.system(size: 16))
+                .fontWeight(.bold)
         }
     }
 }
@@ -110,6 +134,8 @@ struct BallonQrCode: View {
 struct BallonTyping: View {
     var body: some View {
         HStack {
+            Image("logo_toyota")
+                .cornerRadius(32)
             ZStack {
                 TypingLoading()
             }

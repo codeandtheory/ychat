@@ -44,7 +44,6 @@ struct ToyotaChatView: View {
                         .id($0.id)
                 }
                 .animation(Animation.easeIn, value: viewModel.chatMessageList)
-                .padding(.horizontal, 24)
             }
             .background(Color(hex: 0xF8F8F8))
             .onChange(of: viewModel.chatMessageList) {
@@ -54,19 +53,16 @@ struct ToyotaChatView: View {
     }
     
     @ViewBuilder
-    private func buildChatBubble(messageType: Message) -> some View {
+    private func buildChatBubble(messageType: MessageState) -> some View {
         switch messageType.type {
         case .botMessage(let text):
-            BallonBotMessage(text)
+            BallonBotMessageFactory(message: text)
         case .senderMessage(let text, let hasError):
             BallonSenderMessage(text, isError: hasError)
+                .padding(.horizontal, 24)
         case .typing:
             BallonTyping()
-        case .buyingLeasing:
-            BuyingLeasingCard()
-                .padding(.horizontal, 32)
-        case .qrCode:
-            BallonQrCode()
+                .padding(.horizontal, 24)
         }
     }
     
@@ -108,6 +104,20 @@ struct ToyotaChatView: View {
                 .overlay { Image("ic_arrow_up") }
         }
         .disabled(viewModel.message.isEmpty)
+    }
+    
+    @ViewBuilder
+    private func downloadQRCodeButton() -> some View {
+        Button(action: {
+            guard let inputImage = UIImage(named: "fake_qr_code") else { return }
+            let imageSaver = ImageSaver()
+            imageSaver.writeToPhotoAlbum(image: inputImage)
+        }) {
+            Text("Save QR Code")
+                .foregroundColor(Color(hex: 0x5EAEFF))
+                .font(.system(size: 16))
+                .fontWeight(.bold)
+        }
     }
     
     private func handleURL(_ url: URL) -> OpenURLAction.Result {

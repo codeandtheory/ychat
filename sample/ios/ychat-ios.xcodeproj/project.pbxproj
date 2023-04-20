@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -50,7 +50,18 @@
 		48844903297CE07C005B8A24 /* NavGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48844902297CE07C005B8A24 /* NavGraph.swift */; };
 		48844905297CE094005B8A24 /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48844904297CE094005B8A24 /* TransitionAnimation.swift */; };
 		4884490D297CE1E6005B8A24 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4884490C297CE1E6005B8A24 /* HomeView.swift */; };
+		4888F5E229EEDFD000A5F592 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5E129EEDFD000A5F592 /* StringExtensions.swift */; };
+		4888F5E629EEE2C500A5F592 /* MessageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5E529EEE2C500A5F592 /* MessageState.swift */; };
+		4888F5E829EF593200A5F592 /* VehicleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5E729EF593200A5F592 /* VehicleCardView.swift */; };
+		4888F5EA29EF5B5700A5F592 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5E929EF5B5700A5F592 /* ViewExtensions.swift */; };
+		4888F5ED29EF5FF200A5F592 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5EC29EF5FF200A5F592 /* VehicleModel.swift */; };
+		4888F5F029EF94BA00A5F592 /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 4888F5EF29EF94BA00A5F592 /* ACarousel */; };
+		4888F5F229F0299E00A5F592 /* BallonBotMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5F129F0299E00A5F592 /* BallonBotMessageFactory.swift */; };
+		4888F5F429F0386700A5F592 /* ToyotaApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5F329F0386700A5F592 /* ToyotaApiMock.swift */; };
+		4888F5F629F043A500A5F592 /* LeaseSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888F5F529F043A500A5F592 /* LeaseSummaryView.swift */; };
 		489A546D297F93F700A6532C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A546C297F93F700A6532C /* Config.swift */; };
+		48FB3CEE29ED8AA7000C8C26 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FB3CED29ED8AA7000C8C26 /* ImageSaver.swift */; };
+		48FB3CF029EDD721000C8C26 /* TypeWriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FB3CEF29EDD721000C8C26 /* TypeWriterText.swift */; };
 		7555FF83242A565900829871 /* ChatCompletionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ChatCompletionsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,10 +122,20 @@
 		48844902297CE07C005B8A24 /* NavGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavGraph.swift; sourceTree = "<group>"; };
 		48844904297CE094005B8A24 /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
 		4884490C297CE1E6005B8A24 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4888F5E129EEDFD000A5F592 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		4888F5E529EEE2C500A5F592 /* MessageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageState.swift; sourceTree = "<group>"; };
+		4888F5E729EF593200A5F592 /* VehicleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCardView.swift; sourceTree = "<group>"; };
+		4888F5E929EF5B5700A5F592 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		4888F5EC29EF5FF200A5F592 /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
+		4888F5F129F0299E00A5F592 /* BallonBotMessageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallonBotMessageFactory.swift; sourceTree = "<group>"; };
+		4888F5F329F0386700A5F592 /* ToyotaApiMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyotaApiMock.swift; sourceTree = "<group>"; };
+		4888F5F529F043A500A5F592 /* LeaseSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaseSummaryView.swift; sourceTree = "<group>"; };
 		489A546A297F916C00A6532C /* EnvConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvConfig.xcconfig; sourceTree = "<group>"; };
 		489A546C297F93F700A6532C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		489A5471297F99FC00A6532C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		48D4A78629ACF39F00968B0B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		48FB3CED29ED8AA7000C8C26 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		48FB3CEF29EDD721000C8C26 /* TypeWriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeWriterText.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* Y-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Y-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ChatCompletionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletionsView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4888F5F029EF94BA00A5F592 /* ACarousel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +271,7 @@
 				486C6FA429EA4AE5006E427E /* Components */,
 				486C6FA529EA4AF3006E427E /* ViewModel */,
 				486C6FA029E9F23F006E427E /* ToyotaChatView.swift */,
+				4888F5F329F0386700A5F592 /* ToyotaApiMock.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -257,6 +280,10 @@
 			isa = PBXGroup;
 			children = (
 				486C6FA729EA4B14006E427E /* BuyingLeasingCard.swift */,
+				48FB3CEF29EDD721000C8C26 /* TypeWriterText.swift */,
+				4888F5E729EF593200A5F592 /* VehicleCardView.swift */,
+				4888F5F129F0299E00A5F592 /* BallonBotMessageFactory.swift */,
+				4888F5F529F043A500A5F592 /* LeaseSummaryView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -272,7 +299,9 @@
 		486C6FAB29EB3F5B006E427E /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				486C6FAC29EB3F74006E427E /* ToyotaChatBotUseCase.swift */,
+				4888F5EB29EF5FBD00A5F592 /* Model */,
+				4888F5E429EEE2B000A5F592 /* State */,
+				4888F5E329EEE2AA00A5F592 /* UseCase */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -299,6 +328,9 @@
 			children = (
 				486C6FB629EB4F3D006E427E /* Link.swift */,
 				486C6FB829EB4FC1006E427E /* SafariView.swift */,
+				48FB3CED29ED8AA7000C8C26 /* ImageSaver.swift */,
+				4888F5E129EEDFD000A5F592 /* StringExtensions.swift */,
+				4888F5E929EF5B5700A5F592 /* ViewExtensions.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -473,6 +505,30 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		4888F5E329EEE2AA00A5F592 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				486C6FAC29EB3F74006E427E /* ToyotaChatBotUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		4888F5E429EEE2B000A5F592 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				4888F5E529EEE2C500A5F592 /* MessageState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		4888F5EB29EF5FBD00A5F592 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4888F5EC29EF5FF200A5F592 /* VehicleModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		489A546B297F93EF00A6532C /* Env */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,13 +591,15 @@
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
 				7555FFB4242A642300829871 /* Embed Frameworks */,
-				48D4A78029A9835700968B0B /* SwiftLint */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Y-Chat";
+			packageProductDependencies = (
+				4888F5EF29EF94BA00A5F592 /* ACarousel */,
+			);
 			productName = "ios-sample";
 			productReference = 7555FF7B242A565900829871 /* Y-Chat.app */;
 			productType = "com.apple.product-type.application";
@@ -570,6 +628,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				4888F5EE29EF94BA00A5F592 /* XCRemoteSwiftPackageReference "ACarousel" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -593,25 +654,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		48D4A78029A9835700968B0B /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint lint --strict\nelse\n  echo \"warning: SwiftLint not installed run `brew install swiftlint`\"\nfi\n";
-		};
 		7555FFB5242A651A00829871 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -636,31 +678,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4888F5ED29EF5FF200A5F592 /* VehicleModel.swift in Sources */,
 				486C6FB729EB4F3D006E427E /* Link.swift in Sources */,
 				48844903297CE07C005B8A24 /* NavGraph.swift in Sources */,
 				486C6F8029E08D46006E427E /* TypingLoading.swift in Sources */,
+				4888F5F629F043A500A5F592 /* LeaseSummaryView.swift in Sources */,
 				488448DF297B8DF6005B8A24 /* Typography.swift in Sources */,
 				486C6FA129E9F23F006E427E /* ToyotaChatView.swift in Sources */,
+				4888F5E629EEE2C500A5F592 /* MessageState.swift in Sources */,
 				488448E3297B8F1B005B8A24 /* DefaultTextFieldStyle.swift in Sources */,
 				486C6F9029E615A6006E427E /* ModelsViewModel.swift in Sources */,
+				48FB3CF029EDD721000C8C26 /* TypeWriterText.swift in Sources */,
 				488448D9297B8419005B8A24 /* ChatCompletionsViewModel.swift in Sources */,
+				4888F5EA29EF5B5700A5F592 /* ViewExtensions.swift in Sources */,
 				48844905297CE094005B8A24 /* TransitionAnimation.swift in Sources */,
 				4884490D297CE1E6005B8A24 /* HomeView.swift in Sources */,
 				488448ED297CAC4F005B8A24 /* ChatMessage.swift in Sources */,
+				4888F5E229EEDFD000A5F592 /* StringExtensions.swift in Sources */,
 				488448EA297B9843005B8A24 /* Icon.swift in Sources */,
 				488448DD297B8DD2005B8A24 /* Color.swift in Sources */,
 				486C6F7129DF647F006E427E /* HomeMenu.swift in Sources */,
 				486C6F8329E11316006E427E /* BallonMessage.swift in Sources */,
 				488448EF297CD1E8005B8A24 /* ToolbarModifer.swift in Sources */,
+				4888F5F429F0386700A5F592 /* ToyotaApiMock.swift in Sources */,
 				486C6F7429DFA3BE006E427E /* LogoLabel.swift in Sources */,
 				486C6F7B29E086C0006E427E /* ButtonOutlined.swift in Sources */,
 				486C6F7629E08207006E427E /* LogoSplash.swift in Sources */,
 				488448F1297CD209005B8A24 /* ImageButton.swift in Sources */,
 				486C6F8A29E612D0006E427E /* ItemMenu.swift in Sources */,
+				4888F5F229F0299E00A5F592 /* BallonBotMessageFactory.swift in Sources */,
 				486C6FA829EA4B14006E427E /* BuyingLeasingCard.swift in Sources */,
 				486C6F7929E08456006E427E /* Feedback.swift in Sources */,
 				488448FF297CE035005B8A24 /* AppRouter.swift in Sources */,
 				488448F6297CDF67005B8A24 /* SideMenu.swift in Sources */,
+				4888F5E829EF593200A5F592 /* VehicleCardView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* YChatApp.swift in Sources */,
 				486C6FB229EB441E006E427E /* ToyotaChatProvider.swift in Sources */,
 				486C6F9429E61D4E006E427E /* OutputBox.swift in Sources */,
@@ -674,6 +725,7 @@
 				486C6FB429EB4458006E427E /* ChatBotContext.swift in Sources */,
 				489A546D297F93F700A6532C /* Config.swift in Sources */,
 				486C6FA329EA03F2006E427E /* ToyotaChatViewModel.swift in Sources */,
+				48FB3CEE29ED8AA7000C8C26 /* ImageSaver.swift in Sources */,
 				486C6F7D29E088EA006E427E /* ButtonContained.swift in Sources */,
 				486C6F8D29E61520006E427E /* ModelsView.swift in Sources */,
 				488448FC297CE004005B8A24 /* SplashView.swift in Sources */,
@@ -809,6 +861,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"YChatApp/Preview Content\"";
+				DEVELOPMENT_TEAM = SYJ7DHUDC6;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ychat/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = YChatApp/Info.plist;
@@ -833,6 +886,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"YChatApp/Preview Content\"";
+				DEVELOPMENT_TEAM = SYJ7DHUDC6;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ychat/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = YChatApp/Info.plist;
@@ -872,6 +926,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4888F5EE29EF94BA00A5F592 /* XCRemoteSwiftPackageReference "ACarousel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JWAutumn/ACarousel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4888F5EF29EF94BA00A5F592 /* ACarousel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4888F5EE29EF94BA00A5F592 /* XCRemoteSwiftPackageReference "ACarousel" */;
+			productName = ACarousel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }
