@@ -8,4 +8,4 @@ You need to supply an API key for running this sample successfully.
 
 1. Go to the `local.properties` file located in the root folder of this sample project;
 
-2. Set your API key in the `API_KEY` variable. Click [here](https://beta.openai.com/docs/api-reference/authentication) to get more information on how to get the api key.
+2. Set your API key in the `api.key` variable. Click [here](https://beta.openai.com/docs/api-reference/authentication) to get more information on how to get the api key.
