@@ -6,6 +6,8 @@ import co.yml.ychat.ducai.data.api.BASE_URL
 import co.yml.ychat.ducai.data.api.DucAIApi
 import co.yml.ychat.ducai.data.api.impl.DucAIApiImpl
 import co.yml.ychat.ducai.domain.usecases.CompletionDucAIUseCase
+import co.yml.ychat.ducai.entrypoint.DucAI
+import co.yml.ychat.ducai.entrypoint.DucAIImpl
 import co.yml.ychat.ducai.entrypoint.features.DucAICompletions
 import co.yml.ychat.ducai.entrypoint.impl.DucAICompletionsImpl
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +35,7 @@ internal class DucAILibraryModule() {
         ) }
         factory { ApiExecutor(get()) }
         factory<DucAIApi> { DucAIApiImpl(get()) }
+        factory<DucAI> { DucAIImpl(get()) }
     }
 }
 

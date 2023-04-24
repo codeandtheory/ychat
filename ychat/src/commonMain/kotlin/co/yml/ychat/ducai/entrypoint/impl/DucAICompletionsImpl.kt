@@ -1,7 +1,7 @@
 package co.yml.ychat.ducai.entrypoint.impl
 
 import co.yml.ychat.YChat
-import co.yml.ychat.ducai.domain.model.CompletionParams
+import co.yml.ychat.ducai.domain.model.DucAiCompletionParams
 import co.yml.ychat.ducai.domain.usecases.CompletionDucAIUseCase
 import co.yml.ychat.ducai.entrypoint.features.DucAICompletions
 import kotlinx.coroutines.CoroutineDispatcher
@@ -16,7 +16,7 @@ internal class DucAICompletionsImpl(
 
     private val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher) }
 
-    private var params: CompletionParams = CompletionParams()
+    private var params: DucAiCompletionParams = DucAiCompletionParams()
 
     override fun setInput(input: String): DucAICompletions {
         this.params.data = input

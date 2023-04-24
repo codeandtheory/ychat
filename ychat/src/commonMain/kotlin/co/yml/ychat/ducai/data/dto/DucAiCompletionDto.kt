@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class CompletionParamsDto(
+internal data class DucAiCompletionDto(
     @SerialName("data")
     val data: String
 )

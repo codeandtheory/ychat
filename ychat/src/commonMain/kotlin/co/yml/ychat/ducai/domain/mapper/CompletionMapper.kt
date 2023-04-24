@@ -1,18 +1,18 @@
 package co.yml.ychat.ducai.domain.mapper
 
-import co.yml.ychat.ducai.data.dto.CompletionDto
-import co.yml.ychat.ducai.data.dto.CompletionParamsDto
-import co.yml.ychat.ducai.domain.model.CompletionModel
-import co.yml.ychat.ducai.domain.model.CompletionParams
+import co.yml.ychat.ducai.data.dto.DucAiCompletionDto
+import co.yml.ychat.ducai.data.dto.DucAiCompletionParamsDto
+import co.yml.ychat.ducai.domain.model.DucAiCompletionModel
+import co.yml.ychat.ducai.domain.model.DucAiCompletionParams
 
-internal fun CompletionDto.toCompletionModel(): CompletionModel {
-    return CompletionModel(
+internal fun DucAiCompletionDto.toCompletionModel(): DucAiCompletionModel {
+    return DucAiCompletionModel(
         data = this.data
     )
 }
 
-internal fun CompletionParams.toCompletionParamsDto(): CompletionParamsDto {
-    return CompletionParamsDto(
+internal fun DucAiCompletionParams.toCompletionParamsDto(): DucAiCompletionParamsDto {
+    return DucAiCompletionParamsDto(
         data = this.data
     )
 }

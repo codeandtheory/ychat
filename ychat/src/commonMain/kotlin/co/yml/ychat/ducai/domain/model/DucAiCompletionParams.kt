@@ -1,5 +1,5 @@
 package co.yml.ychat.ducai.domain.model
 
-internal data class CompletionParams(
+internal data class DucAiCompletionParams(
     var data: String = "",
 )
