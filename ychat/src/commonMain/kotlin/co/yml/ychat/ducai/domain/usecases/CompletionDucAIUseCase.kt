@@ -9,7 +9,7 @@ import co.yml.ychat.ducai.domain.model.CompletionModel
 import co.yml.ychat.ducai.domain.model.CompletionParams
 
 internal class CompletionDucAIUseCase(
-    val ducAIApi: DucAIApi
+    private val ducAIApi: DucAIApi
 ) {
 
     suspend fun completion(completionParams: CompletionParams): CompletionModel {
