@@ -8,24 +8,21 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import co.yml.ychat.android.presentation.models.viewmodel.ModelsViewModel
+import co.yml.ychat.android.ui.theme.TypographyStyle
 import co.yml.ychat.android.ui.theme.YChatTheme
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 internal fun SettingsScreen(viewModel: SettingsScreenViewModel = getViewModel()) {
-    val providers = listOf("ChatGPT", "Custom")
-    var selectedProvider = remember { mutableStateOf(providers[0]) }
+
+    val providers = viewModel.providers.value
 
     Column(
         modifier = Modifier
@@ -40,18 +37,21 @@ internal fun SettingsScreen(viewModel: SettingsScreenViewModel = getViewModel())
                 Modifier
                     .fillMaxWidth()
                     .selectable(
-                        selected = (provider == selectedProvider.value),
-                        onClick = { selectedProvider.value = provider }
+                        selected = (provider.isSelected),
+                        onClick = {
+                            viewModel.selectProvider(provider.providerKey)
+                        }
                     ),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = (provider == selectedProvider.value),
-                    onClick = { selectedProvider.value = provider }
+                    selected = (provider.isSelected),
+                    onClick = {
+                        viewModel.selectProvider(provider.providerKey)
+                    }
                 )
-                Text(
-                    text = provider,
-                    style = MaterialTheme.typography.body1.merge(),
+                TypographyStyle.MediumBody.Text(
+                    text = provider.name,
                     modifier = Modifier.padding(start = 0.dp)
                 )
             }
