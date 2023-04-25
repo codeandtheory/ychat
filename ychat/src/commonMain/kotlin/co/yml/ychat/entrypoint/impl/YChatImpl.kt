@@ -5,10 +5,10 @@ import co.yml.ychat.di.module.LibraryModule
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.AudioTranslations
 import co.yml.ychat.entrypoint.features.ChatCompletions
-import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
+import co.yml.ychat.entrypoint.features.OpenAiCompletion
 import co.yml.ychat.entrypoint.features.RetrieveModel
 import org.koin.core.KoinApplication
 
@@ -29,7 +29,7 @@ internal class YChatImpl(apiKey: String) : YChat {
         return koinApp.koin.get()
     }
 
-    override fun completion(): Completion {
+    override fun completion(): OpenAiCompletion {
         return koinApp.koin.get()
     }
 

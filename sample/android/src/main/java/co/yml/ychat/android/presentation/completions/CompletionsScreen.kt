@@ -8,9 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import co.yml.ychat.YChat
-import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.R
 import co.yml.ychat.android.ui.components.button.ButtonContained
 import co.yml.ychat.android.ui.components.output.OutputBox
@@ -45,13 +42,13 @@ internal fun CompletionsScreen(viewModel: CompletionsViewModel = getViewModel())
         OutputBox(outputBoxStates = viewModel.outputBoxStates)
     }
 }
-
-@Preview
-@Composable
-private fun CompletionsScreenPreview() {
-    YChatTheme {
-        val yChat = YChat.create(BuildConfig.API_KEY)
-        val viewModel = CompletionsViewModel(yChat)
-        CompletionsScreen(viewModel)
-    }
-}
+//
+//@Preview
+//@Composable
+//private fun CompletionsScreenPreview() {
+//    YChatTheme {
+//        val yChat = YChat.create(BuildConfig.API_KEY)
+//        val viewModel = CompletionsViewModel(yChat)
+//        CompletionsScreen(viewModel)
+//    }
+//}

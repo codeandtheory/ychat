@@ -3,12 +3,13 @@ package co.yml.ychat
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.AudioTranslations
 import co.yml.ychat.entrypoint.features.ChatCompletions
-import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
+import co.yml.ychat.entrypoint.features.OpenAiCompletion
 import co.yml.ychat.entrypoint.features.RetrieveModel
 import co.yml.ychat.entrypoint.impl.YChatImpl
+import co.yml.ychat.provider.Provider
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.Volatile
 import kotlin.native.concurrent.ThreadLocal
@@ -63,7 +64,7 @@ interface YChat: Provider {
      *      .execute()
      * ```
      */
-    fun completion(): Completion
+    fun completion(): OpenAiCompletion
 
     /**
      * The chatCompletions api generates a list of chat completions for the given input message.

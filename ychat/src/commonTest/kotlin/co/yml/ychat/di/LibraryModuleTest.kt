@@ -12,18 +12,18 @@ import co.yml.ychat.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.domain.usecases.ListModelsUseCase
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.ChatCompletions
-import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
+import co.yml.ychat.entrypoint.features.OpenAiCompletion
 import io.ktor.client.HttpClient
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.get
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 
 class LibraryModuleTest : KoinTest {
 
@@ -39,7 +39,7 @@ class LibraryModuleTest : KoinTest {
 
     @Test
     fun `should inject all entrypoint modules without throwing exception`() {
-        get<Completion>()
+        get<OpenAiCompletion>()
         get<ChatCompletions>()
         get<ImageGenerations>()
         get<Edits>()

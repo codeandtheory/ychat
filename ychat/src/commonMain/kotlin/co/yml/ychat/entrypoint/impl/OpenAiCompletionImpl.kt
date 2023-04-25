@@ -3,47 +3,47 @@ package co.yml.ychat.entrypoint.impl
 import co.yml.ychat.YChat
 import co.yml.ychat.domain.model.CompletionParams
 import co.yml.ychat.domain.usecases.CompletionUseCase
-import co.yml.ychat.entrypoint.features.Completion
+import co.yml.ychat.entrypoint.features.OpenAiCompletion
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-internal class CompletionImpl(
+internal class OpenAiCompletionImpl(
     private val dispatcher: CoroutineDispatcher,
     private val completionUseCase: CompletionUseCase
-) : Completion {
+) : OpenAiCompletion {
 
     private val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher) }
 
     private var params: CompletionParams = CompletionParams()
 
-    override fun setInput(input: String): Completion {
+    override fun setInput(input: String): OpenAiCompletion {
         this.params.prompt = input
         return this
     }
 
-    override fun setModel(model: String): Completion {
+    override fun setModel(model: String): OpenAiCompletion {
         this.params.model = model
         return this
     }
 
-    override fun setMaxTokens(tokens: Int): Completion {
+    override fun setMaxTokens(tokens: Int): OpenAiCompletion {
         this.params.maxTokens = tokens
         return this
     }
 
-    override fun setTemperature(temperature: Double): Completion {
+    override fun setTemperature(temperature: Double): OpenAiCompletion {
         this.params.temperature = temperature
         return this
     }
 
-    override fun setTopP(topP: Double): Completion {
+    override fun setTopP(topP: Double): OpenAiCompletion {
         this.params.topP = topP
         return this
     }
 
-    override fun saveHistory(isSaveHistory: Boolean): Completion {
+    override fun saveHistory(isSaveHistory: Boolean): OpenAiCompletion {
         this.params.enableChatStorage = isSaveHistory
         return this
     }

@@ -1,14 +1,24 @@
 package co.yml.ychat.android.presentation.completions
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.yml.ychat.YChat
 import co.yml.ychat.android.ui.components.output.OutputBoxState
+import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
+import co.yml.ychat.ducai.entrypoint.DucAI
+import co.yml.ychat.provider.Completions
+import co.yml.ychat.provider.Provider
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-internal class CompletionsViewModel(private val yChat: YChat): ViewModel() {
+internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetSelectedProviderUseCase) :
+    ViewModel() {
 
     val message = mutableStateOf("")
 
@@ -24,13 +34,36 @@ internal class CompletionsViewModel(private val yChat: YChat): ViewModel() {
         outputBoxStates.add(OutputBoxState.Text(messageToSend))
         onLoading(true)
         onMessage("")
-        val completions = yChat.completion()
-            .setMaxTokens(MAX_TOKENS)
-            .setInput(messageToSend)
-        runCatching { completions.execute() }
-            .also { onLoading(false) }
-            .onSuccess { outputBoxStates.add(OutputBoxState.Text(it, true)) }
-            .onFailure { onError(true) }
+        getSelectedProviderUseCase().map { provider: Provider ->
+            val completions = when (provider) {
+                is YChat -> {
+                    provider.completion()
+                        .setMaxTokens(MAX_TOKENS)
+                        .setInput(messageToSend)
+                }
+
+                is DucAI -> {
+                    provider.completion()
+                        .setInput(messageToSend)
+                }
+
+                else -> error("Provider not found")
+            }
+            completions
+        }.flatMapMerge { completions: Completions ->
+            return@flatMapMerge flow <Result<String>> {
+                runCatching { completions.execute() }
+                    .also { onLoading(false) }
+
+            }
+        }.last().apply {
+            onSuccess { outputBoxStates.add(OutputBoxState.Text(it, true)) }
+            onFailure {
+                Log.e("CompletionsViewModel", it.message, it)
+                onError(true)
+            }
+        }
+
     }
 
     fun onMessage(message: String) {

@@ -12,6 +12,7 @@ import co.yml.ychat.android.presentation.images.ImagesViewModel
 import co.yml.ychat.android.presentation.models.viewmodel.ModelsViewModel
 import co.yml.ychat.android.presentation.settings.SettingsScreenViewModel
 import co.yml.ychat.android.usecases.GetSelectedProviderKeyUseCase
+import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
 import co.yml.ychat.android.usecases.SelectProviderUseCase
 import co.yml.ychat.ducai.entrypoint.DucAI
 import co.yml.ychat.ducai.entrypoint.DucAIImpl
@@ -36,7 +37,7 @@ val appModule = module {
 
     factory { GetSelectedProviderKeyUseCase(get(), Dispatchers.Default) }
     factory { SelectProviderUseCase(get()) }
-
+    factory { GetSelectedProviderUseCase(get(), Dispatchers.Default) }
 
     viewModelOf(::HomeViewModel)
     viewModelOf(::ChatCompletionsViewModel)

@@ -15,18 +15,18 @@ import co.yml.ychat.domain.usecases.RetrieveModelUseCase
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import co.yml.ychat.entrypoint.features.AudioTranslations
 import co.yml.ychat.entrypoint.features.ChatCompletions
-import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
+import co.yml.ychat.entrypoint.features.OpenAiCompletion
 import co.yml.ychat.entrypoint.features.RetrieveModel
 import co.yml.ychat.entrypoint.impl.AudioTranscriptionsImpl
 import co.yml.ychat.entrypoint.impl.AudioTranslationsImpl
 import co.yml.ychat.entrypoint.impl.ChatCompletionsImpl
-import co.yml.ychat.entrypoint.impl.CompletionImpl
 import co.yml.ychat.entrypoint.impl.EditsImpl
 import co.yml.ychat.entrypoint.impl.ImageGenerationsImpl
 import co.yml.ychat.entrypoint.impl.ListModelsImpl
+import co.yml.ychat.entrypoint.impl.OpenAiCompletionImpl
 import co.yml.ychat.entrypoint.impl.RetrieveModelImpl
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
@@ -40,7 +40,7 @@ internal class LibraryModule(private val apiKey: String) {
     private val entrypointModule = module {
         factory<ListModels> { ListModelsImpl(Dispatchers.Default, get()) }
         factory<RetrieveModel> { RetrieveModelImpl(Dispatchers.Default, get()) }
-        factory<Completion> { CompletionImpl(Dispatchers.Default, get()) }
+        factory<OpenAiCompletion> { OpenAiCompletionImpl(Dispatchers.Default, get()) }
         factory<ChatCompletions> { ChatCompletionsImpl(Dispatchers.Default, get()) }
         factory<ImageGenerations> { ImageGenerationsImpl(Dispatchers.Default, get()) }
         factory<Edits> { EditsImpl(Dispatchers.Default, get()) }

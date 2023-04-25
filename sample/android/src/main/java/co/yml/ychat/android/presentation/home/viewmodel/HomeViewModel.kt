@@ -17,10 +17,10 @@ internal class HomeViewModel(val getSelectedProviderKey: GetSelectedProviderKeyU
     val menuItems = mutableStateOf<List<HomeMenu>>(emptyList())
 
     init {
-        fetchModels()
+        fetchMenus()
     }
 
-    fun fetchModels() = viewModelScope.launch {
+    private fun fetchMenus() = viewModelScope.launch {
         getSelectedProviderKey().map { key ->
             HomeMenu.values().filter { it.availability.contains(key) }
         }
