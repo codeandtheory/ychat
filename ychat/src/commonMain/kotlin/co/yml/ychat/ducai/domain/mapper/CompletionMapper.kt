@@ -13,6 +13,6 @@ internal fun DucAiCompletionDto.toCompletionModel(): DucAiCompletionModel {
 
 internal fun DucAiCompletionParams.toCompletionParamsDto(): DucAiCompletionParamsDto {
     return DucAiCompletionParamsDto(
-        data = this.data
+        data = listOf(this.data)
     )
 }
