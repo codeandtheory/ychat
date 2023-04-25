@@ -10,8 +10,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 internal class DucAICompletionsImpl(
-    private val dispatcher: CoroutineDispatcher,
-    private val completionUseCase: CompletionDucAIUseCase
+    private val completionUseCase: CompletionDucAIUseCase,
+    private val dispatcher: CoroutineDispatcher
 ) : DucAICompletions {
 
     private val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher) }

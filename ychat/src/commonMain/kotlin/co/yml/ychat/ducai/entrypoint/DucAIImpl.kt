@@ -2,12 +2,9 @@ package co.yml.ychat.ducai.entrypoint
 
 import co.yml.ychat.di.module.DucAILibraryModule
 import co.yml.ychat.ducai.entrypoint.features.DucAICompletions
-import co.yml.ychat.entrypoint.features.Completion
 import org.koin.core.KoinApplication
 
-class DucAIImpl(
-    val completions : DucAICompletions
-) : DucAI {
+class DucAIImpl() : DucAI {
 
     private val koinApp = KoinApplication.init()
 
@@ -17,7 +14,7 @@ class DucAIImpl(
     }
 
     override fun completion(): DucAICompletions {
-        return completions
+        return koinApp.koin.get()
     }
 
 }

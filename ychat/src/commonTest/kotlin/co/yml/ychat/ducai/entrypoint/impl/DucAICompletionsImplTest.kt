@@ -4,7 +4,12 @@ import co.yml.ychat.YChat
 import co.yml.ychat.ducai.domain.model.DucAiCompletionModel
 import co.yml.ychat.ducai.domain.model.DucAiCompletionParams
 import co.yml.ychat.ducai.domain.usecases.CompletionDucAIUseCase
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.coEvery
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
@@ -21,7 +26,7 @@ class DucAICompletionsImplTest {
 
     @BeforeTest
     fun setUp() {
-        ducAICompletions = DucAICompletionsImpl(dispatcher, completionUseCase)
+        ducAICompletions = DucAICompletionsImpl(completionUseCase, dispatcher)
     }
 
     @Test

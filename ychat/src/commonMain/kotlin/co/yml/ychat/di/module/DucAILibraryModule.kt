@@ -21,7 +21,7 @@ internal class DucAILibraryModule() {
 
 
     private val entrypointModule = module {
-        factory<DucAICompletions> { DucAICompletionsImpl(Dispatchers.Default, get()) }
+        factory<DucAICompletions> { DucAICompletionsImpl(get(), Dispatchers.Default) }
     }
 
     private val domainModule = module {
@@ -35,7 +35,7 @@ internal class DucAILibraryModule() {
         ) }
         factory { ApiExecutor(get()) }
         factory<DucAIApi> { DucAIApiImpl(get()) }
-        factory<DucAI> { DucAIImpl(get()) }
+        factory<DucAI> { DucAIImpl() }
     }
 }
 
