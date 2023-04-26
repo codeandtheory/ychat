@@ -5,14 +5,10 @@ import co.yml.ychat.ducai.data.dto.DucAiCompletionParamsDto
 import co.yml.ychat.ducai.domain.model.DucAiCompletionModel
 import co.yml.ychat.ducai.domain.model.DucAiCompletionParams
 
-internal fun DucAiCompletionDto.toCompletionModel(): DucAiCompletionModel {
-    return DucAiCompletionModel(
-        data = this.data.first()
-    )
-}
+internal fun DucAiCompletionDto.toCompletionModel() = DucAiCompletionModel(
+    data = this.data.joinToString(" ")
+)
 
-internal fun DucAiCompletionParams.toCompletionParamsDto(): DucAiCompletionParamsDto {
-    return DucAiCompletionParamsDto(
-        data = listOf(this.data)
-    )
-}
+internal fun DucAiCompletionParams.toCompletionParamsDto() = DucAiCompletionParamsDto(
+    data = listOf(this.data)
+)

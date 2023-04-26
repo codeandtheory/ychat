@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flowOn
 
 class GetSelectedProviderKeyUseCase(
-    val repository: ProviderRepository,
+    private val repository: ProviderRepository,
     private val dispatcher: CoroutineDispatcher
 ) {
 

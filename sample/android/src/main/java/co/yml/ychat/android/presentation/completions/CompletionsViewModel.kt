@@ -34,7 +34,7 @@ internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetS
         onLoading(true)
         onMessage("")
         getSelectedProviderUseCase().map { provider: Provider ->
-            val completions = when (provider) {
+            when (provider) {
                 is YChat -> {
                     provider.completion().setMaxTokens(MAX_TOKENS).setInput(messageToSend)
                 }
@@ -45,7 +45,6 @@ internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetS
 
                 else -> error("Provider not found")
             }
-            completions
         }.flatMapMerge { completions: Completions ->
             return@flatMapMerge flow<Result<String>> {
                 emit(runCatching {

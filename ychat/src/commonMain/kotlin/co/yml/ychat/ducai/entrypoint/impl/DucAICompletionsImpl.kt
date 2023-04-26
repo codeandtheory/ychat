@@ -23,12 +23,9 @@ internal class DucAICompletionsImpl(
         return this
     }
 
-    override suspend fun execute(): String {
-        val trim = completionUseCase.completion(params)
-            .data
-            .trim()
-        return trim
-    }
+    override suspend fun execute() = completionUseCase.completion(params)
+        .data
+        .trim()
 
     override fun execute(callback: YChat.Callback<String>) {
         scope.launch {
