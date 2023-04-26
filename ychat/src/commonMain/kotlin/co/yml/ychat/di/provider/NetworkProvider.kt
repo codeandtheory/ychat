@@ -6,7 +6,6 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.http.ContentType
@@ -51,11 +50,6 @@ internal object NetworkProvider {
                 )
             }
             install(Logging) {
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        print("Logger Ktor => $message")
-                    }
-                }
                 level = LogLevel.ALL
             }
         }

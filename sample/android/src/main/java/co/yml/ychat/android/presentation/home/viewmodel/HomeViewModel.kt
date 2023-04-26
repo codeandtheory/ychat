@@ -25,7 +25,11 @@ internal class HomeViewModel(val getSelectedProviderKey: GetSelectedProviderKeyU
             HomeMenu.values().filter { it.availability.contains(key) }
         }
             .collect {
-                menuItems.value = it
+                menuItems.value = it.apply {
+                    if (selectedMenuItem.value != HomeMenu.SETTINGS) {
+                        selectedMenuItem.value = first()
+                    }
+                }
             }
     }
 
