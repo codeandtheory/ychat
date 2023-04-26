@@ -15,5 +15,4 @@ internal class CompletionDucAIUseCase(
     private suspend fun requestCompletion(
         ducAiCompletionParams: DucAiCompletionParams
     ) = ducAIApi.completion(ducAiCompletionParams.toCompletionParamsDto())
-
 }

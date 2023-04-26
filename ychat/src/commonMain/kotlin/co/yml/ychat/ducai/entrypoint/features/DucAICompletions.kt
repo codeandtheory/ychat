@@ -13,5 +13,4 @@ interface DucAICompletions : Completions {
     override suspend fun execute(): String
 
     fun execute(callback: YChat.Callback<String>)
-
 }

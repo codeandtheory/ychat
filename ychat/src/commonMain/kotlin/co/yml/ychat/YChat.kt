@@ -21,7 +21,7 @@ import kotlin.native.concurrent.ThreadLocal
  * See [this](https://beta.openai.com/docs/api-reference/authentication) for more details on how
  * to get the api key.
  */
-interface YChat: Provider {
+interface YChat : Provider {
 
     /**
      * The listModels api lists the currently available models, and provides basic information

@@ -6,5 +6,4 @@ import co.yml.ychat.provider.Provider
 interface DucAI : Provider {
 
     fun completion(): DucAICompletions
-
 }

@@ -16,5 +16,4 @@ class DucAIImpl : DucAI {
     override fun completion(): DucAICompletions {
         return koinApp.koin.get()
     }
-
 }

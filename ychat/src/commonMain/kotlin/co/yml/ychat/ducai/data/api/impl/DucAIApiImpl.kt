@@ -16,5 +16,4 @@ internal class DucAIApiImpl(private val apiExecutor: ApiExecutor) : DucAIApi {
             .setBody(paramsDto)
             .execute()
     }
-
 }

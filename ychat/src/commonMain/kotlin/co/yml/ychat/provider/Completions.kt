@@ -7,5 +7,4 @@ interface Completions {
 
     @Throws(CancellationException::class, ChatGptException::class)
     suspend fun execute(): String
-
 }
