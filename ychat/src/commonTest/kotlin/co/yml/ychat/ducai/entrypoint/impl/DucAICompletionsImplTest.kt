@@ -35,7 +35,9 @@ class DucAICompletionsImplTest {
         val expectedOutput = "test output"
         val ducAiCompletionParams = DucAiCompletionParams(data = input)
 
-        coEvery { completionUseCase.completion(ducAiCompletionParams) } returns DucAiCompletionModel(data = expectedOutput)
+        coEvery { completionUseCase.completion(ducAiCompletionParams) } returns DucAiCompletionModel(
+            data = expectedOutput
+        )
 
         ducAICompletions.setInput(input)
         val result = ducAICompletions.execute()
@@ -44,13 +46,14 @@ class DucAICompletionsImplTest {
     }
 
     @Test
-    fun `test execute with callback`()  = runBlocking {
-
+    fun `test execute with callback`() = runBlocking {
         val input = "test input"
         val expectedOutput = "test output"
         val ducAiCompletionParams = DucAiCompletionParams(data = input)
 
-        coEvery { completionUseCase.completion(ducAiCompletionParams) } returns DucAiCompletionModel(data = expectedOutput)
+        coEvery { completionUseCase.completion(ducAiCompletionParams) } returns DucAiCompletionModel(
+            data = expectedOutput
+        )
         every { callback.onSuccess(expectedOutput) } just Runs
 
         ducAICompletions.setInput(input)

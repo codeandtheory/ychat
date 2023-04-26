@@ -1,8 +1,8 @@
 package co.yml.ychat.ducai.data.api.impl
 
-import co.yml.ychat.ducai.data.api.DucAIApi
 import co.yml.ychat.data.infrastructure.ApiExecutor
 import co.yml.ychat.data.infrastructure.ApiResult
+import co.yml.ychat.ducai.data.api.DucAIApi
 import co.yml.ychat.ducai.data.dto.DucAiCompletionDto
 import co.yml.ychat.ducai.data.dto.DucAiCompletionParamsDto
 import io.ktor.http.HttpMethod

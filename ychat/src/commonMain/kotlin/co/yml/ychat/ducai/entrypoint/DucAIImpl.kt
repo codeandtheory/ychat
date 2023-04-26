@@ -4,7 +4,7 @@ import co.yml.ychat.di.module.DucAILibraryModule
 import co.yml.ychat.ducai.entrypoint.features.DucAICompletions
 import org.koin.core.KoinApplication
 
-class DucAIImpl() : DucAI {
+class DucAIImpl : DucAI {
 
     private val koinApp = KoinApplication.init()
 

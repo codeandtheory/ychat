@@ -23,8 +23,7 @@ class CompletionDucAIUseCaseTest {
             // arrange
             val ducAiCompletionParams = DucAiCompletionParams(data = "input")
             val expectedDucAiCompletionModel = DucAiCompletionModel(data = "input")
-            coEvery { ducAIApi.completion(any()) } returns ApiResult(DucAiCompletionDto(data = "input"))
-
+            coEvery { ducAIApi.completion(any()) } returns ApiResult(DucAiCompletionDto(data = listOf("input")))
 
             // act
             val result = completionDucAIUseCase.completion(ducAiCompletionParams)
@@ -32,7 +31,6 @@ class CompletionDucAIUseCaseTest {
             // assert
             assertEquals(expectedDucAiCompletionModel, result)
             coVerify { ducAIApi.completion(any()) }
-
         }
 
     @Test
@@ -51,5 +49,4 @@ class CompletionDucAIUseCaseTest {
             assertEquals(true, result.exceptionOrNull() is ChatGptException)
             coVerify { ducAIApi.completion(any()) }
         }
-
 }

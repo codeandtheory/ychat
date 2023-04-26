@@ -14,11 +14,10 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-internal class DucAILibraryModule() {
+internal class DucAILibraryModule {
 
     fun modules(): List<Module> =
         apiModule + entrypointModule + domainModule + platformModule()
-
 
     private val entrypointModule = module {
         factory<DucAICompletions> { DucAICompletionsImpl(get(), Dispatchers.Default) }
@@ -29,13 +28,14 @@ internal class DucAILibraryModule() {
     }
 
     private val apiModule = module {
-        single { NetworkProvider.provideHttpClient(
-            engine = get(),
-            baseUrl = BASE_URL
-        ) }
+        single {
+            NetworkProvider.provideHttpClient(
+                engine = get(),
+                baseUrl = BASE_URL
+            )
+        }
         factory { ApiExecutor(get()) }
         factory<DucAIApi> { DucAIApiImpl(get()) }
         factory<DucAI> { DucAIImpl() }
     }
 }
-
