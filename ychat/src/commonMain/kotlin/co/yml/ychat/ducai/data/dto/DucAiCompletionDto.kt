@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class DucAiCompletionDto(
     @SerialName("data")
-    val data: String
+    val data: List<String>
 )

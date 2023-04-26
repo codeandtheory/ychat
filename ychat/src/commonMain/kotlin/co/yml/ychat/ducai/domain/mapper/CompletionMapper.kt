@@ -7,7 +7,7 @@ import co.yml.ychat.ducai.domain.model.DucAiCompletionParams
 
 internal fun DucAiCompletionDto.toCompletionModel(): DucAiCompletionModel {
     return DucAiCompletionModel(
-        data = this.data
+        data = this.data.first()
     )
 }
 

@@ -13,7 +13,6 @@ import co.yml.ychat.provider.Completions
 import co.yml.ychat.provider.Provider
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -37,29 +36,27 @@ internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetS
         getSelectedProviderUseCase().map { provider: Provider ->
             val completions = when (provider) {
                 is YChat -> {
-                    provider.completion()
-                        .setMaxTokens(MAX_TOKENS)
-                        .setInput(messageToSend)
+                    provider.completion().setMaxTokens(MAX_TOKENS).setInput(messageToSend)
                 }
 
                 is DucAI -> {
-                    provider.completion()
-                        .setInput(messageToSend)
+                    provider.completion().setInput(messageToSend)
                 }
 
                 else -> error("Provider not found")
             }
             completions
         }.flatMapMerge { completions: Completions ->
-            return@flatMapMerge flow <Result<String>> {
-                runCatching { completions.execute() }
-                    .also { onLoading(false) }
-
+            return@flatMapMerge flow<Result<String>> {
+                emit(runCatching {
+                    completions.execute()
+                }.also { onLoading(false) })
             }
-        }.last().apply {
-            onSuccess { outputBoxStates.add(OutputBoxState.Text(it, true)) }
-            onFailure {
-                Log.e("CompletionsViewModel", it.message, it)
+        }.collect {
+            it.onSuccess {
+                outputBoxStates.add(OutputBoxState.Text(it, true))
+            }.onFailure {
+                Log.e(TAG, it.message, it)
                 onError(true)
             }
         }
@@ -92,6 +89,7 @@ internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetS
     }
 
     companion object {
+        val TAG = CompletionsViewModel::class.java.simpleName
         private const val MAX_TOKENS = 240
     }
 }
