@@ -51,13 +51,13 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":ychat-core"))
+                implementation(project(":providers:openai-provider"))
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(Dependencies.Test.MOCKK_COMMON)
-                implementation(Dependencies.Test.KTOR)
                 implementation(Dependencies.Test.KOIN)
             }
         }
