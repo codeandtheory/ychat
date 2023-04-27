@@ -1,5 +1,6 @@
 package co.yml.ychat.data.api
 
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.dto.AudioParamsDto
 import co.yml.ychat.data.dto.AudioResultDto
 import co.yml.ychat.data.dto.ChatCompletionParamsDto
@@ -12,7 +13,6 @@ import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.dto.ImageGenerationsParamsDto
 import co.yml.ychat.data.dto.ModelDto
 import co.yml.ychat.data.dto.ModelListDto
-import co.yml.ychat.data.infrastructure.ApiResult
 
 internal interface ChatGptApi {
 

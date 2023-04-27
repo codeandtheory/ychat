@@ -1,9 +1,9 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.CompletionDto
-import co.yml.ychat.data.infrastructure.ApiResult
-import co.yml.ychat.data.storage.ChatLogStorage
+import co.yml.ychat.core.storage.ChatLogStorage
 import co.yml.ychat.domain.mapper.toCompletionModel
 import co.yml.ychat.domain.mapper.toCompletionParamsDto
 import co.yml.ychat.domain.model.CompletionModel

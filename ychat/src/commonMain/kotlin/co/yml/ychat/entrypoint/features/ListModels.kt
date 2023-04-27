@@ -1,7 +1,7 @@
 package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
-import co.yml.ychat.data.exception.ChatGptException
+import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.domain.model.AIModel
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -13,9 +13,9 @@ interface ListModels {
      *
      * @return A list of artificial intelligence models.
      * @throws CancellationException if the operation is cancelled.
-     * @throws ChatGptException if there is an error generating chat completions.
+     * @throws YChatException if there is an error generating chat completions.
      */
-    @Throws(CancellationException::class, ChatGptException::class)
+    @Throws(CancellationException::class, YChatException::class)
     suspend fun execute(): List<AIModel>
 
     /**

@@ -1,6 +1,6 @@
 package co.yml.ychat.data.dto
 
-import co.yml.ychat.domain.model.FileBytes
+import co.yml.ychat.core.model.FileBytes
 
 internal data class AudioParamsDto(
     val filename: String,

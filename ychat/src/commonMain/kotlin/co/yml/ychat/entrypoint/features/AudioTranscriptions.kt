@@ -1,8 +1,8 @@
 package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.domain.model.FileBytes
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.model.FileBytes
 import kotlin.coroutines.cancellation.CancellationException
 
 interface AudioTranscriptions {
@@ -54,9 +54,9 @@ interface AudioTranscriptions {
      * @param audioFile The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
      * @return The transcript output in the specified format.
      * @throws CancellationException if the operation is cancelled.
-     * @throws ChatGptException if there is an error transcribing the audio file.
+     * @throws YChatException if there is an error transcribing the audio file.
      */
-    @Throws(CancellationException::class, ChatGptException::class)
+    @Throws(CancellationException::class, YChatException::class)
     suspend fun execute(filename: String, audioFile: FileBytes): String
 
     /**

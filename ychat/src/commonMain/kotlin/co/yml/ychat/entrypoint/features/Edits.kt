@@ -1,7 +1,7 @@
 package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
-import co.yml.ychat.data.exception.ChatGptException
+import co.yml.ychat.core.exceptions.YChatException
 import kotlin.coroutines.cancellation.CancellationException
 
 interface Edits {
@@ -56,9 +56,9 @@ interface Edits {
      * @param instruction The instruction to generate edits for.
      * @return A list of edits generated for the given instruction.
      * @throws CancellationException if the operation is cancelled.
-     * @throws ChatGptException if there is an error generating edits.
+     * @throws YChatException if there is an error generating edits.
      */
-    @Throws(CancellationException::class, ChatGptException::class)
+    @Throws(CancellationException::class, YChatException::class)
     suspend fun execute(instruction: String): List<String>
 
     /**
