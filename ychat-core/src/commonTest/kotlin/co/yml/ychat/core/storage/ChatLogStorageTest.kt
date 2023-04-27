@@ -1,4 +1,4 @@
-package co.yml.ychat.data.storage
+package co.yml.ychat.core.storage
 
 import kotlin.test.BeforeTest
 import kotlin.test.Test

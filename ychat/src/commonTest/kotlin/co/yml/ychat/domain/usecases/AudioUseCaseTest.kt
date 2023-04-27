@@ -1,11 +1,11 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.model.FileBytes
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.AudioResultDto
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.data.infrastructure.ApiResult
 import co.yml.ychat.domain.model.AudioParams
-import co.yml.ychat.domain.model.FileBytes
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.BeforeTest
@@ -47,7 +47,7 @@ class AudioUseCaseTest {
         val fileName = "audio-test.m4a"
         val audioFile = ByteArray(1024) as FileBytes
         val audioParams = AudioParams()
-        val apiResult = ApiResult<AudioResultDto>(exception = ChatGptException())
+        val apiResult = ApiResult<AudioResultDto>(exception = YChatException())
         coEvery { chatGptApiMock.audioTranscriptions(any()) } returns apiResult
 
         // act
@@ -56,7 +56,7 @@ class AudioUseCaseTest {
         }
 
         // assert
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 
     @Test
@@ -82,7 +82,7 @@ class AudioUseCaseTest {
         val fileName = "audio-test.m4a"
         val audioFile = ByteArray(1024) as FileBytes
         val audioParams = AudioParams()
-        val apiResult = ApiResult<AudioResultDto>(exception = ChatGptException())
+        val apiResult = ApiResult<AudioResultDto>(exception = YChatException())
         coEvery { chatGptApiMock.audioTranslations(any()) } returns apiResult
 
         // act
@@ -91,6 +91,6 @@ class AudioUseCaseTest {
         }
 
         // assert
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 }

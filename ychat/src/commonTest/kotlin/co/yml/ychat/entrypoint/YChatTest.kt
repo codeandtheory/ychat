@@ -1,10 +1,11 @@
 package co.yml.ychat.entrypoint
 
 import co.yml.ychat.YChat
-import co.yml.ychat.domain.model.FileBytes
+import co.yml.ychat.core.model.FileBytes
+import co.yml.ychat.core.network.factories.HttpClientFactory
+import co.yml.ychat.data.infrastructure.OpenAiHttpClient
 import co.yml.ychat.entrypoint.impl.YChatImpl
 import infrastructure.MockStorage
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.http.HttpHeaders
@@ -200,7 +201,7 @@ class YChatTest {
             )
         }
         val module = module {
-            single<HttpClientEngine> { httpEngine }
+            single<HttpClientFactory> { OpenAiHttpClient("api.key", httpEngine) }
         }
         yChat.koinApp.modules(module)
     }

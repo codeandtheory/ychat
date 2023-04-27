@@ -1,6 +1,5 @@
-package co.yml.ychat.di
+package co.yml.ychat.data.infrastructure
 
-import co.yml.ychat.di.provider.NetworkProvider
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.request.request
@@ -12,7 +11,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.runBlocking
 
-class NetworkProviderTest {
+class OpenAiHttpClientTest {
 
     @Test
     fun `on provideHttpClient should assert default request`() {
@@ -31,7 +30,7 @@ class NetworkProviderTest {
         }
 
         // act
-        runBlocking { NetworkProvider.provideHttpClient(mockEngine, apiKey).request() }
+        runBlocking { OpenAiHttpClient(apiKey, mockEngine).getHttpClient().request() }
 
         // assert
         assertEquals("https://api.openai.com", baseUrl)

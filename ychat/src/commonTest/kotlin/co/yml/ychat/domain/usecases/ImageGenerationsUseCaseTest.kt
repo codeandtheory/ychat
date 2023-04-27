@@ -1,17 +1,17 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.dto.ImageGenerationsDto
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.data.infrastructure.ApiResult
 import co.yml.ychat.data.dto.ImageGeneratedDto
+import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.domain.model.ImageGenerationsParams
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlinx.coroutines.runBlocking
 
 class ImageGenerationsUseCaseTest {
 
@@ -45,7 +45,7 @@ class ImageGenerationsUseCaseTest {
         // arrange
         val prompt = "/image test"
         val params = ImageGenerationsParams(prompt = prompt)
-        val apiResult = ApiResult<ImageGenerationsDto>(exception = ChatGptException())
+        val apiResult = ApiResult<ImageGenerationsDto>(exception = YChatException())
         coEvery { chatGptApiMock.imageGenerations(any()) } returns apiResult
 
         // act
@@ -53,7 +53,7 @@ class ImageGenerationsUseCaseTest {
             runCatching { runBlocking { imageGenerationsUseCase.requestImageGenerations(params) } }
 
         // assert
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 
     private fun buildImageGenerationsDto(url: String): ImageGenerationsDto {

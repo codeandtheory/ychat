@@ -1,6 +1,5 @@
-package co.yml.ychat.data.infrastructure
+package co.yml.ychat.core.network.infrastructure
 
-import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.http.HttpHeaders
@@ -29,7 +28,7 @@ class ApiExecutorTest {
                 headers = headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        val httpClient = HttpClient(mockEngine)
+        val httpClient = MockHttpClient(mockEngine)
         val apiExecutor = ApiExecutor(httpClient)
 
         // act
@@ -47,6 +46,39 @@ class ApiExecutorTest {
     }
 
     @Test
+    fun `on execute when request is multipart type then content type should be multipart type`() = runBlocking {
+        // arrange
+        var endpoint = ""
+        var httpMethod = ""
+        var contentType: String? = null
+        val mockEngine = MockEngine { request ->
+            endpoint = request.url.toString().decodeURLPart()
+            httpMethod = request.method.value
+            contentType = request.body.contentType?.contentType
+            respond(
+                content = "This is a test",
+                status = HttpStatusCode.OK,
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
+        }
+        val httpClient = MockHttpClient(mockEngine)
+        val apiExecutor = ApiExecutor(httpClient)
+
+        // act
+        apiExecutor
+            .setEndpoint("api/test")
+            .setHttpMethod(HttpMethod.Post)
+            .addFormPart("key1", "value1")
+            .addFormPart("key1", "file_mock", ByteArray(100))
+            .execute<String>()
+
+        // assert
+        assertEquals("http://localhost/api/test", endpoint)
+        assertEquals("POST", httpMethod)
+        assertEquals("multipart", contentType)
+    }
+
+    @Test
     fun `on execute when occurs api error then should return error as expected`() = runBlocking {
         // arrange
         val mockEngine = MockEngine {
@@ -56,7 +88,7 @@ class ApiExecutorTest {
                 headers = headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        val httpClient = HttpClient(mockEngine)
+        val httpClient = MockHttpClient(mockEngine)
         val apiExecutor = ApiExecutor(httpClient)
 
         // act
@@ -75,7 +107,7 @@ class ApiExecutorTest {
         val mockEngine = MockEngine {
             throw IOException("Error")
         }
-        val httpClient = HttpClient(mockEngine)
+        val httpClient = MockHttpClient(mockEngine)
         val apiExecutor = ApiExecutor(httpClient)
 
         // act

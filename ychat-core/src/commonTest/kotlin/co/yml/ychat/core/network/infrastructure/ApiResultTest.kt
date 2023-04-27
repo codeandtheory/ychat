@@ -1,6 +1,6 @@
-package co.yml.ychat.data.infrastructure
+package co.yml.ychat.core.network.infrastructure
 
-import co.yml.ychat.data.exception.ChatGptException
+import co.yml.ychat.core.exceptions.YChatException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -21,7 +21,7 @@ class ApiResultTest {
     @Test
     fun `on isSuccessful when has exception then should return false`() {
         // arrange
-        val apiResult = ApiResult<String>(exception = ChatGptException())
+        val apiResult = ApiResult<String>(exception = YChatException())
 
         // act
         val result = apiResult.isSuccessful
@@ -57,7 +57,7 @@ class ApiResultTest {
     @Test
     fun `on ensureSuccess when is not successful should throw an exception`() {
         // arrange
-        val apiResult = ApiResult<String>(exception = ChatGptException())
+        val apiResult = ApiResult<String>(exception = YChatException())
 
         // act
         val result = runCatching { apiResult.ensureSuccess() }.exceptionOrNull()
