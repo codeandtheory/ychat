@@ -1,9 +1,11 @@
 package co.yml.ychat.domain.mapper
 
-import co.yml.ychat.data.dto.EditsChoiceDto
-import co.yml.ychat.data.dto.EditsDto
-import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.domain.model.EditsParams
+import co.yml.openai.provider.data.dto.EditsChoiceDto
+import co.yml.openai.provider.data.dto.EditsDto
+import co.yml.openai.provider.data.dto.UsageDto
+import co.yml.openai.provider.domain.mapper.toEditsModel
+import co.yml.openai.provider.domain.mapper.toEditsParamsDto
+import co.yml.openai.provider.domain.model.EditsParams
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

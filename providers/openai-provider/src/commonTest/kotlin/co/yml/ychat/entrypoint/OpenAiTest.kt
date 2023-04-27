@@ -1,10 +1,10 @@
 package co.yml.ychat.entrypoint
 
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.data.infrastructure.OpenAiHttpClient
+import co.yml.openai.provider.entrypoint.impl.OpenAiImpl
 import co.yml.ychat.core.model.FileBytes
 import co.yml.ychat.core.network.factories.HttpClientFactory
-import co.yml.ychat.data.infrastructure.OpenAiHttpClient
-import co.yml.ychat.entrypoint.impl.YChatImpl
 import infrastructure.MockStorage
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -17,23 +17,23 @@ import kotlin.test.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 
-class YChatTest {
+class OpenAiTest {
 
-    private lateinit var yChat: YChatImpl
+    private lateinit var openAi: OpenAiImpl
 
     @BeforeTest
     fun setup() {
-        yChat = YChatImpl("api.key")
+        openAi = OpenAiImpl("api.key")
     }
 
     @Test
     fun `on create method should return singleton instance`() {
         // arrange
-        val yChatOne = YChat.create("api.key")
-        val yChatTwo = YChat.create("api.key")
+        val openAiOne = OpenAi.create("api.key")
+        val openAiTwo = OpenAi.create("api.key")
 
         // assert
-        assertEquals(yChatOne, yChatTwo)
+        assertEquals(openAiOne, openAiTwo)
     }
 
     @Test
@@ -45,7 +45,7 @@ class YChatTest {
 
         // act
         val result = runBlocking {
-            yChat.completion()
+            openAi.completion()
                 .setInput("Say this is a test")
                 .execute()
         }
@@ -63,7 +63,7 @@ class YChatTest {
 
         // act
         val result = runBlocking {
-            yChat.chatCompletions()
+            openAi.chatCompletions()
                 .setMaxResults(1)
                 .setTemperature(1.0)
                 .setTopP(1.0)
@@ -84,7 +84,7 @@ class YChatTest {
 
         // act
         val result = runBlocking {
-            yChat.imageGenerations()
+            openAi.imageGenerations()
                 .setResults(1)
                 .setSize("256x256")
                 .setResponseFormat("url")
@@ -104,7 +104,7 @@ class YChatTest {
 
         // act
         val result = runBlocking {
-            yChat.edits()
+            openAi.edits()
                 .setResults(1)
                 .setTemperature(1.0)
                 .setModel("model-1")
@@ -125,7 +125,7 @@ class YChatTest {
         mockHttpEngine(listModelsSuccessResult)
 
         // act
-        val result = runBlocking { yChat.listModels().execute() }
+        val result = runBlocking { openAi.listModels().execute() }
 
         // assert
         assertEquals(expectedResult, result.first().id)
@@ -139,7 +139,7 @@ class YChatTest {
         mockHttpEngine(modelSuccessResult)
 
         // act
-        val result = runBlocking { yChat.retrieveModel().execute(expectedResult) }
+        val result = runBlocking { openAi.retrieveModel().execute(expectedResult) }
 
         // assert
         assertEquals(expectedResult, result.id)
@@ -156,7 +156,7 @@ class YChatTest {
 
         // act
         val result = runBlocking {
-            yChat.audioTranscriptions()
+            openAi.audioTranscriptions()
                 .setTemperature(0.0)
                 .setModel("model-1")
                 .setPrompt("Test")
@@ -180,7 +180,7 @@ class YChatTest {
 
         // act
         val result = runBlocking {
-            yChat.audioTranslations()
+            openAi.audioTranslations()
                 .setTemperature(0.0)
                 .setModel("model-1")
                 .setPrompt("Test")
@@ -203,6 +203,6 @@ class YChatTest {
         val module = module {
             single<HttpClientFactory> { OpenAiHttpClient("api.key", httpEngine) }
         }
-        yChat.koinApp.modules(module)
+        openAi.koinApp.modules(module)
     }
 }

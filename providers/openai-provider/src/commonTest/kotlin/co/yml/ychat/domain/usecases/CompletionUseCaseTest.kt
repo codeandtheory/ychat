@@ -1,13 +1,14 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.openai.provider.data.api.OpenAiApi
+import co.yml.openai.provider.data.dto.ChoiceDto
+import co.yml.openai.provider.data.dto.CompletionDto
+import co.yml.openai.provider.data.dto.UsageDto
+import co.yml.openai.provider.domain.model.CompletionParams
+import co.yml.openai.provider.domain.usecases.CompletionUseCase
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.core.storage.ChatLogStorage
-import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.dto.ChoiceDto
-import co.yml.ychat.data.dto.CompletionDto
-import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.domain.model.CompletionParams
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.just
@@ -23,13 +24,13 @@ class CompletionUseCaseTest {
 
     private lateinit var completionUseCase: CompletionUseCase
 
-    private val chatGptApiMock = mockk<ChatGptApi>()
+    private val openAiApiMock = mockk<OpenAiApi>()
 
     private val chatLogStorageMock = mockk<ChatLogStorage>()
 
     @BeforeTest
     fun setup() {
-        completionUseCase = CompletionUseCase(chatGptApiMock, chatLogStorageMock)
+        completionUseCase = CompletionUseCase(openAiApiMock, chatLogStorageMock)
     }
 
     @Test
@@ -40,7 +41,7 @@ class CompletionUseCaseTest {
         val completionParams = CompletionParams(prompt = input, enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.removeLastAppendedInput() } just runs
-        coEvery { chatGptApiMock.completion(any()) } returns apiResult
+        coEvery { openAiApiMock.completion(any()) } returns apiResult
 
         // act
         val result =
@@ -60,7 +61,7 @@ class CompletionUseCaseTest {
         val completionParams = CompletionParams(prompt = input, enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.appendAnswer("This indeed a test") } just runs
-        coEvery { chatGptApiMock.completion(any()) } returns apiResult
+        coEvery { openAiApiMock.completion(any()) } returns apiResult
 
         // act
         val result = runBlocking { completionUseCase.completion(completionParams) }

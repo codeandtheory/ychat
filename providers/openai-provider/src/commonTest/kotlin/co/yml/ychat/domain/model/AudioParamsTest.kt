@@ -1,5 +1,6 @@
 package co.yml.ychat.domain.model
 
+import co.yml.openai.provider.domain.model.AudioParams
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

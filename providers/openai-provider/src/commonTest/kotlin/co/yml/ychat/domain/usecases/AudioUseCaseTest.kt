@@ -1,11 +1,12 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.openai.provider.data.api.OpenAiApi
+import co.yml.openai.provider.data.dto.AudioResultDto
+import co.yml.openai.provider.domain.model.AudioParams
+import co.yml.openai.provider.domain.usecases.AudioUseCase
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.core.model.FileBytes
 import co.yml.ychat.core.network.infrastructure.ApiResult
-import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.dto.AudioResultDto
-import co.yml.ychat.domain.model.AudioParams
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.BeforeTest
@@ -17,11 +18,11 @@ class AudioUseCaseTest {
 
     private lateinit var useCase: AudioUseCase
 
-    private val chatGptApiMock = mockk<ChatGptApi>()
+    private val openAiApiMock = mockk<OpenAiApi>()
 
     @BeforeTest
     fun setup() {
-        useCase = AudioUseCase(chatGptApiMock)
+        useCase = AudioUseCase(openAiApiMock)
     }
 
     @Test
@@ -32,7 +33,7 @@ class AudioUseCaseTest {
         val audioParams = AudioParams()
         val audioResultDto = AudioResultDto("this is a test.")
         val apiResult = ApiResult(body = audioResultDto)
-        coEvery { chatGptApiMock.audioTranscriptions(any()) } returns apiResult
+        coEvery { openAiApiMock.audioTranscriptions(any()) } returns apiResult
 
         // act
         val result = runBlocking { useCase.requestAudioTranscription(fileName, audioFile, audioParams) }
@@ -48,7 +49,7 @@ class AudioUseCaseTest {
         val audioFile = ByteArray(1024) as FileBytes
         val audioParams = AudioParams()
         val apiResult = ApiResult<AudioResultDto>(exception = YChatException())
-        coEvery { chatGptApiMock.audioTranscriptions(any()) } returns apiResult
+        coEvery { openAiApiMock.audioTranscriptions(any()) } returns apiResult
 
         // act
         val result = runCatching {
@@ -67,7 +68,7 @@ class AudioUseCaseTest {
         val audioParams = AudioParams()
         val audioResultDto = AudioResultDto("this is a test.")
         val apiResult = ApiResult(body = audioResultDto)
-        coEvery { chatGptApiMock.audioTranslations(any()) } returns apiResult
+        coEvery { openAiApiMock.audioTranslations(any()) } returns apiResult
 
         // act
         val result = runBlocking { useCase.requestAudioTranslations(fileName, audioFile, audioParams) }
@@ -83,7 +84,7 @@ class AudioUseCaseTest {
         val audioFile = ByteArray(1024) as FileBytes
         val audioParams = AudioParams()
         val apiResult = ApiResult<AudioResultDto>(exception = YChatException())
-        coEvery { chatGptApiMock.audioTranslations(any()) } returns apiResult
+        coEvery { openAiApiMock.audioTranslations(any()) } returns apiResult
 
         // act
         val result = runCatching {

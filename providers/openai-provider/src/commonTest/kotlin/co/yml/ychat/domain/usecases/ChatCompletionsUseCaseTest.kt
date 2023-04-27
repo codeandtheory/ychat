@@ -1,14 +1,15 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.openai.provider.data.api.OpenAiApi
+import co.yml.openai.provider.data.dto.ChatCompletionsChoiceDto
+import co.yml.openai.provider.data.dto.ChatCompletionsDto
+import co.yml.openai.provider.data.dto.ChatMessageDto
+import co.yml.openai.provider.data.dto.UsageDto
+import co.yml.openai.provider.domain.model.ChatCompletionsParams
+import co.yml.openai.provider.domain.model.ChatMessage
+import co.yml.openai.provider.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.core.network.infrastructure.ApiResult
-import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.dto.ChatCompletionsChoiceDto
-import co.yml.ychat.data.dto.ChatCompletionsDto
-import co.yml.ychat.data.dto.ChatMessageDto
-import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.domain.model.ChatCompletionsParams
-import co.yml.ychat.domain.model.ChatMessage
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.BeforeTest
@@ -20,11 +21,11 @@ class ChatCompletionsUseCaseTest {
 
     private lateinit var chatCompletionsUseCase: ChatCompletionsUseCase
 
-    private val chatGptApiMock = mockk<ChatGptApi>()
+    private val openAiApiMock = mockk<OpenAiApi>()
 
     @BeforeTest
     fun setup() {
-        chatCompletionsUseCase = ChatCompletionsUseCase(chatGptApiMock)
+        chatCompletionsUseCase = ChatCompletionsUseCase(openAiApiMock)
     }
 
     @Test
@@ -34,7 +35,7 @@ class ChatCompletionsUseCaseTest {
         val chatCompletionDto = buildChatCompletionsDto("This indeed a test")
         val params = ChatCompletionsParams(messages)
         val apiResult = ApiResult(body = chatCompletionDto)
-        coEvery { chatGptApiMock.chatCompletions(any()) } returns apiResult
+        coEvery { openAiApiMock.chatCompletions(any()) } returns apiResult
 
         // act
         val result = runBlocking { chatCompletionsUseCase.requestChatCompletions(params) }
@@ -49,7 +50,7 @@ class ChatCompletionsUseCaseTest {
         val messages = arrayListOf(ChatMessage("user", "Say this is a test."))
         val params = ChatCompletionsParams(messages)
         val apiResult = ApiResult<ChatCompletionsDto>(exception = YChatException())
-        coEvery { chatGptApiMock.chatCompletions(any()) } returns apiResult
+        coEvery { openAiApiMock.chatCompletions(any()) } returns apiResult
 
         // act
         val result =

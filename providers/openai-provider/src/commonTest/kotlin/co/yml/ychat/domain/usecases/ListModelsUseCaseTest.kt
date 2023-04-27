@@ -1,10 +1,11 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.openai.provider.data.api.OpenAiApi
+import co.yml.openai.provider.data.dto.ModelDto
+import co.yml.openai.provider.data.dto.ModelListDto
+import co.yml.openai.provider.domain.usecases.ListModelsUseCase
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.core.network.infrastructure.ApiResult
-import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.dto.ModelDto
-import co.yml.ychat.data.dto.ModelListDto
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.BeforeTest
@@ -16,11 +17,11 @@ class ListModelsUseCaseTest {
 
     private lateinit var useCase: ListModelsUseCase
 
-    private val chatGptApiMock = mockk<ChatGptApi>()
+    private val apiMock = mockk<OpenAiApi>()
 
     @BeforeTest
     fun setup() {
-        useCase = ListModelsUseCase(chatGptApiMock)
+        useCase = ListModelsUseCase(apiMock)
     }
 
     @Test
@@ -29,7 +30,7 @@ class ListModelsUseCaseTest {
         val expectedIds = listOf("model1", "model2")
         val modelListDto = buildModelListDto(expectedIds)
         val apiResult = ApiResult(body = modelListDto)
-        coEvery { chatGptApiMock.models() } returns apiResult
+        coEvery { apiMock.models() } returns apiResult
 
         // act
         val result = runBlocking { useCase.getListModels() }
@@ -43,7 +44,7 @@ class ListModelsUseCaseTest {
     fun `on getListModels when not request succeed then should throw an exception`() {
         // arrange
         val apiResult = ApiResult<ModelListDto>(exception = YChatException())
-        coEvery { chatGptApiMock.models() } returns apiResult
+        coEvery { apiMock.models() } returns apiResult
 
         // act
         val result = runCatching { runBlocking { useCase.getListModels() } }

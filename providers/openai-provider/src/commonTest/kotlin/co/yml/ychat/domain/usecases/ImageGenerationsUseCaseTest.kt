@@ -1,11 +1,12 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.openai.provider.data.api.OpenAiApi
+import co.yml.openai.provider.data.dto.ImageGeneratedDto
+import co.yml.openai.provider.data.dto.ImageGenerationsDto
+import co.yml.openai.provider.domain.model.ImageGenerationsParams
+import co.yml.openai.provider.domain.usecases.ImageGenerationsUseCase
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.core.network.infrastructure.ApiResult
-import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.dto.ImageGeneratedDto
-import co.yml.ychat.data.dto.ImageGenerationsDto
-import co.yml.ychat.domain.model.ImageGenerationsParams
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.BeforeTest
@@ -17,11 +18,11 @@ class ImageGenerationsUseCaseTest {
 
     private lateinit var imageGenerationsUseCase: ImageGenerationsUseCase
 
-    private val chatGptApiMock = mockk<ChatGptApi>()
+    private val apiMock = mockk<OpenAiApi>()
 
     @BeforeTest
     fun setup() {
-        imageGenerationsUseCase = ImageGenerationsUseCase(chatGptApiMock)
+        imageGenerationsUseCase = ImageGenerationsUseCase(apiMock)
     }
 
     @Test
@@ -31,7 +32,7 @@ class ImageGenerationsUseCaseTest {
         val imageGenerationsDto = buildImageGenerationsDto("https://image-generated.test")
         val params = ImageGenerationsParams(prompt = prompt)
         val apiResult = ApiResult(body = imageGenerationsDto)
-        coEvery { chatGptApiMock.imageGenerations(any()) } returns apiResult
+        coEvery { apiMock.imageGenerations(any()) } returns apiResult
 
         // act
         val result = runBlocking { imageGenerationsUseCase.requestImageGenerations(params) }
@@ -46,7 +47,7 @@ class ImageGenerationsUseCaseTest {
         val prompt = "/image test"
         val params = ImageGenerationsParams(prompt = prompt)
         val apiResult = ApiResult<ImageGenerationsDto>(exception = YChatException())
-        coEvery { chatGptApiMock.imageGenerations(any()) } returns apiResult
+        coEvery { apiMock.imageGenerations(any()) } returns apiResult
 
         // act
         val result =

@@ -1,11 +1,13 @@
 package co.yml.ychat.domain.mapper
 
-import co.yml.ychat.data.dto.ChatCompletionsChoiceDto
-import co.yml.ychat.data.dto.ChatCompletionsDto
-import co.yml.ychat.data.dto.ChatMessageDto
-import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.domain.model.ChatCompletionsParams
-import co.yml.ychat.domain.model.ChatMessage
+import co.yml.openai.provider.data.dto.ChatCompletionsChoiceDto
+import co.yml.openai.provider.data.dto.ChatCompletionsDto
+import co.yml.openai.provider.data.dto.ChatMessageDto
+import co.yml.openai.provider.data.dto.UsageDto
+import co.yml.openai.provider.domain.mapper.toChatCompletionParamsDto
+import co.yml.openai.provider.domain.mapper.toChatMessages
+import co.yml.openai.provider.domain.model.ChatCompletionsParams
+import co.yml.openai.provider.domain.model.ChatMessage
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

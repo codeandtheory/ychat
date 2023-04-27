@@ -1,5 +1,6 @@
 package co.yml.ychat.data.infrastructure
 
+import co.yml.openai.provider.data.infrastructure.OpenAiHttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.request.request
