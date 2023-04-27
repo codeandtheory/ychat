@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import co.yml.openai.provider.OpenAi
 import co.yml.ychat.YChat
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.R
@@ -92,8 +93,8 @@ internal fun ImagesScreen(viewModel: ImagesViewModel = getViewModel()) {
 @Composable
 private fun ImagesScreenPreview() {
     YChatTheme {
-        val yChat = YChat.create(BuildConfig.API_KEY)
-        val viewModel = ImagesViewModel(yChat)
+        val openAi = OpenAi.create(BuildConfig.API_KEY)
+        val viewModel = ImagesViewModel(openAi)
         ImagesScreen(viewModel)
     }
 }

@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAi
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.R
 import co.yml.ychat.android.presentation.chatcompletions.model.MessageType
@@ -128,8 +128,8 @@ private fun SendButton(viewModel: ChatCompletionsViewModel) {
 @Composable
 private fun StandardTextFieldPreview() {
     YChatTheme {
-        val yChat = YChat.create(BuildConfig.API_KEY)
-        val viewModel = ChatCompletionsViewModel(yChat)
+        val openAi = OpenAi.create(BuildConfig.API_KEY)
+        val viewModel = ChatCompletionsViewModel(openAi)
         ChatCompletionsScreen(viewModel)
     }
 }

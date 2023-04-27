@@ -4,11 +4,11 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAi
 import co.yml.ychat.android.presentation.chatcompletions.model.MessageType
 import kotlinx.coroutines.launch
 
-internal class ChatCompletionsViewModel(private val yChat: YChat) : ViewModel() {
+internal class ChatCompletionsViewModel(private val openAi: OpenAi) : ViewModel() {
 
     val message = mutableStateOf("")
 
@@ -19,7 +19,7 @@ internal class ChatCompletionsViewModel(private val yChat: YChat) : ViewModel() 
     val onEnableTextField = mutableStateOf(true)
 
     private val chatCompletions by lazy {
-        yChat.chatCompletions()
+        openAi.chatCompletions()
             .addMessage("assistant", "You are helpful assistant")
             .setMaxTokens(MAX_TOKENS)
     }
