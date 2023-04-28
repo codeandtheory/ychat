@@ -1,12 +1,12 @@
 package co.yml.ychat.core.exceptions
 
-class YChatException(
+public class YChatException(
     message: String? = null,
     cause: Throwable? = null,
-    var statusCode: Int? = null,
+    public var statusCode: Int? = null,
 ) : Exception(message, cause) {
 
-    constructor(
+    public constructor(
         cause: Throwable?,
         statusCode: Int? = null
     ) : this(message = null, cause = cause, statusCode = statusCode)

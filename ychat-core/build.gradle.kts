@@ -18,6 +18,7 @@ kover {
 }
 
 kotlin {
+    explicitApi()
     android()
     jvm()
     listOf(
