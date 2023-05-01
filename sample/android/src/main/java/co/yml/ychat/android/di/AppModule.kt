@@ -1,6 +1,8 @@
 package co.yml.ychat.android.di
 
-import co.yml.ychat.YChat
+import co.yml.ducai.provider.DucAI
+import co.yml.ducai.provider.entrypoint.DucAIImpl
+import co.yml.openai.provider.OpenAi
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.data.ProviderKey
 import co.yml.ychat.android.data.ProviderRepository
@@ -14,21 +16,19 @@ import co.yml.ychat.android.presentation.settings.SettingsScreenViewModel
 import co.yml.ychat.android.usecases.GetSelectedProviderKeyUseCase
 import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
 import co.yml.ychat.android.usecases.SelectProviderUseCase
-import co.yml.ychat.ducai.entrypoint.DucAI
-import co.yml.ychat.ducai.entrypoint.DucAIImpl
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val appModule = module {
-    single { YChat.create(BuildConfig.API_KEY) }
+    single { OpenAi.create(BuildConfig.API_KEY) }
 
     single<DucAI> { DucAIImpl() }
 
     factory {
         ProviderRepository(
             mapOf(
-                ProviderKey.OPENAI to get<YChat>(),
+                ProviderKey.OPENAI to get<OpenAi>(),
                 ProviderKey.DUCAI to get<DucAI>()
             ),
             get()

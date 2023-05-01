@@ -9,6 +9,7 @@ import co.yml.openai.provider.entrypoint.features.OpenAiImageGenerations
 import co.yml.openai.provider.entrypoint.features.OpenAiListModels
 import co.yml.openai.provider.entrypoint.features.OpenAiRetrieveModel
 import co.yml.openai.provider.entrypoint.impl.OpenAiImpl
+import co.yml.ychat.core.provider.CoreProvider
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.Volatile
 import kotlin.native.concurrent.ThreadLocal
@@ -20,7 +21,7 @@ import kotlin.native.concurrent.ThreadLocal
  * See [this](https://beta.openai.com/docs/api-reference/authentication) for more details on how
  * to get the api key.
  */
-interface OpenAi {
+interface OpenAi : CoreProvider {
 
     /**
      * The listModels api lists the currently available models, and provides basic information

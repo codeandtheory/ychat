@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import co.yml.ychat.provider.Provider
+import co.yml.ychat.core.provider.CoreProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -18,7 +18,7 @@ enum class ProviderKey {
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class ProviderRepository(
-    private val providerMap: Map<ProviderKey, Provider>,
+    private val providerMap: Map<ProviderKey, CoreProvider>,
     private val context: Context
 ) {
 
@@ -31,7 +31,7 @@ class ProviderRepository(
             ProviderKey.valueOf(providerKeyName)
         }
 
-    val getSelectedProvider: Flow<Provider> = providerKeyFlow.map {
+    val getSelectedProvider: Flow<CoreProvider> = providerKeyFlow.map {
         providerMap.getValue(it)
     }
 

@@ -5,12 +5,11 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.ychat.YChat
+import co.yml.ducai.provider.DucAI
+import co.yml.openai.provider.OpenAi
 import co.yml.ychat.android.ui.components.output.OutputBoxState
 import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
-import co.yml.ychat.ducai.entrypoint.DucAI
-import co.yml.ychat.provider.Completions
-import co.yml.ychat.provider.Provider
+import co.yml.ychat.core.provider.CoreProvider
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -33,23 +32,24 @@ internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetS
         outputBoxStates.add(OutputBoxState.Text(messageToSend))
         onLoading(true)
         onMessage("")
-        getSelectedProviderUseCase().map { provider: Provider ->
-            when (provider) {
-                is YChat -> {
-                    provider.completion().setMaxTokens(MAX_TOKENS).setInput(messageToSend)
-                }
+        getSelectedProviderUseCase().map { provider: CoreProvider ->
+            runCatching {
+                when (provider) {
+                    is OpenAi -> {
+                        provider.completion().setMaxTokens(MAX_TOKENS).setInput(messageToSend)
+                            .execute()
+                    }
 
-                is DucAI -> {
-                    provider.completion().setInput(messageToSend)
-                }
+                    is DucAI -> {
+                        provider.completion().setInput(messageToSend).execute()
+                    }
 
-                else -> error("Provider not found")
-            }
-        }.flatMapMerge { completions: Completions ->
+                    else -> error("Provider not found")
+                }
+            }.also { onLoading(false) }
+        }.flatMapMerge { result ->
             return@flatMapMerge flow<Result<String>> {
-                emit(runCatching {
-                    completions.execute()
-                }.also { onLoading(false) })
+                emit(result)
             }
         }.collect {
             it.onSuccess {

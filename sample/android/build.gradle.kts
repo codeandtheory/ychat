@@ -45,7 +45,9 @@ android {
 
 dependencies {
     implementation(project(":ychat"))
+    implementation(project(":ychat-core"))
     implementation(project(":providers:openai-provider"))
+    implementation(project(":providers:ducai-provider"))
     implementation(Dependencies.UI.COMPOSE_UI)
     implementation(Dependencies.UI.COMPOSE_TOOLING)
     implementation(Dependencies.UI.COMPOSE_TOOLING_PREVIEW)

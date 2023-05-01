@@ -1,8 +1,9 @@
 package co.yml.ducai.provider
 
 import co.yml.ducai.provider.entrypoint.features.DucAICompletions
+import co.yml.ychat.core.provider.CoreProvider
 
-interface DucAI {
+interface DucAI : CoreProvider {
 
     fun completion(): DucAICompletions
 
