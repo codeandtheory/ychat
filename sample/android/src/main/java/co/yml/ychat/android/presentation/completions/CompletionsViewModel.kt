@@ -1,14 +1,23 @@
 package co.yml.ychat.android.presentation.completions
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.openai.provider.OpenAi
+import co.yml.ychat.YChat
 import co.yml.ychat.android.ui.components.output.OutputBoxState
+import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
+import co.yml.ychat.ducai.entrypoint.DucAI
+import co.yml.ychat.provider.Completions
+import co.yml.ychat.provider.Provider
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-internal class CompletionsViewModel(private val openAi: OpenAi): ViewModel() {
+internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetSelectedProviderUseCase) :
+    ViewModel() {
 
     val message = mutableStateOf("")
 
@@ -24,13 +33,33 @@ internal class CompletionsViewModel(private val openAi: OpenAi): ViewModel() {
         outputBoxStates.add(OutputBoxState.Text(messageToSend))
         onLoading(true)
         onMessage("")
-        val completions = openAi.completion()
-            .setMaxTokens(MAX_TOKENS)
-            .setInput(messageToSend)
-        runCatching { completions.execute() }
-            .also { onLoading(false) }
-            .onSuccess { outputBoxStates.add(OutputBoxState.Text(it, true)) }
-            .onFailure { onError(true) }
+        getSelectedProviderUseCase().map { provider: Provider ->
+            when (provider) {
+                is YChat -> {
+                    provider.completion().setMaxTokens(MAX_TOKENS).setInput(messageToSend)
+                }
+
+                is DucAI -> {
+                    provider.completion().setInput(messageToSend)
+                }
+
+                else -> error("Provider not found")
+            }
+        }.flatMapMerge { completions: Completions ->
+            return@flatMapMerge flow<Result<String>> {
+                emit(runCatching {
+                    completions.execute()
+                }.also { onLoading(false) })
+            }
+        }.collect {
+            it.onSuccess {
+                outputBoxStates.add(OutputBoxState.Text(it, true))
+            }.onFailure {
+                Log.e(TAG, it.message, it)
+                onError(true)
+            }
+        }
+
     }
 
     fun onMessage(message: String) {
@@ -59,6 +88,7 @@ internal class CompletionsViewModel(private val openAi: OpenAi): ViewModel() {
     }
 
     companion object {
+        val TAG = CompletionsViewModel::class.java.simpleName
         private const val MAX_TOKENS = 240
     }
 }

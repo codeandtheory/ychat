@@ -18,6 +18,7 @@ object Versions {
     const val MOCKK = "1.13.4"
     const val MOCKK_COMMON = "1.12.5"
     const val SPRING = "2.4.5"
+    const val DATA_STORE = "1.0.0"
 }
 
 object Dependencies {
@@ -54,6 +55,11 @@ object Dependencies {
         const val COMPOSE_NAVIGATION = "androidx.navigation:navigation-compose:${Versions.COMPOSE_NAVIGATION}"
         const val COMPOSE_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Versions.COMPOSE_LIVEDATA}"
         const val COIL = "io.coil-kt:coil-compose:${Versions.COIL}"
+    }
+
+    object DATA {
+        const val DATASTORE_PREFERENCES = "androidx.datastore:datastore-preferences:${Versions.DATA_STORE}"
+        const val DATASTORE_CORE = "androidx.datastore:datastore-core::${Versions.DATA_STORE}"
     }
 
     object Test {

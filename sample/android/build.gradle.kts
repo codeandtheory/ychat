@@ -58,4 +58,6 @@ dependencies {
     implementation(Dependencies.DI.KOIN_CORE)
     implementation(Dependencies.DI.KOIN_ANDROID)
     implementation(Dependencies.DI.KOIN_COMPOSE)
+    implementation(Dependencies.DATA.DATASTORE_PREFERENCES)
+    //implementation(Dependencies.DATA.DATASTORE_CORE)
 }

@@ -5,7 +5,6 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.tooling.preview.Preview
 import co.yml.ychat.android.presentation.audio.AudioScreen
 import co.yml.ychat.android.presentation.chatcompletions.screen.ChatCompletionsScreen
 import co.yml.ychat.android.presentation.completions.CompletionsScreen
@@ -18,7 +17,6 @@ import co.yml.ychat.android.presentation.settings.SettingsScreen
 import co.yml.ychat.android.ui.components.sidemenu.SideMenu
 import co.yml.ychat.android.ui.components.toolbar.Toolbar
 import co.yml.ychat.android.ui.theme.Icons
-import co.yml.ychat.android.ui.theme.YChatTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
@@ -62,7 +60,7 @@ private fun HomeScreenSideMenu(
     viewModel: HomeViewModel,
 ) {
     val scope = rememberCoroutineScope()
-    val items = HomeMenu.getMenuItems()
+    val items = viewModel.menuItems.value.map { it.getMenuItem() }
     val selectedItem = viewModel.selectedMenuItem.value.getMenuItem()
     SideMenu(items = items, selectedItem = selectedItem) { clickedItem ->
         viewModel.setSelectedMenuItem(clickedItem)
@@ -70,10 +68,12 @@ private fun HomeScreenSideMenu(
     }
 }
 
-@Preview
-@Composable
-private fun HomeScreenPreview() {
-    YChatTheme(true) {
-        HomeScreen(HomeViewModel())
-    }
-}
+//@Preview
+//@Composable
+//private fun HomeScreenPreview() {
+//    YChatTheme(true) {
+//        HomeScreen(HomeViewModel(
+//            GetSelectedProviderKeyUseCase()
+//        ))
+//    }
+//}
