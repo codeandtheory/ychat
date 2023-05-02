@@ -1,6 +1,6 @@
 package co.yml.openai.provider.entrypoint.features
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.core.exceptions.YChatException
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -10,19 +10,19 @@ import kotlin.coroutines.cancellation.CancellationException
  * context or pattern you gave it. For example, if you give the API the prompt, "As Descartes
  * said, I think, therefore", it will return the completion " I am" with high probability.
  */
-interface OpenAiCompletion {
+interface OpenAICompletion {
 
     /**
      * The default value of [input] is "".
      * @param input The prompt(s) to generate completions for.
      */
-    fun setInput(input: String): OpenAiCompletion
+    fun setInput(input: String): OpenAICompletion
 
     /**
      * The default value of [model] is "text-davinci-003".
      * @param model ID of the model to use.
      */
-    fun setModel(model: String): OpenAiCompletion
+    fun setModel(model: String): OpenAICompletion
 
     /**
      * The default value of [tokens] is 1024.
@@ -30,7 +30,7 @@ interface OpenAiCompletion {
      * of your prompt plus max_tokens cannot exceed the model's context length. Most models have
      * a context length of 2048 tokens (except for the newest models, which support 4096).
      */
-    fun setMaxTokens(tokens: Int): OpenAiCompletion
+    fun setMaxTokens(tokens: Int): OpenAICompletion
 
     /**
      * The default value of [temperature] is 1.0.
@@ -38,7 +38,7 @@ interface OpenAiCompletion {
      * risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a
      * well-defined answer. We generally recommend altering this or [setTopP] but not both.
      */
-    fun setTemperature(temperature: Double): OpenAiCompletion
+    fun setTemperature(temperature: Double): OpenAICompletion
 
     /**
      * The default value of [topP] is 1.0.
@@ -47,14 +47,14 @@ interface OpenAiCompletion {
      * comprising the top 10% probability mass are considered. We generally recommend altering
      * this or [setTemperature] but not both.
      */
-    fun setTopP(topP: Double): OpenAiCompletion
+    fun setTopP(topP: Double): OpenAICompletion
 
     /**
      * The default value of [isSaveHistory] is false.
      * @param isSaveHistory This flag enables the chat history to be stored, so that the GPT chat
      * can get the context of previous conversations.
      */
-    fun saveHistory(isSaveHistory: Boolean): OpenAiCompletion
+    fun saveHistory(isSaveHistory: Boolean): OpenAICompletion
 
     /**
      * Execute completion request.
@@ -67,5 +67,5 @@ interface OpenAiCompletion {
      * Executes completion request and returns the result through a callback.
      * @param callback a callback to return the result of the completion.
      */
-    fun execute(callback: OpenAi.Callback<String>)
+    fun execute(callback: OpenAI.Callback<String>)
 }

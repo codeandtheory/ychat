@@ -1,11 +1,11 @@
 package co.yml.openai.provider.entrypoint.features
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.openai.provider.domain.model.AIModel
 import kotlin.coroutines.cancellation.CancellationException
 
-interface OpenAiListModels {
+interface OpenAIListModels {
 
     /**
      * Retrieve a list of currently available models, and provides basic information about
@@ -23,5 +23,5 @@ interface OpenAiListModels {
      *
      * @param callback The callback to receive the list of available models.
      */
-    fun execute(callback: OpenAi.Callback<List<AIModel>>)
+    fun execute(callback: OpenAI.Callback<List<AIModel>>)
 }

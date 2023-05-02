@@ -13,22 +13,22 @@ import co.yml.openai.provider.domain.usecases.EditsUseCase
 import co.yml.openai.provider.domain.usecases.ImageGenerationsUseCase
 import co.yml.openai.provider.domain.usecases.ListModelsUseCase
 import co.yml.openai.provider.domain.usecases.RetrieveModelUseCase
-import co.yml.openai.provider.entrypoint.features.OpenAiAudioTranscriptions
-import co.yml.openai.provider.entrypoint.features.OpenAiAudioTranslations
-import co.yml.openai.provider.entrypoint.features.OpenAiChatCompletions
-import co.yml.openai.provider.entrypoint.features.OpenAiCompletion
-import co.yml.openai.provider.entrypoint.features.OpenAiEdits
-import co.yml.openai.provider.entrypoint.features.OpenAiImageGenerations
-import co.yml.openai.provider.entrypoint.features.OpenAiListModels
-import co.yml.openai.provider.entrypoint.features.OpenAiRetrieveModel
-import co.yml.openai.provider.entrypoint.impl.OpenAiAudioTranscriptionsImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiAudioTranslationsImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiChatCompletionsImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiCompletionImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiEditsImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiImageGenerationsImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiListModelsImpl
-import co.yml.openai.provider.entrypoint.impl.OpenAiRetrieveModelImpl
+import co.yml.openai.provider.entrypoint.features.OpenAIAudioTranscriptions
+import co.yml.openai.provider.entrypoint.features.OpenAIAudioTranslations
+import co.yml.openai.provider.entrypoint.features.OpenAIChatCompletions
+import co.yml.openai.provider.entrypoint.features.OpenAICompletion
+import co.yml.openai.provider.entrypoint.features.OpenAIEdits
+import co.yml.openai.provider.entrypoint.features.OpenAIImageGenerations
+import co.yml.openai.provider.entrypoint.features.OpenAIListModels
+import co.yml.openai.provider.entrypoint.features.OpenAIRetrieveModel
+import co.yml.openai.provider.entrypoint.impl.OpenAIAudioTranscriptionsImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIAudioTranslationsImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIChatCompletionsImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAICompletionImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIEditsImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIImageGenerationsImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIListModelsImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIRetrieveModelImpl
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -39,14 +39,14 @@ internal class OpenAiModule(private val apiKey: String) {
         entrypointModule + domainModule + dataModule
 
     private val entrypointModule = module {
-        factory<OpenAiListModels> { OpenAiListModelsImpl(Dispatchers.Default, get()) }
-        factory<OpenAiRetrieveModel> { OpenAiRetrieveModelImpl(Dispatchers.Default, get()) }
-        factory<OpenAiCompletion> { OpenAiCompletionImpl(Dispatchers.Default, get()) }
-        factory<OpenAiChatCompletions> { OpenAiChatCompletionsImpl(Dispatchers.Default, get()) }
-        factory<OpenAiImageGenerations> { OpenAiImageGenerationsImpl(Dispatchers.Default, get()) }
-        factory<OpenAiEdits> { OpenAiEditsImpl(Dispatchers.Default, get()) }
-        factory<OpenAiAudioTranscriptions> { OpenAiAudioTranscriptionsImpl(Dispatchers.Default, get()) }
-        factory<OpenAiAudioTranslations> { OpenAiAudioTranslationsImpl(Dispatchers.Default, get()) }
+        factory<OpenAIListModels> { OpenAIListModelsImpl(Dispatchers.Default, get()) }
+        factory<OpenAIRetrieveModel> { OpenAIRetrieveModelImpl(Dispatchers.Default, get()) }
+        factory<OpenAICompletion> { OpenAICompletionImpl(Dispatchers.Default, get()) }
+        factory<OpenAIChatCompletions> { OpenAIChatCompletionsImpl(Dispatchers.Default, get()) }
+        factory<OpenAIImageGenerations> { OpenAIImageGenerationsImpl(Dispatchers.Default, get()) }
+        factory<OpenAIEdits> { OpenAIEditsImpl(Dispatchers.Default, get()) }
+        factory<OpenAIAudioTranscriptions> { OpenAIAudioTranscriptionsImpl(Dispatchers.Default, get()) }
+        factory<OpenAIAudioTranslations> { OpenAIAudioTranslationsImpl(Dispatchers.Default, get()) }
     }
 
     private val domainModule = module {
