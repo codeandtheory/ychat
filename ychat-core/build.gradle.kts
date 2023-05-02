@@ -25,7 +25,11 @@ kotlin {
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
-    )
+    ).forEach {
+        it.binaries.framework {
+            baseName = "YChatCore"
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
