@@ -50,11 +50,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Dependencies.Network.KTOR_NEGOTIATION)
-                implementation(Dependencies.Network.KTOR_SERIALIZATION)
-                implementation(Dependencies.Network.KTOR_CORE)
-                implementation(Dependencies.Network.KTOR_LOGGING)
-                implementation(Dependencies.DI.KOIN_CORE)
+                implementation(project(":ychat-core"))
             }
         }
         val commonTest by getting {
@@ -65,11 +61,7 @@ kotlin {
                 implementation(Dependencies.Test.KOIN)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(Dependencies.Network.KTOR_OKHTTP)
-            }
-        }
+        val androidMain by getting
         val androidTest by getting {
             dependencies {
                 implementation(Dependencies.Test.MOCKK)
@@ -83,9 +75,6 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-            dependencies {
-                implementation(Dependencies.Network.KTOR_IOS)
-            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -96,11 +85,7 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
-        val jvmMain by getting {
-            dependencies {
-                implementation(Dependencies.Network.KTOR_OKHTTP)
-            }
-        }
+        val jvmMain by getting
         val jvmTest by getting {
             dependencies {
                 implementation(Dependencies.Test.MOCKK_JVM)

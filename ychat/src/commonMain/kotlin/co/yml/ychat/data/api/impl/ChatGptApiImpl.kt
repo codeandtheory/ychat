@@ -1,5 +1,8 @@
 package co.yml.ychat.data.api.impl
 
+import co.yml.ychat.core.model.toByteArray
+import co.yml.ychat.core.network.infrastructure.ApiExecutor
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.AudioParamsDto
 import co.yml.ychat.data.dto.AudioResultDto
@@ -13,9 +16,6 @@ import co.yml.ychat.data.dto.ImageGenerationsDto
 import co.yml.ychat.data.dto.ImageGenerationsParamsDto
 import co.yml.ychat.data.dto.ModelDto
 import co.yml.ychat.data.dto.ModelListDto
-import co.yml.ychat.data.infrastructure.ApiExecutor
-import co.yml.ychat.data.infrastructure.ApiResult
-import co.yml.ychat.domain.model.toByteArray
 import io.ktor.http.HttpMethod
 
 internal class ChatGptApiImpl(private val apiExecutor: ApiExecutor) : ChatGptApi {

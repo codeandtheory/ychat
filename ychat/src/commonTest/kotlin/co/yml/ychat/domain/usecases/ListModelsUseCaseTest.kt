@@ -1,10 +1,10 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.ModelDto
 import co.yml.ychat.data.dto.ModelListDto
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.data.infrastructure.ApiResult
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.BeforeTest
@@ -42,14 +42,14 @@ class ListModelsUseCaseTest {
     @Test
     fun `on getListModels when not request succeed then should throw an exception`() {
         // arrange
-        val apiResult = ApiResult<ModelListDto>(exception = ChatGptException())
+        val apiResult = ApiResult<ModelListDto>(exception = YChatException())
         coEvery { chatGptApiMock.models() } returns apiResult
 
         // act
         val result = runCatching { runBlocking { useCase.getListModels() } }
 
         // assert
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 
     private fun buildModelListDto(modelIds: List<String>): ModelListDto {

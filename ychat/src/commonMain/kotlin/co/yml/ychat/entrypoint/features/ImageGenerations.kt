@@ -1,7 +1,7 @@
 package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
-import co.yml.ychat.data.exception.ChatGptException
+import co.yml.ychat.core.exceptions.YChatException
 import kotlin.coroutines.cancellation.CancellationException
 
 interface ImageGenerations {
@@ -34,9 +34,9 @@ interface ImageGenerations {
      * @param prompt The prompt for generating the images.
      * @return A list of generated image objects.
      * @throws CancellationException if the operation is cancelled.
-     * @throws ChatGptException if there is an error generating images.
+     * @throws YChatException if there is an error generating images.
      */
-    @Throws(CancellationException::class, ChatGptException::class)
+    @Throws(CancellationException::class, YChatException::class)
     suspend fun execute(prompt: String): List<String>
 
     /**

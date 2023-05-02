@@ -1,8 +1,9 @@
 package co.yml.ychat.di
 
+import co.yml.ychat.core.network.factories.HttpClientFactory
+import co.yml.ychat.core.network.infrastructure.ApiExecutor
+import co.yml.ychat.core.storage.ChatLogStorage
 import co.yml.ychat.data.api.ChatGptApi
-import co.yml.ychat.data.infrastructure.ApiExecutor
-import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.di.module.LibraryModule
 import co.yml.ychat.domain.usecases.AudioUseCase
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
@@ -16,7 +17,6 @@ import co.yml.ychat.entrypoint.features.Completion
 import co.yml.ychat.entrypoint.features.Edits
 import co.yml.ychat.entrypoint.features.ImageGenerations
 import co.yml.ychat.entrypoint.features.ListModels
-import io.ktor.client.HttpClient
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -59,7 +59,7 @@ class LibraryModuleTest : KoinTest {
 
     @Test
     fun `should inject all data modules without throwing exception`() {
-        get<HttpClient>()
+        get<HttpClientFactory>()
         get<ChatLogStorage>()
         get<ApiExecutor>()
         get<ChatGptApi>()

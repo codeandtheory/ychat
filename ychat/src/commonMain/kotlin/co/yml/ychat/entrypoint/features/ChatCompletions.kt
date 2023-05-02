@@ -1,7 +1,7 @@
 package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
-import co.yml.ychat.data.exception.ChatGptException
+import co.yml.ychat.core.exceptions.YChatException
 import co.yml.ychat.domain.model.ChatMessage
 import kotlin.coroutines.cancellation.CancellationException
 
@@ -68,9 +68,9 @@ interface ChatCompletions {
      * @param content The content of the user input.
      * @return A list of chat message objects representing the possible completions.
      * @throws CancellationException if the operation is cancelled.
-     * @throws ChatGptException if there is an error generating chat completions.
+     * @throws YChatException if there is an error generating chat completions.
      */
-    @Throws(CancellationException::class, ChatGptException::class)
+    @Throws(CancellationException::class, YChatException::class)
     suspend fun execute(content: String): List<ChatMessage>
 
     /**

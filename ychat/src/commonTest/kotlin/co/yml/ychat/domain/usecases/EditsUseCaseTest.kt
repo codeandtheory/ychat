@@ -1,18 +1,18 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.EditsChoiceDto
 import co.yml.ychat.data.dto.EditsDto
 import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.data.infrastructure.ApiResult
 import co.yml.ychat.domain.model.EditsParams
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlinx.coroutines.runBlocking
 
 class EditsUseCaseTest {
 
@@ -46,7 +46,7 @@ class EditsUseCaseTest {
         // arrange
         val prompt = "text"
         val params = EditsParams(input = prompt)
-        val apiResult = ApiResult<EditsDto>(exception = ChatGptException())
+        val apiResult = ApiResult<EditsDto>(exception = YChatException())
         coEvery { chatGptApiMock.edits(any()) } returns apiResult
 
         // act
@@ -54,7 +54,7 @@ class EditsUseCaseTest {
             runCatching { runBlocking { editsUseCase.requestEdits(params) } }
 
         // assert
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 
     private fun buildEditsDto(texts: List<String>): EditsDto {

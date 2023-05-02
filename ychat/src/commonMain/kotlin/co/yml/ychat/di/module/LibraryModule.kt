@@ -1,10 +1,11 @@
 package co.yml.ychat.di.module
 
+import co.yml.ychat.core.network.factories.HttpClientFactory
+import co.yml.ychat.core.network.infrastructure.ApiExecutor
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.api.impl.ChatGptApiImpl
-import co.yml.ychat.data.infrastructure.ApiExecutor
-import co.yml.ychat.data.storage.ChatLogStorage
-import co.yml.ychat.di.provider.NetworkProvider
+import co.yml.ychat.data.infrastructure.OpenAiHttpClient
+import co.yml.ychat.core.storage.ChatLogStorage
 import co.yml.ychat.domain.usecases.AudioUseCase
 import co.yml.ychat.domain.usecases.ChatCompletionsUseCase
 import co.yml.ychat.domain.usecases.CompletionUseCase
@@ -35,7 +36,7 @@ import org.koin.dsl.module
 internal class LibraryModule(private val apiKey: String) {
 
     fun modules(): List<Module> =
-        entrypointModule + domainModule + dataModule + platformModule()
+        entrypointModule + domainModule + dataModule
 
     private val entrypointModule = module {
         factory<ListModels> { ListModelsImpl(Dispatchers.Default, get()) }
@@ -59,11 +60,9 @@ internal class LibraryModule(private val apiKey: String) {
     }
 
     private val dataModule = module {
-        single { NetworkProvider.provideHttpClient(get(), apiKey) }
+        single<HttpClientFactory> { OpenAiHttpClient(apiKey) }
         single { ChatLogStorage() }
         factory { ApiExecutor(get()) }
         factory<ChatGptApi> { ChatGptApiImpl(get()) }
     }
 }
-
-internal expect fun platformModule(): Module

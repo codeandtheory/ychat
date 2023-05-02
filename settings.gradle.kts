@@ -18,3 +18,4 @@ rootProject.name = "ychat-sdk"
 include(":ychat")
 include(":sample:android")
 include(":sample:jvm")
+include(":ychat-core")

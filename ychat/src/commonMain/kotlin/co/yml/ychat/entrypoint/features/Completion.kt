@@ -1,7 +1,7 @@
 package co.yml.ychat.entrypoint.features
 
 import co.yml.ychat.YChat
-import co.yml.ychat.data.exception.ChatGptException
+import co.yml.ychat.core.exceptions.YChatException
 import kotlin.coroutines.cancellation.CancellationException
 
 /**
@@ -60,7 +60,7 @@ interface Completion {
      * Execute completion request.
      * @return one predicted completion of the given prompt.
      */
-    @Throws(CancellationException::class, ChatGptException::class)
+    @Throws(CancellationException::class, YChatException::class)
     suspend fun execute(): String
 
     /**

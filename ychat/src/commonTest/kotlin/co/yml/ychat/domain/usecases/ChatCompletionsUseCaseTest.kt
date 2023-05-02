@@ -1,12 +1,12 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.network.infrastructure.ApiResult
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.ChatCompletionsChoiceDto
 import co.yml.ychat.data.dto.ChatCompletionsDto
 import co.yml.ychat.data.dto.ChatMessageDto
 import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.data.infrastructure.ApiResult
 import co.yml.ychat.domain.model.ChatCompletionsParams
 import co.yml.ychat.domain.model.ChatMessage
 import io.mockk.coEvery
@@ -48,7 +48,7 @@ class ChatCompletionsUseCaseTest {
         // arrange
         val messages = arrayListOf(ChatMessage("user", "Say this is a test."))
         val params = ChatCompletionsParams(messages)
-        val apiResult = ApiResult<ChatCompletionsDto>(exception = ChatGptException())
+        val apiResult = ApiResult<ChatCompletionsDto>(exception = YChatException())
         coEvery { chatGptApiMock.chatCompletions(any()) } returns apiResult
 
         // act
@@ -56,7 +56,7 @@ class ChatCompletionsUseCaseTest {
             runCatching { runBlocking { chatCompletionsUseCase.requestChatCompletions(params) } }
 
         // assert
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 
     private fun buildChatCompletionsDto(answer: String): ChatCompletionsDto {

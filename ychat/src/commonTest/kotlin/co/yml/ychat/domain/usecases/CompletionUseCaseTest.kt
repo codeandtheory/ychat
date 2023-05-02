@@ -1,12 +1,12 @@
 package co.yml.ychat.domain.usecases
 
+import co.yml.ychat.core.exceptions.YChatException
+import co.yml.ychat.core.network.infrastructure.ApiResult
+import co.yml.ychat.core.storage.ChatLogStorage
 import co.yml.ychat.data.api.ChatGptApi
 import co.yml.ychat.data.dto.ChoiceDto
 import co.yml.ychat.data.dto.CompletionDto
 import co.yml.ychat.data.dto.UsageDto
-import co.yml.ychat.data.exception.ChatGptException
-import co.yml.ychat.data.infrastructure.ApiResult
-import co.yml.ychat.data.storage.ChatLogStorage
 import co.yml.ychat.domain.model.CompletionParams
 import io.mockk.coEvery
 import io.mockk.every
@@ -36,7 +36,7 @@ class CompletionUseCaseTest {
     fun `on completion when request not succeed then should remove last appended input and throw exception`() {
         // arrange
         val input = "Say this is a test."
-        val apiResult = ApiResult<CompletionDto>(exception = ChatGptException())
+        val apiResult = ApiResult<CompletionDto>(exception = YChatException())
         val completionParams = CompletionParams(prompt = input, enableChatStorage = true)
         every { chatLogStorageMock.buildChatInput(input) } returns input
         every { chatLogStorageMock.removeLastAppendedInput() } just runs
@@ -48,7 +48,7 @@ class CompletionUseCaseTest {
 
         // assert
         verify(exactly = 1) { chatLogStorageMock.removeLastAppendedInput() }
-        assertEquals(true, result.exceptionOrNull() is ChatGptException)
+        assertEquals(true, result.exceptionOrNull() is YChatException)
     }
 
     @Test

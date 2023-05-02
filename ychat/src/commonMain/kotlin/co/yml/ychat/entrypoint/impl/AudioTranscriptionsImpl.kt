@@ -1,8 +1,8 @@
 package co.yml.ychat.entrypoint.impl
 
 import co.yml.ychat.YChat
+import co.yml.ychat.core.model.FileBytes
 import co.yml.ychat.domain.model.AudioParams
-import co.yml.ychat.domain.model.FileBytes
 import co.yml.ychat.domain.usecases.AudioUseCase
 import co.yml.ychat.entrypoint.features.AudioTranscriptions
 import kotlinx.coroutines.CoroutineDispatcher
