@@ -1,10 +1,12 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization").version(Versions.KOTLIN)
+    id("com.chromaticnoise.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
     id("com.android.library")
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jetbrains.kotlinx.kover")
+    id("com.vanniktech.maven.publish")
 }
 
 kover {
@@ -18,6 +20,16 @@ kover {
     }
 }
 
+multiplatformSwiftPackage {
+    version = Libraries.VERSION
+    packageName(Libraries.OpenAI.IOS_NAME)
+    swiftToolsVersion("5.3")
+    outputDirectory(File(rootDir, "/"))
+    targetPlatforms {
+        iOS { v("13") }
+    }
+}
+
 kotlin {
     android()
     jvm()
@@ -27,7 +39,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "openai-provider"
+            baseName = Libraries.OpenAI.IOS_NAME
         }
     }
 
@@ -83,5 +95,33 @@ android {
     defaultConfig {
         minSdk = Config.MIN_SDK_VERSION
         targetSdk = Config.TARGET_SDK_VERSION
+    }
+}
+
+mavenPublishing {
+    coordinates(Libraries.GROUP_ID, Libraries.OpenAI.ARTIFACT_ID, Libraries.VERSION)
+
+    pom {
+        name.set("OpenAI Provider")
+        description.set("OpenAI Provider is kotlin multiplatform library for open ai apis.")
+        url.set("https://github.com/yml-org/ychat")
+
+        developers {
+            developer {
+                id.set("osugikoji")
+                name.set("Koji Osugi")
+                url.set("https://github.com/osugikoji")
+            }
+            developer {
+                id.set("renatoarg")
+                name.set("Renato Goncalves")
+                url.set("https://github.com/renatoarg")
+            }
+            developer {
+                id.set("kikoso")
+                name.set("Enrique López Mañas")
+                url.set("https://github.com/kikoso")
+            }
+        }
     }
 }
