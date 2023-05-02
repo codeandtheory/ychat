@@ -11,11 +11,19 @@ let package = Package(
             name: "YChat",
             targets: ["YChat"]
         ),
+        .library(
+            name: "OpenAI",
+            targets: ["OpenAI"]
+        ),
     ],
     targets: [
         .binaryTarget(
             name: "YChat",
             path: "./YChat.xcframework"
+        ),
+        .binaryTarget(
+            name: "OpenAI",
+            path: "./OpenAI.xcframework"
         ),
     ]
 )

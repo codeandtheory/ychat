@@ -1,6 +1,6 @@
 object Libraries {
 
-    const val VERSION = "1.3.0"
+    const val VERSION = "1.3.0-test"
     const val GROUP_ID = "co.yml"
 
     object YChat {
