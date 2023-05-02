@@ -2,6 +2,6 @@ package co.yml.ychat.core.network.factories
 
 import io.ktor.client.HttpClient
 
-interface HttpClientFactory {
-    fun getHttpClient(): HttpClient
+public interface HttpClientFactory {
+    public fun getHttpClient(): HttpClient
 }

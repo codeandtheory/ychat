@@ -1,5 +1,5 @@
 package co.yml.ychat.core.model
 
-expect class FileBytes
+public expect class FileBytes
 
-expect fun FileBytes.toByteArray(): ByteArray
+public expect fun FileBytes.toByteArray(): ByteArray

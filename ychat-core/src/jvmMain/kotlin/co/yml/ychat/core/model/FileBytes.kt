@@ -1,7 +1,7 @@
 package co.yml.ychat.core.model
 
-actual typealias FileBytes = ByteArray
+public actual typealias FileBytes = ByteArray
 
-actual fun FileBytes.toByteArray(): ByteArray {
+public actual fun FileBytes.toByteArray(): ByteArray {
     return this
 }
