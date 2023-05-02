@@ -6,12 +6,12 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
-import YChat
+import OpenAI
 import Foundation
 
 internal final class ChatCompletionsViewModel: ObservableObject {
-    private var chatCompletions: ChatCompletions =
-        YChatCompanion.shared.create(apiKey: Config.apiKey)
+    private var chatCompletions: OpenAIChatCompletions =
+        OpenAICompanion.shared.create(apiKey: Config.apiKey)
             .chatCompletions()
             .setMaxTokens(tokens: 1024)
             .addMessage(

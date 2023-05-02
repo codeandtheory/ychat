@@ -1,7 +1,7 @@
 package co.yml.openai.provider.entrypoint.impl
 
-import co.yml.openai.provider.OpenAi
-import co.yml.openai.provider.entrypoint.features.OpenAiChatCompletions
+import co.yml.openai.provider.OpenAI
+import co.yml.openai.provider.entrypoint.features.OpenAIChatCompletions
 import co.yml.openai.provider.domain.model.ChatCompletionsParams
 import co.yml.openai.provider.domain.model.ChatMessage
 import co.yml.openai.provider.domain.usecases.ChatCompletionsUseCase
@@ -10,41 +10,41 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-internal class OpenAiChatCompletionsImpl(
+internal class OpenAIChatCompletionsImpl(
     private val dispatcher: CoroutineDispatcher,
     private val chatCompletionsUseCase: ChatCompletionsUseCase,
-) : OpenAiChatCompletions {
+) : OpenAIChatCompletions {
 
     private val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher) }
 
     private var params: ChatCompletionsParams = ChatCompletionsParams()
 
-    override fun setModel(model: String): OpenAiChatCompletions {
+    override fun setModel(model: String): OpenAIChatCompletions {
         params.model = model
         return this
     }
 
-    override fun setTopP(topP: Double): OpenAiChatCompletions {
+    override fun setTopP(topP: Double): OpenAIChatCompletions {
         params.topP = topP
         return this
     }
 
-    override fun setTemperature(temperature: Double): OpenAiChatCompletions {
+    override fun setTemperature(temperature: Double): OpenAIChatCompletions {
         params.temperature = temperature
         return this
     }
 
-    override fun setMaxResults(results: Int): OpenAiChatCompletions {
+    override fun setMaxResults(results: Int): OpenAIChatCompletions {
         params.maxResults = results
         return this
     }
 
-    override fun setMaxTokens(tokens: Int): OpenAiChatCompletions {
+    override fun setMaxTokens(tokens: Int): OpenAIChatCompletions {
         params.maxTokens = tokens
         return this
     }
 
-    override fun addMessage(role: String, content: String): OpenAiChatCompletions {
+    override fun addMessage(role: String, content: String): OpenAIChatCompletions {
         params.messages.add(ChatMessage(role, content))
         return this
     }
@@ -55,7 +55,7 @@ internal class OpenAiChatCompletionsImpl(
             .also { params.messages.addAll(it) }
     }
 
-    override fun execute(content: String, callback: OpenAi.Callback<List<ChatMessage>>) {
+    override fun execute(content: String, callback: OpenAI.Callback<List<ChatMessage>>) {
         scope.launch {
             runCatching { execute(content) }
                 .onSuccess { callback.onSuccess(it) }

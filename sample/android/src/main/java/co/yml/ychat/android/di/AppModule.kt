@@ -1,6 +1,6 @@
 package co.yml.ychat.android.di
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.presentation.chatcompletions.viewmodel.ChatCompletionsViewModel
 import co.yml.ychat.android.presentation.completions.CompletionsViewModel
@@ -12,7 +12,7 @@ import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val appModule = module {
-    single { OpenAi.create(BuildConfig.API_KEY) }
+    single { OpenAI.create(BuildConfig.API_KEY) }
     viewModelOf(::HomeViewModel)
     viewModelOf(::ChatCompletionsViewModel)
     viewModelOf(::ModelsViewModel)

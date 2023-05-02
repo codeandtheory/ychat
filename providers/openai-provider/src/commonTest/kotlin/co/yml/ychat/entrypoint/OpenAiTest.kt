@@ -1,8 +1,8 @@
 package co.yml.ychat.entrypoint
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.openai.provider.data.infrastructure.OpenAiHttpClient
-import co.yml.openai.provider.entrypoint.impl.OpenAiImpl
+import co.yml.openai.provider.entrypoint.impl.OpenAIImpl
 import co.yml.ychat.core.model.FileBytes
 import co.yml.ychat.core.network.factories.HttpClientFactory
 import infrastructure.MockStorage
@@ -19,18 +19,18 @@ import org.koin.dsl.module
 
 class OpenAiTest {
 
-    private lateinit var openAi: OpenAiImpl
+    private lateinit var openAi: OpenAIImpl
 
     @BeforeTest
     fun setup() {
-        openAi = OpenAiImpl("api.key")
+        openAi = OpenAIImpl("api.key")
     }
 
     @Test
     fun `on create method should return singleton instance`() {
         // arrange
-        val openAiOne = OpenAi.create("api.key")
-        val openAiTwo = OpenAi.create("api.key")
+        val openAiOne = OpenAI.create("api.key")
+        val openAiTwo = OpenAI.create("api.key")
 
         // assert
         assertEquals(openAiOne, openAiTwo)

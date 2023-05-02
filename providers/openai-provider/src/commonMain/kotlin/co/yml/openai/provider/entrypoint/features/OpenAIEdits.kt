@@ -1,34 +1,34 @@
 package co.yml.openai.provider.entrypoint.features
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.core.exceptions.YChatException
 import kotlin.coroutines.cancellation.CancellationException
 
-interface OpenAiEdits {
+interface OpenAIEdits {
 
     /**
      * Sets the input to generate edits for.
      *
      * @param input The input text to generate edits for.
-     * @return The updated [OpenAiEdits] object with the new input text.
+     * @return The updated [OpenAIEdits] object with the new input text.
      */
-    fun setInput(input: String): OpenAiEdits
+    fun setInput(input: String): OpenAIEdits
 
     /**
      * Sets the number of edit results to generate. The default value is 1.
      *
      * @param results The number of edit results to generate.
-     * @return The updated [OpenAiEdits] object with the new number of results.
+     * @return The updated [OpenAIEdits] object with the new number of results.
      */
-    fun setResults(results: Int): OpenAiEdits
+    fun setResults(results: Int): OpenAIEdits
 
     /**
      * Sets the ID of the model to use. The default value is "text-davinci-edit-001".
      *
      * @param model ID of the model to use.
-     * @return The updated [OpenAiEdits] object with the new model ID.
+     * @return The updated [OpenAIEdits] object with the new model ID.
      */
-    fun setModel(model: String): OpenAiEdits
+    fun setModel(model: String): OpenAIEdits
 
     /**
      * Sets the sampling [temperature] to use. The default value is 1.0.
@@ -36,9 +36,9 @@ interface OpenAiEdits {
      * @param temperature What sampling temperature to use. Higher values means the model will
      * take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling)
      * for ones with a well-defined answer.
-     * @return The updated [OpenAiEdits] object with the new sampling temperature.
+     * @return The updated [OpenAIEdits] object with the new sampling temperature.
      */
-    fun setTemperature(temperature: Double): OpenAiEdits
+    fun setTemperature(temperature: Double): OpenAIEdits
 
     /**
      * Sets the [topP] value for nucleus sampling. The default value is 1.0.
@@ -46,9 +46,9 @@ interface OpenAiEdits {
      * @param topP An alternative to sampling with temperature, called nucleus sampling,
      * where the model considers the results of the tokens with top_p probability mass.
      * So 0.1 means only the tokens comprising the top 10% probability mass are considered.
-     * @return The updated [OpenAiEdits] object with the new top_p value.
+     * @return The updated [OpenAIEdits] object with the new top_p value.
      */
-    fun setTopP(topP: Double): OpenAiEdits
+    fun setTopP(topP: Double): OpenAIEdits
 
     /**
      * Generates a list of possible edits for the given instruction.
@@ -68,5 +68,5 @@ interface OpenAiEdits {
      * @param instruction The instruction to generate edits for.
      * @param callback The callback to receive the list of possible edits.
      */
-    fun execute(instruction: String, callback: OpenAi.Callback<List<String>>)
+    fun execute(instruction: String, callback: OpenAI.Callback<List<String>>)
 }

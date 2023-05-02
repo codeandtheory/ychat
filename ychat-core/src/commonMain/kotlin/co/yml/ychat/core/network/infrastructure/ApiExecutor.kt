@@ -17,7 +17,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.utils.io.errors.IOException
 import kotlin.collections.set
 
-class ApiExecutor(private val httpClientFactory: HttpClientFactory) {
+public class ApiExecutor(private val httpClientFactory: HttpClientFactory) {
 
     private val httpClient by lazy { httpClientFactory.getHttpClient() }
 
@@ -29,39 +29,39 @@ class ApiExecutor(private val httpClientFactory: HttpClientFactory) {
 
     private var query: HashMap<String, String> = HashMap()
 
-    val formParts = mutableListOf<FormPart<*>>()
+    public val formParts: MutableList<FormPart<*>> = mutableListOf()
 
-    fun setEndpoint(endpoint: String): ApiExecutor {
+    public fun setEndpoint(endpoint: String): ApiExecutor {
         this.endpoint = endpoint
         return this
     }
 
-    fun setHttpMethod(httpMethod: HttpMethod): ApiExecutor {
+    public fun setHttpMethod(httpMethod: HttpMethod): ApiExecutor {
         this.httpMethod = httpMethod
         return this
     }
 
-    fun setBody(body: Any): ApiExecutor {
+    public fun setBody(body: Any): ApiExecutor {
         this.body = body
         return this
     }
 
-    fun addQuery(key: String, value: String): ApiExecutor {
+    public fun addQuery(key: String, value: String): ApiExecutor {
         this.query[key] = value
         return this
     }
 
-    fun addQuery(key: String, value: List<String>): ApiExecutor {
+    public fun addQuery(key: String, value: List<String>): ApiExecutor {
         this.query[key] = value.joinToString(",")
         return this
     }
 
-    fun <T : Any> addFormPart(key: String, value: T): ApiExecutor {
+    public fun <T : Any> addFormPart(key: String, value: T): ApiExecutor {
         formParts += FormPart(key, value)
         return this
     }
 
-    fun addFormPart(key: String, fileName: String, value: ByteArray): ApiExecutor {
+    public fun addFormPart(key: String, fileName: String, value: ByteArray): ApiExecutor {
         val headers = Headers.build {
             append(HttpHeaders.ContentType, ContentType.Application.OctetStream.contentType)
             append(HttpHeaders.ContentDisposition, "filename=$fileName")
@@ -70,7 +70,7 @@ class ApiExecutor(private val httpClientFactory: HttpClientFactory) {
         return this
     }
 
-    suspend inline fun <reified T> execute(): ApiResult<T> {
+    public suspend inline fun <reified T> execute(): ApiResult<T> {
         return try {
             val response = if (formParts.isEmpty()) executeRequest() else executeRequestAsForm()
             return response.toApiResult()
@@ -81,7 +81,7 @@ class ApiExecutor(private val httpClientFactory: HttpClientFactory) {
         }
     }
 
-    suspend fun executeRequest(): HttpResponse {
+    public suspend fun executeRequest(): HttpResponse {
         return httpClient.request(endpoint) {
             url { query.forEach { parameters.append(it.key, it.value) } }
             method = httpMethod
@@ -89,7 +89,7 @@ class ApiExecutor(private val httpClientFactory: HttpClientFactory) {
         }
     }
 
-    suspend fun executeRequestAsForm(): HttpResponse {
+    public suspend fun executeRequestAsForm(): HttpResponse {
         return httpClient.submitFormWithBinaryData(
             url = endpoint,
             formData = formData { formParts.forEach { append(it) } }

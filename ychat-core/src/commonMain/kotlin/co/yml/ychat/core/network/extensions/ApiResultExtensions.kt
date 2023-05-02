@@ -9,7 +9,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
 import io.ktor.util.toMap
 
-suspend inline fun <reified T> HttpResponse.toApiResult(): ApiResult<T> {
+public suspend inline fun <reified T> HttpResponse.toApiResult(): ApiResult<T> {
     val headers = this.headers.toMap()
     val statusCode = this.status.value
     return if (!this.status.isSuccess()) {
@@ -21,14 +21,14 @@ suspend inline fun <reified T> HttpResponse.toApiResult(): ApiResult<T> {
     }
 }
 
-fun <T> ResponseException.toApiResult(): ApiResult<T> {
+public fun <T> ResponseException.toApiResult(): ApiResult<T> {
     return ApiResult(
         statusCode = this.response.status.value,
         exception = YChatException(this.cause, this.response.status.value)
     )
 }
 
-fun <T> Throwable.toApiResult(): ApiResult<T> {
+public fun <T> Throwable.toApiResult(): ApiResult<T> {
     return ApiResult(
         statusCode = null,
         exception = YChatException(this.cause)

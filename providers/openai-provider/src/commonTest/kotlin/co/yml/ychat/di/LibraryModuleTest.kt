@@ -8,12 +8,12 @@ import co.yml.openai.provider.domain.usecases.CompletionUseCase
 import co.yml.openai.provider.domain.usecases.EditsUseCase
 import co.yml.openai.provider.domain.usecases.ImageGenerationsUseCase
 import co.yml.openai.provider.domain.usecases.ListModelsUseCase
-import co.yml.openai.provider.entrypoint.features.OpenAiAudioTranscriptions
-import co.yml.openai.provider.entrypoint.features.OpenAiChatCompletions
-import co.yml.openai.provider.entrypoint.features.OpenAiCompletion
-import co.yml.openai.provider.entrypoint.features.OpenAiEdits
-import co.yml.openai.provider.entrypoint.features.OpenAiImageGenerations
-import co.yml.openai.provider.entrypoint.features.OpenAiListModels
+import co.yml.openai.provider.entrypoint.features.OpenAIAudioTranscriptions
+import co.yml.openai.provider.entrypoint.features.OpenAIChatCompletions
+import co.yml.openai.provider.entrypoint.features.OpenAICompletion
+import co.yml.openai.provider.entrypoint.features.OpenAIEdits
+import co.yml.openai.provider.entrypoint.features.OpenAIImageGenerations
+import co.yml.openai.provider.entrypoint.features.OpenAIListModels
 import co.yml.ychat.core.network.factories.HttpClientFactory
 import co.yml.ychat.core.network.infrastructure.ApiExecutor
 import co.yml.ychat.core.storage.ChatLogStorage
@@ -39,12 +39,12 @@ class LibraryModuleTest : KoinTest {
 
     @Test
     fun `should inject all entrypoint modules without throwing exception`() {
-        get<OpenAiCompletion>()
-        get<OpenAiChatCompletions>()
-        get<OpenAiImageGenerations>()
-        get<OpenAiEdits>()
-        get<OpenAiListModels>()
-        get<OpenAiAudioTranscriptions>()
+        get<OpenAICompletion>()
+        get<OpenAIChatCompletions>()
+        get<OpenAIImageGenerations>()
+        get<OpenAIEdits>()
+        get<OpenAIListModels>()
+        get<OpenAIAudioTranscriptions>()
     }
 
     @Test

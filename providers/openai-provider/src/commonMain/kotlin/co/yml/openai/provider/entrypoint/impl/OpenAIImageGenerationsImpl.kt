@@ -1,34 +1,34 @@
 package co.yml.openai.provider.entrypoint.impl
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.openai.provider.domain.model.ImageGenerationsParams
 import co.yml.openai.provider.domain.usecases.ImageGenerationsUseCase
-import co.yml.openai.provider.entrypoint.features.OpenAiImageGenerations
+import co.yml.openai.provider.entrypoint.features.OpenAIImageGenerations
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-internal class OpenAiImageGenerationsImpl(
+internal class OpenAIImageGenerationsImpl(
     private val dispatcher: CoroutineDispatcher,
     private val imageGenerationsUseCase: ImageGenerationsUseCase,
-) : OpenAiImageGenerations {
+) : OpenAIImageGenerations {
 
     private val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher) }
 
     private var params: ImageGenerationsParams = ImageGenerationsParams()
 
-    override fun setResults(results: Int): OpenAiImageGenerations {
+    override fun setResults(results: Int): OpenAIImageGenerations {
         params.results = results
         return this
     }
 
-    override fun setSize(size: String): OpenAiImageGenerations {
+    override fun setSize(size: String): OpenAIImageGenerations {
         params.size = size
         return this
     }
 
-    override fun setResponseFormat(responseFormat: String): OpenAiImageGenerations {
+    override fun setResponseFormat(responseFormat: String): OpenAIImageGenerations {
         params.responseFormat = responseFormat
         return this
     }
@@ -38,7 +38,7 @@ internal class OpenAiImageGenerationsImpl(
         return imageGenerationsUseCase.requestImageGenerations(params)
     }
 
-    override fun execute(prompt: String, callback: OpenAi.Callback<List<String>>) {
+    override fun execute(prompt: String, callback: OpenAI.Callback<List<String>>) {
         scope.launch {
             runCatching { execute(prompt) }
                 .onSuccess { callback.onSuccess(it) }

@@ -6,7 +6,7 @@ import co.yml.ychat.features.Completions
 import co.yml.ychat.providers.Provider
 import org.koin.core.KoinApplication
 
-internal class YChatImpl(private val provider: Provider) : YChat {
+internal class YChatImpl(provider: Provider) : YChat {
 
     val koinApp = KoinApplication.init()
 

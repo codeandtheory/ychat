@@ -1,11 +1,11 @@
 package co.yml.openai.provider.entrypoint.features
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.core.exceptions.YChatException
 import co.yml.openai.provider.domain.model.AIModel
 import kotlin.coroutines.cancellation.CancellationException
 
-interface OpenAiRetrieveModel {
+interface OpenAIRetrieveModel {
 
     /**
      * Retrieves an artificial intelligence model based on the given [id] and provides basic
@@ -25,5 +25,5 @@ interface OpenAiRetrieveModel {
      *
      * @param callback The callback to receive the model.
      */
-    fun execute(id: String, callback: OpenAi.Callback<AIModel>)
+    fun execute(id: String, callback: OpenAI.Callback<AIModel>)
 }

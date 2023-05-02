@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import YChat
+import OpenAI
 
 internal class ModelsViewModel: ObservableObject {
-    private var listModels: ListModels {
-        YChatCompanion.shared.create(apiKey: Config.apiKey)
+    private var listModels: OpenAIListModels {
+        OpenAICompanion.shared.create(apiKey: Config.apiKey)
             .listModels()
     }
     
