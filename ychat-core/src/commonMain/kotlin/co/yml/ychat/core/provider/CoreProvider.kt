@@ -1,3 +1,3 @@
 package co.yml.ychat.core.provider
 
-interface CoreProvider
+public interface CoreProvider

@@ -1,6 +1,5 @@
 package co.yml.openai.provider
 
-import co.yml.openai.provider.entrypoint.features.OpenAIAudioTranscriptions
 import co.yml.openai.provider.entrypoint.features.OpenAIAudioTranslations
 import co.yml.openai.provider.entrypoint.features.OpenAIChatCompletions
 import co.yml.openai.provider.entrypoint.features.OpenAICompletion
@@ -9,6 +8,7 @@ import co.yml.openai.provider.entrypoint.features.OpenAIImageGenerations
 import co.yml.openai.provider.entrypoint.features.OpenAIListModels
 import co.yml.openai.provider.entrypoint.features.OpenAIRetrieveModel
 import co.yml.openai.provider.entrypoint.impl.OpenAIImpl
+import co.yml.ychat.core.provider.CoreProvider
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.Volatile
 import kotlin.native.concurrent.ThreadLocal
@@ -18,7 +18,7 @@ import kotlin.native.concurrent.ThreadLocal
  * See [this](https://beta.openai.com/docs/api-reference/authentication) for more details on how
  * to get the api key.
  */
-interface OpenAI {
+interface OpenAI : CoreProvider {
 
     /**
      * The listModels api lists the currently available models, and provides basic information
@@ -149,7 +149,7 @@ interface OpenAI {
      *      .execute("file.mp4", byteArrayFile)
      * ```
      */
-    fun audioTranscriptions(): OpenAIAudioTranscriptions
+    fun audioTranscriptions(): OpenAIAudioTranslations
 
     /**
      * The audioTranscriptions api is used to translates audio into English.

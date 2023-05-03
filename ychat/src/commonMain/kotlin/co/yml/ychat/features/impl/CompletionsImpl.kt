@@ -24,13 +24,13 @@ internal class CompletionsImpl(
 
     override suspend fun execute(): String {
         return when (provider) {
-            is Provider.OpenAi ->
+            is Provider.OpenAiP ->
                 OpenAI
                     .create(provider.apiKey)
                     .completion()
                     .setInput(prompt)
                     .execute()
-            is Provider.DucAi ->
+            is Provider.DucAiP ->
                 // call DucAi provider
                 throw UnsupportedOperationException("Execution is not supported for DucAi provider.")
         }

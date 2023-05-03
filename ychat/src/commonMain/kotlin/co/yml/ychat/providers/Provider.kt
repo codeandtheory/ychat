@@ -1,6 +1,6 @@
 package co.yml.ychat.providers
 
 sealed class Provider {
-    data class OpenAi(val apiKey: String) : Provider()
-    object DucAi : Provider()
+    data class OpenAiP(val apiKey: String) : Provider()
+    object DucAiP : Provider()
 }

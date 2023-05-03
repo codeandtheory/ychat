@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.yml.ducai.provider.DucAI
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.android.ui.components.output.OutputBoxState
 import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
 import co.yml.ychat.core.provider.CoreProvider
@@ -35,7 +35,7 @@ internal class CompletionsViewModel(private val getSelectedProviderUseCase: GetS
         getSelectedProviderUseCase().map { provider: CoreProvider ->
             runCatching {
                 when (provider) {
-                    is OpenAi -> {
+                    is OpenAI -> {
                         provider.completion().setMaxTokens(MAX_TOKENS).setInput(messageToSend)
                             .execute()
                     }

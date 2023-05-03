@@ -2,7 +2,7 @@ package co.yml.ychat.android.di
 
 import co.yml.ducai.provider.DucAI
 import co.yml.ducai.provider.entrypoint.DucAIImpl
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.data.ProviderKey
 import co.yml.ychat.android.data.ProviderRepository
@@ -21,14 +21,14 @@ import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val appModule = module {
-    single { OpenAi.create(BuildConfig.API_KEY) }
+    single { OpenAI.create(BuildConfig.API_KEY) }
 
     single<DucAI> { DucAIImpl() }
 
     factory {
         ProviderRepository(
             mapOf(
-                ProviderKey.OPENAI to get<OpenAi>(),
+                ProviderKey.OPENAI to get<OpenAI>(),
                 ProviderKey.DUCAI to get<DucAI>()
             ),
             get()
