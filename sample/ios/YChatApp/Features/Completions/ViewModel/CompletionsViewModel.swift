@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import YChat
+import OpenAI
 
 internal class CompletionsViewModel: ObservableObject {
     @Published
@@ -19,13 +19,13 @@ internal class CompletionsViewModel: ObservableObject {
     @Published
     var outputBoxStates: [OutputState] = []
     
-    private var yChat: YChat {
-        YChatCompanion.shared.create(apiKey: Config.apiKey)
+    private var openAi: OpenAI {
+        OpenAICompanion.shared.create(apiKey: Config.apiKey)
     }
     
     @MainActor
     func requestCompletions() {
-        let completions = yChat.completion()
+        let completions = openAi.completion()
             .setInput(input: input)
         outputBoxStates = []
         outputBoxStates.append(OutputState.text(text: input))

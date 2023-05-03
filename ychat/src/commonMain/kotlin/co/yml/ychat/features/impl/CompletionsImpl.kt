@@ -1,6 +1,6 @@
 package co.yml.ychat.features.impl
 
-import co.yml.openai.provider.OpenAi
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.features.Completions
 import co.yml.ychat.providers.Provider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -25,7 +25,7 @@ internal class CompletionsImpl(
     override suspend fun execute(): String {
         return when (provider) {
             is Provider.OpenAi ->
-                OpenAi
+                OpenAI
                     .create(provider.apiKey)
                     .completion()
                     .setInput(prompt)
