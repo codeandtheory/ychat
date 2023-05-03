@@ -12,6 +12,7 @@ import co.yml.ychat.android.presentation.edits.EditsViewModel
 import co.yml.ychat.android.presentation.home.viewmodel.HomeViewModel
 import co.yml.ychat.android.presentation.images.ImagesViewModel
 import co.yml.ychat.android.presentation.models.viewmodel.ModelsViewModel
+import co.yml.ychat.android.presentation.provider.ProviderScreenViewModel
 import co.yml.ychat.android.presentation.settings.SettingsScreenViewModel
 import co.yml.ychat.android.usecases.GetSelectedProviderKeyUseCase
 import co.yml.ychat.android.usecases.GetSelectedProviderUseCase
@@ -46,5 +47,6 @@ val appModule = module {
     viewModelOf(::EditsViewModel)
     viewModelOf(::ImagesViewModel)
     viewModelOf(::SettingsScreenViewModel)
+    viewModelOf(::ProviderScreenViewModel)
 
 }

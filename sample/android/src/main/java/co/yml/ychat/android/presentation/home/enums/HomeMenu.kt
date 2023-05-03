@@ -47,10 +47,16 @@ internal enum class HomeMenu(
         icons = Icons.Image,
         title = R.string.home_chat_images_title,
         isTopDividerVisible = false,
-        availability = listOf(ProviderKey.OPENAI),
     ),
     AUDIO(
         id = "audio",
+        icons = Icons.Audio,
+        title = R.string.home_chat_audio_title,
+        isTopDividerVisible = false,
+        availability = listOf(ProviderKey.OPENAI),
+    ),
+    PROVIDER(
+        id = "provider",
         icons = Icons.Audio,
         title = R.string.home_chat_audio_title,
         isTopDividerVisible = false,

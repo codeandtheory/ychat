@@ -1,10 +1,13 @@
 package co.yml.ychat.android.presentation.home.screen
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import co.yml.ychat.android.presentation.audio.AudioScreen
 import co.yml.ychat.android.presentation.chatcompletions.screen.ChatCompletionsScreen
 import co.yml.ychat.android.presentation.completions.CompletionsScreen
@@ -13,6 +16,7 @@ import co.yml.ychat.android.presentation.home.enums.HomeMenu
 import co.yml.ychat.android.presentation.home.viewmodel.HomeViewModel
 import co.yml.ychat.android.presentation.images.ImagesScreen
 import co.yml.ychat.android.presentation.models.ModelsScreen
+import co.yml.ychat.android.presentation.provider.ProviderScreen
 import co.yml.ychat.android.presentation.settings.SettingsScreen
 import co.yml.ychat.android.ui.components.sidemenu.SideMenu
 import co.yml.ychat.android.ui.components.toolbar.Toolbar
@@ -28,14 +32,19 @@ internal fun HomeScreen(viewModel: HomeViewModel = getViewModel()) {
         topBar = { HomeScreenTopBar(scaffoldState, viewModel) },
         drawerContent = { HomeScreenSideMenu(scaffoldState, viewModel) },
         content = {
-            when (viewModel.selectedMenuItem.value.id) {
-                HomeMenu.MODELS.id -> ModelsScreen()
-                HomeMenu.COMPLETIONS.id -> CompletionsScreen()
-                HomeMenu.CHAT_COMPLETIONS.id -> ChatCompletionsScreen()
-                HomeMenu.EDITS.id -> EditsScreen()
-                HomeMenu.IMAGES.id -> ImagesScreen()
-                HomeMenu.AUDIO.id -> AudioScreen()
-                HomeMenu.SETTINGS.id -> SettingsScreen()
+            Surface(
+                modifier = Modifier.padding(it)
+            ) {
+                when (viewModel.selectedMenuItem.value.id) {
+                    HomeMenu.MODELS.id -> ModelsScreen()
+                    HomeMenu.COMPLETIONS.id -> CompletionsScreen()
+                    HomeMenu.CHAT_COMPLETIONS.id -> ChatCompletionsScreen()
+                    HomeMenu.EDITS.id -> EditsScreen()
+                    HomeMenu.IMAGES.id -> ImagesScreen()
+                    HomeMenu.AUDIO.id -> AudioScreen()
+                    HomeMenu.SETTINGS.id -> SettingsScreen()
+                    HomeMenu.PROVIDER.id -> ProviderScreen()
+                }
             }
         }
     )
