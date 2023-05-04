@@ -1,8 +1,10 @@
 package co.yml.ychat.android.presentation.settings
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.yml.ychat.android.R
 import co.yml.ychat.android.data.ProviderKey
 import co.yml.ychat.android.usecases.GetSelectedProviderKeyUseCase
 import co.yml.ychat.android.usecases.SelectProviderUseCase
@@ -42,9 +44,8 @@ internal class SettingsScreenViewModel(
     }
 
     data class ProviderUI(
-        val name: String,
-        val isSelected: Boolean = false,
-        val providerKey: ProviderKey
+        @StringRes val label: Int = R.string.provider,
+        val providerName: String
     )
 
 }

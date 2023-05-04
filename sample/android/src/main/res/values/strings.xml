@@ -47,4 +47,7 @@
 
     <!-- OutputBox -->
     <string name="output_box_error_message">Something went wrong. Try again.</string>
+
+    <string name="provider">Provider</string>
+
 </resources>
