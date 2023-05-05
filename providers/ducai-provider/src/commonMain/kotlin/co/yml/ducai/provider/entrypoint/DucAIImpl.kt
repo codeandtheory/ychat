@@ -5,7 +5,7 @@ import co.yml.ducai.provider.di.DucAILibraryModule
 import co.yml.ducai.provider.entrypoint.features.DucAICompletions
 import org.koin.core.KoinApplication
 
-class DucAIImpl : DucAI {
+internal class DucAIImpl : DucAI {
 
     private val koinApp = KoinApplication.init()
 

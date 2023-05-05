@@ -22,6 +22,11 @@ enum Icon: String, CaseIterable {
     case warningOutline = "ic_warning_outline"
     case warning = "ic_warning"
     case construction = "ic_construction"
+    case arrowRight = "ic_arrow_right"
+    case arrowLeft = "ic_arrow_left"
+    case api = "ic_api"
+    case star = "ic_star"
+    case menuVertical = "ic_menu_vertical"
     
     func image(_ tint: Color = .icon, size: CGFloat = 24) -> some View {
         Image(self.rawValue)

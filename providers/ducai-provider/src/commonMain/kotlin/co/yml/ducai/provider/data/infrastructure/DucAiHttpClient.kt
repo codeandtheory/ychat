@@ -1,6 +1,5 @@
 package co.yml.ducai.provider.data.infrastructure
 
-import co.yml.ducai.provider.data.api.BASE_URL
 import co.yml.ychat.core.network.factories.HttpClientFactory
 import co.yml.ychat.core.network.factories.HttpEngineFactory
 import io.ktor.client.HttpClient
@@ -45,6 +44,7 @@ internal class DucAiHttpClient(
     }
 
     companion object {
+        private const val BASE_URL = "duchaba-yml-text-bert.hf.space"
         private const val TIMEOUT_MILLIS = 60000L
     }
 }

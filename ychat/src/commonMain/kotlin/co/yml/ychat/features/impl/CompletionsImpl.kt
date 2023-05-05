@@ -1,5 +1,6 @@
 package co.yml.ychat.features.impl
 
+import co.yml.ducai.provider.DucAI
 import co.yml.openai.provider.OpenAI
 import co.yml.ychat.features.Completions
 import co.yml.ychat.providers.Provider
@@ -31,8 +32,11 @@ internal class CompletionsImpl(
                     .setInput(prompt)
                     .execute()
             is Provider.DucAi ->
-                // call DucAi provider
-                throw UnsupportedOperationException("Execution is not supported for DucAi provider.")
+                DucAI
+                    .create()
+                    .completion()
+                    .setInput(prompt)
+                    .execute()
         }
     }
 

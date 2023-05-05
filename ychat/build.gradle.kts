@@ -50,6 +50,7 @@ kotlin {
             dependencies {
                 implementation(project(":ychat-core"))
                 implementation(project(":providers:openai-provider"))
+                implementation(project(":providers:ducai-provider"))
             }
         }
         val commonTest by getting {

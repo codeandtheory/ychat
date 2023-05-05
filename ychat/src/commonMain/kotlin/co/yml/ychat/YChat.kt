@@ -1,5 +1,6 @@
 package co.yml.ychat
 
+import co.yml.ychat.features.ChatCompletions
 import co.yml.ychat.features.Completions
 import co.yml.ychat.features.impl.YChatImpl
 import co.yml.ychat.providers.Provider
@@ -10,6 +11,8 @@ import kotlin.native.concurrent.ThreadLocal
 interface YChat {
 
     fun completions(): Completions
+
+    fun chatCompletions(): ChatCompletions
 
     @ThreadLocal
     companion object {

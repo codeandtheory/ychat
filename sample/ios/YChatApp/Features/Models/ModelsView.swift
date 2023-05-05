@@ -31,7 +31,7 @@ struct ModelsView: View {
             case .success(let models):
                 ScrollView {
                     ForEach(models, id: \.self) {
-                        ItemMenu(startText: $0.id, caption: $0.ownedBy)
+                        ItemMenu(startText: $0.id, startCaption: $0.ownedBy)
                     }.padding(.top, 16)
                 }
             }

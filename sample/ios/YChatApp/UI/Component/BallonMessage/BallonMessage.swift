@@ -53,15 +53,12 @@ struct BallonBotMessage: View {
                     .frame(width: 40, height: 40)
                     .overlay { Icon.bot.image(.white) }
                 ZStack {
-                    Text(text)
-                        .foregroundColor(.text1)
-                        .style(.mediumBody)
-                        .multilineTextAlignment(.leading)
+                    TypeWriterText(text)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(Color.text4)
-                .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
+                .cornerRadius(16, corners: [.bottomLeft, .bottomRight, .topRight])
             }
             Spacer().frame(width: 60)
             Spacer()
@@ -72,13 +69,17 @@ struct BallonBotMessage: View {
 struct BallonTyping: View {
     var body: some View {
         HStack {
+            Circle()
+                .fill(.green)
+                .frame(width: 40, height: 40)
+                .overlay { Icon.bot.image(.white) }
             ZStack {
                 TypingLoading()
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             .background(Color.text4)
-            .cornerRadius(16, corners: [.bottomLeft, .bottomLeft, .topRight])
+            .cornerRadius(16, corners: [.bottomLeft, .bottomRight, .topRight])
             Spacer()
         }
     }

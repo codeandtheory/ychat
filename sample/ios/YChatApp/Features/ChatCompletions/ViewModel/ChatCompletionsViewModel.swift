@@ -7,28 +7,38 @@
 //
 
 import OpenAI
+import YChat
 import Foundation
 
 internal final class ChatCompletionsViewModel: ObservableObject {
-    private var chatCompletions: OpenAIChatCompletions =
-        OpenAICompanion.shared.create(apiKey: Config.apiKey)
-            .chatCompletions()
-            .setMaxTokens(tokens: 1024)
-            .addMessage(
-                role: "assistant",
-                content: "You are a helpful assistant."
-            )
+    private var chatCompletions: ChatCompletions
     
     @Published
     var message: String = ""
-
+    
     @Published
     var chatMessageList: [ChatMessage] = []
-
+    
     var isLoading: Bool {
         chatMessageList.contains { $0.type == .loading }
     }
-
+    
+    init() {
+        let selectedProvider = ProviderManager.shared.selectedProvider
+        switch selectedProvider {
+        case .openAi:
+            chatCompletions = YChatCompanion
+                .shared
+                .create(provider: .OpenAi(apiKey: Config.apiKey))
+                .chatCompletions()
+        case .ducAi:
+            chatCompletions = YChatCompanion
+                .shared
+                .create(provider: .DucAi())
+                .chatCompletions()
+        }
+    }
+    
     @MainActor
     func sendMessage() {
         Task.init {
@@ -37,7 +47,7 @@ internal final class ChatCompletionsViewModel: ObservableObject {
             cleanLastMessage()
             addLoading()
             do {
-                let result = try await chatCompletions.execute(content: input)[0].content
+                let result = try await chatCompletions.execute(input: input)
                 removeLoading()
                 addAIMessage(message: result)
             } catch {
@@ -46,7 +56,7 @@ internal final class ChatCompletionsViewModel: ObservableObject {
             }
         }
     }
-
+    
     private func addHumanMessage(message: String) {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
@@ -55,7 +65,7 @@ internal final class ChatCompletionsViewModel: ObservableObject {
         )
         chatMessageList.append(chatMessage)
     }
-
+    
     private func addAIMessage(message: String) {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
@@ -64,7 +74,7 @@ internal final class ChatCompletionsViewModel: ObservableObject {
         )
         chatMessageList.append(chatMessage)
     }
-
+    
     private func addLoading() {
         let chatMessage = ChatMessage(
             id: UUID().uuidString,
@@ -72,16 +82,16 @@ internal final class ChatCompletionsViewModel: ObservableObject {
         )
         chatMessageList.append(chatMessage)
     }
-
+    
     private func removeLoading() {
         chatMessageList.removeAll { $0.type == .loading }
     }
-
+    
     private func cleanLastMessage() {
         message = ""
         chatMessageList.removeAll(where: { $0.type == .human(error: true) })
     }
-
+    
     private func setError() {
         if let row = self.chatMessageList.lastIndex(where: { $0.type == .human(error: false) }) {
             chatMessageList[row].type = .human(error: true)

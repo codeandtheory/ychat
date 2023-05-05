@@ -1,14 +1,14 @@
-package co.yml.ducai.provider
+package co.yml.ychat.features
 
-import co.yml.ducai.provider.entrypoint.DucAIImpl
-import co.yml.ducai.provider.entrypoint.features.DucAICompletions
-import kotlin.jvm.JvmStatic
-import kotlin.jvm.Volatile
-import kotlin.native.concurrent.ThreadLocal
+import co.yml.ychat.core.exceptions.YChatException
+import kotlin.coroutines.cancellation.CancellationException
 
-interface DucAI {
+interface ChatCompletions {
 
-    fun completion(): DucAICompletions
+    @Throws(CancellationException::class, YChatException::class)
+    suspend fun execute(input: String): String
+
+    fun execute(input: String, callback: Callback<String>)
 
     /**
      * Callback is an interface used for handling the results of an operation.
@@ -30,17 +30,5 @@ interface DucAI {
          * @param throwable The exception thrown during the operation.
          */
         fun onError(throwable: Throwable)
-    }
-
-    @ThreadLocal
-    companion object {
-
-        @Volatile
-        private var instance: DucAI? = null
-
-        @JvmStatic
-        fun create(): DucAI {
-            return instance ?: DucAIImpl().also { instance = it }
-        }
     }
 }

@@ -15,6 +15,9 @@ internal struct HomeMenu: View {
     @Binding
     private var selectedMenuItem: Item
     
+    @StateObject
+    private var providerManager: ProviderManager = .shared
+    
     init(
         showSidebar: Binding<Bool>,
         selectedMenuItem: Binding<Item>
@@ -31,16 +34,35 @@ internal struct HomeMenu: View {
                     .padding(.horizontal, 16)
                 Divider().background(Color.divider)
                     .padding(.bottom, 12)
-                ForEach(Item.allCases, id: \.self) {
-                    if $0.hasTopDivider {
-                        Divider().background(Color.divider)
-                            .padding(.vertical, 8)
-                            .padding(.leading, 48)
-                    }
-                    sideMenuItemView(item: $0)
-                        .padding(.top, 4)
+                switch providerManager.selectedProvider {
+                case .openAi: openAiMenu()
+                case .ducAi: ducAiMenu()
                 }
             }
+        }
+    }
+    
+    private func openAiMenu() -> some View {
+        ForEach(Item.openAiMenu, id: \.self) {
+            if $0.hasTopDivider {
+                Divider().background(Color.divider)
+                    .padding(.vertical, 8)
+                    .padding(.leading, 48)
+            }
+            sideMenuItemView(item: $0)
+                .padding(.top, 4)
+        }
+    }
+    
+    private func ducAiMenu() -> some View {
+        ForEach(Item.ducAiMenu, id: \.self) {
+            if $0.hasTopDivider {
+                Divider().background(Color.divider)
+                    .padding(.vertical, 8)
+                    .padding(.leading, 48)
+            }
+            sideMenuItemView(item: $0)
+                .padding(.top, 4)
         }
     }
     
@@ -111,6 +133,14 @@ extension HomeMenu {
             case .settings: return true
             default: return false
             }
+        }
+        
+        static var openAiMenu: [Item] {
+            Item.allCases
+        }
+        
+        static var ducAiMenu: [Item] {
+            [Item.completions, .chatCompletions, .settings]
         }
     }
 }

@@ -10,6 +10,13 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* YChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* YChatApp.swift */; };
+		484415EC2A04524900B7CD6C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415EB2A04524900B7CD6C /* SettingsView.swift */; };
+		484415EE2A045DB400B7CD6C /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415ED2A045DB400B7CD6C /* HomeRouter.swift */; };
+		484415F02A04610700B7CD6C /* ProviderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415EF2A04610700B7CD6C /* ProviderListView.swift */; };
+		484415F32A0468EB00B7CD6C /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415F22A0468EB00B7CD6C /* BottomSheet.swift */; };
+		484415F52A0470E000B7CD6C /* ProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415F42A0470E000B7CD6C /* ProviderManager.swift */; };
+		484415F82A04757000B7CD6C /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415F72A04757000B7CD6C /* UserDefaultsExtensions.swift */; };
+		484415FB2A0484CC00B7CD6C /* TypeWritter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484415FA2A0484CC00B7CD6C /* TypeWritter.swift */; };
 		486C6F7129DF647F006E427E /* HomeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6F7029DF647F006E427E /* HomeMenu.swift */; };
 		486C6F7429DFA3BE006E427E /* LogoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6F7329DFA3BE006E427E /* LogoLabel.swift */; };
 		486C6F7629E08207006E427E /* LogoSplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486C6F7529E08207006E427E /* LogoSplash.swift */; };
@@ -61,6 +68,13 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* YChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YChatApp.swift; sourceTree = "<group>"; };
+		484415EB2A04524900B7CD6C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		484415ED2A045DB400B7CD6C /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		484415EF2A04610700B7CD6C /* ProviderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderListView.swift; sourceTree = "<group>"; };
+		484415F22A0468EB00B7CD6C /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		484415F42A0470E000B7CD6C /* ProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderManager.swift; sourceTree = "<group>"; };
+		484415F72A04757000B7CD6C /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		484415FA2A0484CC00B7CD6C /* TypeWritter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeWritter.swift; sourceTree = "<group>"; };
 		486C6F7029DF647F006E427E /* HomeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenu.swift; sourceTree = "<group>"; };
 		486C6F7329DFA3BE006E427E /* LogoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoLabel.swift; sourceTree = "<group>"; };
 		486C6F7529E08207006E427E /* LogoSplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoSplash.swift; sourceTree = "<group>"; };
@@ -117,6 +131,40 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		484415EA2A04523A00B7CD6C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				484415EB2A04524900B7CD6C /* SettingsView.swift */,
+				484415EF2A04610700B7CD6C /* ProviderListView.swift */,
+				484415F42A0470E000B7CD6C /* ProviderManager.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		484415F12A0468E200B7CD6C /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				484415F22A0468EB00B7CD6C /* BottomSheet.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		484415F62A04755C00B7CD6C /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				484415F72A04757000B7CD6C /* UserDefaultsExtensions.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		484415F92A0484C100B7CD6C /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				484415FA2A0484CC00B7CD6C /* TypeWritter.swift */,
+			);
+			path = Text;
 			sourceTree = "<group>";
 		};
 		486C6F7229DFA3A4006E427E /* Logo */ = {
@@ -235,6 +283,8 @@
 		488448E1297B8EF9005B8A24 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				484415F92A0484C100B7CD6C /* Text */,
+				484415F12A0468E200B7CD6C /* Sheet */,
 				486C6F9229E61D3F006E427E /* Output */,
 				486C6F8829E612C4006E427E /* ItemMenu */,
 				486C6F8129E11309006E427E /* BallonMessage */,
@@ -300,6 +350,7 @@
 				486C6F9529E6543B006E427E /* Completions */,
 				486C6F8B29E61515006E427E /* Models */,
 				488448EB297CAC28005B8A24 /* ChatCompletions */,
+				484415EA2A04523A00B7CD6C /* Settings */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -340,6 +391,7 @@
 		48844900297CE062005B8A24 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				484415F62A04755C00B7CD6C /* Cache */,
 				489A546B297F93EF00A6532C /* Env */,
 				48844901297CE06E005B8A24 /* Navigation */,
 			);
@@ -368,6 +420,7 @@
 			children = (
 				4884490C297CE1E6005B8A24 /* HomeView.swift */,
 				486C6F7029DF647F006E427E /* HomeMenu.swift */,
+				484415ED2A045DB400B7CD6C /* HomeRouter.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -538,12 +591,17 @@
 				488448DF297B8DF6005B8A24 /* Typography.swift in Sources */,
 				488448E3297B8F1B005B8A24 /* DefaultTextFieldStyle.swift in Sources */,
 				486C6F9029E615A6006E427E /* ModelsViewModel.swift in Sources */,
+				484415EC2A04524900B7CD6C /* SettingsView.swift in Sources */,
 				488448D9297B8419005B8A24 /* ChatCompletionsViewModel.swift in Sources */,
+				484415F32A0468EB00B7CD6C /* BottomSheet.swift in Sources */,
 				48844905297CE094005B8A24 /* TransitionAnimation.swift in Sources */,
 				4884490D297CE1E6005B8A24 /* HomeView.swift in Sources */,
+				484415EE2A045DB400B7CD6C /* HomeRouter.swift in Sources */,
 				488448ED297CAC4F005B8A24 /* ChatMessage.swift in Sources */,
 				488448EA297B9843005B8A24 /* Icon.swift in Sources */,
+				484415F82A04757000B7CD6C /* UserDefaultsExtensions.swift in Sources */,
 				488448DD297B8DD2005B8A24 /* Color.swift in Sources */,
+				484415FB2A0484CC00B7CD6C /* TypeWritter.swift in Sources */,
 				486C6F7129DF647F006E427E /* HomeMenu.swift in Sources */,
 				486C6F8329E11316006E427E /* BallonMessage.swift in Sources */,
 				488448EF297CD1E8005B8A24 /* ToolbarModifer.swift in Sources */,
@@ -554,6 +612,7 @@
 				486C6F8A29E612D0006E427E /* ItemMenu.swift in Sources */,
 				486C6F7929E08456006E427E /* Feedback.swift in Sources */,
 				488448FF297CE035005B8A24 /* AppRouter.swift in Sources */,
+				484415F02A04610700B7CD6C /* ProviderListView.swift in Sources */,
 				488448F6297CDF67005B8A24 /* SideMenu.swift in Sources */,
 				2152FB042600AC8F00CF470E /* YChatApp.swift in Sources */,
 				486C6F9429E61D4E006E427E /* OutputBox.swift in Sources */,
@@ -563,6 +622,7 @@
 				7555FF83242A565900829871 /* ChatCompletionsView.swift in Sources */,
 				488448E6297B9116005B8A24 /* RoundedCorner.swift in Sources */,
 				489A546D297F93F700A6532C /* Config.swift in Sources */,
+				484415F52A0470E000B7CD6C /* ProviderManager.swift in Sources */,
 				486C6F7D29E088EA006E427E /* ButtonContained.swift in Sources */,
 				486C6F8D29E61520006E427E /* ModelsView.swift in Sources */,
 				488448FC297CE004005B8A24 /* SplashView.swift in Sources */,

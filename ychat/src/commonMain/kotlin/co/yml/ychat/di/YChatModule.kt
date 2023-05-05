@@ -1,6 +1,8 @@
 package co.yml.ychat.di
 
+import co.yml.ychat.features.ChatCompletions
 import co.yml.ychat.features.Completions
+import co.yml.ychat.features.impl.ChatCompletionsImpl
 import co.yml.ychat.features.impl.CompletionsImpl
 import co.yml.ychat.providers.Provider
 import kotlinx.coroutines.Dispatchers
@@ -14,5 +16,6 @@ internal class YChatModule(private val provider: Provider) {
 
     private val featuresModule = module {
         factory<Completions> { CompletionsImpl(Dispatchers.Default, provider) }
+        factory<ChatCompletions> { ChatCompletionsImpl(Dispatchers.Default, provider) }
     }
 }
