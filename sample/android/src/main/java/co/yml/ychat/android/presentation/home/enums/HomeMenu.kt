@@ -47,6 +47,7 @@ internal enum class HomeMenu(
         icons = Icons.Image,
         title = R.string.home_chat_images_title,
         isTopDividerVisible = false,
+        availability = listOf(ProviderKey.OPENAI),
     ),
     AUDIO(
         id = "audio",
