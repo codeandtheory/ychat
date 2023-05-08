@@ -1,6 +1,6 @@
 package co.yml.ychat.android.presentation.settings
 
-import androidx.annotation.StringRes
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +16,7 @@ internal class SettingsScreenViewModel(
     private val selectProviderUseCase: SelectProviderUseCase,
 ) : ViewModel() {
 
-    val providers = mutableStateOf<List<ProviderUI>>(emptyList())
+    val providers = mutableStateOf<ProviderUI?>(null)
 
     init {
         fetchProviders()
@@ -24,13 +24,9 @@ internal class SettingsScreenViewModel(
 
     private fun fetchProviders() = viewModelScope.launch {
         getSelectedProvider().map { selectedKey ->
-            ProviderKey.values().map {
-                ProviderUI(
-                    name = it.name,
-                    providerKey = it,
-                    isSelected = it == selectedKey
-                )
-            }
+            ProviderUI(
+                providerName = selectedKey.name
+            )
         }
             .collect {
                 providers.value = it
@@ -44,7 +40,8 @@ internal class SettingsScreenViewModel(
     }
 
     data class ProviderUI(
-        @StringRes val label: Int = R.string.provider,
+        @DrawableRes val leftIcon: Int = R.drawable.ic_api,
+        @DrawableRes val rightIcon: Int = R.drawable.ic_arrow_right,
         val providerName: String
     )
 

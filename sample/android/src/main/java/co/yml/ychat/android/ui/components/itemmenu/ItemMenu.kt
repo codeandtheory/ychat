@@ -72,7 +72,9 @@ fun ItemMenu(
                 HorizontalDivider(modifier = Modifier.padding(horizontal = Dimens.MD))
             }
         }
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             metaText?.let {
                 TypographyStyle.SmallBody.Text(
                     text = it
@@ -81,6 +83,7 @@ fun ItemMenu(
             rightImage?.let {
                 Image(
                     painter = painterResource(id = it),
+                    modifier = Modifier.padding(start = Dimens.XS),
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(YChatTheme.colors.accent),
                 )
@@ -112,6 +115,7 @@ private fun ItemMenuWithIconAndMeteTextPreview() {
         ) {
             ItemMenu(
                 leftImage = R.drawable.ic_api,
+                rightImage = R.drawable.ic_arrow_right,
                 startText = "Label one line",
                 metaText = "Info",
                 isDividerVisible = false
