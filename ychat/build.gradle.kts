@@ -31,7 +31,7 @@ multiplatformSwiftPackage {
     outputDirectory(File(rootDir, "/"))
     targetPlatforms {
         iOS { v("13") }
-        macOS { v("10.0") }
+        macOS { v("11") }
     }
 }
 
