@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization").version(Versions.KOTLIN)
-    id("com.chromaticnoise.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
+    id("io.github.luca992.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
     id("com.vanniktech.maven.publish")
     id("com.android.library")
     id("io.gitlab.arturbosch.detekt")
