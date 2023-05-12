@@ -88,6 +88,13 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+        val macosArm64Main by getting
+        val macosX64Main by getting
+        val macosMain by creating {
+            dependsOn(commonMain)
+            macosArm64Main.dependsOn(this)
+            macosX64Main.dependsOn(this)
+        }
         val jvmMain by getting
         val jvmTest by getting {
             dependencies {
