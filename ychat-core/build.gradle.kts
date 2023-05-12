@@ -22,6 +22,8 @@ kotlin {
     android()
     jvm()
     listOf(
+        macosArm64(),
+        macosX64(),
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
@@ -64,6 +66,16 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(Dependencies.Network.KTOR_IOS)
+            }
+        }
+        val macosArm64Main by getting
+        val macosX64Main by getting
+        val macosMain by creating {
+            dependsOn(commonMain)
+            macosArm64Main.dependsOn(this)
+            macosX64Main.dependsOn(this)
+            dependencies {
+                implementation(Dependencies.Network.KTOR_DARWIN)
             }
         }
         val iosTest by creating {

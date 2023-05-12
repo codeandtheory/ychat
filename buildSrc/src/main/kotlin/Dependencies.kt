@@ -34,6 +34,7 @@ object Dependencies {
         const val KTOR_LOGGING = "io.ktor:ktor-client-logging:${Versions.KTOR}"
         const val KTOR_ANDROID = "io.ktor:ktor-client-android:${Versions.KTOR}"
         const val KTOR_IOS = "io.ktor:ktor-client-ios:${Versions.KTOR}"
+        const val KTOR_DARWIN = "io.ktor:ktor-client-darwin:${Versions.KTOR}"
         const val KTOR_OKHTTP = "io.ktor:ktor-client-okhttp:${Versions.KTOR}"
     }
 

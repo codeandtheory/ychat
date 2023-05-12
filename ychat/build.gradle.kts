@@ -31,6 +31,7 @@ multiplatformSwiftPackage {
     outputDirectory(File(rootDir, "/"))
     targetPlatforms {
         iOS { v("13") }
+        macOS { v("10.0") }
     }
 }
 
@@ -38,6 +39,8 @@ kotlin {
     android()
     jvm()
     listOf(
+        macosArm64(),
+        macosX64(),
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
