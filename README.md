@@ -9,7 +9,7 @@ Y—Chat is a Kotlin Multiplatform (KMP) project that provides a simple API for 
 
 The repository contains the source code for the Y—Chat library, along with examples and documentation for getting started with the library. The Y—Chat library provides a consistent interface for interacting with ChatGPT, regardless of the platform, and makes it easy to generate human-like text based on a given prompt or context.
 
-The library uses Kotlin Multiplatform to generate artifacts for both iOS, Android and JVM, allowing developers to write code once and use it on multiple platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, Y—Chat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
+The library uses Kotlin Multiplatform to generate artifacts for both iOS, macOS, Android and JVM, allowing developers to write code once and use it on multiple platforms. The project is open source and actively maintained, with contributions from the community encouraged. Overall, Y—Chat provides a convenient and powerful way for mobile developers to incorporate the advanced natural language processing capabilities of ChatGPT into their applications.
 
 ## ⚡️ Getting Started
 
@@ -59,7 +59,7 @@ repositories {
 Then, simply import the dependency to your `build.gradle` dependencies:
 
 ```kotlin
-implementation("co.yml:ychat:1.3.0")
+implementation("co.yml:ychat:1.4.0")
 ```
 
 Take a look at the Kotlin code snippet below for an example of how to initialize and use one of the supported features:

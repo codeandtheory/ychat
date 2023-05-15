@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization").version(Versions.KOTLIN)
-    id("com.chromaticnoise.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
+    id("io.github.luca992.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
     id("com.vanniktech.maven.publish")
     id("com.android.library")
     id("io.gitlab.arturbosch.detekt")
@@ -31,6 +31,7 @@ multiplatformSwiftPackage {
     outputDirectory(File(rootDir, "/"))
     targetPlatforms {
         iOS { v("13") }
+        macOS { v("11") }
     }
 }
 
@@ -38,6 +39,8 @@ kotlin {
     android()
     jvm()
     listOf(
+        macosArm64(),
+        macosX64(),
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
@@ -84,6 +87,13 @@ kotlin {
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
+        }
+        val macosArm64Main by getting
+        val macosX64Main by getting
+        val macosMain by creating {
+            dependsOn(commonMain)
+            macosArm64Main.dependsOn(this)
+            macosX64Main.dependsOn(this)
         }
         val jvmMain by getting
         val jvmTest by getting {
