@@ -6,7 +6,7 @@ tasks.register("checkSwiftPackageVersion") {
     description = "Checks if the Swift package has the updated version by comparing it with the current library version."
     doLast {
         val iosLibraryName = properties["IOS_NAME"]
-        val libraryVersion = properties["VERSION_NAME"]
+        val libraryVersion = properties["LIBRARY_VERSION"]
         val iosPackage = "$iosLibraryName-$libraryVersion.zip"
         val filePath = File(rootProject.rootDir, iosPackage)
         if (!filePath.exists()) {

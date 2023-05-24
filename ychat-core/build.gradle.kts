@@ -4,6 +4,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jetbrains.kotlinx.kover")
+    id("com.vanniktech.maven.publish")
 }
 
 kover {
@@ -40,7 +41,6 @@ kotlin {
                 api(Dependencies.Network.KTOR_SERIALIZATION)
                 api(Dependencies.Network.KTOR_CORE)
                 api(Dependencies.Network.KTOR_LOGGING)
-                api(Dependencies.DI.KOIN_CORE)
             }
         }
         val commonTest by getting {
@@ -100,5 +100,33 @@ android {
     defaultConfig {
         minSdk = Config.MIN_SDK_VERSION
         targetSdk = Config.TARGET_SDK_VERSION
+    }
+}
+
+mavenPublishing {
+    coordinates("co.yml", "ychat-core", properties["LIBRARY_VERSION"].toString())
+    pom {
+        developers {
+            developer {
+                id.set("osugikoji")
+                name.set("Koji Osugi")
+                url.set("https://github.com/osugikoji")
+            }
+            developer {
+                id.set("renatoarg")
+                name.set("Renato Goncalves")
+                url.set("https://github.com/renatoarg")
+            }
+            developer {
+                id.set("kikoso")
+                name.set("Enrique López Mañas")
+                url.set("https://github.com/kikoso")
+            }
+            developer {
+                id.set("samirma")
+                name.set("Samir Moreira Antonio")
+                url.set("https://github.com/samirma")
+            }
+        }
     }
 }
