@@ -23,7 +23,7 @@ kover {
 }
 
 val iosLibraryName = properties["IOS_NAME"].toString()
-version = properties["VERSION_NAME"].toString()
+version = properties["LIBRARY_VERSION"].toString()
 
 multiplatformSwiftPackage {
     packageName(iosLibraryName)
@@ -53,6 +53,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(Dependencies.DI.KOIN_CORE)
                 implementation(project(":ychat-core"))
             }
         }
@@ -114,6 +115,7 @@ android {
 }
 
 mavenPublishing {
+    coordinates("co.yml", "ychat", properties["LIBRARY_VERSION"].toString())
     pom {
         developers {
             developer {
@@ -130,6 +132,11 @@ mavenPublishing {
                 id.set("kikoso")
                 name.set("Enrique López Mañas")
                 url.set("https://github.com/kikoso")
+            }
+            developer {
+                id.set("samirma")
+                name.set("Samir Moreira Antonio")
+                url.set("https://github.com/samirma")
             }
         }
     }
