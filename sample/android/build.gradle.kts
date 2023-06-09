@@ -7,11 +7,11 @@ plugins {
 
 android {
     namespace = "co.yml.ychat.android"
-    compileSdk = Config.COMPILE_SDK_VERSION
+    compileSdk = libs.versions.config.compile.sdk.version.get().toInt()
     defaultConfig {
         applicationId = "co.yml.ychat.android"
-        minSdk = Config.MIN_SDK_VERSION
-        targetSdk = Config.TARGET_SDK_VERSION
+        minSdk = libs.versions.config.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.config.target.sdk.version.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -45,16 +45,15 @@ android {
 
 dependencies {
     implementation(project(":ychat"))
-    implementation(Dependencies.UI.COMPOSE_UI)
-    implementation(Dependencies.UI.COMPOSE_TOOLING)
-    implementation(Dependencies.UI.COMPOSE_TOOLING_PREVIEW)
-    implementation(Dependencies.UI.COMPOSE_FOUNDATION)
-    implementation(Dependencies.UI.COMPOSE_MATERIAL)
-    implementation(Dependencies.UI.COMPOSE_ACTIVITY)
-    implementation(Dependencies.UI.COMPOSE_NAVIGATION)
-    implementation(Dependencies.UI.COMPOSE_LIVEDATA)
-    implementation(Dependencies.UI.COIL)
-    implementation(Dependencies.DI.KOIN_CORE)
-    implementation(Dependencies.DI.KOIN_ANDROID)
-    implementation(Dependencies.DI.KOIN_COMPOSE)
+    implementation(libs.androidx.compose.tooling)
+    implementation(libs.androidx.compose.tooling.preview)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.navigation)
+    implementation(libs.androidx.compose.livedata)
+    implementation(libs.coil)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 }

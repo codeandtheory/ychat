@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization").version(Versions.KOTLIN)
-    id("io.github.luca992.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
+    kotlin("plugin.serialization").version(libs.versions.kotlin)
+    id("io.github.luca992.multiplatform-swiftpackage").version(libs.versions.spmPlugin)
     id("com.vanniktech.maven.publish")
     id("com.android.library")
     id("io.gitlab.arturbosch.detekt")
@@ -53,22 +53,22 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Dependencies.DI.KOIN_CORE)
+                implementation(libs.koin.core)
                 implementation(project(":ychat-core"))
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(Dependencies.Test.MOCKK_COMMON)
-                implementation(Dependencies.Test.KTOR)
-                implementation(Dependencies.Test.KOIN)
+                implementation(libs.mockk.common)
+                implementation(libs.ktor.client.mock)
+                implementation(libs.koin.test)
             }
         }
         val androidMain by getting
         val androidTest by getting {
             dependencies {
-                implementation(Dependencies.Test.MOCKK)
+                implementation(libs.mockk)
             }
         }
         val iosX64Main by getting
@@ -99,7 +99,7 @@ kotlin {
         val jvmMain by getting
         val jvmTest by getting {
             dependencies {
-                implementation(Dependencies.Test.MOCKK_JVM)
+                implementation(libs.mockk.jvm)
             }
         }
     }
@@ -107,10 +107,10 @@ kotlin {
 
 android {
     namespace = "co.yml.ychat"
-    compileSdk = Config.COMPILE_SDK_VERSION
+    compileSdk = libs.versions.config.compile.sdk.version.get().toInt()
     defaultConfig {
-        minSdk = Config.MIN_SDK_VERSION
-        targetSdk = Config.TARGET_SDK_VERSION
+        minSdk = libs.versions.config.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.config.target.sdk.version.get().toInt()
     }
 }
 
