@@ -99,7 +99,6 @@ android {
     compileSdk = libs.versions.config.compile.sdk.version.get().toInt()
     defaultConfig {
         minSdk = libs.versions.config.min.sdk.version.get().toInt()
-        targetSdk = libs.versions.config.target.sdk.version.get().toInt()
     }
 }
 
