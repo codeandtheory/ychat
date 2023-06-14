@@ -19,7 +19,7 @@ mockk = "1.13.5"
 mockkCommon = "1.12.5"
 publishPlugin = "0.24.0"
 spmPlugin = "2.0.5-arm64"
-spring = "2.6.15"
+spring = "3.1.0"
 
 [libraries]
 # Spring
