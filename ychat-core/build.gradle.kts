@@ -4,6 +4,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jetbrains.kotlinx.kover")
+    id("com.vanniktech.maven.publish")
 }
 
 kover {
@@ -22,6 +23,8 @@ kotlin {
     android()
     jvm()
     listOf(
+        macosArm64(),
+        macosX64(),
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
@@ -34,24 +37,23 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Dependencies.Network.KTOR_NEGOTIATION)
-                api(Dependencies.Network.KTOR_SERIALIZATION)
-                api(Dependencies.Network.KTOR_CORE)
-                api(Dependencies.Network.KTOR_LOGGING)
-                api(Dependencies.DI.KOIN_CORE)
+                api(libs.ktor.negotiation)
+                api(libs.ktor.serialization)
+                api(libs.ktor.core)
+                api(libs.ktor.logging)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(Dependencies.Test.MOCKK_COMMON)
-                implementation(Dependencies.Test.KTOR)
-                implementation(Dependencies.Test.KOIN)
+                implementation(libs.mockk.common)
+                implementation(libs.ktor.client.mock)
+                implementation(libs.koin.test)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(Dependencies.Network.KTOR_OKHTTP)
+                implementation(libs.ktor.okhttp)
             }
         }
         val iosX64Main by getting
@@ -63,7 +65,17 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation(Dependencies.Network.KTOR_IOS)
+                implementation(libs.ktor.ios)
+            }
+        }
+        val macosArm64Main by getting
+        val macosX64Main by getting
+        val macosMain by creating {
+            dependsOn(commonMain)
+            macosArm64Main.dependsOn(this)
+            macosX64Main.dependsOn(this)
+            dependencies {
+                implementation(libs.ktor.darwin)
             }
         }
         val iosTest by creating {
@@ -71,12 +83,12 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation(Dependencies.Network.KTOR_OKHTTP)
+                implementation(libs.ktor.okhttp)
             }
         }
         val jvmTest by getting {
             dependencies {
-                implementation(Dependencies.Test.MOCKK_JVM)
+                implementation(libs.mockk.jvm)
             }
         }
     }
@@ -84,9 +96,36 @@ kotlin {
 
 android {
     namespace = "co.yml.ychat.core"
-    compileSdk = Config.COMPILE_SDK_VERSION
+    compileSdk = libs.versions.config.compile.sdk.version.get().toInt()
     defaultConfig {
-        minSdk = Config.MIN_SDK_VERSION
-        targetSdk = Config.TARGET_SDK_VERSION
+        minSdk = libs.versions.config.min.sdk.version.get().toInt()
+    }
+}
+
+mavenPublishing {
+    coordinates("co.yml", "ychat-core", properties["LIBRARY_VERSION"].toString())
+    pom {
+        developers {
+            developer {
+                id.set("osugikoji")
+                name.set("Koji Osugi")
+                url.set("https://github.com/osugikoji")
+            }
+            developer {
+                id.set("renatoarg")
+                name.set("Renato Goncalves")
+                url.set("https://github.com/renatoarg")
+            }
+            developer {
+                id.set("kikoso")
+                name.set("Enrique López Mañas")
+                url.set("https://github.com/kikoso")
+            }
+            developer {
+                id.set("samirma")
+                name.set("Samir Moreira Antonio")
+                url.set("https://github.com/samirma")
+            }
+        }
     }
 }

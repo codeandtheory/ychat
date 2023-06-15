@@ -1,6 +1,6 @@
 object Libraries {
 
-    const val VERSION = "1.3.0"
+    const val VERSION = "1.4.1"
     const val GROUP_ID = "co.yml"
 
     object YChat {
@@ -9,7 +9,7 @@ object Libraries {
     }
 
     object OpenAI {
-        const val ARTIFACT_ID = "openai-provider"
+        const val ARTIFACT_ID = "openai"
         const val IOS_NAME = "OpenAI"
     }
 }

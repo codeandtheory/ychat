@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization").version(Versions.KOTLIN)
-    id("com.chromaticnoise.multiplatform-swiftpackage").version(Versions.SPM_PLUGIN)
+    kotlin("plugin.serialization").version(libs.versions.kotlin)
+    id("io.github.luca992.multiplatform-swiftpackage").version(libs.versions.spmPlugin)
     id("com.vanniktech.maven.publish")
     id("com.android.library")
     id("io.gitlab.arturbosch.detekt")
@@ -29,6 +29,7 @@ multiplatformSwiftPackage {
     outputDirectory(File(rootDir, "/"))
     targetPlatforms {
         iOS { v("13") }
+        macOS { v("11") }
     }
 }
 
@@ -36,6 +37,8 @@ kotlin {
     android()
     jvm()
     listOf(
+        macosArm64(),
+        macosX64(),
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
@@ -48,21 +51,23 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(libs.koin.core)
                 implementation(project(":ychat-core"))
-                implementation(project(":providers:openai-provider"))
+                implementation(project(":openai"))
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(Dependencies.Test.MOCKK_COMMON)
-                implementation(Dependencies.Test.KOIN)
+                implementation(libs.mockk.common)
+                implementation(libs.ktor.client.mock)
+                implementation(libs.koin.test)
             }
         }
         val androidMain by getting
         val androidTest by getting {
             dependencies {
-                implementation(Dependencies.Test.MOCKK)
+                implementation(libs.mockk)
             }
         }
         val iosX64Main by getting
@@ -83,10 +88,17 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+        val macosArm64Main by getting
+        val macosX64Main by getting
+        val macosMain by creating {
+            dependsOn(commonMain)
+            macosArm64Main.dependsOn(this)
+            macosX64Main.dependsOn(this)
+        }
         val jvmMain by getting
         val jvmTest by getting {
             dependencies {
-                implementation(Dependencies.Test.MOCKK_JVM)
+                implementation(libs.mockk.jvm)
             }
         }
     }
@@ -94,16 +106,14 @@ kotlin {
 
 android {
     namespace = "co.yml.ychat"
-    compileSdk = Config.COMPILE_SDK_VERSION
+    compileSdk = libs.versions.config.compile.sdk.version.get().toInt()
     defaultConfig {
-        minSdk = Config.MIN_SDK_VERSION
-        targetSdk = Config.TARGET_SDK_VERSION
+        minSdk = libs.versions.config.min.sdk.version.get().toInt()
     }
 }
 
 mavenPublishing {
     coordinates(Libraries.GROUP_ID, Libraries.YChat.ARTIFACT_ID, Libraries.VERSION)
-
     pom {
         name.set("YChat")
         description.set("YChat SDK is kotlin multiplatform library for chat gpt apis.")
@@ -124,6 +134,11 @@ mavenPublishing {
                 id.set("kikoso")
                 name.set("Enrique López Mañas")
                 url.set("https://github.com/kikoso")
+            }
+            developer {
+                id.set("samirma")
+                name.set("Samir Moreira Antonio")
+                url.set("https://github.com/samirma")
             }
         }
     }
