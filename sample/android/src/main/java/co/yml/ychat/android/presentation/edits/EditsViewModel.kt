@@ -4,11 +4,11 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.android.ui.components.output.OutputBoxState
 import kotlinx.coroutines.launch
 
-internal class EditsViewModel(private val yChat: YChat) : ViewModel() {
+internal class EditsViewModel(private val openAi: OpenAI) : ViewModel() {
 
     val inputMessage = mutableStateOf("")
 
@@ -23,7 +23,7 @@ internal class EditsViewModel(private val yChat: YChat) : ViewModel() {
     fun requestEdits() = viewModelScope.launch {
         outputBoxStates.clear()
         onLoading(true)
-        val edits = yChat.edits()
+        val edits = openAi.edits()
             .setInput(inputMessage.value)
             .setResults(1)
         runCatching { edits.execute(instructionMessage.value) }

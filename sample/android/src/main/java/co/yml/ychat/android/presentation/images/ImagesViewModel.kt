@@ -3,13 +3,13 @@ package co.yml.ychat.android.presentation.images
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-internal class ImagesViewModel(private val yChat: YChat): ViewModel() {
+internal class ImagesViewModel(private val openAi: OpenAI): ViewModel() {
 
     val inputMessage = mutableStateOf("")
 
@@ -18,7 +18,7 @@ internal class ImagesViewModel(private val yChat: YChat): ViewModel() {
     private val _state = MutableStateFlow<State>(State.Idle)
     val state: StateFlow<State> = _state.asStateFlow()
 
-    private val imageGenerations by lazy { yChat.imageGenerations() }
+    private val imageGenerations by lazy { openAi.imageGenerations() }
 
     fun onInputMessage(message: String) {
         this.inputMessage.value = message

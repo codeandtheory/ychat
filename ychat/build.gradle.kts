@@ -22,11 +22,9 @@ kover {
     }
 }
 
-val iosLibraryName = properties["IOS_NAME"].toString()
-version = properties["LIBRARY_VERSION"].toString()
-
 multiplatformSwiftPackage {
-    packageName(iosLibraryName)
+    version = Libraries.VERSION
+    packageName(Libraries.YChat.IOS_NAME)
     swiftToolsVersion("5.3")
     outputDirectory(File(rootDir, "/"))
     targetPlatforms {
@@ -46,7 +44,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = iosLibraryName
+            baseName = Libraries.YChat.IOS_NAME
         }
     }
 
@@ -55,6 +53,7 @@ kotlin {
             dependencies {
                 implementation(libs.koin.core)
                 implementation(project(":ychat-core"))
+                implementation(project(":openai"))
             }
         }
         val commonTest by getting {
@@ -114,8 +113,12 @@ android {
 }
 
 mavenPublishing {
-    coordinates("co.yml", "ychat", properties["LIBRARY_VERSION"].toString())
+    coordinates(Libraries.GROUP_ID, Libraries.YChat.ARTIFACT_ID, Libraries.VERSION)
     pom {
+        name.set("YChat")
+        description.set("YChat SDK is kotlin multiplatform library for chat gpt apis.")
+        url.set("https://github.com/yml-org/ychat")
+
         developers {
             developer {
                 id.set("osugikoji")

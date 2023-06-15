@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":ychat"))
+    implementation(project(":openai"))
     implementation(libs.androidx.compose.tooling)
     implementation(libs.androidx.compose.tooling.preview)
     implementation(libs.androidx.compose.foundation)

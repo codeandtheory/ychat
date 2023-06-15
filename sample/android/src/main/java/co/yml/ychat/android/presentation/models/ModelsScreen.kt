@@ -14,7 +14,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAI
+import co.yml.openai.provider.domain.model.AIModel
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.presentation.models.viewmodel.ModelsViewModel
 import co.yml.ychat.android.presentation.models.viewmodel.ModelsViewModel.State
@@ -23,7 +24,6 @@ import co.yml.ychat.android.ui.components.feedback.model.FeedbackState
 import co.yml.ychat.android.ui.components.itemmenu.ItemMenu
 import co.yml.ychat.android.ui.theme.Dimens
 import co.yml.ychat.android.ui.theme.YChatTheme
-import co.yml.ychat.domain.model.AIModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -71,8 +71,8 @@ private fun ModelListContent(models: List<AIModel>) {
 @Composable
 private fun ModelsScreenPreview() {
     YChatTheme {
-        val yChat = YChat.create(BuildConfig.API_KEY)
-        val viewModel = ModelsViewModel(yChat)
+        val openAi = OpenAI.create(BuildConfig.API_KEY)
+        val viewModel = ModelsViewModel(openAi)
         ModelsScreen(viewModel)
     }
 }

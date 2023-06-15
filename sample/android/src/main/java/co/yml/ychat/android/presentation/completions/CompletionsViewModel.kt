@@ -4,11 +4,11 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.android.ui.components.output.OutputBoxState
 import kotlinx.coroutines.launch
 
-internal class CompletionsViewModel(private val yChat: YChat): ViewModel() {
+internal class CompletionsViewModel(private val openAi: OpenAI): ViewModel() {
 
     val message = mutableStateOf("")
 
@@ -24,7 +24,7 @@ internal class CompletionsViewModel(private val yChat: YChat): ViewModel() {
         outputBoxStates.add(OutputBoxState.Text(messageToSend))
         onLoading(true)
         onMessage("")
-        val completions = yChat.completion()
+        val completions = openAi.completion()
             .setMaxTokens(MAX_TOKENS)
             .setInput(messageToSend)
         runCatching { completions.execute() }

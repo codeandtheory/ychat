@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import co.yml.ychat.YChat
+import co.yml.openai.provider.OpenAI
 import co.yml.ychat.android.BuildConfig
 import co.yml.ychat.android.R
 import co.yml.ychat.android.ui.components.button.ButtonContained
@@ -68,8 +68,8 @@ internal fun EditsScreen(viewModel: EditsViewModel = getViewModel()) {
 @Composable
 private fun EditsScreenPreview() {
     YChatTheme {
-        val yChat = YChat.create(BuildConfig.API_KEY)
-        val viewModel = EditsViewModel(yChat)
+        val openAi = OpenAI.create(BuildConfig.API_KEY)
+        val viewModel = EditsViewModel(openAi)
         EditsScreen(viewModel)
     }
 }
