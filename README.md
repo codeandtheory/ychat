@@ -1,7 +1,7 @@
 ![Maven Central](https://img.shields.io/maven-central/v/co.yml/ychat)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 ![Build Status](https://github.com/yml-org/ychat/actions/workflows/test.yml/badge.svg?branch=main)
-![Y-Chat](https://github.com/yml-org/ychat/raw/main/art/logo.png)
+![Y-Chat](art/logo.png)
 
 # Y—Chat
 
@@ -15,19 +15,19 @@ The Y-Chat SDK offers support for Android, iOS, masOS and JVM, making it a flexi
 
 Currently, the repository contains the following libraries that aim to facilitate the integration with artificial intelligence models:
 
-[YChat](https://github.com/yml-org/ychat/tree/refactor/CM-1417/readme-rework/ychat)
+[YChat](ychat)
 <br />
-[OpenAI-Provider](https://github.com/yml-org/ychat/tree/refactor/CM-1417/readme-rework/providers/openai-provider)
+[OpenAI-Provider](openai)
 
 ## ℹ️ Sample apps
 
 Take a look at our sample apps to learn how to use the SDK on different platforms:
 
-[Android Sample](https://github.com/yml-org/ychat/tree/main/sample/android)
+[Android Sample](sample/android)
 <br />
-[iOS Sample](https://github.com/yml-org/ychat/tree/main/sample/ios)
+[iOS Sample](sample/ios)
 <br />
-[JVM Sample](https://github.com/yml-org/ychat/tree/main/sample/jvm)
+[JVM Sample](sample/jvm)
 
 ## 🤝 Contributions
 
