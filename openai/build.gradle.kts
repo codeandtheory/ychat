@@ -48,6 +48,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(libs.koin.core)
                 implementation(project(":ychat-core"))
             }
         }
