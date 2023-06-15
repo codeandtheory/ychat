@@ -1,15 +1,15 @@
 plugins {
-    id("org.springframework.boot").version(Versions.SPRING)
+    id("org.springframework.boot").version(libs.versions.spring)
     java
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
     implementation(project(":ychat"))
-    implementation(platform(Dependencies.Spring.SPRING_DEP))
-    implementation(Dependencies.Spring.SPRING_WEB)
+    implementation(platform(libs.spring.boot.dependencies))
+    implementation(libs.spring.boot.web)
 }

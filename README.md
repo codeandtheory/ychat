@@ -9,7 +9,7 @@ Y-Chat is a versatile Kotlin Multiplatform SDK that provides seamless integratio
 
 With Y-Chat, developers can easily incorporate cutting-edge AI functionalities into their projects in a quick and efficient manner. This repository comprises the source code for multiple libraries, as well as detailed documentation and examples to help you get started with the library.
 
-The Y-Chat SDK offers support for Android, iOS, and JVM, making it a flexible and adaptable solution for a wide range of applications. Moreover, the project is open-source and actively maintained, with contributions from the community highly encouraged.
+The Y-Chat SDK offers support for Android, iOS, masOS and JVM, making it a flexible and adaptable solution for a wide range of applications. Moreover, the project is open-source and actively maintained, with contributions from the community highly encouraged.
 
 ## 📚 Libraries
 
